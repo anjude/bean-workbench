@@ -1,0 +1,68 @@
+/* 碳基空间 CSS 变量定义 */
+/* 在 App.vue 或全局样式中引入 */
+
+:root {
+  /* 背景 */
+  --cs-bg: #0d0d12;
+  --cs-bg-secondary: #16161e;
+  --cs-bg-elevated: #1e1e2a;
+
+  /* 强调色 */
+  --cs-glow: #f0a050;
+  --cs-glow-light: #f5c78a;
+  --cs-glow-dark: #c47a30;
+
+  /* 语义色 */
+  --cs-green: #5cb88a;
+  --cs-purple: #8a7cb8;
+  --cs-red: #c85a5a;
+
+  /* 文字 */
+  --cs-text: #e8e4de;
+  --cs-text-secondary: #8a8690;
+  --cs-text-muted: #4a4650;
+
+  /* 边框与分割 */
+  --cs-border: rgba(240,160,80,0.12);
+  --cs-divider: rgba(255,255,255,0.06);
+  --cs-input-border: rgba(255,255,255,0.1);
+
+  /* 磨砂 */
+  --cs-frost: rgba(22,22,30,0.75);
+  --cs-frost-light: rgba(30,30,42,0.6);
+
+  /* 间距 */
+  --cs-space-xs: 8rpx;
+  --cs-space-sm: 16rpx;
+  --cs-space-md: 24rpx;
+  --cs-space-lg: 32rpx;
+  --cs-space-xl: 48rpx;
+  --cs-space-xxl: 64rpx;
+
+  /* 字号 */
+  --cs-text-xs: 22rpx;
+  --cs-text-sm: 26rpx;
+  --cs-text-md: 30rpx;
+  --cs-text-lg: 36rpx;
+  --cs-text-xl: 44rpx;
+  --cs-text-xxl: 56rpx;
+
+  /* 圆角 */
+  --cs-radius-sm: 12rpx;
+  --cs-radius-md: 20rpx;
+  --cs-radius-lg: 28rpx;
+  --cs-radius-xl: 40rpx;
+  --cs-radius-full: 50%;
+
+  /* 阴影 */
+  --cs-shadow-glow: 0 0 20rpx rgba(240,160,80,0.15);
+  --cs-shadow-soft: 0 4rpx 16rpx rgba(0,0,0,0.3);
+  --cs-shadow-deep: 0 8rpx 32rpx rgba(0,0,0,0.5);
+
+  /* 层级 */
+  --cs-z-card: 10;
+  --cs-z-sticky: 20;
+  --cs-z-overlay: 30;
+  --cs-z-modal: 40;
+  --cs-z-toast: 50;
+}

@@ -1,0 +1,58 @@
+/* 碳基空间动画定义 */
+
+/* 呼吸脉动 — 在线状态、信号灯、等待态 */
+@keyframes cs-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* 柔和浮动 — 装饰元素、空状态图标 */
+@keyframes cs-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8rpx); }
+}
+
+/* 微光闪烁 — 核心按钮、新消息提示 */
+@keyframes cs-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20rpx rgba(240,160,80,0.15); }
+  50% { box-shadow: 0 0 30rpx rgba(240,160,80,0.3); }
+}
+
+/* 进入动画 — 页面元素依次入场 */
+@keyframes cs-fade-up {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 退场动画 */
+@keyframes cs-fade-down {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(20rpx); }
+}
+
+/* 淡入 */
+@keyframes cs-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 缩放弹入 — 弹窗、弹层 */
+@keyframes cs-scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 工具类 */
+.cs-breathe { animation: cs-breathe 3s ease-in-out infinite; }
+.cs-float { animation: cs-float 4s ease-in-out infinite; }
+.cs-glow-pulse { animation: cs-glow-pulse 2.5s ease-in-out infinite; }
+.cs-fade-up { animation: cs-fade-up 0.4s ease-out forwards; }
+.cs-fade-down { animation: cs-fade-down 0.3s ease-in forwards; }
+.cs-fade-in { animation: cs-fade-in 0.3s ease-out forwards; }
+.cs-scale-in { animation: cs-scale-in 0.35s ease-out forwards; }
+
+/* 入场延迟 — 多元素依次入场 */
+.cs-delay-1 { animation-delay: 0.05s; }
+.cs-delay-2 { animation-delay: 0.1s; }
+.cs-delay-3 { animation-delay: 0.15s; }
+.cs-delay-4 { animation-delay: 0.2s; }
