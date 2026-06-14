@@ -13,6 +13,7 @@ metadata:
 
 - 目标项目：后端实现以 `business-repo/backend-superone` 为项目根目录；如果当前就在后端仓内，后端代码路径使用相对目录。
 - 工作台根目录：跨仓需求以工作台根目录为协调目录，协议仓目标路径为 `business-repo/frontend-contracts`。
+- 默认分支：`backend-superone` 以 `dev` 作为默认开发分支；其他业务子仓默认以 `master` 作为默认分支。
 - 开发基线：默认在 `dev` 分支语义下完成需求实现；`test` / `release` 主要作为部署分支，不默认在其上直接开发。
 - 分支流转：日常开发先落 `dev`，合并到 `test` 后自动部署 `nonlive`，合并到 `release` 后自动部署 `live`。
 - 代码参考：评估兼容性或线上差异时，可以对照 `release`；但新增需求、方案设计、代码落点默认以 `dev` 当前结构为准。

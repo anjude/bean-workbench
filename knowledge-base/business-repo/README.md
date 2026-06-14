@@ -9,6 +9,13 @@
 - `uni-carbon-space`：carbon 品牌 uni-app 前端业务仓。
 - `frontend-contracts`：前后端协议仓，位置为 `business-repo/frontend-contracts`。
 
+## 默认分支约定
+
+- `backend-superone` 默认分支为 `dev`。
+- `uni-superone` 默认分支为 `master`。
+- `uni-carbon-space` 默认分支为 `master`。
+- `frontend-contracts` 默认分支为 `master`。
+
 ## Superone 编排关系
 
 - 工作台是 Superone 多仓协作的全局入口，负责判断需求应该落到后端、前端、协议仓，还是只沉淀到知识库或 skill。

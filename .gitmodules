@@ -1,12 +1,16 @@
 [submodule "business-repo/backend-superone"]
 	path = business-repo/backend-superone
 	url = git@github.com:anjude/backend-superone.git
+	branch = dev
 [submodule "business-repo/uni-superone"]
 	path = business-repo/uni-superone
 	url = git@github.com:anjude/uni-superone.git
+	branch = master
 [submodule "business-repo/uni-carbon-space"]
 	path = business-repo/uni-carbon-space
 	url = git@github.com:anjude/uni-carbon-space.git
+	branch = master
 [submodule "business-repo/frontend-contracts"]
 	path = business-repo/frontend-contracts
 	url = git@github.com:anjude/frontend-contracts.git
+	branch = master
