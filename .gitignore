@@ -1,0 +1,58 @@
+# Workspace / notes
+.obsidian/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Go
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.out
+coverage/
+
+# Node / uni-app
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.vite/
+.idea/
+*.tsbuildinfo
+
+# uni-app / HBuilderX / compiled outputs
+unpackage/
+output/
+*.nvue.map
+*.vue.map
+
+# Temporary
+tmp/
+temp/
