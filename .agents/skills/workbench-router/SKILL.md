@@ -17,6 +17,7 @@ description: 工作台轻量路由 skill。用户提出 superone 需求、便签
 - `superone`：路由到 `business-repo/`，再根据需求判断 `backend-superone`、`uni-superone` 或 `frontend-contracts`。
 - `后端`、`API`、`数据库`、`SQL`：优先考虑 `business-repo/backend-superone`。
 - `前端`、`页面`、`uni-app`、`小程序`：优先考虑 `business-repo/uni-superone`。
+- `carbon`、`uni-carbon-space`：优先考虑 `business-repo/uni-carbon-space`，并叠加 `carbon-space-ui`、`carbon-icon-flow`。
 - `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步`：优先考虑 `business-repo/frontend-contracts`。
 - `便签`：先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时，不直接改业务仓。
 - `工作台`、`skill`、`知识库`、`自进化`：只改工作台根级目录。

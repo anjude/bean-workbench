@@ -22,6 +22,28 @@
 - [知识库规范](docs/knowledge-base.md)
 - [任务管理规范](docs/task-system.md)
 - [工作流索引](docs/workflows/README.md)
+- [业务仓生成验收与沉淀清单](docs/workflows/business-generation-checklist.md)
 - [模板索引](docs/templates/README.md)
 - [架构规范](docs/architecture/README.md)
 - [目标管理](docs/goals/README.md)
+
+## 子仓接入规则
+
+当新增或接入业务子仓时，必须同步检查并更新：
+
+1. `business-repo/` 目录与 `.gitmodules`
+2. `knowledge-base/business-repo/` 的仓索引与职责说明
+3. `task/registry.md` 的热任务与路由提示
+4. 受影响的 `.agents/skills/` 路由或品牌特化 skill
+5. 相关 `docs/workflows/` 工作流和必要的沉淀任务目录
+
+如果新增子仓会影响已有路由、品牌、契约或协作边界，先补工作台规则，再做业务仓接入。
+
+## 提交流程
+
+工作台统一使用根目录 `Makefile` 的提交入口提交当前工作台全部变更：
+
+- `make commit`
+- `make commit feat xxx`
+
+该命令等价于先 `git add -A`，再把 `make commit` 后面的参数按空格拼成提交信息执行 `git commit`；如果不带参数，默认使用 `chore: update workbench`。

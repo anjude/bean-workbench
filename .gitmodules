@@ -4,3 +4,9 @@
 [submodule "business-repo/uni-superone"]
 	path = business-repo/uni-superone
 	url = git@github.com:anjude/uni-superone.git
+[submodule "business-repo/uni-carbon-space"]
+	path = business-repo/uni-carbon-space
+	url = git@github.com:anjude/uni-carbon-space.git
+[submodule "business-repo/frontend-contracts"]
+	path = business-repo/frontend-contracts
+	url = git@github.com:anjude/frontend-contracts.git

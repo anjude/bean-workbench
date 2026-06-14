@@ -33,10 +33,10 @@ metadata:
 - Pinia、Composable、业务交互：`uni-state-flow`
 - 组件、样式、视觉一致性：`uni-component-style-flow`
 - uni 通用 SVG 资产、图标组件、空状态图形：`uni-svg-flow`
-- carbon 业务图标、SVG 资产、图标接入：`carbon-icon-flow`
+- 品牌特化图标、SVG 资产、图标接入：按项目品牌 skill 叠加对应特化层，例如 carbon 项目使用 `carbon-icon-flow`
 - type-check、build、验收：`uni-test-build-flow`
 
-如果项目存在明确品牌 UI skill，页面和资产决策时必须叠加该品牌 skill。
+如果项目存在明确品牌 UI skill，页面和资产决策时必须叠加该品牌 skill；`uni-dev-flow` 只负责通用 uni 抽象，不默认绑定任何单一品牌项目。
 
 ## 核心原则
 
@@ -91,7 +91,7 @@ metadata:
 - 是否依赖外部插画、图片、纹理才能成立
 - 是否能改为项目内 `SVG`、CSS、轻组件、自有样式实现
 
-涉及图标、空状态图、组合图形时，调用 `uni-svg-flow`；如果是 carbon 品牌语义，再叠加 `carbon-icon-flow`。
+涉及图标、空状态图、组合图形时，调用 `uni-svg-flow`；如果项目有明确品牌语义，再叠加对应品牌的图标特化 skill。
 
 ### 4. 品牌一致性检查
 
@@ -102,7 +102,7 @@ metadata:
 - CTA 是否过多或过吵
 - 图标、空状态、动效是否跑偏
 
-如果项目是 carbon，优先参考 `carbon-space-ui`。
+如果项目存在品牌 UI skill，优先参考该品牌 skill；例如 carbon 项目参考 `carbon-space-ui`。
 
 ### 5. 工程实现
 

@@ -1,6 +1,6 @@
 ---
 name: carbon-icon-flow
-description: 当 uni-carbon-space 或 carbon 相关需求涉及业务图标、空状态图形、功能入口小图标、SVG 资产生产、图标替换或图标组件接入时使用；它是 uni 通用 SVG 流程的 carbon 品牌特化版，要求图标符合碳基空间品牌调性，并能直接落到当前前端仓库。
+description: 当 carbon 相关需求涉及业务图标、空状态图形、功能入口小图标、SVG 资产生产、图标替换或图标组件接入时使用；它是 uni 通用 SVG 流程的 carbon 品牌特化版，要求图标符合碳基空间品牌调性，并能直接落到当前前端仓库。
 metadata:
   short-description: carbon 品牌图标特化
 ---
