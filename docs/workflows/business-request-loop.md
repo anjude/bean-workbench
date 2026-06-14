@@ -8,7 +8,7 @@
 
 1. 读取 `AGENTS.md` 和 `task/registry.md`。
 2. 使用 `workbench-router` 判断业务仓、协议仓和上下文。
-3. 进入业务仓后读取该仓自己的入口说明。
+3. 进入业务仓后读取该仓自己的 `AGENTS.md` 入口说明。
 4. 按 [业务仓生成验收与沉淀清单](business-generation-checklist.md) 完成代码、文档、契约同步和必要验证。
 5. 回到工作台判断是否需要更新任务、知识库、skill 或脚本。
 

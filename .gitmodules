@@ -14,3 +14,31 @@
 	path = business-repo/frontend-contracts
 	url = git@github.com:anjude/frontend-contracts.git
 	branch = master
+[submodule "business-repo/bt"]
+	path = business-repo/bt
+	url = git@github.com:anjude/bt.git
+	branch = master
+[submodule "business-repo/frontend-investment-platform"]
+	path = business-repo/frontend-investment-platform
+	url = https://github.com/anjude/frontend-investment-platform.git
+	branch = release
+[submodule "business-repo/frontend-superone"]
+	path = business-repo/frontend-superone
+	url = https://github.com/anjude/bean-milk.git
+	branch = master
+[submodule "business-repo/utools-bean-option"]
+	path = business-repo/utools-bean-option
+	url = https://github.com/anjude/option-tools.git
+	branch = master
+[submodule "business-repo/miniprogram-superone"]
+	path = business-repo/miniprogram-superone
+	url = https://github.com/anjude/miniprogram-superone.git
+	branch = master
+[submodule "business-repo/utools-bean-note"]
+	path = business-repo/utools-bean-note
+	url = https://github.com/anjude/utools-bean-ai.git
+	branch = main
+[submodule "business-repo/utools-superone"]
+	path = business-repo/utools-superone
+	url = https://github.com/anjude/utools-superone.git
+	branch = master
