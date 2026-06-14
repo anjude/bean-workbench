@@ -1,0 +1,6 @@
+[submodule "business-repo/backend-superone"]
+	path = business-repo/backend-superone
+	url = git@github.com:anjude/backend-superone.git
+[submodule "business-repo/uni-superone"]
+	path = business-repo/uni-superone
+	url = git@github.com:anjude/uni-superone.git
