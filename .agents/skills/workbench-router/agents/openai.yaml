@@ -1,0 +1,3 @@
+display_name: 工作台路由
+short_description: 根据热任务、知识库和关键词把需求路由到工作台或业务仓。
+default_prompt: 判断当前需求应该进入哪个工作台上下文或业务仓。

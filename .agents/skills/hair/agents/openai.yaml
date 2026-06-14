@@ -1,0 +1,3 @@
+display_name: Hair 工作台
+short_description: 进入个人 Agent 工作台，读取规则、任务和知识库后再路由业务需求。
+default_prompt: 使用 hair 工作台处理当前需求。

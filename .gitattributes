@@ -16,6 +16,9 @@
 *.toml text eol=lf
 *.env text eol=lf
 *.sh text eol=lf
+*.ps1 text eol=lf
+Makefile text eol=lf
+.editorconfig text eol=lf
 
 # Git metadata / workspace files
 .gitmodules text eol=lf
@@ -33,4 +36,3 @@
 *.gz binary
 *.tar binary
 *.7z binary
-
