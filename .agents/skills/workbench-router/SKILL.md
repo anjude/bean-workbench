@@ -23,6 +23,7 @@ description: 工作台轻量路由 skill。用户提出 superone 需求、便签
 - `uTools`、`桌面工具`：根据语义路由到 `business-repo/utools-superone`、`business-repo/utools-bean-note` 或 `business-repo/utools-bean-option`。
 - `carbon`、`uni-carbon-space`：优先考虑 `business-repo/uni-carbon-space`，并叠加 `carbon-space-ui`、`carbon-icon-flow`。
 - `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步`：优先考虑 `business-repo/frontend-contracts`。
+- `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先考虑 `business-repo/beannote`，再读取该仓自己的内容工作流和 skill。
 - `便签`：先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时，不直接改业务仓。
 - `工作台`、`skill`、`知识库`、`自进化`：只改工作台根级目录。
 

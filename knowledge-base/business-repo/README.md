@@ -14,6 +14,7 @@
 - `utools-superone`：uTools Superone 桌面工具仓，位置为 `business-repo/utools-superone`。
 - `utools-bean-note`：uTools 便签/笔记工具仓，位置为 `business-repo/utools-bean-note`。
 - `utools-bean-option`：uTools option 工具仓，位置为 `business-repo/utools-bean-option`。
+- `beannote`：豆小匠 Note 内容管理库，面向理财自媒体的选题、生产、知识沉淀、素材、发布和复盘流程，位置为 `business-repo/beannote`。
 - `bt`：后端相关辅助工具仓，位置为 `business-repo/bt`。
 
 ## 默认分支约定
@@ -28,6 +29,7 @@
 - `utools-superone` 默认分支为 `master`。
 - `utools-bean-note` 默认分支为 `main`。
 - `utools-bean-option` 默认分支为 `master`。
+- `beannote` 默认分支为 `master`。
 - `bt` 默认分支为 `master`。
 
 ## Superone 编排关系
@@ -45,6 +47,7 @@
 ## 路由提示
 
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`、`DTO 同步`：优先路由到 `business-repo/frontend-contracts`。
+- 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先路由到 `business-repo/beannote`，再读取该仓自己的内容工作流和 skill。
 - 进入任一业务仓后，优先读取该仓根目录 `AGENTS.md`。
 
 ## 写入边界

@@ -42,3 +42,7 @@
 	path = business-repo/utools-superone
 	url = https://github.com/anjude/utools-superone.git
 	branch = master
+[submodule "business-repo/beannote"]
+	path = business-repo/beannote
+	url = git@github.com:anjude/beannote.git
+	branch = master

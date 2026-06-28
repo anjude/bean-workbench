@@ -22,6 +22,40 @@
 - `script/`：工作台辅助脚本。
 - `business-repo/`：业务仓集合，包含后端、前端、协议等独立仓，不承载工作台规则。
 
+## Skill 目录规则
+
+`.agents/skills/` 是工作台统一的 skill 入口，不应长期把可复用 skill 散落在业务仓私有目录中。
+
+### 命名格式
+
+统一使用：
+
+```text
+{领域前缀}-{可选子域}-{能力后缀}
+```
+
+示例：
+
+- `backend-superone-api-flow`
+- `backend-superone-test-review-flow`
+- `uni-component-style-flow`
+- `content-beannote-creation-flow`
+- `workbench-router`
+
+### 命名原则
+
+1. 目录名使用小写英文和连字符。
+2. 前缀优先表达领域，如 `backend`、`frontend`、`uni`、`content`、`workbench`、`carbon`。
+3. 中段按需表达仓、品牌、平台或对象，如 `superone`、`beannote`。
+4. 后缀表达动作或职责，如 `dev-flow`、`api-flow`、`review-flow`、`knowledge-base`。
+5. 避免使用 `.workbuddy`、平台名、产品壳名或纯个人偏好的目录命名，除非该目录确实是兼容层。
+
+### 迁移原则
+
+1. 业务仓里出现稳定复用的 skill 时，应优先迁移到工作台 `.agents/skills/`。
+2. 迁移时同步更新触发词、引用路径、任务记录和知识库入口。
+3. 对历史 skill 保持兼容，但新增 skill 不再引入品牌化目录命名。
+
 ## 变更边界
 
 1. 工作台建设默认只改根级工作台目录。
