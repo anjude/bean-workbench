@@ -24,3 +24,8 @@
 - `verify-carbon` 校验的表清单是 `scripts/migration/exec_sql.go` 里的 `carbonTables` 切片——**新增 carbon 表后须手动把表名加进去**，否则 verify 不覆盖、连表是否建成功都看不到。2026-07-11 已为 `carbon_boundary_tab` 加上。
 - test 库是共享远程库（脚本里写死 `8.155.38.83/weiyi_superone_db_test`），建表真实生效，属外部写操作；执行前须向用户确认（用户授权"继续"后才执行）。
 - **后端 DTO 校验坑（已踩）**：gin 的 validator 对数值类型，把 `0` 当零值，`binding:"required"` 会拒绝 `0`。任何**含合法 0 值**的整数字段（如 reaction 取消态=0、status 默认态=0）不要用 `binding:"required"`；改用 `binding:"gte=0"` 或去掉 required，让业务层 `isValidXxx` 兜底校验。2026-07-12 边界 `ReactBoundaryReq.Reaction` 因此导致"取消表态"报 param error，已改为 `gte=0`。
+
+## beannote 内容（豆小匠）
+- 选题池在 `business-repo/beannote/02_topic_pool/`，每篇按「选题卡」格式（模板与阶段调性见用户级记忆 + content-beannote-creation-flow skill）。
+- 投资认知内容方向（2026-07-22 用户强调整）：反对口号/说教式，要科学、平实、可操作。重点讲清"测量方法 + 背后的道理"，必要处给阈值但**不要公式堆砌**；老实交代指标局限（能证伪不能证明），不夸大。不要泛泛而谈的"劝人"文。
+- 进行中主题「什么情况下我们认为一个人在股市能稳定挣钱」：已收敛出可操作科学版（备净值数据 → 基础四数 → 夏普/索提诺/卡玛+阈值 → 统计显著性 t≈夏普×√年数 → α/β 回归 → 尾部风险一票否决 → 分段持续性）。待用户确认是否落选题卡。
