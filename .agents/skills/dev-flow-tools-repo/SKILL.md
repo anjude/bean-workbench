@@ -57,8 +57,8 @@ Go、Gin、GORM、MySQL、Viper、Wire、Logrus、JWT、Prometheus、pprof、Doc
 | `make mock` | `go generate -run="mockgen" ./...` |
 | `make gentab ENV=<test\|live>` | 执行默认建表，等价 `go run ./scripts/migration -env=<ENV>` |
 | `make push-all <说明>` | 提交并推送前端子模块与后端主仓，commit 带 `yyMMdd` 前缀 |
-| `make nonlive` | 等价 `./push.bat test`，把 dev 合并到 test |
-| `make release` | 等价 `./push.bat release`，把 dev 合并到 release |
+| `make nonlive` | 把 dev 合并到 test；内部调 `push.bat`，仅 Windows 可用，见「平台差异」 |
+| `make release` | 把 dev 合并到 release；同上 |
 
 迁移脚本直连：
 
@@ -66,7 +66,7 @@ Go、Gin、GORM、MySQL、Viper、Wire、Logrus、JWT、Prometheus、pprof、Doc
 go run ./scripts/migration -action=exec-sql -sql-file=scripts/migration/sql/xxx.sql -env=test
 ```
 
-PowerShell 下加 `--%` 避免参数被解析异常；bash/zsh 下不加。迁移脚本默认环境必须是 `test`，执行 live 必须显式传 `-env=live`。
+macOS / Linux 的 bash、zsh 下直接照上面写，不加任何转义；Windows PowerShell 下要加 `--%` 避免参数被解析异常。迁移脚本默认环境必须是 `test`，执行 live 必须显式传 `-env=live`。
 
 ## 前端仓
 
@@ -117,7 +117,9 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 `backend-superone` 默认开发分支是 `dev`；`uni-carbon-space`、`frontend-contracts` 默认 `master`。不在 `test` / `release` 上直接开发。
 
-### push.bat 的实际行为
+### 分支推进脚本的实际行为
+
+Windows 下由 `push.bat` 完成，macOS / Linux 下按「平台差异」里的等价命令手工执行。行为一致：
 
 1. `git fetch origin --prune`。
 2. 在临时 worktree 里 checkout 目标分支，pull 最新，merge `origin/dev`，push。
@@ -141,13 +143,54 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 执行前确认：当前改动是否已 commit、是否有未解决的冲突、目标分支是否是用户预期的那一个。
 
+### 平台差异
+
+主开发环境是 macOS（Apple Silicon）。`backend-superone` 的脚本仍带 Windows 痕迹，遇到下面这些按此处理，不要照抄 Windows 命令。
+
+| 场景 | macOS / Linux | Windows |
+| --- | --- | --- |
+| 迁移脚本参数 | 照常用 `-action=... -sql-file=... -env=...` | PowerShell 下要加 `--%` |
+| `make nonlive` / `make release` | **不可用**，内部调 `push.bat`；用下面的等价命令 | 可用 |
+| `make push-all` | 能跑，但 `DATE_PREFIX` 由 `powershell` 取日期，取不到时 commit 消息前缀为空 | 正常 |
+| 换行符 | 保持 LF，不提交 CRLF 改动 | 同左 |
+
+mac 上推进 `test` / `release` 的等价命令，`<branch>` 取 `test` 或 `release`：
+
+```bash
+git fetch origin --prune
+git worktree add /tmp/superone-<branch> <branch>          # 本地没有该分支时改为：git worktree add /tmp/superone-<branch> -b <branch> origin/<branch>
+git -C /tmp/superone-<branch> pull origin <branch>
+git -C /tmp/superone-<branch> merge origin/dev
+git -C /tmp/superone-<branch> push origin <branch>
+git worktree remove /tmp/superone-<branch>
+```
+
+当前工作区保持不变，未 commit 的改动不会带进去。异常中断后检查 `git worktree list`，用 `git worktree remove --force` 清理残留。
+
+## 命令可用性
+
+| 命令 | 位置 | 说明 |
+| --- | --- | --- |
+| `brew` | `/opt/homebrew/bin/brew` | 已装，经 `/etc/paths.d/homebrew` 进 login shell 的 PATH，不在 `.zshrc` 里 |
+| `go` | `~/sdk/go/bin/go` | 1.27.0，PATH 与 `GOPROXY` 声明在 `~/.zshrc` 末尾；该文件曾被 oh-my-zsh 模板覆盖过，排查 Go 问题先 `tail ~/.zshrc` |
+| `python3` | `/usr/bin/python3` | 系统自带 3.9.6，工作台脚本按这个版本兼容 |
+| `pwsh` | 无 | 没装。别写 PowerShell 命令，也别指望 `.ps1` 能跑 |
+
+Agent 的执行环境是非 login 非交互 shell，不读 `/etc/paths.d` 也不读 `~/.zshrc`，**直接敲 `brew`、`go` 会报 command not found**。用绝对路径，或先执行：
+
+```bash
+export PATH="/opt/homebrew/bin:$HOME/sdk/go/bin:$PATH"
+```
+
+判断某个命令「有没有装」之前先排除 PATH 问题：用 `ls <绝对路径>` 或 `zsh -lc 'command -v <cmd>'` 复核，别只信 `command -v`——曾据此误判过「本机没装 brew」。
+
 ## 常见坑
 
 - 目标分支合并失败：多半是 `dev` 落后于远端或有冲突，先 pull 再重跑，不要手工改 worktree 里的文件。
 - 推进后线上没生效：先确认改动是否 commit 到了 `dev`。
 - `test` / `release` 上出现工作区脏文件：优先怀疑分支切换、脚本或换行符归一化，不要假设是业务代码真实改动。
 - 临时 worktree 残留：脚本正常退出会自动清理；异常中断时检查 `git worktree list`，手动 `git worktree remove --force` 清理。
-- Windows 环境下 Go 单包首次编译可能需 15-30 秒；多个 `go test` 包并行跑容易超时，优先串行。
+- `go test` 冷缓存首次编译耗时长，多个包并行跑容易超时，优先串行。
 
 ## 禁止事项
 

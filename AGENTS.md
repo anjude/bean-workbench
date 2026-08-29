@@ -23,7 +23,7 @@ Agent 指南文件和相关文档应使用中性、通用的名称。
 
 ## Skill 命名规则
 
-工作台 `.agents/skills/` 下的 skill 目录名统一使用「族群前缀 + 四位编号 + 能力后缀」的编号式命名，默认格式如下：
+`.agents/skills/` 下的 skill 目录名统一使用「族群前缀 + 四位编号 + 能力后缀」的编号式命名，默认格式如下：
 
 ```text
 {族群前缀}-{阶段号}{阶段内序号}-{能力后缀}    阶段 skill
@@ -69,10 +69,10 @@ Agent 指南文件和相关文档应使用中性、通用的名称。
 - 新增 skill 先定阶段、再定阶段内序号，默认追加到该阶段末尾，不插队、不复用退役编号。
 - 前后端可能出现同名能力（如两端都有 `api-flow`），靠阶段号区分，不改后缀；编号表里要写清各自职责。
 - 新增长在多个阶段被调用、又不专属任一阶段的横切能力时，建 `*-tools-*` 工具 skill，不要塞进阶段编号里。
-- 确实需要插入到阶段中间时，必须重排该阶段后续序号，并同步更新 `SKILL.md` 的 `name`、所有文档引用和 `script/check-workbench.ps1` 里的路径清单。
+- 确实需要插入到阶段中间时，必须重排该阶段后续序号，并同步更新 `SKILL.md` 的 `name`、所有文档引用和 `script/check-workbench.py` 里的路径清单。
 - 同一族群内的 skill 命名要保持平行结构，例如 `dev-flow-0000-plan-flow`、`dev-flow-0103-api-flow`、`dev-flow-0301-verify-flow`。
 - skill 数量要收敛：同阶段内总是连着走、且单次都只有几十行的小 skill 应合并成一个，用章节区分职责；单个 skill 超过 300 行才考虑拆分。合并后阶段内序号重排，同步所有引用。
-- 业务仓内沉淀出的可复用 skill，稳定后应迁移到工作台 `.agents/skills/`，按族群归入编号体系，并移除带有平台或个人品牌色彩的目录命名。
+- 业务仓内沉淀出的可复用 skill，稳定后应迁移到 `.agents/skills/`，按族群归入编号体系，并移除带有平台或个人品牌色彩的目录命名。
 
 ## 当前 skill 编号表
 
@@ -136,8 +136,9 @@ Agent 指南文件和相关文档应使用中性、通用的名称。
 - [工作台说明](README.md)
 - [工作台规范](docs/workspace.md)
 - [自进化机制](docs/self-evolution.md)
-- [知识库规范](docs/knowledge-base.md)
 - [任务管理规范](docs/task-system.md)
+- [目标管理](docs/goals.md)
+- [知识库规范与条目模板](knowledge-base/README.md)
 
 ## 工作台规则
 
@@ -150,13 +151,28 @@ Agent 指南文件和相关文档应使用中性、通用的名称。
 
 ## 目录职责
 
-- `.agents/skills/`：工作台维护的通用 Agent skill 源目录。
-- `docs/`：工作流、模板、架构规范、目标管理等工作台辅助内容。
-- `knowledge-base/`：业务仓、系统和公共知识沉淀。
-- `task/`：工作台任务记录、热任务索引和上下文登记。
-- `archive/`：工作台历史任务、过期规则和阶段性材料归档。
+- `.agents`：跨项目复用的 skill 实体目录，由工作台 git 做版本管理；模板、清单和工作流放各 skill 的 `references/`。home 目录下的 `~/.agents` 是指向它的外链，详见 [跨项目共享](#跨项目共享)。
+- `docs/`：工作台说明类文档，平铺不分层。
+- `knowledge-base/`：业务仓、系统和公共知识沉淀，含知识库规范与条目模板。
+- `task/`：工作台任务记录、热任务索引、上下文登记和痛点记录。
 - `script/`：工作台常用脚本。
 - `business-repo/`：业务仓集合，包含后端、前端、协议等独立仓；只在明确业务需求时改动。
+
+## 跨项目共享
+
+skill 实体就在工作台的 `.agents/skills/`，跟着工作台一起提交、一起回滚，不做独立仓库。`~/.agents` 是指向它的外链，其他 Agent 工具读 home 目录下的 `.agents` 就能拿到同一套 skill：
+
+```bash
+ln -s /Users/bean/workspace/bean-workbench/.agents ~/.agents
+```
+
+某个项目想在本仓目录里也看到，再建一条项目内链接 `ln -s ~/.agents /path/to/project/.agents`；摘除用 `rm /path/to/project/.agents`，**不要带尾斜杠**，否则会顺着链接删到实体。
+
+三条约定：
+
+1. 改 skill 就是改工作台文件，`make commit` 能带走，不需要单独提交；`make check` 会提示 `.agents/` 下有没有漏掉的改动。
+2. 改动全局生效，所有读 `~/.agents` 的项目和工具都会看到最新版；只想在工作台内试的改动，用 `git stash push -- .agents` 暂存。
+3. 接入约定写在 `.agents/README.md`，改链接机制时同步更新那份文档。
 
 ## 自进化触发条件
 

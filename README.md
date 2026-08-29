@@ -6,11 +6,10 @@
 
 ## 核心目录
 
-- `.agents/skills/`：工作台内维护的 Agent skill 源目录。
-- `docs/`：工作流、模板、架构规范、目标管理等工作台辅助内容。
-- `knowledge-base/`：跨业务仓和系统可复用的知识库。
-- `task/`：工作台任务、热任务、冷任务和任务上下文登记。
-- `archive/`：工作台历史任务、过期规则和阶段性材料归档。
+- `.agents`：跨项目复用的 skill 实体目录，随工作台一起提交；模板、清单和工作流放各 skill 的 `references/`。`~/.agents` 是指向它的外链，其他 Agent 工具和其他项目经它读到同一套 skill，详见 [AGENTS.md 跨项目共享](AGENTS.md#跨项目共享)。
+- `docs/`：工作台说明类文档，平铺不分层。
+- `knowledge-base/`：跨业务仓和系统可复用的知识库，含知识库规范与条目模板。
+- `task/`：工作台任务、热任务、冷任务、任务上下文登记和痛点记录。
 - `script/`：工作台常用脚本。
 - `business-repo/`：业务仓集合，包含后端、前端、协议等独立业务仓；非明确业务需求不直接改动。
 
@@ -19,13 +18,9 @@
 - [Agent 规则](AGENTS.md)
 - [工作台规范](docs/workspace.md)
 - [自进化机制](docs/self-evolution.md)
-- [知识库规范](docs/knowledge-base.md)
 - [任务管理规范](docs/task-system.md)
-- [工作流索引](docs/workflows/README.md)
-- [业务仓生成验收与沉淀清单](docs/workflows/business-generation-checklist.md)
-- [模板索引](docs/templates/README.md)
-- [架构规范](docs/architecture/README.md)
-- [目标管理](docs/goals/README.md)
+- [目标管理](docs/goals.md)
+- [知识库规范与条目模板](knowledge-base/README.md)
 
 ## 子仓接入规则
 
@@ -34,8 +29,8 @@
 1. `business-repo/` 目录与 `.gitmodules`
 2. `knowledge-base/business-repo/` 的仓索引与职责说明
 3. `task/registry.md` 的热任务与路由提示
-4. 受影响的 `.agents/skills/` 路由或品牌特化 skill
-5. 相关 `docs/workflows/` 工作流和必要的沉淀任务目录
+4. 受影响的 `.agents/skills/` 路由或品牌特化 skill，以及其 `references/` 里的清单
+5. 必要的沉淀任务目录
 
 如果新增子仓会影响已有路由、品牌、契约或协作边界，先补工作台规则，再做业务仓接入。
 
@@ -53,3 +48,11 @@
 - `make commit feat xxx`
 
 该命令等价于先 `git add -A`，再把 `make commit` 后面的参数按空格拼成提交信息执行 `git commit`；如果不带参数，默认使用 `chore: update workbench`。
+
+skill 就是工作台里的普通文件，`git add -A` 会一起带走，`make check` 会单独列出 `.agents/` 下的改动，方便确认有没有漏。
+
+`~/.agents` 外链本身不在 git 里（home 目录不受版本控制），换机器后重建一条：
+
+```bash
+ln -s /Users/bean/workspace/bean-workbench/.agents ~/.agents
+```

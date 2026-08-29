@@ -7,12 +7,15 @@
 ## 文件职责
 
 - `task/registry.md`：热任务、冷任务、任务目录和资源范围索引。
+- `task/pain-points.md`：痛点记录，按待处理和已处理分组。
 - `task/YYMMDD_slug/`：单个工作台任务目录，例如 `260614_workbench-init/`。
 - `task/YYMMDD_slug/README.md`：任务说明、边界、状态和沉淀记录入口。
 
+任务 README 与复盘模板见 `.agents/skills/wb-0001-router/references/`（`task-readme.md`、`task-review.md`）。
+
 ## 边界
 
-工作台任务只记录工作台层面的目标、规则、沉淀和路由信息。业务仓具体实现、接口变更、测试细节应记录在业务仓自己的文档或提交中。
+工作台任务只记录工作台层面的目标、规则、沉淀和路由信息。业务仓具体实现、接口变更、测试细节应记录在业务仓自己的文档或提交中。开发需求的方案文档同样落在 `task/YYMMDD_{主题}/README.md`，模板见 `dev-flow-0000-plan-flow`。
 
 ## 任务命名
 

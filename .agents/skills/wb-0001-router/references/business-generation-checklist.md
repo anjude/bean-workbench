@@ -72,7 +72,7 @@
 | 数据库变更 | SQL 文件审查、test 环境结构或数据验证、必要时 migration dry run |
 | API 契约 | OpenAPI YAML 校验、协议仓类型生成或 diff 检查 |
 | uni-app 前端 | `npm run type-check`、必要时 `npm run build:h5` 或 `npm run build:mp-weixin` |
-| 工作台文档或 skill | `script/check-workbench.ps1`，必要时按 skill 规范检查 frontmatter |
+| 工作台文档或 skill | `make check`（走 `script/check-workbench.py`），必要时按 skill 规范检查 frontmatter |
 
 ## 提交收口
 
@@ -84,8 +84,8 @@
 | --- | --- |
 | 只是本次任务上下文 | `task/registry.md` 或对应任务目录 |
 | 需求中出现稳定业务知识、系统约束或路径索引 | `knowledge-base/` |
-| 同类操作两次以上复现并造成误判或返工 | `docs/pain-points.md` |
-| 三次以上复现且流程稳定 | `.agents/skills/` |
+| 同类操作两次以上复现并造成误判或返工 | `task/pain-points.md` |
+| 三次以上复现且流程稳定 | `~/.agents/skills/`，随工作台一起提交 |
 | 重复命令、校验或文件扫描可机械执行 | `script/` |
 
 ## 最终回复要求

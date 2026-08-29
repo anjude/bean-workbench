@@ -87,10 +87,12 @@ agent_created: true
 - 所有 `SKILL.md` 的 `name` 字段与正文交叉引用。
 - `AGENTS.md`：命名格式、阶段划分表、「当前 skill 编号表」。
 - `docs/workspace.md`：命名格式与原则。
-- `docs/workflows/business-generation-checklist.md`：skill 组合按新阶段重排。
+- `~/.agents/skills/wb-0001-router/references/business-generation-checklist.md`：skill 组合按新阶段重排。
 - `task/registry.md`：路由提示与热任务登记。
-- `script/check-workbench.ps1`：如果里面写了具体 skill 路径。
+- `script/check-workbench.py`：清单里的必需文件路径，新增或改名 skill 后同步进去。
 - `.workbuddy/memory/MEMORY.md`：长期记忆里的编号体系段落。
+
+skill 实体在工作台仓库里，`make commit` 会一起提交，不需要单独操作。
 
 ## 踩坑
 
@@ -109,8 +111,14 @@ agent_created: true
 2. 悬空引用检查：扫描全仓提取所有技能名，逐个确认目录存在。先排除历史任务文档和旧名对照链（刻意保留），再修剩下的。
 3. 阶段链路闭合：阶段 `00` 的派发表能覆盖全部下游 skill；每个 skill 能指到上下游。
 4. 职责边界成文：设计 vs 执行、写 vs 读、生成 vs 消费这类容易越界的线，要写进设计文档。
-5. 工作台结构校验通过（有 pwsh 时跑 `script/check-workbench.ps1`，否则按脚本里的路径清单逐项确认存在）。
+5. `make check` 通过：它会校验 skill 目录名与 `name` 一致、必需文件齐全、md 相对链接不失效。
 
 ## 产出
 
 重构方案本身落 `task/YYMMDD_{主题}/README.md`，含背景、目标、阶段定义、编号表、职责边界、执行清单、校验结果。这份文档是下次重构的模板。
+
+## 配套 references
+
+| 文件 | 用途 | 何时读 |
+| --- | --- | --- |
+| `references/workbench-evolution.md` | 工作台自进化工作流，问题从痛点记录升级到知识库 / skill / 脚本的判断路径 | 判断一个问题该沉淀到哪里时 |

@@ -37,6 +37,15 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 
 后端改动、前端页面、跨端功能这类开发需求：**先走 `dev-flow-0000-plan-flow` 出方案**，方案落 `task/YYMMDD_{主题}/README.md`，确认后再按端派发 `dev-flow-01*`（后端）或 `dev-flow-02*`（前端）。不进方案直接改业务仓代码视为越权。
 
+## 四、配套 references
+
+| 文件 | 用途 | 何时读 |
+| --- | --- | --- |
+| `references/business-request-loop.md` | 业务需求闭环流程 | 命中业务需求，要从需求一路做到沉淀 |
+| `references/business-generation-checklist.md` | 业务仓生成验收与沉淀清单，含 dev-flow 全 skill 路由表 | 进入业务仓前、生成后验收、子仓接入检查 |
+| `references/task-readme.md` | 工作台任务 README 模板 | 新建或延续 `task/YYMMDD_slug/` 目录 |
+| `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘（文章复盘见 `bn-0201-article-review`） |
+
 ## 输出要求
 
 - 给出命中的业务仓或工作台目录。
@@ -46,6 +55,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 ## 工作原则
 
 - 默认把工作台作为能力沉淀层，而不是业务实现层。
-- 业务需求完成后，判断是否需要更新 `task/`、`knowledge-base/`、`.agents/skills/` 或 `script/`。
-- 连续两轮没有识别清楚用户意图时，记录到 `docs/pain-points.md`，并考虑优化路由或 skill。
+- 业务需求完成后，判断是否需要更新 `task/`、`knowledge-base/`、`~/.agents/skills/` 或 `script/`；skill 就在工作台仓库里，`make commit` 一起提交，改动经 `~/.agents` 外链同步给所有接入方。
+- 连续两轮没有识别清楚用户意图时，记录到 `task/pain-points.md`，并考虑优化路由或 skill。
+- 工作台说明类文档只在 `docs/` 平铺；模板、清单和工作流跟着对应 skill 的 `references/` 走。
 - 工作台文档使用中文，专业术语和业务术语可保留英文。

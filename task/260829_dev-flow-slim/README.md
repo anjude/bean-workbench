@@ -88,3 +88,18 @@
 ## 当前状态
 
 已完成。后续新增需求按 `dev-flow-0000-plan-flow` 派发，不再引用旧的 0102-field-sql / 0105-wire / 0202-state-matrix 等编号。
+
+## 延续：工作台目录精简（同日）
+
+skill 收敛后继续收口目录，属于同一链条，合并记录在此。
+
+1. 删除 `archive/`：只有一个说明文件，无实际归档内容；历史任务本就在 `task/YYMMDD_*/`，重复一层。
+2. `docs/` 平铺，只留说明类：`workspace.md`、`self-evolution.md`、`task-system.md`、`goals.md`。`architecture/` 并入 `workspace.md`（目录职责 + 演进原则）。
+3. 模板与工作流下沉到 skill `references/`：
+   - `wb-0001-router/references/`：`business-request-loop.md`、`business-generation-checklist.md`、`task-readme.md`、`task-review.md`。
+   - `wb-0101-skill-refactor/references/`：`workbench-evolution.md`。
+4. 知识内容归位：`docs/knowledge-base.md` 与知识条目模板并入 `knowledge-base/README.md`，规范与模板同源。
+5. 记录类归位：`docs/pain-points.md` → `task/pain-points.md`。
+6. 同步引用：`README.md`、`AGENTS.md`、`docs/*`、`knowledge-base/README.md`、`wb-0001-router/SKILL.md`、`wb-0101-skill-refactor/SKILL.md`、`task/registry.md`、`script/check-workbench.ps1`。
+
+原则：`docs/` 只回答「工作台是什么、怎么运转」，凡是要照着填或照着做的材料，跟着对应 skill 走。

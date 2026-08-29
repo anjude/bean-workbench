@@ -40,7 +40,7 @@ metadata:
 
 ### Go test 性能注意
 
-- backend-superone 在 Windows 环境下单包首次编译可能需要 15-30 秒；全仓或多个包并行跑容易超时。
+- `go test` 冷缓存首次编译耗时长，全仓或多个包并行跑容易超时。
 - 不要用并行工具同时跑多个 `go test` 包；优先串行执行。
 - 命令 timeout 建议至少 180 秒。
 - 只做编译检查时可用 `go test -run '^$' ./path`；想跳过缓存但仍编译时可用 `go test -count=0 ./path`。

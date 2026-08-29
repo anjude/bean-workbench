@@ -16,10 +16,10 @@
 
 ## 处理流程
 
-1. 先把问题记录到 [痛点收集](pain-points.md)。
+1. 先把问题记录到 [痛点收集](../task/pain-points.md)。
 2. 如果只是临时上下文，更新 [任务登记](../task/registry.md)。
 3. 如果是稳定知识，沉淀到 `knowledge-base/`。
-4. 如果是稳定流程，沉淀为 `.agents/skills/`。
+4. 如果是稳定流程，沉淀为 `.agents/skills/`；配套模板和清单放该 skill 的 `references/`，随工作台一起提交。
 5. 如果是重复命令或机械操作，沉淀为 `script/` 或 `Makefile` target。
 
 ## 升级判断
