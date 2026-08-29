@@ -8,6 +8,9 @@
 | Superone 多仓规则完善 | `task/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引 | 进行中 |
 | uni-carbon-space 接入 | `task/260614_uni-carbon-space-onboarding/` | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引 | 进行中 |
 | beannote 内容库接入 | `task/260628_beannote-onboarding/` | `business-repo/beannote`、内容创作路由、知识库索引 | 进行中 |
+| be 族 skill 四阶段重构 | `task/260829_be-skill-refactor/` | `.agents/skills/be-*`、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/` | 已完成 |
+| dev-flow 跨端合族 | `task/260829_dev-flow-merge/` | `.agents/skills/dev-flow-*`、原 `fe-*` 前端族、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/` | 已完成 |
+| dev-flow 合并精简 | `task/260829_dev-flow-slim/` | `.agents/skills/dev-flow-*`、`wb-*`、`AGENTS.md`、`docs/`、`task/registry.md`、`script/` | 进行中 |
 
 ## 冷任务
 
@@ -17,8 +20,11 @@
 
 ## 路由提示
 
+- skill 编号：`dev-flow-*` 跨端开发（00 方案设计 / 01 后端开发 / 02 前端开发 / 03 整体验证）、`bn-*` 内容生产、`wb-*` 工作台基建；编号前两位是阶段号，后两位是阶段内序号；`*-tools-*` 是工具 skill，不占阶段号。完整编号表见 `AGENTS.md`。
+- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。
+- 提到 `superone` 的分支推进、项目约定、命令速查：走 `dev-flow-tools-repo`；数据库只读排查走 `dev-flow-tools-db-query`。
 - 提到 `superone`：优先查看 `business-repo/` 下的相关业务仓，再结合具体需求选择后端、前端或协议仓。
-- 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `carbon-space-ui`、`carbon-icon-flow` 等品牌特化 skill。
+- 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` 等品牌特化 skill。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先路由到 `business-repo/beannote`，再读取该仓自己的内容工作流和 skill。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。

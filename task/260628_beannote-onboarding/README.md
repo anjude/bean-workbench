@@ -18,10 +18,10 @@
 - `business-repo/beannote`
 - `knowledge-base/business-repo/README.md`
 - `task/registry.md`
-- `.agents/skills/workbench-router/SKILL.md`
-- `.agents/skills/content-beannote-article-review`
-- `.agents/skills/content-beannote-creation-flow`
-- `.agents/skills/content-beannote-knowledge-base`
+- `.agents/skills/wb-0101-router/SKILL.md`
+- `.agents/skills/bn-0201-article-review`
+- `.agents/skills/bn-0101-creation-flow`
+- `.agents/skills/bn-0001-knowledge-base`
 
 ## 路由提示
 

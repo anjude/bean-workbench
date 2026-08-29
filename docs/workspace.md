@@ -31,24 +31,31 @@
 统一使用：
 
 ```text
-{领域前缀}-{可选子域}-{能力后缀}
+{族群前缀}-{阶段号}{阶段内序号}-{能力后缀}    阶段 skill
+{族群前缀}-tools-{能力后缀}                  工具 skill，不占阶段号
 ```
 
 示例：
 
-- `backend-superone-api-flow`
-- `backend-superone-test-review-flow`
-- `uni-component-style-flow`
-- `content-beannote-creation-flow`
-- `workbench-router`
+- `dev-flow-0000-plan-flow`：dev-flow 族，00 方案设计阶段入口
+- `dev-flow-0103-api-flow`：dev-flow 族，01 后端开发阶段第 3 项
+- `dev-flow-0202-data-flow`：dev-flow 族，02 前端开发阶段第 2 项
+- `dev-flow-0301-verify-flow`：dev-flow 族，03 整体验证阶段第 1 项
+- `dev-flow-tools-repo`：dev-flow 族工具 skill，不占阶段号
+- `bn-0101-creation-flow`：bn 族，01 创作阶段第 1 项
+- `wb-0001-router`：wb 族，00 入口阶段第 1 项
 
 ### 命名原则
 
 1. 目录名使用小写英文和连字符。
-2. 前缀优先表达领域，如 `backend`、`frontend`、`uni`、`content`、`workbench`、`carbon`。
-3. 中段按需表达仓、品牌、平台或对象，如 `superone`、`beannote`。
-4. 后缀表达动作或职责，如 `dev-flow`、`api-flow`、`review-flow`、`knowledge-base`。
-5. 避免使用 `.workbuddy`、平台名、产品壳名或纯个人偏好的目录命名，除非该目录确实是兼容层。
+2. 族群前缀：`dev-flow` 跨端开发、`bn` 内容生产、`wb` 工作台基建。开发流水线不分前后端族群，两端各占一个阶段位。
+3. 编号占四位，前两位是阶段号，后两位是阶段内序号；`xx00` 留给该阶段的总控或入口，具体 skill 从 `xx01` 起顺排。
+4. `dev-flow` 族阶段语义：`00` 方案设计、`01` 后端开发、`02` 前端开发、`03` 整体验证；纯前端需求跳过 `01`，纯后端需求跳过 `02`。`bn` 为 `00` 素材、`01` 创作、`02` 复盘；`wb` 为 `00` 入口、`01` 路由与维护。
+5. 横切能力建工具 skill，命名 `{族群前缀}-tools-{能力后缀}`，供所有阶段调用，不占阶段号。
+6. 后缀表达动作或职责，如 `plan-flow`、`api-flow`、`verify-flow`、`knowledge-base`。
+7. 目录名、`SKILL.md` 的 `name` 字段、文档引用三者必须一致；完整编号表见 `AGENTS.md`。
+8. 一个阶段内的 skill 按「总是一起走」的粒度合并，不按技术动作切碎；合并后重排阶段内序号。
+9. 避免使用 `.workbuddy`、平台名、产品壳名或纯个人偏好的目录命名，除非该目录确实是兼容层。
 
 ### 迁移原则
 

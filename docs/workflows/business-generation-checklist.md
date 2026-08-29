@@ -14,17 +14,29 @@
 ## 生成前检查
 
 1. 读取 `AGENTS.md`、`task/registry.md` 和 `knowledge-base/README.md`。
-2. 使用 `workbench-router` 判断目标仓库和可能受影响的协作仓。
+2. 使用 `wb-0001-router` 判断目标仓库和可能受影响的协作仓。
 3. 进入业务仓前确认需求是否明确；不明确时只更新工作台任务或痛点，不直接改业务仓。
-4. 命中 Superone 业务时，按需求选择最小 skill 组合：
-   - 后端 API、UseCase、Service、路由：`backend-superone-api-flow`。
-   - 后端领域、模型、Repo、Service：`backend-superone-domain-flow`。
-   - 字段、DDL、GORM 表模型：`backend-superone-field-sql-flow`。
-   - 数据库连接、迁移、表结构验证：`backend-superone-db-change-flow`。
-   - Wire 依赖注入：`backend-superone-wire-flow`。
-   - 后端测试、审查、格式化：`backend-superone-test-review-flow`。
-   - 前端页面、组件、状态、接口、构建：按需使用 `uni-*` 系列 skill；如果命中 `uni-carbon-space`，再叠加 `carbon-space-ui`、`carbon-icon-flow`。
-   - API 契约、DTO、枚举、错误码同步：`backend-frontend-contract-flow`。
+4. 命中 Superone 业务时，按阶段选择最小 skill 组合：
+   - 所有需求先过 `dev-flow-0000-plan-flow` 出方案，方案确认后才进入开发阶段；方案文档落 `task/YYMMDD_{主题}/README.md`。
+   - 00 方案设计：
+     - 需求理解、改动范围确认、方案产出与阶段派发：`dev-flow-0000-plan-flow`。
+   - 01 后端开发，按执行顺序：
+     - 领域层 entity、model、factory、repo、service + 字段设计与 DDL/DML SQL：`dev-flow-0101-domain-flow`。
+     - 迁移脚本、test/live 执行与验证：`dev-flow-0102-db-change-flow`。
+     - API、UseCase、Service、路由 + Wire 依赖注入：`dev-flow-0103-api-flow`。
+     - OpenAPI YAML 与前端契约生成：`dev-flow-0104-contract-flow`。
+   - 02 前端开发：交接物是 `dev-flow-0104-contract-flow` 输出的前端复制清单；原型与状态矩阵是硬门槛。
+     - 产品原型与状态矩阵：`dev-flow-0201-archetype-flow`。
+     - API 类型与请求封装、Store 与 Composable：`dev-flow-0202-data-flow`。
+     - 页面、路由与生命周期、组件与样式审美：`dev-flow-0203-page-flow`。
+     - SVG 资产、命中 `uni-carbon-space` 时的品牌图标：`dev-flow-0204-asset-flow`。
+     - 命中 `uni-carbon-space` 时的品牌规范（全程叠加）：`dev-flow-0205-space-ui`。
+   - 03 整体验证：
+     - 门禁复核、后端验证命令与审查、前端 type-check/build、契约核对、方案回填：`dev-flow-0301-verify-flow`。
+   - 工具层，不占阶段，按需调用：
+     - 多仓目录约定、技术栈、命令、分支推进与部署：`dev-flow-tools-repo`。
+     - 只读数据库排查与结构验证：`dev-flow-tools-db-query`。
+   - 完整编号表见 `AGENTS.md`「当前 skill 编号表」。
 
 ## 子仓接入检查
 
