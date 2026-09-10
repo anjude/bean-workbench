@@ -29,7 +29,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `uTools`、`桌面工具` | 按语义到 `business-repo/utools-superone`、`utools-bean-note` 或 `utools-bean-option` |
 | `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` |
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
-| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | `business-repo/beannote`，再读该仓自己的内容工作流和 skill |
+| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | `business-repo/beannote`；内容需求按交互回合走 bn 阶段 skill，选题与大纲进 `bn-0000-outline-flow`，成稿进 `bn-0101-draft-flow`，项目上下文读 `bn-tools-content-context` |
 | `便签` | 先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |
 
@@ -44,7 +44,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `references/business-request-loop.md` | 业务需求闭环流程 | 命中业务需求，要从需求一路做到沉淀 |
 | `references/business-generation-checklist.md` | 业务仓生成验收与沉淀清单，含 dev-flow 全 skill 路由表 | 进入业务仓前、生成后验收、子仓接入检查 |
 | `references/task-readme.md` | 工作台任务 README 模板 | 新建或延续 `task/YYMMDD_slug/` 目录 |
-| `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘（文章复盘见 `bn-0201-article-review`） |
+| `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘（文章复盘见 `bn-0302-retro-flow`） |
 
 ## 输出要求
 
