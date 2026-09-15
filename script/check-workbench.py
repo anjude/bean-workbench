@@ -32,13 +32,15 @@ REQUIRED_FILES = [
     "task/registry.md",
     "task/pain-points.md",
     "task/260614_workbench-init/README.md",
-    ".agents/skills/wb-0001-router/SKILL.md",
-    ".agents/skills/wb-0001-router/references/business-request-loop.md",
-    ".agents/skills/wb-0001-router/references/business-generation-checklist.md",
-    ".agents/skills/wb-0001-router/references/task-readme.md",
-    ".agents/skills/wb-0001-router/references/task-review.md",
-    ".agents/skills/wb-0101-skill-refactor/SKILL.md",
-    ".agents/skills/wb-0101-skill-refactor/references/workbench-evolution.md",
+    ".agents/skills/wb-router/SKILL.md",
+    ".agents/skills/wb-router/references/business-request-loop.md",
+    ".agents/skills/wb-router/references/business-generation-checklist.md",
+    ".agents/skills/wb-router/references/task-readme.md",
+    ".agents/skills/wb-router/references/task-review.md",
+    ".agents/skills/wb-skill-refactor/SKILL.md",
+    ".agents/skills/wb-skill-refactor/references/workbench-evolution.md",
+    ".agents/skills/wb-handoff/SKILL.md",
+    ".agents/skills/wb-handoff/references/handoff-template.md",
     "business-repo/backend-superone/AGENTS.md",
     "business-repo/bt/AGENTS.md",
     "business-repo/frontend-investment-platform/AGENTS.md",
@@ -58,6 +60,16 @@ SKILLS_DIR = ".agents/skills"
 SKILL_NAME_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(?:\d{4}|tools)-[a-z0-9]+(?:-[a-z0-9]+)*$"
 )
+
+# 例外：wb 族不跑流水线、没有阶段可排，直接 wb-{能力}，带编号的 wb-* 视为不合规
+WB_NAME_RE = re.compile(r"^wb-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
+
+
+def match_skill_name(name: str) -> bool:
+    """wb-* 走语义名，其余族群走编号规范。"""
+    if name.startswith("wb-"):
+        return bool(WB_NAME_RE.match(name))
+    return bool(SKILL_NAME_RE.match(name))
 
 # 扫描 md 链接时跳过的目录：业务子仓与外部依赖的失效链接不由工作台负责
 SCAN_SKIP_DIRS = {".git", "node_modules", "business-repo", "dist", ".workbuddy"}
@@ -106,8 +118,8 @@ def check_skill_naming(root: Path):
             problems.append(f"{skill_dir.name}：缺少 SKILL.md")
             continue
 
-        if not SKILL_NAME_RE.match(skill_dir.name):
-            problems.append(f"{skill_dir.name}：目录名不符合编号规范")
+        if not match_skill_name(skill_dir.name):
+            problems.append(f"{skill_dir.name}：目录名不符合命名规范（wb-* 用语义名，其余用编号）")
 
         declared = read_frontmatter_name(skill_md)
         if declared is None:

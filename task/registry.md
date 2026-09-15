@@ -13,6 +13,7 @@
 | dev-flow 合并精简 | `task/260829_dev-flow-slim/` | `.agents/skills/dev-flow-*`、`wb-*`、`AGENTS.md`、`docs/`、`task/registry.md`、`script/` | 已完成 |
 | macOS 平台适配 | `task/260829_macos-adaptation/` | `script/`、`Makefile`、`dev-flow-tools-repo`、`dev-flow-0301-verify-flow`、`docs/goals.md` | 进行中 |
 | skill 实体外置 | `task/260830_skills-externalize/` | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/` | 已完成 |
+| 任务交接 handoff skill | `task/260914_wb-handoff-skill/` | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 
 ## 冷任务
 
@@ -30,6 +31,7 @@
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先路由到 `business-repo/beannote`，再读取该仓自己的内容工作流和 skill。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。
+- 提到 `handoff`、`交接`、`收工`、`下次继续`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
 - 提到 `工作台`、`skill`、`知识库`、`自进化`：默认只改工作台根级目录。
 - skill 实体在 `bean-workbench/.agents/skills/`，由工作台 git 跟踪，工作台的 `make commit` 能带走；`~/.agents` 是指向它的外链，其他项目经它读到同一套 skill。详见 `AGENTS.md` 的「跨项目共享」。
 - 工作台文档位置：说明类在 `docs/`（平铺），模板与工作流在各 skill 的 `references/`，知识内容与知识库规范在 `knowledge-base/`，任务、痛点和上下文记录在 `task/`。

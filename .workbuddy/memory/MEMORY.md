@@ -7,14 +7,21 @@
 
 ## skill 编号体系（2026-08-29 定稿，27→18）
 - 格式：`{族群前缀}-{阶段号}{阶段内序号}-{能力后缀}`；工具 skill 用 `{前缀}-tools-{后缀}`，不占阶段号。`xx00` 是阶段入口，具体从 `xx01` 起。
-- 族群：`dev-flow-*` 跨端开发 13+2、`bn-*` beannote 内容生产 6+3（**前缀 bn 不是 cn**）、`wb-*` 工作台基建 2。
+- 族群：`dev-flow-*` 跨端开发 13+2、`bn-*` beannote 内容生产 6+2（**前缀 bn 不是 cn**）、`wb-*` 工作台基建 3。
+- **`wb-*` 是编号体系唯一例外（2026-09-14 豆哥定）**：不跑流水线、没有阶段可排，直接 `wb-{能力}`（`wb-router` / `wb-skill-refactor` / `wb-handoff`）。`check-workbench.py` 里 wb 走独立正则 `WB_NAME_RE`，带编号的 `wb-0102-handoff` 判不合规。旧名 `wb-0001-router` / `wb-0101-skill-refactor` 只在历史任务文档里残留。
 - dev-flow 四阶段：`00` 方案设计（必过）/ `01` 后端 / `02` 前端 / `03` 整体验证（必过）。纯前端跳 01，纯后端跳 02。
   - `0000-plan-flow` 唯一入口；`0101-domain-flow`（只设计不连库）→ `0102-db-change-flow`（唯一写入口）→ `0103-api-flow`（+Wire）→ `0104-contract-flow`；`0201-archetype-flow`（原型+状态矩阵，硬门槛）→ `0202-data-flow` → `0203-page-flow` → `0204-asset-flow` → `0205-space-ui`（carbon 叠层全程生效）；`0301-verify-flow` 统一收口+回填；工具 `tools-repo` / `tools-db-query`（严格只读）。
-  - `bn` 按**用户交互回合**划分（内容线不是流水线，质量判定权在用户，每步停下等确认）：`0000-topic-flow`（选题）/ `0101-discuss-flow`（讨论）/ `0102-draft-flow`（成稿）/ `0201-review-flow`（审稿）/ `0301-publish-flow`（发布）/ `0302-retro-flow`（复盘）；工具 `tools-knowledge-base` / `tools-content-context`（目录与状态约定，所有阶段读）/ `tools-writing-rules`。`wb`：`0001-router` / `0101-skill-refactor`。
+  - `bn` 按**用户交互回合**划分（内容线不是流水线，质量判定权在用户，每步停下等确认）。**2026-09-13 彻底重构为「思考/梳理/表达」三层**：`bn-0000-think-flow`（追问到本质：拆层→追问→反常识点→排雷）/ `bn-0100-shape-flow`（读厚→读薄：主题句 + 3-5 小点逐点绑依据）/ `bn-0200-express-flow`（分享人视角：入口/顺序/落点/收尾，一次成稿）/ `bn-0301-review-flow`（反馈归层+逐轮收敛）/ `bn-0302-publish-flow` / `bn-0303-retro-flow`；工具 `bn-tools-knowledge-base` / `bn-tools-content-context`（目录与状态约定，所有阶段读）。`wb`：`wb-router` / `wb-skill-refactor` / `wb-handoff`。
+  - **三层即能力边界（2026-09-13 重构）**：`00` 只答「这件事到底是什么」，`01` 只答「这次讲哪几个点」，`02` 只答「怎么讲给人听」。上一层替下一层做决策，下一层就只能翻译上一层的产物 = 念提纲 = AI 味。反馈归层：观点/事实/本质错→`00`；讲偏了/该说的没说→`01`；太 AI/像提纲/读不下去→`02`。
+  - **重构原则（豆哥定）**：skill 只给框架和步骤，不写细；不搞机械写文规范。所有模板类 references（大纲/成稿/表达设计/质检清单/发布清单/复盘模板）已删，只留 `表达红线.md`（纠错清单，写完对照排查，不是写作模板）、`公众号草稿发布-本地配置.md`、`manifest模板.yaml`。细节在实践里迭代。
+  - **风格锚点**：`business-repo/beannote/topics/2026-09-12_智谱融资条款拆解/03_正文.md` —— 从读者刚看到的数字开口、抽象条款落到具体价格、收尾克制不升华。
+  - 槽位（2026-09-14 定，格式 `{阶段号}-{阶段内序号}-{槽位名}-{主题}`，阶段号固定两位不动）：`01-1-问答录-{主题}.md`（讨论阶段的问答原始记录）/ `01-2-素材-{主题}.md`（有意思的知识点、故事、数字，带出处和可用在哪）/ `01-3-大纲-{主题}.md`（事实模块：必须解释 / 有意思 / 待核 + 问题分类表）/ `02-1-公众号-{主题}.md` / `02-2-小红书-{主题}.md`。序号即流程顺序，中间插文件要重排。
+  - **`source/` 目录（2026-09-14 豆哥加）**：每个 topic 下建一个，放原始素材——原文摘录、数据表格、网络内容快照。命名 `{序号}-{来源}-{内容}.md`，文件头写来源 URL、数据口径、抓取时间，表格照抄原文不加工。**原文进 source，结论进槽位文件**，槽位文件不膨胀、事实可追溯。
+  - **`bn-0000-init-flow` 是目录骨架的唯一定义处**（豆哥 2026-09-14 定）：增删槽位、改命名一律先改这个 skill，再同步已建 topic 的 `manifest.json` 的 `slots`。
 - 合并粒度：同阶段总是一起走的小 skill 合并，超 300 行才拆；不合并的是读写边界、品牌特化资产。
 - 方案文档落工作台 `task/YYMMDD_{主题}/README.md`，不再往业务仓 `docs/feature/` 新增。
 - 编号表在 `AGENTS.md`；目录名 / `SKILL.md` 的 `name` / 文档引用三者必须一致，改完跑 `make check`。
-- 旧名对照（查历史文档）：`be-*`/`fe-*` 前缀已废弃，统一为 `dev-flow-*`；`content-beannote-knowledge-base`→`bn-0001`、`content-beannote-creation-flow`→`bn-0101`、`content-beannote-article-review`→`bn-0201`；`hair`→`wb-0000-hair`、`workbench-router`→`wb-0101-router`→合并为 `wb-0001-router`。历史文档里的旧路径刻意保留，靠路由提示指路。
+- 旧名对照（查历史文档）：`be-*`/`fe-*` 前缀已废弃，统一为 `dev-flow-*`；`content-beannote-knowledge-base`→`bn-0001`、`content-beannote-creation-flow`→`bn-0101`、`content-beannote-article-review`→`bn-0201`；`hair`→`wb-0000-hair`、`workbench-router`→`wb-0101-router`→合并为 `wb-0001-router`→去编号为 `wb-router`。历史文档里的旧路径刻意保留，靠路由提示指路。
 
 ## 工作台目录约定
 - `docs/` 只放说明类，平铺：`workspace.md`、`self-evolution.md`、`task-system.md`、`goals.md`。

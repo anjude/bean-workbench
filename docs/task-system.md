@@ -11,7 +11,7 @@
 - `task/YYMMDD_slug/`：单个工作台任务目录，例如 `260614_workbench-init/`。
 - `task/YYMMDD_slug/README.md`：任务说明、边界、状态和沉淀记录入口。
 
-任务 README 与复盘模板见 `.agents/skills/wb-0001-router/references/`（`task-readme.md`、`task-review.md`）。
+任务 README 与复盘模板见 `.agents/skills/wb-router/references/`（`task-readme.md`、`task-review.md`）。
 
 ## 边界
 

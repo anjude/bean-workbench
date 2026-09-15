@@ -7,10 +7,10 @@
 ```text
 .agents/                  本目录，工作台仓库内的实体
 ├── README.md             本文件，接入说明
-└── skills/               18 个 skill，按族群编号
+└── skills/               skill 实体，按族群编号（wb-* 例外，用语义名）
     ├── dev-flow-*        跨端开发流水线（13 个阶段 skill + 2 个工具 skill）
-    ├── bn-*              beannote 内容生产线（3 个）
-    └── wb-*              工作台基建（2 个）
+    ├── bn-*              beannote 内容生产线（6 个阶段 skill + 2 个工具 skill）
+    └── wb-*              工作台基建（3 个，不编号）
 ```
 
 ## 其他项目怎么读到
