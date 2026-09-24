@@ -1,0 +1,28 @@
+topic: "黄金的价值来源"      # 主题中文简述，开题时定，之后不改
+status: 在制          # 在制 / 已发布 / 已归档，必须与目录名前缀一致
+platform: 公众号      # 公众号（默认）/ 小红书 / 跨平台
+form: 文章            # 文章 / 图文 / 视频
+mode: null            # 强判断 / 事实流，讨论确认核心内容时定
+delivery_mode: 落盘     # 落盘 / 正文，由用户切换
+created: "2026-09-12"  # 选题记录日，不改
+published: null      # 发布日 "YYYY-MM-DD"，未发留 null
+slots: []            # 已有槽位编号，落文件时更新
+next: 讨论核心内容     # 下一步动作，一句话
+
+conclusion: ""
+
+decisions: []
+
+blockers: []
+
+metrics:
+  exposure: null     # 曝光
+  likes: null        # 点赞
+  collects: null     # 收藏
+  comments: null     # 评论
+  followers: null    # 涨粉
+
+links:
+  knowledge_base: [] # 关联的知识库条目
+  sources: []        # 事实源、数据来源
+  related: []        # 参考篇目

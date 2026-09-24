@@ -1,0 +1,31 @@
+# manifest｜股市赚钱是少数人游戏
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "股市赚钱是少数人游戏"
+status: "已归档"
+platform: "公众号"
+form: "文章"
+created: "2026-05-18"
+published: null
+slots: ["01", "04", "05", "06"]
+next: "复盘"
+
+conclusion: "一句话结论：股市长期是正和游戏，但散户的玩法把自己变成了负和游戏的参与者"
+
+decisions:
+  - "2026-05-18 开题：一句话结论：股市长期是正和游戏，但散户的玩法把自己变成了负和游戏的参与者"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

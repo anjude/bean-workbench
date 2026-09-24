@@ -1,0 +1,31 @@
+# manifest｜预测涨跌的时间才是最大亏损
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "预测涨跌的时间才是最大亏损"
+status: "已归档"
+platform: "待定"
+form: "图文"
+created: "2026-05-07"
+published: null
+slots: ["01", "02", "03", "05"]
+next: "按槽位推进"
+
+conclusion: "一句话结论：短期预测对普通人来说性价比极低，放弃预测、按系统执行，才是更轻松、更有效的路"
+
+decisions:
+  - "2026-05-07 开题：一句话结论：短期预测对普通人来说性价比极低，放弃预测、按系统执行，才是更轻松、更有效的路"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

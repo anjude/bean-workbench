@@ -1,0 +1,31 @@
+# manifest｜小资金做大的游资故事
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "小资金做大的游资故事"
+status: "在制"
+platform: "待定"
+form: "图文"
+created: "2026-05-18"
+published: null
+slots: ["01", "04", "05", "06"]
+next: "复盘"
+
+conclusion: "一句话结论：游资的故事是真实的，但那条路对普通人来说是单行道"
+
+decisions:
+  - "2026-05-18 开题：一句话结论：游资的故事是真实的，但那条路对普通人来说是单行道"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

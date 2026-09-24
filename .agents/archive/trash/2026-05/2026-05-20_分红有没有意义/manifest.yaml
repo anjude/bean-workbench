@@ -1,0 +1,31 @@
+# manifest｜分红有没有意义
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "分红有没有意义"
+status: "在制"
+platform: "公众号"
+form: "文章"
+created: "2026-05-20"
+published: null
+slots: ["01"]
+next: "讨论核心内容"
+
+conclusion: "一句话结论：分红本身不创造价值，但对不同人来说意义完全不同——你得先搞清楚自己是谁"
+
+decisions:
+  - "2026-05-20 开题：一句话结论：分红本身不创造价值，但对不同人来说意义完全不同——你得先搞清楚自己是谁"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

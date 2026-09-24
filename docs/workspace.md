@@ -56,8 +56,7 @@ skill 留在工作台仓库里，是为了跟着工作台一起做版本管理�
 - `dev-flow-0202-data-flow`：dev-flow 族，02 前端开发阶段第 2 项
 - `dev-flow-0301-verify-flow`：dev-flow 族，03 整体验证阶段第 1 项
 - `dev-flow-tools-repo`：dev-flow 族工具 skill，不占阶段号
-- `bn-0000-init-flow`：bn 族，00 初始化阶段（建选题目录与槽位文件，bn 族群重建中）
-- `bn-tools-content-context`：bn 族工具 skill，不占阶段号
+- `bn-0000-init-flow`：bn 族，00 初始化阶段（族群已归档，此处仅作编号格式示例）
 - `wb-router`：wb 族，入口与路由（wb 族不用编号）
 
 ### 命名原则

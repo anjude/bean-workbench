@@ -45,7 +45,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `references/business-request-loop.md` | 业务需求闭环流程 | 命中业务需求，要从需求一路做到沉淀 |
 | `references/business-generation-checklist.md` | 业务仓生成验收与沉淀清单，含 dev-flow 全 skill 路由表 | 进入业务仓前、生成后验收、子仓接入检查 |
 | `references/task-readme.md` | 工作台任务 README 模板 | 新建或延续 `task/YYMMDD_slug/` 目录 |
-| `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘（文章复盘见 `bn-0303-retro-flow`） |
+| `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘（文章复盘的旧写法在 `.agents/archive/bn-20260914/bn-0303-retro-flow/`） |
 
 ## 输出要求
 

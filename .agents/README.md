@@ -9,8 +9,11 @@
 ├── README.md             本文件，接入说明
 └── skills/               skill 实体，按族群编号（wb-* 例外，用语义名）
     ├── dev-flow-*        跨端开发流水线（13 个阶段 skill + 2 个工具 skill）
-    ├── bn-*              beannote 内容生产线（6 个阶段 skill + 2 个工具 skill）
     └── wb-*              工作台基建（3 个，不编号）
+
+另有两个归档目录，不在 skills/ 下，不受校验也不被调用：
+archive/bn-20260914/（第一代 bn，8 个）、archive/bn-20260924/（第二代 bn，2 个骨架）。
+bn 族群当前无在用 skill，重建时从归档里取。
 ```
 
 ## 其他项目怎么读到

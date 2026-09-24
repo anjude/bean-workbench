@@ -1,0 +1,31 @@
+# manifest｜百分比把戏还是价值思维
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "百分比把戏还是价值思维"
+status: "已归档"
+platform: "待定"
+form: "图文"
+created: "2026-05-09"
+published: null
+slots: ["01", "02", "03", "05", "06"]
+next: "复盘"
+
+conclusion: "一句话结论：百分比是个把戏，盯着资金池子（市值）才是对的"
+
+decisions:
+  - "2026-05-09 开题：一句话结论：百分比是个把戏，盯着资金池子（市值）才是对的"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

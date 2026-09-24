@@ -1,0 +1,31 @@
+# manifest｜技术不是护城河AI
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "技术不是护城河AI"
+status: "在制"
+platform: "公众号"
+form: "文章"
+created: "2026-07-08"
+published: null
+slots: ["04", "05", "06"]
+next: "复盘"
+
+conclusion: null
+
+decisions:
+  - "2026-07-08 开题，结论待补（本篇无选题卡）"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

@@ -1,0 +1,31 @@
+# manifest｜段永平卖神华买泡泡玛特
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "段永平卖神华买泡泡玛特"
+status: "在制"
+platform: "待定"
+form: "图文"
+created: "2026-05-16"
+published: null
+slots: ["01"]
+next: "讨论核心内容"
+
+conclusion: "一句话结论：这次换仓的逻辑不是行业判断，是货币工具——这是很多人看不懂的地方"
+
+decisions:
+  - "2026-05-16 开题：一句话结论：这次换仓的逻辑不是行业判断，是货币工具——这是很多人看不懂的地方"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

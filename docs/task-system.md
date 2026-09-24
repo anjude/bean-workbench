@@ -24,8 +24,13 @@
 ## 任务目录建议
 
 - `README.md`：任务目标、范围、边界、状态。
-- `notes.md`：过程记录和上下文摘录，按需创建。
+- `handoff/`：会话交接，每份是当前状态快照，按时间戳命名，最后一份最新。高层，一屏读完就知道下一步干什么。
+- `process/`：阶段过程记录，一个阶段一份 `{阶段号}-{环节名}.md`。记该阶段做了什么、得出什么结论、哪些判断被推翻了。细节全留这边。
 - `review.md`：任务完成后的复盘和可沉淀内容，按需创建。
+
+`handoff/` 与 `process/` 的分工：**handoff 是「我从哪接着干」，process 是「这件事是怎么被想清楚的」**。handoff 里指向 process 文件，不复制过程内容。写法见 `wb-handoff`。
+
+`process/` 在任务目录和 beannote 选题目录里都存在（`business-repo/beannote/topics/{topic}/process/`），命名写法一致，差别只在阶段号跟着谁的流水线。选题那边的骨架由 `bn-0000-init-flow` 建。
 
 ## 热任务规则
 

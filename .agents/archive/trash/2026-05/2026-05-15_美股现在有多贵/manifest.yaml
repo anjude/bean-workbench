@@ -1,0 +1,31 @@
+# manifest｜美股现在有多贵
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "美股现在有多贵"
+status: "在制"
+platform: "待定"
+form: "图文"
+created: "2026-05-15"
+published: null
+slots: ["01"]
+next: "讨论核心内容"
+
+conclusion: "一句话结论：美股确实贵，但\"贵\"本身不是卖出的理由——你得搞清楚贵的是哪部分、贵了多久"
+
+decisions:
+  - "2026-05-15 开题：一句话结论：美股确实贵，但\"贵\"本身不是卖出的理由——你得搞清楚贵的是哪部分、贵了多久"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []

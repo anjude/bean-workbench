@@ -1,0 +1,31 @@
+# manifest｜盈利曲线可以主动设计
+# 单篇唯一状态源。索引由本文件派生，status 必须与目录名前缀一致。
+# 抽不到的字段留 null，不臆造。更新规则见 bn-tools-content-context。
+
+topic: "盈利曲线可以主动设计"
+status: "在制"
+platform: "待定"
+form: "图文"
+created: "2026-05-14"
+published: null
+slots: ["01"]
+next: "讨论核心内容"
+
+conclusion: "一句话结论：盈利曲线的形状不是运气，是策略选择的结果——你可以主动设计它"
+
+decisions:
+  - "2026-05-14 开题：一句话结论：盈利曲线的形状不是运气，是策略选择的结果——你可以主动设计它"
+
+blockers: []
+
+metrics:
+  exposure: null
+  likes: null
+  collects: null
+  comments: null
+  followers: null
+
+links:
+  knowledge_base: []
+  sources: []
+  related: []
