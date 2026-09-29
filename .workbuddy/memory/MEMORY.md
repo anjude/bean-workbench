@@ -28,9 +28,9 @@
 - **别把单次自然行为固化成 skill 规则**（豆哥 2026-09-23 吐槽"太机械了"）：一次顺手的动作（阶段总结汇总回槽位文件、补 source）不需要写成五条规范。写进 skill 的门槛是"不写就会反复做错"，不是"这次做对了值得记"。日常互动里的好做法留在 working memory，skill 保持骨架。写之前先问：不写这条，下次会不会出事？
 
 ## 工作台目录约定
-- `docs/` 只放说明类，平铺：`workspace.md`、`self-evolution.md`、`task-system.md`、`goals.md`。
+- `docs/` 只放说明类，当前仅 `workspace.md`（`self-evolution.md`/`task-system.md`/`goals.md` 已于 2026-09-30 整理时删除）。
 - 要照着填/做的材料进各 skill 的 `references/`，并在 `SKILL.md` 里列「配套 references」表（文件/用途/何时读）。
-- `knowledge-base/README.md` 同时是规范+条目模板；`task/pain-points.md` 记痛点，`task/registry.md` 登记任务。
+- `kb/` 取代原 `knowledge-base/`（`README.md` + `business-repo/`/`common/`/`systems/` 子目录，2026-09-30 迁移）；`task/registry.md` 登记任务，原 `task/pain-points.md` 已删。
 - **`handoff/` 与 `process/` 两层（2026-09-21 豆哥加）**：任务目录下分开。`handoff/` 是「我从哪接着干」——高层、一屏、时间戳快照、最后一份最新；`process/` 是「这件事怎么被想清楚的」——一个阶段一份 `{阶段号}-{环节名}.md`，记做了什么/结论/被推翻的判断/待核。handoff 只引用 process 路径不复制内容，process 不写下一步。写法定义处 `wb-handoff`。**2026-09-23 更正：process 是 topic 维度的**，工作台 task 目录和 beannote 选题目录两边都建，`process/{阶段号}-{环节名}.md`，命名写法一致；选题那边的骨架由选题初始化 skill 建（该 skill 现已归档）。选题内部分工：槽位文件（如 `01-1-问答录`）横向按题号、结论会被覆盖；`process/` 纵向按阶段时间、只增不改、留被推翻的判断路径；`source/` 放第三方原文。（曾误写成"选题目录不建 process/，槽位文件已经够了"，是替豆哥排除，错。）
 
 ## 环境：macOS（2026-08-29 起）
@@ -39,6 +39,7 @@
 - `make check` 调 `script/check-workbench.py`（纯标准库，跨平台）：必需文件存在性 + skill 命名一致性 + md 相对链接失效。三项均已负向测试。
 - 业务仓 `backend-superone` 仍是 Windows 脚本（`push.bat`、`powershell` 取日期、`cygpath` 会退化成 `HOME=""` 导致 SSH key 找不到），非明确需求不动业务仓。
 - **backend-superone 分支约定（2026-09-28 豆哥定）**：重构/新功能在 `dev` 开发、就绪后合到 `release`；**不要另开 `version/*` 等分支推远程**。**开发阶段不要擅自 `commit`，改动保持未提交工作区状态，等豆哥明确说"提交"/"合 release"再动**（助手两次越界：误开并推送 `version/release-260927` 分支、又误在 dev 提交；均已纠正——分支删掉、提交 `git reset --mixed` 回未提交）。重构前可打 tag 作基线快照（如 `release-260927`，保留）。
+- **父仓提交子模块指针的例外（2026-09-30 豆哥补）**：子仓改动**已 push 到其远端**时，工作台父仓可提交该子模块指针 bump（例：`uni-superone` 已推 `origin/release` 则 bump）；仍 `ahead` 未推送的子仓**不 bump**（例：`backend-superone` dev `ahead 1` 时不 bump）。working tree 有未提交改动的子仓无新 commit，父仓无指针可 bump，保持现状。
 
 ## 引用同步排查坑
 - Grep 工具默认跳过点开头目录，扫不到 `.agents/skills/`；全仓同步必须 `grep -rn --exclude-dir=business-repo --exclude-dir=.git --exclude-dir=node_modules`。
