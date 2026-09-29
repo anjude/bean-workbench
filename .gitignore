@@ -37,6 +37,9 @@ bin/
 coverage.out
 coverage/
 
+# 工作台 CLI 编译产物（bw 由 make install 装到 GOPATH/bin，根目录的临时构建物忽略）
+/bw
+
 # Node / uni-app
 node_modules/
 dist/
@@ -56,3 +59,6 @@ output/
 # Temporary
 tmp/
 temp/
+
+# 本地仓库备份（非版本控制内容，含 node_modules / .git）
+business-repo/uni-superone-backup/

@@ -88,7 +88,7 @@
 
 ### 后续变更（2026-08-29）
 
-本篇记录的 be 族编号在同日又被重构了一次，改为四阶段划分并新增工具层，be 的编号以 `task/260829_be-skill-refactor/` 为准：
+本篇记录的 be 族编号在同日又被重构了一次，改为四阶段划分并新增工具层，be 的编号以 `task/workbench/260829_be-skill-refactor/` 为准：
 
 - `be-0000-dev-flow` 拆为 `be-0000-plan-flow`，原总控删除。
 - `be-0001-domain-flow` -> `be-0101-domain-flow`
@@ -104,4 +104,4 @@
 
 ## 当前状态
 
-编号迁移已完成，24 个 skill 全部归族并采用「阶段号 + 阶段内序号」。后续按 `AGENTS.md`「当前 skill 编号表」维护。be 族的四阶段重构另见 `task/260829_be-skill-refactor/`。
+编号迁移已完成，24 个 skill 全部归族并采用「阶段号 + 阶段内序号」。后续按 `AGENTS.md`「当前 skill 编号表」维护。be 族的四阶段重构另见 `task/workbench/260829_be-skill-refactor/`。

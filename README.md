@@ -7,27 +7,27 @@
 ## 核心目录
 
 - `.agents`：跨项目复用的 skill 实体目录，随工作台一起提交；模板、清单和工作流放各 skill 的 `references/`。`~/.agents` 是指向它的外链，其他 Agent 工具和其他项目经它读到同一套 skill，详见 [AGENTS.md 跨项目共享](AGENTS.md#跨项目共享)。
-- `docs/`：工作台说明类文档，平铺不分层。
-- `knowledge-base/`：跨业务仓和系统可复用的知识库，含知识库规范与条目模板。
-- `task/`：工作台任务、热任务、冷任务、任务上下文登记和痛点记录。
+- `docs/`：工作台介绍类文档，平铺不分层。
+- `kb/`：跨业务仓和系统可复用的知识库，含知识库规范与条目模板。
+- `task/`：工作台任务、热任务、冷任务、任务上下文登记。
 - `script/`：工作台常用脚本。
 - `business-repo/`：业务仓集合，包含后端、前端、协议等独立业务仓；非明确业务需求不直接改动。
 
 ## 入口文档
 
 - [Agent 规则](AGENTS.md)
-- [工作台规范](docs/workspace.md)
-- [自进化机制](docs/self-evolution.md)
-- [任务管理规范](docs/task-system.md)
-- [目标管理](docs/goals.md)
-- [知识库规范与条目模板](knowledge-base/README.md)
+- [工作台介绍](docs/workspace.md)
+- [自进化机制](AGENTS.md#自进化触发条件)
+- [任务管理规范](task/README.md)
+- [目标](AGENTS.md#目标)
+- [知识库规范与条目模板](kb/README.md)
 
 ## 子仓接入规则
 
 当新增或接入业务子仓时，必须同步检查并更新：
 
 1. `business-repo/` 目录与 `.gitmodules`
-2. `knowledge-base/business-repo/` 的仓索引与职责说明
+2. `kb/business-repo/` 的仓索引与职责说明
 3. `task/registry.md` 的热任务与路由提示
 4. 受影响的 `.agents/skills/` 路由或品牌特化 skill，以及其 `references/` 里的清单
 5. 必要的沉淀任务目录

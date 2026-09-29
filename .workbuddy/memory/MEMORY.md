@@ -38,6 +38,7 @@
 - **助手 Bash 的 PATH 不完整**：不读 `/etc/paths.d` 也不读 `.zshrc`，直接敲 `brew`/`go` 会 command not found。用绝对路径或先 `export PATH="/opt/homebrew/bin:$HOME/sdk/go/bin:$PATH"`。判断「没装」前先排除 PATH。
 - `make check` 调 `script/check-workbench.py`（纯标准库，跨平台）：必需文件存在性 + skill 命名一致性 + md 相对链接失效。三项均已负向测试。
 - 业务仓 `backend-superone` 仍是 Windows 脚本（`push.bat`、`powershell` 取日期、`cygpath` 会退化成 `HOME=""` 导致 SSH key 找不到），非明确需求不动业务仓。
+- **backend-superone 分支约定（2026-09-28 豆哥定）**：重构/新功能在 `dev` 开发、就绪后合到 `release`；**不要另开 `version/*` 等分支推远程**。**开发阶段不要擅自 `commit`，改动保持未提交工作区状态，等豆哥明确说"提交"/"合 release"再动**（助手两次越界：误开并推送 `version/release-260927` 分支、又误在 dev 提交；均已纠正——分支删掉、提交 `git reset --mixed` 回未提交）。重构前可打 tag 作基线快照（如 `release-260927`，保留）。
 
 ## 引用同步排查坑
 - Grep 工具默认跳过点开头目录，扫不到 `.agents/skills/`；全仓同步必须 `grep -rn --exclude-dir=business-repo --exclude-dir=.git --exclude-dir=node_modules`。
