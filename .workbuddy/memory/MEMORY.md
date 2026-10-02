@@ -41,6 +41,10 @@
 - **编辑器管理器是模块级单例** `utils/editor-manager.ts`（替代 backup 的 `app.globalData.editorManager`）。工具栏不接 props，全部状态从「当前激活编辑器实例」读，按钮直接调实例同名方法；本项目**没有全局浮动工具栏**，一律内嵌在编辑器下方。
 - **原生 editor 的能力边界（换不走，backup 也有）**：支持标签里**没有 pre/code/blockquote** → 代码块退化成纯文本、引用退化成段落、表格退化成文本、分割线退化成空行（编辑旧记录再保存会丢这些结构）。**EditorContext 没有 focus 方法**，不能自动弹键盘。待办 `format('list','check')` 支持但豆哥不要。
 - **markdown 排版两条**：段落/引用/列表内容**不要 `display:flex`**，让 `<text>` 片段保持行内流动（flex 会把每个片段变独立盒子，长句整段跳行）；`word-break:break-all` 挂 `.so-md` 根部靠继承防长串撑破。
+- **跨仓照抄样式：令牌按数值换算，不按名字对号**（2026-10-02 教训）。backup 的 `--radius-sm/md/lg/xl` = 6/8/12/16rpx，我们的 `--so-radius-sm/md/lg/xl` = 12/20/28/40rpx，**同名差一倍以上**。曾把 backup 的 `--radius-lg`(12rpx) 直接换成 `--so-radius-lg`(28rpx)，60rpx 的按钮方块被圆成近圆形，整排工具看着像一串徽章。正确映射：backup 那套 md/lg/xl 统一落 `--so-radius-sm`(12rpx)，backup `--spacing-lg`(20rpx)→`--so-space-md`(24rpx)，`--spacing-md`(16rpx)→`--so-space-sm`(16rpx)。
+- **功能页不要套落地页视觉**（2026-10-02 豆哥纠「太夸张，和品牌调性不符」）。曾给主题详情页套了 carbon 的 hero：eyebrow + 44rpx 巨标题 + 卡片阴影 + 一排胶囊占位按钮 + 三层卡堆叠。superone 的调性是干净克制、**靠细边框+轻阴影分层、不靠重色块**，对标微信/滴答清单的工具页。做法：分区标题用 28rpx medium + text-secondary，不与正文抢重量；状态标签并入元信息行，不独占一行。**抄 carbon 只抄布局分区思路，不抄它的营销视觉。**
+- **卡片层级：页面 `--so-bg-secondary`、卡片走 `.so-card` 默认（elevated）**，即移动端主流的「灰底白卡」。**不要反着做「白底灰卡」**（2026-10-02 试过，豆哥一句「好丑，好割裂」）。要「协调」靠的是：同层级卡片 **去投影**（投影留给浮层）+ **块间距收紧**（16rpx，让多张卡读作一组而不是几块飞板），不是靠反转明暗。
+- **卡片必须成组**（2026-10-02 豆哥纠「整个页面只有输入框一张白卡怪奇怪的」）：页内卡片 ≥2 张且同一层表面（主题详情页 = 头部卡 + 输入卡 + 记录卡）；去掉多余的某张可以，但**去到只剩一张就过头了**。卡内边距：普通卡 24rpx；**包着自带边框的编辑器那种卡用 16rpx**，否则嵌套太厚。需要覆盖卡片外观时只在 06-pages 里写 `.p-topic-detail .so-card`，不动 `.so-card` 统一件本身（会影响 profile/test-theme/首页占位面板）。
 
 ## beannote（豆小匠）
 - 行为规范只在 skill，文档只描述项目本身。`topics/` 一篇一目录 + `manifest.yaml` 状态源；槽位 `01_选题卡`…`06_复盘`。投资认知：反口号说教，讲测量方法+背后道理，给阈值不堆公式。
@@ -52,7 +56,8 @@
 - **⚠️ 全量重编会把这台机器打崩**（2026-10-02 亲测，无 swap 时）：改 `CGO_ENABLED` 等会改变构建缓存键 → 缓存全失效 → 全量重编 → 内存耗尽 → **系统挂死重启**（journal 断写 9 分钟，内核无 OOM 记录因为抖到写不出日志）。**已有 2G swap 后不再复现**。
 - **加完 swap 的实测耗时**：冷构建（独立 GOCACHE 全空）**222s**、缓存失效后首次 126s、**增量 11s**。产物 54.96MB→38.27MB。`deploy.sh` 超时定在 **600s**。提速最大头是 **`CGO_ENABLED=0`**（去掉 gcc 外部链接，原 link 单步就 10 分钟以上），不需要 `-p 1`。
 - **Dockerfile 目前没在跑**：`superone:latest` 镜像创建于 18 个月前，无任何容器用它；superone 实际由 supervisor 起宿主机二进制。`make build` 那条 docker 路是休眠状态。
-- **重启后 superone 不会自恢复**：supervisord 开机即拉所有程序，docker 的 MySQL 还没就绪 → superone 报 `dial tcp 127.0.0.1:3306: connect: connection refused`，重试耗尽转 FATAL 不再自拉。每次重启必须人工 `supervisorctl restart superone-8081 superone-8082 superone-test-9091 aiunlimit-6000 aiunlimit-6001`。
+- **重启后 superone 不会自恢复**：supervisord 开机即拉所有程序，docker 的 MySQL 还没就绪 → superone 报 `dial tcp 127.0.0.1:3306: connect: connection refused`，重试耗尽转 FATAL 不再自拉。已装自愈兜底：`/usr/local/bin/so-recover.sh`（等 supervisorctl 可用 → 等 3306 端口最多 7.5 分钟 + 20s → 重启 5 个依赖 DB 的服务 → 复核，仍有 FATAL 再拉一次），由 crontab `@reboot` 触发，日志 `/var/log/so-recover.log`。
+- **每日凌晨 3:06 自动重启**（豆哥要求）：crontab `6 3 * * * /usr/sbin/reboot`（`/usr/sbin/reboot` 是 systemctl 的软链；时区 Asia/Shanghai）。**这条能安全运行全靠上面的 `@reboot` 自愈，两者必须成对存在**——没有自愈，每次重启都会让线上服务挂到人工介入。
 - 部署两路径：`make build` → docker build；`deploy.sh test` → 宿主机 `go build` + `supervisorctl reload`（失败发企微告警）。`deploy.sh` 里已无 `go mod tidy`。
 - **新增依赖不需要上服务器跑 `go mod download`**（已实测）：Go 1.16+ 默认 `-mod=readonly`，`go build` 会自动下载 go.mod 里已声明的模块，但不会自动补写 go.mod。依赖由开发者本地 `go get` 后连同 `go.mod`/`go.sum` 一起提交即可。漏提交会明确报错（`no required module provides package xxx` / `missing go.sum entry`），不会静默带病上线。
 - 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/workbench/261002_测试服务器构建优化/`。
