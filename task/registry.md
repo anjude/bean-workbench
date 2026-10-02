@@ -16,6 +16,7 @@
 | skill 实体外置           | `task/workbench/260830_skills-externalize/`          | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/`      | 已完成 |
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
+| Superone 前端开发（范围待定） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`（空白 uni-app 预设，release 分支）                                       | 进行中 |
 
 ## 冷任务
 

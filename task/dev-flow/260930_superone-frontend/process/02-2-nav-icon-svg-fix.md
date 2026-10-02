@@ -1,0 +1,34 @@
+# 02-2 自定义导航栏图标崩溃（inline SVG → reading 'uid'）
+
+- 时间：2026-10-02
+- 阶段：dev-flow 02 前端开发（so-custom 导航栏 + 设置页）
+- 背景：
+  - 新建 `so-custom.vue`（自定义导航栏）与 `settings.vue`（设置页）时，按「superone 特质、不依赖 carbon iconfont」的要求，导航返回/主页图标、设置页主题/关于图标都用**模板内联 `<svg>`/`<path>`** 手绘。
+  - 首页 `index.vue` 用 `<so-page reverse> + <so-custom>`，设置页用 `<so-custom is-back>`，两者都渲染到含 SVG 的组件。
+- 现象：
+  - 首页（及任何用 so-custom 的页）运行期报 `TypeError: Cannot read properties of null (reading 'uid')`。
+  - 栈指向 `pages/index/index.js` 创建子组件 vnode 处；把 `SoCustom` 显式 `import`、并**整包重新编译**后，错误依旧。
+- 诊断过程与结论：
+  - ✅ 第一轮（误判，已推翻）：归因为「pages.json 后加的 easycom 规则 `^so-(.*)` 热重载没重读，so-custom 解析成 null」。
+    - 推翻证据：直接查编译产物 `dist/build/mp-weixin/pages/index/index.json` 的 `usingComponents`，`so-page`/`so-custom` **都已正确注入**；组件注册链路没有问题。既然组件注册正常、且显式 import + 整包重编译后仍崩溃，说明不是 easycom/热重载时机问题。
+  - ✅ 第二轮（正解）：根因是**模板里的 `<svg>` 原生元素在 uni-app mp-weixin 平台不被支持**。
+    - 机制：编译器把 `<svg>` 当作宿主元素 vnode（type 字符串 `"svg"`），mp 渲染器不认识、又当成组件去 `resolveComponent("svg")`，解析不到 → `createVNode(null)` → 报 `reading 'uid'`。
+    - 佐证：全仓 grep，`<svg>` 只出现在 `so-custom.vue` 与 `settings.vue`；`so-custom` 是唯一含 SVG 的组件，且首页正好用它 → 现象与位置完全吻合。
+    - 关键提示来自用户：「应该参考 profile 页吧」。查 carbon `pages/profile/index.vue` 确认其导航栏与列表用的全是 `<uni-icons>`（官方 uni-ui，非 cuIcon 字体），根本不碰 `<svg>`——手搓 SVG 才是踩坑根源。
+- 做了什么（修复）：
+  - `so-custom.vue`：返回箭头 → `<uni-icons type="back">`、主页 → `<uni-icons type="home">`；删除已无用的 `.so-bar__icon` 样式；图标颜色传 `'var(--so-text-primary)'` 跟随浅/深主题。
+  - `settings.vue`：主题项 → `<uni-icons type="color">`、关于项 → `<uni-icons type="info">`；颜色分别传 `'var(--so-color-primary)'` / `'var(--so-color-info)'`。
+  - `^uni-(.*)` easycom 规则本就存在（映射 `@dcloudio/uni-ui`），`uni-icons` 自动注入 `usingComponents`，无需手动 import。
+- 结论：uni-app mp-weixin **不支持模板内 `<svg>` 元素**，一律用 `uni-icons` / 字体图标 / CSS / `<image>` 替代。这是平台硬限制，不是配置或热重载问题；carbon 的实践（用 uni-icons）就是正确路数。
+- 验证：
+  - `npm run type-check`：通过。
+  - `npm run build:mp-weixin`：DONE Build complete。
+  - dist 全仓无 `resolveComponent("svg")` / `resolveComponent("path")` 残留；`so-custom.json` / `settings.json` 的 `usingComponents` 均含 `uni-icons`。
+  - 用户在微信开发者工具整包重新编译后确认：**不再报错**。
+- 待核 / 待定：
+  - 改动仍停留在未提交工作区（按约定等明确「提交」再动）。
+  - 本仓 `release` 分支策略未变（与 backend 的 `dev→release` 不一致，待定）。
+- 教训（写入长期记忆，避免再犯）：
+  - **uni-app mp-weixin 不支持 `<svg>` 模板元素** → 图标一律 `uni-icons`/字体/CSS/`<image>`。
+  - 排查「组件为 null / reading 'uid'」时，**先查编译产物 `usingComponents` 确认注册是否到位**，再查是不是平台不支持的元素；不要急着归因 easycom/热重载。
+  - 复用 carbon 已验证的模式（`uni-icons`、`cu-`/`so-` easycom 套路）比自创更稳。
