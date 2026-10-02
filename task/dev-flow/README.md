@@ -11,6 +11,8 @@
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/` | `business-repo/backend-superone`、`release-260927` tag | 进行中 |
 | Superone 多仓规则完善 | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引 | 进行中 |
 | uni-carbon-space 接入 | `task/dev-flow/260614_uni-carbon-space-onboarding/` | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引 | 进行中 |
+| Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
+| Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts` | 已完成 |
 
 ## 约定
 

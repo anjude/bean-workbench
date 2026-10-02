@@ -59,7 +59,7 @@ metadata:
 
 ## 方案产出
 
-方案落工作台 `task/YYMMDD_{主题}/README.md`。跨端需求前后端共用同一份方案，不往业务仓 `docs/feature/` 新增文件（历史文件保留）。
+方案落工作台 `task/dev-flow/YYMMDD_{主题}/README.md`。跨端需求前后端共用同一份方案，不往业务仓 `docs/feature/` 新增文件（历史文件保留）。
 
 模板：
 

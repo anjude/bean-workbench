@@ -17,6 +17,8 @@
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
 | Superone 前端开发（范围待定） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`（空白 uni-app 预设，release 分支）                                       | 进行中 |
+| Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
+| Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts`                                  | 已完成 |
 
 ## 冷任务
 
@@ -27,7 +29,7 @@
 ## 路由提示
 
 - skill 编号：`dev-flow-*` 跨端开发（00 方案设计 / 01 后端开发 / 02 前端开发 / 03 整体验证）、`bn-*` 内容生产、`wb-*` 工作台基建；编号前两位是阶段号，后两位是阶段内序号；`*-tools-*` 是工具 skill，不占阶段号。完整编号表见 `AGENTS.md`。
-- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。
+- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。
 - 提到 `superone` 的分支推进、项目约定、命令速查：走 `dev-flow-tools-repo`；数据库只读排查走 `dev-flow-tools-db-query`。
 - 提到 `superone`：优先查看 `business-repo/` 下的相关业务仓，再结合具体需求选择后端、前端或协议仓。
 - 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` 等品牌特化 skill。
