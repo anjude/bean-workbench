@@ -19,6 +19,8 @@
 | Superone 前端开发（范围待定） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`（空白 uni-app 预设，release 分支）                                       | 进行中 |
 | Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
 | Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts`                                  | 已完成 |
+| 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
+| 测试服务器构建优化（8.155.38.83） | `task/workbench/261002_测试服务器构建优化/` | 测试环境服务器、`/workspace/test-backend-superone` 的 `deploy.sh` 与 `Dockerfile` | 排查完成，改动待确认 |
 
 ## 冷任务
 
