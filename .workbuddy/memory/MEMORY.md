@@ -18,7 +18,7 @@
 - 一套设计只解决一个问题，不叠加第二套解法；"要不要留缝"默认不留（直接调用 > 端口+接线）；提新抽象前先确认删掉老方案仍成立；顺手清未使用字段/单调用者中间方法。
 
 ## 目录与文档约定
-- `task/YYMMDD_{主题}/README.md` 落方案文档（不往业务仓 docs/ 新增）。活跃文档改名须同步 `AGENTS.md`/SKILL.md/引用并跑 `make check`。
+- **走 dev-flow 的开发需求，方案文档一律落 `task/dev-flow/YYMMDD_{主题}/README.md`**（不是 `task/` 根；`task/dev-flow/README.md` 只做索引，`task/registry.md` 是完整登记表）。建目录前先核对这两个索引，别照 SKILL.md 里可能泛化的写法直接建。不往业务仓 docs/ 新增。活跃文档改名须同步 `AGENTS.md`/SKILL.md/引用并跑 `make check`。
 - `handoff/` 是一屏快照（最新一份）；`process/` 是 topic 维度思考过程（做了什么/结论/被推翻判断/待核），纵向只增不改。
 
 ## carbon / 边界
@@ -28,6 +28,8 @@
 - 微信绿主色 #07C160；令牌 `--so-*`，主题类 `.theme-light`/`.theme-dark`。视觉/布局以 carbon 首页为样板（rail+swiper+底部操作栏+主按钮遥控+反受控弹层+高度链），不自创。
 - **关键真机坑**：① 令牌只能挂 `page` 与主题类，**禁用 `:root`**；② `page` 不设主题背景，背景交给页面根容器；③ 用 `background: var(...)`，不要为想象中的兼容性写硬编码兜底；④ 不支持动态组件 `<component :is>`；⑤ 弃用 `uni.getSystemInfoSync()`，改用 getWindowInfo/getAppBaseInfo/getDeviceInfo。
 - 页面包 `<so-page>` 门禁（profile 除外）；原生全局对象声明在 `src/types/platform.d.ts`（用到裸 `wx` 在此补，别另建 d.ts）。详细设计见 `task/261002_superone-modules/` 与 process 文件。
+- **topic 模块（首个功能，2026-10-02）**：首页 PANELS 首位，面板 `biz-topic-panel`（行式+分隔线、无搜索、三态+refresher+canLoadMore 防抖）+ 详情页 `pages/topic-detail/index`（hero 属性区 + `so-timeline` 按天分组、竖线用伪元素、圆点只有 mark 位掩码命中才上语义色）。三态组件 `so-empty-state`/`so-loading-state`（照 carbon 结构、样式重写，carbon 那两个 CSS 有 bug）。时间收在 `utils/time.ts`（**后端时间戳是秒级**）；`getNavigationBarHeight()` 收在 `utils/layout.ts`。**要看 topic 必须先切真实态**——`so-page` 门禁下非真实态首页走演示页、普通页显示「开发中」。
+- **topic 契约约束**：`topic/list` 只给 id/名称/描述/时间/top（无条数无统计）；`topic/detail` 同 item；`topic/log/list` 支持 `topicIds[]` 批量（要「最近一条预览」就靠它，但条数不精确别显示）。`top` 是**时间戳非布尔**，`mark` 是**位掩码**；排序统一在读取出口（top DESC + createTime DESC）。
 
 ## beannote（豆小匠）
 - 行为规范只在 skill，文档只描述项目本身。`topics/` 一篇一目录 + `manifest.yaml` 状态源；槽位 `01_选题卡`…`06_复盘`。投资认知：反口号说教，讲测量方法+背后道理，给阈值不堆公式。
