@@ -78,3 +78,14 @@ CREATE INDEX idx_topic_log_parent ON topic_log_tab (parent_log_id);
 - 列表不传 `parent_log_id` 仅返根；传 `parent_log_id=X` 仅返 X 的子；分页 `total` 只数当前层级。
 - DDL 在测试库成功执行，旧 log 的 `parent_log_id` 全为 0。
 - dev-flow-0301 收口。
+
+## 数据库执行记录
+
+### Live 环境（2026-10-06）
+
+- 目标库：`weiyi_superone_db`（live）。
+- 目标表：`topic_log_tab`。
+- 执行命令：`go run ./scripts/migration -action=exec-sql -sql-file=scripts/migration/sql/20261002_add_topic_log_parent.sql -env=live`。
+- 执行结果：两条 DDL 均成功；新增 `parent_log_id BIGINT NOT NULL DEFAULT 0` 字段及 `idx_topic_log_parent` 索引。
+- 只读验证：查询 `information_schema.columns` 确认字段类型为 `bigint`、不可空、默认值 `0`、comment 正确；查询 `information_schema.statistics` 确认索引指向 `parent_log_id`。
+- 历史数据验证：`SELECT COUNT(*) FROM topic_log_tab WHERE parent_log_id <> 0` 返回 `0`，现有记录均为根记录。
