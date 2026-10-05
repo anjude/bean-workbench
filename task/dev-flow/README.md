@@ -14,6 +14,7 @@
 | Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
 | Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts` | 已完成 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
+| topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`、`business-repo/uni-superone` | 进行中 |
 
 ## 约定
 

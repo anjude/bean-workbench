@@ -16,11 +16,12 @@
 | skill 实体外置           | `task/workbench/260830_skills-externalize/`          | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/`      | 已完成 |
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
-| Superone 前端开发（范围待定） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`（空白 uni-app 预设，release 分支）                                       | 进行中 |
-| Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
+| Superone 前端开发（模块与主题） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`、`backend-superone`（近期任务、物品；三态主题方案待确认；release 分支） | 进行中 |
+| Superone 前端模块设计（主题/清单/计划/物品/扩展） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`（扩展入口、系统与签到按钮已实现；type-check/build 待验证） | 进行中 |
 | Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts`                                  | 已完成 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
 | 测试服务器构建优化（8.155.38.83） | `task/workbench/261002_测试服务器构建优化/` | 测试环境服务器、`/workspace/test-backend-superone` 的 `deploy.sh` 与 `Dockerfile` | 排查完成，改动待确认 |
+| topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`（删除逻辑）、`business-repo/uni-superone`（编辑页、记录详情页、首页面板长按） | 进行中 |
 
 ## 冷任务
 
