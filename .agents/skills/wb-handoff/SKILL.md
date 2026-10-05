@@ -20,7 +20,7 @@ description: 任务交接与过程记录 skill。用户说 handoff、交接、�
 ## 一、定位任务目录
 
 1. 读 `task/registry.md`，从热任务里找目标任务目录；命中不了再扫 `task/` 下的 `YYMMDD_*`。
-2. 没有对应目录就新建 `task/YYMMDD_{主题}/`，README 用 `wb-router` 的 `references/task-readme.md`，并顺手登记进 `task/registry.md` 热任务。
+2. 没有对应目录时，必须先经用户确认才新建 `task/YYMMDD_{主题}/`，不要自行创建；README 用 `wb-router` 的 `references/task-readme.md`，并顺手登记进 `task/registry.md` 热任务。
 3. 目录里必须有 `handoff/` 和 `process/`：没有就建；已有就直接写。
 
 > `process/` 在两个地方出现：工作台任务目录（`task/YYMMDD_{主题}/`）和 beannote 选题目录（`business-repo/beannote/topics/{topic}/`）。命名和写法一致，差别只在"阶段号"跟着谁的流水线。选题目录那边的 process/ 由 `bn-0000-init-flow` 建，内容依据 `bn-0100-discuss-flow`。
