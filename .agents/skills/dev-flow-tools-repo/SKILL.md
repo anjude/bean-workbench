@@ -114,6 +114,8 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 ## 分支与部署
 
+准备提交代码时，先按 `wb-handoff` 检查当前任务的 `process/` 与最新 `handoff/` 是否覆盖本次改动；缺少过程记录时补齐并与代码一并提交。记录规则以 `wb-handoff` 为唯一来源，本 skill 不重复定义。
+
 | 分支 | 作用 | 部署目标 |
 | --- | --- | --- |
 | `dev` | 日常开发基线，需求默认落这里 | 无 |
