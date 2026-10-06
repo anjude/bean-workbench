@@ -34,7 +34,7 @@ metadata:
 5. `make test-integration`（涉及集成测试时）
 6. `make lint`
 7. `git diff --check`
-8. 契约核对：协议仓 `business-repo/frontend-contracts` 与后端代码是否一致
+8. 契约核对：唯一协议事实仓 `business-repo/frontend-contracts` 与后端代码一致；受影响客户端同步到预期子仓 revision，且没有重复维护协议类型或枚举。
 
 失败时先自行分析和修复，只有外部依赖、凭据、live 权限或需求歧义阻塞时才交还用户。
 
@@ -67,7 +67,8 @@ metadata:
 ### 前端常见检查点
 
 - `src/pages.json` 是否是合法 JSON，新增页面路径是否与文件一致。
-- API 类型是否从 `src/types/api.ts` 导出，API 实现是否从 `src/apis/index.ts` 导出。
+- API 类型与枚举是否从协议子仓导入，客户端 API 实现是否只处理本地 transport 调用。
+- 页面和业务状态是否绕过适配层直接使用平台私有 API；除 UI/UX/交互需要外，平台分支是否收敛在适配边界。
 - 页面是否直接调用 API；如果是，应下沉到 composable/store/repo。
 - Store 是否维护本地缓存和 force refresh，Composable 是否统一处理错误和 toast。
 - 样式文件是否在 `src/styles/index.css` 注册。
@@ -87,7 +88,7 @@ metadata:
 - TypeScript 报错：优先修类型契约，不用 `any` 绕过，除非第三方平台类型缺失且已有同类写法。
 - 页面路径错误：同步修 `src/pages.json` 和实际文件路径。
 - 样式缺失：确认 `src/styles/index.css` import。
-- 平台 API 报错：使用 uni-app 条件编译，保留非目标平台降级。
+- 平台 API 的失败与降级由适配层统一处理；页面与业务状态消费统一结果，不自行实现平台分支。
 - 依赖缺失：先检查 `package.json` 是否已有可复用库，不主动新增依赖。
 
 ## 方案文档回填

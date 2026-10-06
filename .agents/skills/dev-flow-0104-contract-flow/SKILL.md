@@ -1,19 +1,19 @@
 ---
 name: dev-flow-0104-contract-flow
-description: 当后端接口、DTO、响应结构、枚举、字段语义或错误码发生可能影响前端的变动时使用；同步更新 OpenAPI YAML，并生成可复制到多个前端项目的 TypeScript 接口、结构体、枚举和 API 契约文件。
+description: 当后端接口、DTO、响应结构、枚举、字段语义或错误码发生可能影响客户端的变动时使用；同步更新唯一协议事实仓中的 OpenAPI 与共享契约，并明确各客户端如何同步消费。
 metadata:
-  short-description: 后端生成前端契约
+  short-description: 后端维护共享协议
 ---
 
-# 后端前端契约生成
+# 后端共享协议维护
 
 阶段 01 后端开发，执行顺序第 4 步，也是阶段 02 前端开发的交接点。
 
-本 skill 面向工作台多仓结构。执行任务时优先以工作台根目录为协调目录；如果当前工作目录在 `business-repo/backend-superone` 内，必须先识别工作台根目录，再把契约输出到工作台的协议仓。
+本 skill 面向多仓、多客户端协作。执行任务时优先以工作台根目录为协调目录；如果当前工作目录在业务仓内，先识别工作台根目录，再定位唯一协议事实仓。当前工作台的协议事实仓是 `business-repo/frontend-contracts`，所有客户端项目共用，不按平台复制出多份协议。
 
 ## 目标
 
-后端开发完成接口或枚举变更时，同时生成前端可直接使用的契约文件。前端开发只需要复制契约目录中的对应文件到前端项目，即可按同一套接口、结构体、枚举进行开发，减少口头对接。
+后端开发完成接口或枚举变更时，同步更新唯一协议事实仓。所有前端客户端都以 Git 子仓引入并消费同一份契约；客户端只实现自己的传输封装与产品交互，不复制或重新定义接口、结构体和枚举。
 
 ## 触发条件
 
@@ -34,30 +34,24 @@ metadata:
 - YAML 使用 OpenAPI 3.x，保留 `servers.url: /api/so`。
 - schema 字段使用后端 JSON 字段名，通常为 snake_case。
 
-### 前端契约目录
+### 共享契约目录
 
 统一放在：
 
 ```text
 business-repo/frontend-contracts/
   openapi/
-  src/apis/
-  src/types/api/
-  src/types/models/
-  src/types/enums/
+  apis/
+  types/
 ```
 
-如果 `business-repo/frontend-contracts` 或其中子目录不存在，必须先创建目录，再生成文件；不要因为目录缺失而跳过契约输出。目录创建应保持最小结构，只创建本次需要的子目录。
-
-文件设计为可复制到前端项目。所有 TypeScript 文件使用相对项目内常见别名 `@/` 时，必须确保目标前端已有相同别名；否则优先生成无运行依赖的类型、枚举、常量文件。
+如果唯一协议事实仓或本次需要的子目录不存在，先确认工作台接入约定，再保持最小结构补齐；不得在客户端仓另建一份协议作为替代事实来源。共享契约应平台无关，不依赖某个客户端的页面、状态管理或运行时。
 
 ## 文件职责
 
-- `openapi/{domain}_api.yaml`：契约源文件，供前端或工具读取。
-- `src/types/api/{domain}.ts`：请求/响应类型，命名空间 `{Domain}Api`。
-- `src/types/models/{domain}.ts`：业务实体结构体。
-- `src/types/enums/{domain}.ts`：枚举值、状态值、类型常量。
-- `src/apis/{domain}.ts`：可选；当目标前端使用同类 request 封装时，生成 API wrapper。
+- `openapi/{domain}_api.yaml`：接口契约源文件。
+- `types/{domain}.ts`：共享请求/响应类型、业务结构和枚举；按仓库约定组织与导出。
+- `apis/{domain}.ts`：仅放跨客户端稳定且不绑定传输运行时的路径等契约常量；HTTP 请求封装属于客户端实现，不进入共享契约。
 
 ## 生成规范
 
@@ -84,14 +78,12 @@ business-repo/frontend-contracts/
 - YAML schema 的 `enum` 必须同步。
 - 前端契约枚举名要包含业务上下文，避免通用 `Status`、`Type`。
 
-### API wrapper
+### API 常量
 
-如果生成 `src/apis/{domain}.ts`：
+如果共享契约仓包含 API 常量：
 
-- 只封装 HTTP 调用，不写业务缓存和页面逻辑。
-- 方法名与 OpenAPI `operationId` 保持一致。
-- 返回 `Promise<ApiResponse<Resp>>` 或目标前端已有统一响应类型。
-- path 必须与后端路由一致，例如 `/api/so/{domain}/list`。
+- 常量必须与 OpenAPI path 和 operationId 一致。
+- 不绑定某个客户端的 request、响应包装、缓存或业务逻辑。
 
 ## 工作流程
 
@@ -104,23 +96,23 @@ business-repo/frontend-contracts/
    - components.schemas
    - enum 和 required
 3. 确保 `business-repo/frontend-contracts` 及本次需要的子目录存在；不存在则创建。
-4. 生成或更新 TypeScript 契约文件。
-5. 如果本次改动影响多个前端 domain，按 domain 拆文件，不写一个超大文件。
-6. 最终输出“前端复制清单”，列明从 `business-repo/frontend-contracts` 复制哪些文件到前端哪些相对目录。
+4. 生成或更新协议事实仓中的共享 TypeScript 类型、枚举和适用的契约常量。
+5. 如果本次改动影响多个 domain，按 domain 拆文件，不写一个超大文件。
+6. 确认受影响客户端通过 Git 子仓引用该协议事实仓，并给出需要同步的 revision 和消费验证方式；不输出文件复制清单。
 
 ## 自动开发集成
 
 在后端 auto 开发流程中：
 
 - API/DTO/枚举改动完成后立即执行本 skill。
-- 测试前先保证 `business-repo/frontend-contracts/openapi` 和契约文件已同步。
-- 最终结果必须说明：OpenAPI 是否已更新、前端契约文件是否已生成、前端需要复制哪些文件。
+- 测试前先保证唯一协议事实仓的 OpenAPI 与共享契约已同步。
+- 最终结果必须说明：协议事实仓是否更新、客户端如何同步到该修订、客户端是否存在重复定义。
 
 ## 阶段交接
 
 本 skill 是阶段 01 的最后一步，也是阶段 02 的输入：
 
-- 前端拿到复制清单后按契约开发，属于阶段 02，从 `dev-flow-0202-data-flow` 开始消费。
+- 客户端更新协议子仓 revision 后进入阶段 02，由 `dev-flow-0202-data-flow` 从共享契约导入类型和枚举，并在本地实现请求传输层。
 - 前端接通后进入阶段 03，由 `dev-flow-0301-verify-flow` 收口，其中会再次核对契约与代码是否一致。
 - 不影响前端的改动跳过本 skill，直接进阶段 03。
 
@@ -134,6 +126,7 @@ business-repo/frontend-contracts/
 ## 禁止事项
 
 - 不只改代码而漏掉 YAML 和前端契约。
-- 不把前端项目私有业务逻辑写进公共契约目录。
-- 不把某一个前端项目的页面、store、composable 放入公共契约目录。
+- 不把某个客户端私有业务逻辑写进共享契约仓。
+- 不把某个客户端的页面、store、composable 或平台运行时请求封装放入共享契约仓。
+- 不在客户端重新声明已有共享契约中的请求、响应类型或枚举。
 - 不使用绝对路径。

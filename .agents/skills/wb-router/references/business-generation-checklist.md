@@ -24,8 +24,8 @@
      - 领域层 entity、model、factory、repo、service + 字段设计与 DDL/DML SQL：`dev-flow-0101-domain-flow`。
      - 迁移脚本、test/live 执行与验证：`dev-flow-0102-db-change-flow`。
      - API、UseCase、Service、路由 + Wire 依赖注入：`dev-flow-0103-api-flow`。
-     - OpenAPI YAML 与前端契约生成：`dev-flow-0104-contract-flow`。
-   - 02 前端开发：交接物是 `dev-flow-0104-contract-flow` 输出的前端复制清单；原型与状态矩阵是硬门槛。
+     - OpenAPI YAML 与共享协议维护：`dev-flow-0104-contract-flow`。
+   - 02 前端开发：交接物是 `dev-flow-0104-contract-flow` 更新的唯一协议事实仓修订；客户端通过 Git 子仓同步并直接导入，不复制协议文件。原型与状态矩阵是硬门槛。
      - 产品原型与状态矩阵：`dev-flow-0201-archetype-flow`。
      - API 类型与请求封装、Store 与 Composable：`dev-flow-0202-data-flow`。
      - 页面、路由与生命周期、组件与样式审美：`dev-flow-0203-page-flow`。
@@ -58,7 +58,7 @@
 
 1. 只在明确业务需求下修改 `business-repo/`。
 2. 优先遵循业务仓自己的 `AGENTS.md`、现有目录结构和代码风格。
-3. 如果接口、DTO、响应结构、枚举、字段语义或错误码变化，必须同步 OpenAPI 和前端契约。
+3. 如果接口、DTO、响应结构、枚举、字段语义或错误码变化，必须同步 OpenAPI 与唯一协议事实仓；客户端同步该仓修订，不另行复制或重定义。
 4. 如果前端页面有数据加载、提交、刷新、错误或空状态，必须补齐状态矩阵，不只实现 happy path。
 5. 如果引入新流程或重复命令，优先考虑沉淀为工作台脚本，而不是只写在对话里。
 

@@ -1,6 +1,6 @@
 ---
 name: dev-flow-tools-repo
-description: 需要查 backend-superone 或 uni-carbon-space 的目录约定、技术栈、常用命令、分支与部署链路，或要把 dev 合并到 test/release、执行 make push-all / nonlive / release 时使用；供所有开发阶段共享仓库上下文，不属于任何阶段。
+description: 需要查工作台所接入业务仓的目录约定、技术栈、常用命令、分支与部署链路，或要把 dev 合并到 test/release、执行 make push-all / nonlive / release 时使用；供所有开发阶段共享仓库上下文，不属于任何阶段。
 metadata:
   short-description: 仓库上下文与分支部署
 ---
@@ -15,10 +15,13 @@ metadata:
 | --- | --- | --- |
 | 工作台根 | `bean-workbench` | 跨仓协调目录，方案落在 `task/YYMMDD_{主题}/README.md` |
 | 后端仓 | `business-repo/backend-superone` | Go 后端，以此为项目根目录 |
-| 前端仓 | `business-repo/uni-carbon-space` | uni-app 前端，以此为项目根目录；同时是后端仓的 git 子模块 |
-| 协议仓 | `business-repo/frontend-contracts` | OpenAPI YAML 与前端契约文件输出位置 |
+| uni-app 客户端 | `business-repo/uni-superone`、`business-repo/uni-carbon-space` | 多端前端项目，各自实现页面与平台适配 |
+| 其他客户端 | `business-repo/utools-superone`、`business-repo/frontend-superone`、`business-repo/frontend-investment-platform` | 按各自项目约定实现客户端 |
+| 协议事实仓 | `business-repo/frontend-contracts` | 所有客户端共用的 OpenAPI、类型与枚举来源 |
 
 在仓内执行时用相对路径，跨仓引用时用上表路径。
+
+前端客户端统一通过 Git 子仓消费 `frontend-contracts`。当前 `uni-superone` 已将其接入 `src/contracts`；其他客户端在接入或改造时也引入同一事实仓，不另建平台专属协议副本。平台运行时差异由各客户端的适配层封装，具体目录以该客户端项目规范为准。
 
 ## 后端仓
 
@@ -77,7 +80,7 @@ macOS / Linux 的 bash、zsh 下直接照上面写，不加任何转义；Window
 | 页面配置 | `src/pages.json` |
 | 页面 | `src/pages/**/index.vue` |
 | API 请求 | `src/apis/*.ts` |
-| API 类型 | `src/types/api/*.ts`、`src/types/api.ts` |
+| API 类型与枚举 | `src/contracts` 子仓（共享协议事实仓） |
 | 业务类型 | `src/types/*.ts` |
 | Store | `src/stores/*.ts` |
 | Composable | `src/composables/use*.ts` |
@@ -85,7 +88,7 @@ macOS / Linux 的 bash、zsh 下直接照上面写，不加任何转义；Window
 | 业务组件 | `src/components/business/*.vue` |
 | 图标资产 | `src/static/icons/` |
 | 样式入口 | `src/styles/index.css` |
-| 请求封装 | `src/utils/request` |
+| 请求与平台适配 | `src/utils/request`；平台运行时适配在项目适配目录（如 `src/utils/adapt/`） |
 
 ### 技术栈
 
@@ -102,10 +105,12 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 | `npm run build:h5` | H5 构建 |
 | `npm run build:mp-weixin` | 微信小程序构建，产物用微信开发者工具预览或上传 |
 
-## 协议仓
+## 协议事实仓
 
+- 当前唯一协议事实仓：`business-repo/frontend-contracts`，供所有客户端项目共同消费，不按平台复制维护协议。
 - OpenAPI YAML：`openapi/{domain}_api.yaml`，后端改接口时增量更新，只追加不整份重写。
-- 前端契约：`src/` 下生成的可复制文件，由阶段 02 消费。
+- 共享类型、枚举和适用的 API 契约常量由各客户端通过 Git 子仓同步；阶段 02 导入消费，不复制到客户端自有类型目录。
+- 客户端自己的 request 封装与平台适配实现留在客户端仓，不放入共享协议仓。
 
 ## 分支与部署
 

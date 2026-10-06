@@ -97,9 +97,9 @@ bn 的阶段同时是**能力边界**，三层不许混：`00` 只解决「这�
 | `dev-flow-0101-domain-flow` | 领域层 entity/model/factory/repo/service + 字段设计与 DDL/DML SQL、GORM 表模型（只设计，不连库） | 1 |
 | `dev-flow-0102-db-change-flow` | 迁移脚本、test/live DDL/DML 执行与验证 | 2 |
 | `dev-flow-0103-api-flow` | 后端 DTO/UseCase/Service/路由 + Wire 依赖注入装配 | 3 |
-| `dev-flow-0104-contract-flow` | OpenAPI YAML 与前端契约文件生成 | 4 |
+| `dev-flow-0104-contract-flow` | OpenAPI YAML 与唯一协议事实仓维护 | 4 |
 
-阶段 02 前端开发，交接物是 `dev-flow-0104-contract-flow` 输出的前端复制清单：
+阶段 02 前端开发，交接物是 `dev-flow-0104-contract-flow` 更新的唯一协议事实仓修订；客户端通过 Git 子仓同步并直接导入，不复制协议文件：
 
 | 编号 | 职责 | 顺序 |
 | --- | --- | --- |

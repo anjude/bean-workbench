@@ -38,7 +38,7 @@ use_case/*.go
 4. 在 repo 中定义 `I{Domain}Repo` 和 `{Domain}Repo`，使用 `bizctx` DB helper 或 GORM。
 5. 在 service 中定义 `I{Domain}Service` 和 `{Domain}Service`，业务校验、事务和错误处理放在这里。
 6. 如需 API，交给 `dev-flow-0103-api-flow` 做 DTO、UseCase、路由和 Wire 注入。
-7. 如新增或修改前端可见枚举、状态、结构体字段，交给 `dev-flow-0104-contract-flow` 输出前端契约。
+7. 如新增或修改客户端可见枚举、状态、结构体字段，交给 `dev-flow-0104-contract-flow` 同步唯一协议事实仓。
 8. 需要落库时，把 SQL 交给 `dev-flow-0102-db-change-flow` 执行。
 
 ### 分层约束
@@ -46,7 +46,7 @@ use_case/*.go
 - 分层顺序 app → use_case → domain → repo → infrastructure，不跨层直接调用 app 或 middleware。
 - Service 返回 `*ecode.BizError`。
 - 不在 repo 中写业务判断，事务放 service。
-- 影响前端的枚举和结构体变更必须同步 OpenAPI YAML 和协议仓 `business-repo/frontend-contracts`。
+- 影响客户端的枚举和结构体变更必须同步 OpenAPI YAML 和唯一协议事实仓 `business-repo/frontend-contracts`，所有客户端消费同一份定义。
 
 ## 二、字段与 SQL 设计
 
@@ -68,5 +68,5 @@ use_case/*.go
 - 用户要落文件时，SQL 放 `scripts/migration/sql/YYYYMMDD_*.sql`。
 - 用户要同步代码时，同时更新 `internal/model/*_tab.go` 里的 GORM struct。
 - 用户要连库执行、用迁移脚本时，交 `dev-flow-0102-db-change-flow`；只查结构交 `dev-flow-tools-db-query`。
-- 字段会进入 API 请求/响应、前端展示、前端筛选或枚举判断时，交 `dev-flow-0104-contract-flow` 同步 YAML 和前端契约。
+- 字段会进入 API 请求/响应、客户端展示、筛选或枚举判断时，交 `dev-flow-0104-contract-flow` 同步 YAML 和共享协议。
 - 新增 carbon 业务表时，记得把表名加进 `scripts/migration/exec_sql.go` 的 `carbonTables`，否则 `verify-carbon` 覆盖不到。

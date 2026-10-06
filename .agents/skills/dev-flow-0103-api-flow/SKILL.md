@@ -45,11 +45,11 @@ metadata:
 
 ## 收尾
 
-- 如果接口、DTO、响应或错误码影响前端，执行 `dev-flow-0104-contract-flow`，更新 `business-repo/frontend-contracts/openapi/{domain}_api.yaml` 和前端契约文件。
+- 如果接口、DTO、响应或错误码影响客户端，执行 `dev-flow-0104-contract-flow`，更新唯一协议事实仓 `business-repo/frontend-contracts` 中的 OpenAPI 与共享契约，并明确受影响客户端同步的子仓 revision。
 - 执行 `gofmt -w`、聚焦测试或 `go test ./...`。
 
 ## 输出要求
 
 - 直接列出需要修改/新增的文件。
-- 影响前端时必须列出前端契约复制清单。
+- 影响客户端时必须列出协议事实仓更新内容与客户端同步方式，不生成复制清单。
 - 不引入新框架，不重构无关历史代码。

@@ -1,6 +1,6 @@
 ---
 name: dev-flow-0000-plan-flow
-description: 当用户提出 backend-superone 或 uni-carbon-space 的新需求、要求先出方案、确认改动范围、评估影响面，或要开始一次跨端改动时使用；产出方案文档并确认后，按改动范围派发后端开发、前端开发和验证阶段的 skill。
+description: 当用户提出业务开发需求、要求先出方案、确认改动范围、评估影响面，或要开始一次跨端改动时使用；产出方案文档并确认后，按改动范围派发后端开发、前端开发和验证阶段的 skill。
 metadata:
   short-description: 跨端方案设计与阶段派发
 ---
@@ -51,9 +51,14 @@ metadata:
 前端落点：
 
 - 页面与路由：`src/pages.json`、`src/pages/**/index.vue`
-- API 与类型：`src/apis/*.ts`、`src/types/api/*.ts`
+- API 调用：`src/apis/*.ts`；共享 API 类型与枚举：项目接入的协议子仓目录（当前 uni-superone 为 `src/contracts`）
 - 状态：`src/stores/*.ts`、`src/composables/use*.ts`
 - 组件与样式：`src/components/cu-*.vue`、`src/components/business/*.vue`、`src/styles/index.css`
+
+跨端边界：
+
+- 接口与枚举只核对唯一协议事实仓及客户端子仓修订，不规划按平台复制契约。
+- 平台运行时差异定位到客户端适配边界；页面层只承接确有产品需要的 UI、UX 与交互差异。
 
 需要确认库表结构时，用 `dev-flow-tools-db-query` 只读查看，不在此阶段做写操作。
 
@@ -149,7 +154,7 @@ metadata:
 | 领域层 entity / model / factory / repo / service、字段设计、DDL/DML SQL、GORM 表模型 | `dev-flow-0101-domain-flow` |
 | 迁移脚本、test/live 执行、表结构验证 | `dev-flow-0102-db-change-flow` |
 | DTO / UseCase / Service / 路由、Wire 依赖注入 | `dev-flow-0103-api-flow` |
-| OpenAPI YAML 与前端契约生成 | `dev-flow-0104-contract-flow` |
+| OpenAPI YAML 与共享协议维护 | `dev-flow-0104-contract-flow` |
 
 阶段 02 前端开发：
 
@@ -181,7 +186,7 @@ metadata:
 6. use_case。
 7. route。
 8. wire。
-9. 前端契约：更新 `business-repo/frontend-contracts/openapi`，生成可复制契约文件。
+9. 共享契约：更新唯一事实仓 `business-repo/frontend-contracts` 的 OpenAPI 与共享类型/枚举；前端客户端通过 Git 子仓同步，不复制协议文件。
 10. 测试。
 
 ### 阶段 02 执行顺序
@@ -191,7 +196,7 @@ metadata:
 第一步是硬门槛，不是可选项：
 
 1. 原型与状态矩阵：先决定产品形态和信息层级，再补齐加载中、空数据、失败、权限不足等分支，最后才写 happy path。只有 happy path 视为未完成。
-2. 数据层：请求/响应类型放 `src/types/api/*.ts`，业务实体放 `src/types/*.ts`；`src/apis/*.ts` 只做请求，字段兼容转换和业务错误处理放 store/composable 的统一 helper。Store 管跨页面状态和缓存，Composable 管页面业务流程。
+2. 数据层：请求/响应类型与后端枚举从协议事实仓导入；`src/apis/*.ts` 实现客户端请求调用，字段转换与业务错误处理集中在数据层 helper。平台网络、存储、登录、上传等运行时差异通过项目适配层统一封装。Store 管跨页面状态和缓存，Composable 管页面业务流程。
 3. 页面与样式：页面尽量薄，业务逻辑不堆在 `.vue` 里；样式在 `src/styles` 注册。
 4. 资产：图标和空状态优先项目内 SVG 实现。
 5. 品牌规范：命中 carbon 时必须叠加，检查页面结构、信息密度、CTA 数量、图标与动效是否跑偏。

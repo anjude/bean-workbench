@@ -23,6 +23,8 @@ metadata:
 - 页面样式 `src/styles/06-pages/p-{page}.css`，组件样式 `src/styles/05-components/cu-{name}.css`
 - 样式入口 `src/styles/index.css`，设计变量 `src/styles/01-settings/variables.css`
 
+涉及常见业务页面或对象操作时，先读 [`references/ui-ux-handbook.md`](references/ui-ux-handbook.md)，按任务语义选择模式；具体产品规格和品牌规范优先于通用建议。
+
 ## 一、新增页面
 
 1. 确定页面路径、标题、导航样式、是否启用下拉刷新。
@@ -72,11 +74,11 @@ metadata:
 - 不新增孤立的一次性 UI 组件；不使用负 letter-spacing 或随 viewport 缩放字体。
 - 不做一整页单色系视觉，颜色优先来自 CSS variables；文案不能溢出按钮、卡片和窄屏容器。
 - 先满足结构和交互，再处理阴影、透明度和层次感；深浅色模式问题回到令牌层解决。
-- 小程序多端兼容使用 uni-app 条件编译，不写平台私有全局 API，除非已有同类代码。
+- 页面层不直接处理平台运行时差异，不直接调用平台私有 API；优先使用项目统一适配接口。只有产品 UI/UX/交互确需因平台不同而变化时，才在呈现层做平台区分。
 
 ## 验证
 
 - `npm run type-check`
 - 新增页面后检查 `src/pages.json` JSON 格式
 - 需要视觉验收时运行 `npm run dev:h5` 或目标平台 build
-- 检查空、加载、错误、长文本、窄屏和深浅主题表现
+- 检查空、加载、错误、长文本、窄屏，以及浅色、深色、跟随系统三种主题模式

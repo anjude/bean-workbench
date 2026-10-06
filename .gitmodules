@@ -13,7 +13,7 @@
 [submodule "business-repo/frontend-contracts"]
 	path = business-repo/frontend-contracts
 	url = git@github.com:anjude/frontend-contracts.git
-	branch = master
+	branch = release
 [submodule "business-repo/frontend-investment-platform"]
 	path = business-repo/frontend-investment-platform
 	url = git@github.com:anjude/frontend-investment-platform.git
@@ -29,7 +29,7 @@
 [submodule "business-repo/utools-superone"]
 	path = business-repo/utools-superone
 	url = git@github.com:anjude/utools-superone.git
-	branch = master
+	branch = release
 [submodule "task/beannote"]
 	path = task/beannote
 	url = git@github.com:anjude/beannote.git
