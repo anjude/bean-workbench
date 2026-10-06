@@ -23,7 +23,7 @@
 | 测试服务器构建优化（8.155.38.83） | `task/workbench/261002_测试服务器构建优化/` | 测试环境服务器、`/workspace/test-backend-superone` 的 `deploy.sh` 与 `Dockerfile` | 排查完成，改动待确认 |
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`（删除逻辑）、`business-repo/uni-superone`（编辑页、记录详情页、首页面板长按） | 进行中 |
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
-| uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简；`src/` 无用文件清理与契约类型收敛 | 清理与门禁完成，子仓已推送 |
+| uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 
 ## 冷任务
 
