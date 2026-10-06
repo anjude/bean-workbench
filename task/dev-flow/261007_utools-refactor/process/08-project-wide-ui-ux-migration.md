@@ -61,3 +61,15 @@
 - 用户要求选择方块上下留出适度空间、执行标题/进度滚动时保持可见，并确认执行标题可编辑。共享选择器容器添加上下 2px 内距；执行标题进度区设为 sticky；执行名称按 uni-superone 同样可编辑，存入本地执行缓存并随完成记录提交，旧缓存缺标题时生成默认名称：`business-repo/utools-superone/src/styles/06-components/_cu-tag.scss`、`src/styles/07-pages/_checklist-list.scss`、`src/views/ChecklistList.vue`、`src/composables/useChecklistExecution.ts`。`npm run typecheck`、`npm run build`、`git diff --check` 通过。
 
 - 用户指出清单执行完成预览弹窗不够紧凑。将弹窗宽度从 600px 收至 520px，压缩标题/时间/进度区、步骤行、备注与总结的间距和字号；步骤项取消卡片式边框和内边距，确定按钮改为 small：`business-repo/utools-superone/src/views/ChecklistList.vue`、`src/styles/07-pages/_checklist-list.scss`。`npm run typecheck`、`npm run build`、`git diff --check` 均通过；未做浏览器检查。
+
+## 2026-10-07 补充：近期任务模块样式首轮
+
+- 用户要求开始处理近期任务模块，并明确不改功能与布局，仅调整样式。尝试过的列表信息增补、标题区重排、右键菜单等模板/交互改动均已撤回。
+- 仅收紧现有任务条目的内距与字号、页脚状态按钮组间距、详情跳转按钮尺寸，以及任务详情页的记录列表/操作按钮间距；DOM、信息内容、左右结构和事件保持原样：`business-repo/utools-superone/src/styles/07-pages/_plan-list.scss`、`src/styles/07-pages/_plan-detail.scss`。
+- `npm run typecheck`、`npm run build` 与 `git diff --check` 均通过；未做浏览器检查。
+
+- 用户反馈近期任务每次重进插件都恢复为四种状态全选。筛选点击时已有缓存写入，但初始化仅读一次；第一次调整把重读放在接口请求前，用户指出仍无效后发现这仍早于清单页的恢复时机。现把读取和校验移至任务列表接口成功之后、筛选控件显示之前，继续使用 `SELECTED_PLAN_STATUS_FILTER` 和统一 `CacheManager`：`business-repo/utools-superone/src/stores/plan.ts`。
+- 验证 `npm run typecheck`、`npm run build`、`git diff --check` 均通过；未做浏览器检查。
+- 用户进一步澄清重进插件后四种状态仍全选。对比清单保存的数字 ID 与近期任务保存的数组，发现近期任务原先把 Pinia ref 产生的响应式数组直接传给 `dbStorage`；现改为先生成普通数组快照再持久化，并在缓存写入失败时记录错误：`business-repo/utools-superone/src/stores/plan.ts`。同一轮也将缓存读取改到接口成功返回之后；静态检查和构建通过，未做插件界面运行验证。
+- 用户要求近期任务详情页也做样式收紧。仅调整详情页容器内距、任务元信息、描述分隔、记录编辑器标题/按钮、记录列表和卡片元信息间距；保留现有 DOM、内容和操作不变：`business-repo/utools-superone/src/styles/07-pages/_plan-detail.scss`。`npm run build`、`git diff --check` 通过；未做浏览器检查。
+- 用户反馈近期任务详情编辑器按 Cmd+Enter 未保存。原因是 `MarkdownEditor` 仅在传入 `completeButtonText` 时启用快捷键，而任务详情编辑器没有配置完成按钮或 `@complete` 监听。现将任务详情新增进展与编辑记录编辑器统一改为 Topic 使用的工具栏内“保存”按钮 + Cmd/Ctrl+Enter 完成事件，并移除重复的外置保存/确定按钮，编辑弹窗的取消按钮保留：`business-repo/utools-superone/src/views/PlanDetail.vue`、`src/styles/07-pages/_plan-detail.scss`。类型检查、构建、`git diff --check` 通过；未做浏览器检查。
