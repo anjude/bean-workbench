@@ -12,6 +12,7 @@
 | Superone 多仓规则完善 | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引 | 进行中 |
 | uni-carbon-space 接入 | `task/dev-flow/260614_uni-carbon-space-onboarding/` | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引 | 进行中 |
 | Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
+| uni-superone 日常优化 | `task/dev-flow/261007_uni-superone-daily-optimization/` | `business-repo/uni-superone`（日常体验、交互、样式与维护优化） | 进行中 |
 | Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts` | 已完成 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
