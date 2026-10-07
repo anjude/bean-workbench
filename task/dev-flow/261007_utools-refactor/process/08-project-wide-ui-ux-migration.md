@@ -73,3 +73,9 @@
 - 用户进一步澄清重进插件后四种状态仍全选。对比清单保存的数字 ID 与近期任务保存的数组，发现近期任务原先把 Pinia ref 产生的响应式数组直接传给 `dbStorage`；现改为先生成普通数组快照再持久化，并在缓存写入失败时记录错误：`business-repo/utools-superone/src/stores/plan.ts`。同一轮也将缓存读取改到接口成功返回之后；静态检查和构建通过，未做插件界面运行验证。
 - 用户要求近期任务详情页也做样式收紧。仅调整详情页容器内距、任务元信息、描述分隔、记录编辑器标题/按钮、记录列表和卡片元信息间距；保留现有 DOM、内容和操作不变：`business-repo/utools-superone/src/styles/07-pages/_plan-detail.scss`。`npm run build`、`git diff --check` 通过；未做浏览器检查。
 - 用户反馈近期任务详情编辑器按 Cmd+Enter 未保存。原因是 `MarkdownEditor` 仅在传入 `completeButtonText` 时启用快捷键，而任务详情编辑器没有配置完成按钮或 `@complete` 监听。现将任务详情新增进展与编辑记录编辑器统一改为 Topic 使用的工具栏内“保存”按钮 + Cmd/Ctrl+Enter 完成事件，并移除重复的外置保存/确定按钮，编辑弹窗的取消按钮保留：`business-repo/utools-superone/src/views/PlanDetail.vue`、`src/styles/07-pages/_plan-detail.scss`。类型检查、构建、`git diff --check` 通过；未做浏览器检查。
+
+## 2026-10-07 补充：主题记录置顶操作对齐
+
+- 对照 uni-superone 的主题记录长按菜单，确认其记录支持“移至最前”和“置顶/取消置顶”；uTools 原右键菜单缺少这两项，且记录读取只按创建时间排序，top 字段无法影响位置。现为 uTools 记录菜单补上对应操作，按 top 时间戳降序、创建时间降序排列，并显示置顶标识；保留 uTools 已有的复制、标记、编辑和删除：`business-repo/utools-superone/src/views/TopicList.vue`、`src/composables/useTopicManagement.ts`、`src/stores/topic.ts`、`src/types/topic.ts`、`src/styles/07-pages/_topic-list.scss`。
+- 对照 uni-superone 记录菜单后，又补上“切换主题”，使用紧凑选择弹窗选择目标主题，保留 uTools 自有的复制与编辑操作，菜单入口仍可右键或点击更多按钮触发：`business-repo/utools-superone/src/views/TopicList.vue`、`src/styles/07-pages/_topic-list.scss`。
+- `npm run typecheck`、`npm run build`、`git diff --check` 通过；未做浏览器检查。
