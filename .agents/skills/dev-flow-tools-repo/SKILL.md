@@ -122,11 +122,11 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 | `test` | 合并 `dev` 后自动部署 | nonlive |
 | `release` | 合并 `dev` 后自动部署 | live |
 
-`backend-superone` 默认开发分支是 `dev`；`uni-carbon-space`、`frontend-contracts` 默认 `master`。不在 `test` / `release` 上直接开发。
+`backend-superone` 默认开发分支是 `dev`；`uni-carbon-space`、`frontend-contracts` 默认 `master`。日常未指定目标时按仓库默认分支工作；用户明确指定 `test` 或 `release` 时，允许直接在目标分支提交和推送，无需先经过 `make nonlive` / `make release`。
 
 ### 分支推进脚本的实际行为
 
-Windows 下由 `push.bat` 完成，macOS / Linux 下按「平台差异」里的等价命令手工执行。行为一致：
+需要把开发分支批量推进到目标分支时，可选用 Windows 下的 `push.bat`，macOS / Linux 下按「平台差异」里的等价命令手工执行。该流程会：
 
 1. `git fetch origin --prune`。
 2. 在临时 worktree 里 checkout 目标分支，pull 最新，merge `origin/dev`，push。
@@ -145,7 +145,7 @@ Windows 下由 `push.bat` 完成，macOS / Linux 下按「平台差异」里的�
 ### 授权边界
 
 - 推进 `test`：用户明确要求即可执行。
-- 推进 `release`：必须用户显式要求，且确认本次改动已在 nonlive 验证过。
+- 推进 `release`：用户明确要求即可直接提交、推送；也可按需要选择先在 nonlive 验证或使用合并流程。
 - live 环境的 DDL/DML：必须用户显式授权，不由分支推进动作推断。
 
 执行前确认：当前改动是否已 commit、是否有未解决的冲突、目标分支是否是用户预期的那一个。
@@ -204,4 +204,3 @@ export PATH="/opt/homebrew/bin:$HOME/sdk/go/bin:$PATH"
 - 不在未 commit 的情况下声称改动已发布。
 - 不把本地未提交改动当作已合并内容。
 - 不用分支推进代替 live 数据库授权。
-- 不直接 push 到 `release`，必须走 `make release` 的合并流程。
