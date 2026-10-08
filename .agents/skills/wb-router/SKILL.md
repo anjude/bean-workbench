@@ -20,6 +20,8 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 
 | 关键词 | 路由 |
 | --- | --- |
+| `素材库`、`原始素材`、`local-source` | `source/README.md`，需要二次开发时先复制素材到目标任务或业务仓 |
+| `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；产品上下文见 `task/dev-flow/261009_edonggesha-init/README.md` |
 | `superone` | 先到 `business-repo/`，再按需求判断 `backend-superone`、`uni-superone`、`uni-carbon-space`、`frontend-superone`、`miniprogram-superone`、`frontend-contracts` 或 uTools 端 |
 | `后端`、`API`、`数据库`、`SQL` | `business-repo/backend-superone` |
 | `前端`、`页面`、`uni-app` | `business-repo/uni-superone` |

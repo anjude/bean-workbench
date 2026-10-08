@@ -24,6 +24,7 @@ REQUIRED_FILES = [
     "AGENTS.md",
     "README.md",
     "docs/workspace.md",
+    "source/README.md",
     "kb/README.md",
     "kb/common/README.md",
     "task/registry.md",
@@ -43,6 +44,7 @@ REQUIRED_FILES = [
     "business-repo/frontend-superone/AGENTS.md",
     "business-repo/uni-superone/AGENTS.md",
     "business-repo/uni-carbon-space/AGENTS.md",
+    "business-repo/uni-gknow/AGENTS.md",
     "business-repo/utools-bean-option/AGENTS.md",
     "business-repo/utools-superone/AGENTS.md",
 ]

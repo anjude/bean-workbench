@@ -25,6 +25,7 @@
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`（删除逻辑）、`business-repo/uni-superone`（编辑页、记录详情页、首页面板长按） | 进行中 |
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
+| 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`（开发与生产分支 `release`）、uni-superone 框架复用评估、品牌图片与小游戏素材盘点 | 仓库已接入，方案设计中 |
 
 ## 冷任务
 
@@ -33,6 +34,9 @@
 | 暂无 | -  | -    | -  |
 
 ## 路由提示
+
+- 提到原始素材库或 `local-source`：先读 `source/README.md`，原始文件不直接修改。
+- 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `task/dev-flow/261009_edonggesha-init/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
 
 - skill 编号：`dev-flow-*` 跨端开发（00 方案设计 / 01 后端开发 / 02 前端开发 / 03 整体验证）、`bn-*` 内容生产、`wb-*` 工作台基建；编号前两位是阶段号，后两位是阶段内序号；`*-tools-*` 是工具 skill，不占阶段号。完整编号表见 `AGENTS.md`。
 - 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。

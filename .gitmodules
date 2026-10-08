@@ -34,3 +34,7 @@
 	path = task/beannote
 	url = git@github.com:anjude/beannote.git
 	branch = master
+[submodule "business-repo/uni-gknow"]
+	path = business-repo/uni-gknow
+	url = git@github.com:anjude/uni-gknow.git
+	branch = release

@@ -16,6 +16,7 @@ metadata:
 | 工作台根 | `bean-workbench` | 跨仓协调目录，方案落在 `task/YYMMDD_{主题}/README.md` |
 | 后端仓 | `business-repo/backend-superone` | Go 后端，以此为项目根目录 |
 | uni-app 客户端 | `business-repo/uni-superone`、`business-repo/uni-carbon-space` | 多端前端项目，各自实现页面与平台适配 |
+| 鹅懂个啥小程序 | `business-repo/uni-gknow` | uni-app 微信小程序，开发与生产统一使用 `release` 分支 |
 | 其他客户端 | `business-repo/utools-superone`、`business-repo/frontend-superone`、`business-repo/frontend-investment-platform` | 按各自项目约定实现客户端 |
 | 协议事实仓 | `business-repo/frontend-contracts` | 所有客户端共用的 OpenAPI、类型与枚举来源 |
 

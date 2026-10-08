@@ -17,6 +17,7 @@
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`、`business-repo/uni-superone` | 进行中 |
+| 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`、产品初始化、uni-superone 框架复用评估与小游戏素材盘点 | 仓库已接入，方案设计中 |
 
 ## 约定
 
