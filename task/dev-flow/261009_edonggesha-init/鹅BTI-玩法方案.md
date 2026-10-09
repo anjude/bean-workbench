@@ -90,7 +90,7 @@
 - 状态矩阵：全局用户与系统数据未就绪或失败由 `gk-page` 门禁处理；玩法有介绍、逐题、短反馈、结果四态；海报有生成中、生成失败重试、可预览/保存/分享三态。没有服务端题库空数据；关闭页面后重新进入从介绍开始。
 - `uni-gknow/src/data/gooseBti.ts` 放六个现场和四种鹅格；`src/composables/useGooseBti.ts` 管答题、归一计分、结果与不计分彩蛋；`src/pages/quiz/goose-bti/index.vue` 负责呈现，样式在 `_goose-bti.scss`；正式首页新增入口，demo 保留。
 - `src/apis/gooseBtiPoster.ts` 复用共享 `commonApi.mpQrcodeJson`，`src/utils/adapt/qr-image.ts` 将码图写入微信本地文件；`gk-result-poster.vue` 按可选参数绘制码图和结果色彩，原 demo 海报路径不变。
-- 后端现有小程序码服务将页面路径发给微信时使用了 `path` 字段；`backend-superone/third_party/wechat/wechat.go` 已改为微信接口要求的 `page`，无新增接口或契约字段。该修正需要后端部署后，扫码才会直达鹅BTI；旧后端生成的码可能进入小程序首页。
+- 小程序码沿用后端现有服务，不新增接口或契约字段。曾误判后端页面参数并擅自改动，现已撤销；海报码的实际扫码去向待用户在微信环境验证。
 - 微信扫码、真实后台码图返回、深浅色页面效果和题目手感尚待用户在开发者工具与实际微信环境验收；Agent 按既定分工只进行编译检查。
 
 ### 首次实际体验反馈
