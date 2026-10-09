@@ -56,6 +56,7 @@
 - 复用 `uni-superone` 的工程版本、目录分层、页面容器与导航栏的实现思路；组件改用 `gk-*` 前缀，视觉令牌独立定义。
 - 首页只承载品牌介绍与「趣味测试」「小游戏」两个内容方向。玩法、题库、结果算法、用户体系和服务端接口本次不开发。
 - 不复制 Superone 的 AppID、API 地址、业务页面、后台初始化门禁和管理员演示模式。
+- 共享协议在 `business-repo/frontend-contracts` 唯一维护；`uni-gknow` 按 `uni-superone` 的配置挂载 `src/contracts` 子仓，跟随 `release` 分支，客户端通过 `@/contracts` 导入，不复制契约文件。
 
 ### 文件级改动
 
@@ -64,7 +65,7 @@
 | 工程配置 | `business-repo/uni-gknow/package.json`、`vite.config.ts`、`tsconfig.json`、`.gitignore` |
 | 小程序入口 | `src/main.ts`、`src/App.vue`、`src/pages.json`、`src/manifest.json`、`src/uni.scss`、`src/env.d.ts` |
 | 通用能力 | `src/components/gk-page.vue`、`gk-header.vue`、`gk-loading-state.vue`、`gk-empty-state.vue`、`src/composables/useTheme.ts` |
-| 视觉与首页 | `src/styles/**`、`src/pages/index/index.vue`、`src/static/brand/avatar.png` |
+| 视觉与首页 | `src/styles/**`、`src/pages/index/index.vue`、`src/pages/settings/index.vue`、`src/static/brand/avatar.png` |
 | 使用说明 | `business-repo/uni-gknow/README.md`、`AGENTS.md` |
 
 ### 页面原型与状态
@@ -105,7 +106,7 @@
 
 ## 当前状态
 
-初始化工程、「鹅眼快手」示例游戏与「今天你是哪款鹅」趣味测试均已落地，微信小程序可构建。上架类目准入仍待解决。
+初始化工程、「鹅眼快手」小游戏、「今天你是哪款鹅」趣味测试、结果分享海报、契约请求基础设施、启动数据门禁和设置页均已落地，微信小程序可构建。上架类目准入仍待解决。
 
 ## 落地记录
 
@@ -113,7 +114,7 @@
 - 2026-10-09：`npm run type-check`、`npm run build:mp-weixin` 均通过；生成的 `dist/build/mp-weixin/project.config.json` 包含 AppID `wx5feedb4268569b68`。
 - 已用微信开发者工具打开 `dist/build/mp-weixin`，iPhone 12/13 模拟器显示首页、品牌头像与两张筹备卡片；窄屏标题换行已调整。
 - 本轮最终范围为微信小程序；早期方案中的 H5 预览已按用户最新要求移除。
-- 未连接后台，未改动数据库或协议仓。真机调试及平台审核尚未验证。
+- 启动门禁已接入微信登录、用户资料和系统信息接口；测试与小游戏本身仍使用本地数据，未改动数据库或协议仓。真机调试及平台审核尚未验证。
 - 后续协作分工：Agent 只做类型检查与微信小程序编译，页面功能由用户验证；持续编译与一次性构建的命令见业务仓 `README.md`。
 
 ## 沉淀候选
@@ -192,3 +193,35 @@
 - 海报只在本地 Canvas 生成，不包含用户头像、二维码或外部服务依赖。
 - 海报采用固定浅色底和高对比深色文字，不随页面深色主题切换；正文与数据标签字号适配手机预览。
 - 用户验收：分别完成测试和游戏后生成海报，预览内容正确；可唤起微信图片分享菜单或保存图片。
+
+## 共享契约接入
+
+- 参照 `business-repo/uni-superone/.gitmodules`，在 `business-repo/uni-gknow/src/contracts` 挂载 `git@github.com:anjude/frontend-contracts.git`，跟随 `release` 分支。
+- 通过现有 `@/* -> src/*` 别名从 `@/contracts` 或 `@/contracts/types/{domain}` 导入；新增接口消费时复用其中的共享类型、枚举和 API 路径，不在客户端复制协议。
+- 当前页面没有接入后端 API，本次只完成协议子仓和项目约定接入；子仓固定到提交 `e701efc`。
+- 验收：`git submodule status` 指向 `src/contracts` 的 `release` 修订；`npm run type-check` 与 `npm run build:mp-weixin` 通过。
+
+## 契约请求基础设施
+
+- `src/contract.ts` 将契约仓导出的 API 工厂绑定到 `HttpClient`；`src/apis/index.ts` 统一导出各域 client。
+- `src/utils/request.ts` 统一处理基础 URL、query/body、snake_case/camelCase、HTTP/业务错误和请求拦截器；`src/utils/adapt/http.ts` 将 `uni.request` 归一为 Promise 适配器。
+- `src/constant/config.ts` 复用 `uni-superone` 的 debug/develop/trial/release 后端地址映射，由 `App.vue` 的 `onLaunch` 按微信环境版本设置基地址。
+- 可复用的运行时文件已整理到 `business-repo/frontend-contracts/templates/uni-app/src/`；该仓的 `docs/uni-app-client-integration.md` 记录新客户端挂载契约子仓、复制运行时模板、设置启动环境、选择 API 并后续同步的方法。模板不包含项目自己的 `src/apis/index.ts`；新项目按实际需要从 `@/contract` 选择导出，OpenAPI、共享 API 与类型通过子仓引用。
+- 当前已确定沿用 Superone 的后端地址映射；启动时所需登录、用户资料与系统信息接口由下文启动门禁接入，玩法本身尚未接入业务 API。
+- 验收：共享 API client 可通过 `@/apis` 导入；类型检查及微信小程序构建通过。
+
+## 应用启动数据门禁
+
+- 需求：gknow 与 uni-superone 一样，在应用启动时取得用户数据和系统数据；两项数据都成功后才展示任何页面内容。现有页面统一由 `gk-page` 包裹，它作为本产品对应 `cu-page` / `so-page` 的门禁容器，等待态和失败重试也由容器呈现。
+- 请求顺序：先确保微信登录并取得可用 token，再并发请求 `userApi.getUser()` 与 `commonApi.getSystemInfo()`；任一失败则保持页面门禁关闭。遇到登录过期，清理 token、重新登录并重试一次。
+- 数据归属：在 `src/stores/app.ts` 保存 `userInfo`、`systemInfo`、`ready` 与错误状态；`App.vue` 负责启动时初始化，`gk-page` 为页面挂载提供幂等兜底。不给页面各自重复请求用户和系统数据。
+- 影响文件：`src/utils/adapt/login.ts`、`src/utils/auth.ts`、`src/utils/request.ts`、`src/stores/app.ts`、`src/App.vue`、`src/components/gk-page.vue`、`AGENTS.md`、`README.md`。
+- 验收：`ready` 只有在用户与系统数据均有值时才变为真；加载中和失败时不渲染页面 header/主体；失败页可以重试；运行 `npm run type-check` 与 `npm run build:mp-weixin`。
+
+## 设置页
+
+- 原型：轻量个人设置页。首页左侧设置入口进入；页面由 `gk-page` 包裹并消费启动时已取到的用户和系统数据。
+- 与 uni-superone 配置页对齐用户资料、分享主页、联系客服、系统链接、重新登录和主题功能；管理员可使用本地场景与服务器入口模式开关、管理系统链接、展开查询用户行为统计并通过触底加载分页用户列表。视觉与文案仍使用 gknow 自己的设计，不展示系统状态栏。
+- 状态矩阵：应用数据加载或失败时沿用 `gk-page` 全局门禁；就绪时展示用户与系统信息；头像缺失时回退品牌鹅头像；头像上传 / 用户资料提交显示处理中和成功失败反馈；主题选择即时生效并沿用本地持久化；重新登录复用启动数据初始化流程。
+- 不重复请求启动数据；管理员本地场景开关只改当前 store，入口模式开关更新服务器系统配置。
+- 文件：`src/pages/settings/index.vue`、`src/styles/06-pages/_settings.scss`、`src/pages/index/index.vue`、`src/pages.json`、`src/styles/06-pages/_home.scss`、`src/styles/index.scss`、`src/utils/upload.ts`、`src/utils/adapt/upload.ts`、`src/stores/app.ts`。
