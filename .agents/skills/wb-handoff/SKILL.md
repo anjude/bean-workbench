@@ -20,7 +20,7 @@ description: 任务交接与过程记录 skill。用户说 handoff、交接、�
 ## 一、定位任务目录
 
 1. 读 `task/registry.md`，从热任务里找目标任务目录；命中不了再扫 `task/` 下的 `YYMMDD_*`。
-2. 没有对应目录时，必须先经用户确认才新建 `task/YYMMDD_{主题}/`，不要自行创建；README 用 `wb-router` 的 `references/task-readme.md`，并顺手登记进 `task/registry.md` 热任务。
+2. 没有对应目录时，先判断是否应复用已有任务；需要新建时，用户明确提出「新建 / 建一个任务目录」等创建要求即视为已确认，不要重复询问。只有用户尚未表达创建意图、或目录归属与范围无法合理判断时，才询问确认；README 用 `wb-router` 的 `references/task-readme.md`，并顺手登记进 `task/registry.md` 热任务。
 3. 新建任务目录并完成登记后，将当前会话标题改为新任务目录的末级名称（例如目录 `task/dev-flow/261007_utools-refactor/` 对应标题 `261007_utools-refactor`）。直接使用会话标题工具，不依赖文件系统钩子。
 4. 目录里必须有 `handoff/` 和 `process/`：没有就建；已有就直接写。
 

@@ -16,6 +16,7 @@
 | skill 实体外置           | `task/workbench/260830_skills-externalize/`          | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/`      | 已完成 |
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
+| backend 日常开发 | `task/dev-flow/261009_backend-daily/` | `business-repo/backend-superone`（日常需求方案、开发与验证上下文） | 进行中 |
 | Superone 前端开发（模块与主题） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`、`backend-superone`（近期任务、物品；三态主题方案待确认；release 分支） | 进行中 |
 | Superone 前端模块设计（主题/清单/计划/物品/扩展） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`（扩展入口、系统与签到按钮已实现；type-check/build 待验证） | 进行中 |
 | uni-superone 日常优化 | `task/dev-flow/261007_uni-superone-daily-optimization/` | `business-repo/uni-superone`（持续收纳日常体验、交互、样式与维护优化） | 进行中 |
