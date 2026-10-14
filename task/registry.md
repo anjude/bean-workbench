@@ -26,7 +26,7 @@
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`（删除逻辑）、`business-repo/uni-superone`（编辑页、记录详情页、首页面板长按） | 进行中 |
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
-| 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`（开发与生产分支 `release`）、uni-superone 框架复用评估、品牌图片与小游戏素材盘点 | 仓库已接入，方案设计中 |
+| 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`（`release`）、测试/游戏/实用工具模块、管理员贴图内容生产 | 首页长期目录、三款小游戏、「今日挑战 + 鹅图鉴」、鹅表情复用及「鹅来点灯」双关已实现并通过类型检查/小程序构建，待微信端体验验收；管理员贴图工具方案待确认 |
 
 ## 冷任务
 
