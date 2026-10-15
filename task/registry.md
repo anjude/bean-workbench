@@ -26,6 +26,7 @@
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`（删除逻辑）、`business-repo/uni-superone`（编辑页、记录详情页、首页面板长按） | 进行中 |
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
+| uTools Bean Option 日常维护 | `task/dev-flow/261015_utools-bean-option-daily/` | `business-repo/utools-bean-option`（桌面端、插件端与本地工具的日常维护） | 货币列表缓存已修复，待 uTools 实机验收 |
 | 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`（`release`）、测试/游戏/实用工具模块、管理员贴图内容生产 | 首页长期目录、三款小游戏、「今日挑战 + 鹅图鉴」、鹅表情复用及「鹅来点灯」双关已实现并通过类型检查/小程序构建，待微信端体验验收；管理员贴图工具方案待确认 |
 
 ## 冷任务
@@ -43,6 +44,7 @@
 - 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。
 - 提到 `superone` 的分支推进、项目约定、命令速查：走 `dev-flow-tools-repo`；数据库只读排查走 `dev-flow-tools-db-query`。
 - 提到 `superone`：优先查看 `business-repo/` 下的相关业务仓，再结合具体需求选择后端、前端或协议仓。
+- 提到 `uTools Bean Option`、`utools option` 或 `utools-bean-option` 的日常维护：进入 `task/dev-flow/261015_utools-bean-option-daily/`，业务仓为 `business-repo/utools-bean-option`。
 - 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` 等品牌特化 skill。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先路由到 `task/beannote`，再读取该仓自己的内容工作流和 skill。

@@ -26,7 +26,7 @@
 - `frontend-superone` 默认分支为 `master`。
 - `frontend-investment-platform` 默认跟踪分支为 `release`。
 - `utools-superone` 默认分支为 `master`。
-- `utools-bean-option` 默认分支为 `master`。
+- `utools-bean-option` 子模块跟踪 `release` 分支。
 - `beannote` 默认分支为 `master`。
 
 ## Superone 编排关系
