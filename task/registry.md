@@ -51,7 +51,7 @@
 - 提到 `uTools Bean Option`、`utools option` 或 `utools-bean-option` 的日常维护：进入 `task/dev-flow/261015_utools-bean-option-daily/`，业务仓为 `business-repo/utools-bean-option`。
 - 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` 等品牌特化 skill。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
-- 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，代码位置仍为 `task/beannote`。
+- 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，代码位置仍为 `task/beannote`。发文、排版、推草稿箱走 `bn-tools-publish-flow`。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。
 - 提到 `handoff`、`交接`、`收工`、`下次继续`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
 - 提到 `工作台`、`skill`、`知识库`、`自进化`：默认只改工作台根级目录。

@@ -11,7 +11,7 @@
 
 ## skill
 - 实体在 `.agents/skills/`，`~/.agents` 是指向它的外链；改动全局生效，台内试用先 `git stash push -- .agents`。
-- 编号 `{前缀}-{阶段号}{序号}-{后缀}`；`dev-flow-*` 四阶段 00→01→02→03（必过 00 与 03）；`wb-*` 是唯一不跑流水线的例外（wb-router/skill-refactor/handoff）；`bn-*` 已归档。
+- 编号 `{前缀}-{阶段号}{序号}-{后缀}`；`dev-flow-*` 四阶段 00→01→02→03（必过 00 与 03）；`wb-*` 是唯一不跑流水线的例外（wb-router/skill-refactor/handoff）；`bn-*` 内容决策层已归档，在用的只有工具层 `bn-tools-publish-flow`（编写定稿→排版→封面→草稿箱，只管流程不碰内容取舍）。
 - 写法：正面表述、只给框架与步骤、不把单次顺手行为固化成 skill 规则。
 
 ## 代码复杂度（豆哥定）
