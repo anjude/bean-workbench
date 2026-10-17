@@ -64,3 +64,24 @@ temp/
 business-repo/uni-superone-backup/
 # 原始本地素材（不进入版本控制）
 /source/local-source/
+
+# 媒体渲染产物（源文件与脚本仍可纳入版本控制）
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+*.wav
+*.mp3
+*.flac
+
+# 供应的轻量音效是视频工具运行所需素材
+!.agents/vendor/product-video/assets/audio/sfx/*.wav
+
+# 宣传样片渲染出的预览帧
+/task/dev-flow/*/promo-sample/preview/
+
+# Python 临时产物
+__pycache__/
+*.py[cod]
+.pytest_cache/

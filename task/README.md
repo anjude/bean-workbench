@@ -7,12 +7,14 @@
 - `task/registry.md`：热任务、冷任务、任务目录和资源范围索引。
 - `task/workbench/`：工作台 / 技能 / 平台类任务。
 - `task/dev-flow/`：业务仓开发 / 接入类任务。
-- `task/beannote`：豆小匠内容库子模块（特殊，已在 `business-repo/` 之外单列）。
+- `task/beannote`：豆小匠内容与工具代码子模块；其中 `topics/` 的选题目录是内容工作单元，不按工作台任务目录管理。
 - `task/YYMMDD_slug/`：单个工作台任务目录；`README.md` 为任务目标、范围、边界、状态入口。
 
 ## 任务命名
 
 `YYMMDD_slug/` 目录格式；`slug` 用短英文或拼音，保持可搜索。
+
+beannote 的发布工具、平台适配等开发任务仍使用 `task/dev-flow/YYMMDD_slug/`，在任务文档中指向 `task/beannote` 的代码位置。新增文章或笔记主题直接进入 `task/beannote/topics/`，不登记为开发任务；新建或继续选题时按选题目录名绑定并自动改当前会话名，单会话只自动绑定一次。
 
 ## 任务目录建议
 

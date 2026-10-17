@@ -9,6 +9,7 @@
 - 新建 skill `wb-handoff`（wb 族不编号，直接 `wb-{能力}`）。
 - 每个 `task/YYMMDD_{主题}/` 带一个 `handoff/` 目录，交接文档命名 `YYMMDD-HHMM_{slug}.md`，按名排序最后一份即最新。
 - 与参考版的三处差异：存任务目录而非系统临时目录；加「下次建议调用的 skill」段（工作台有编号族群，能直接点名）；不复制已有产物，只给路径。
+- 会话进入任务目录时只建立上下文并改会话名，然后等待用户指示；每个会话只自动绑定一次，换绑必须由用户明确要求。
 
 ## 改动清单
 
@@ -20,6 +21,8 @@
 | `.agents/skills/wb-router/SKILL.md` | 路由表加 handoff 关键词行 |
 | `task/registry.md` | 热任务登记 + 路由提示加 handoff 一条 |
 | `script/check-workbench.py` | `REQUIRED_FILES` 加新 skill 的两个文件 |
+| `.agents/skills/wb-router/SKILL.md`、`.agents/skills/wb-handoff/SKILL.md` | 明确进入已有任务目录时仅绑定上下文并改会话名；每个会话只自动绑定一次 |
+| `AGENTS.md` | 同步 `wb-handoff` 职责摘要 |
 
 ## 验收
 

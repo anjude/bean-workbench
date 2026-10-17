@@ -14,6 +14,10 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 3. 读取 `knowledge-base/README.md` 和相关子目录，确认业务仓或系统上下文。
 4. 需求涉及业务仓时，先确认是否是明确业务需求；不是业务需求时，不改 `business-repo/`。
 
+### 用户明确要求进入任务目录
+
+当用户说“进入”某个已有任务目录，或明确要求把当前会话切换到某任务时，按 `wb-handoff` 的「会话绑定任务」规则处理：将任务目录绑定到当前会话、把会话标题改为目录末级名称，然后停下来等待用户下一步指示。进入目录本身不是开始执行任务内容的授权。每个会话只自动绑定一次；已绑定后用户再提及或输入其他任务目录时，不自动换绑，除非用户明确要求切换 / 重新绑定。
+
 ## 二、路由
 
 命中明确业务需求时，进入对应业务仓并读取该仓自己的 `AGENTS.md` 入口说明；未命中时，只在工作台层面补充任务、知识库或规则。
@@ -30,8 +34,9 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `投资平台`、`investment platform` | `business-repo/frontend-investment-platform` |
 | `uTools`、`桌面工具` | 按语义到 `business-repo/utools-superone`、`utools-bean-note` 或 `utools-bean-option` |
 | `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` |
+| `宣传片`、`功能演示视频`、`版本更新视频`、`产品视频` | 先定位产品仓与任务目录，再用 `dev-flow-tools-product-video` 制作；不因制作视频直接改业务代码 |
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
-| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | `business-repo/beannote`；内容需求按交互回合走 bn 阶段 skill：先 `bn-0000-think-flow` 想清楚本质，再 `bn-0100-shape-flow` 定主题与要点，再 `bn-0200-express-flow` 成稿；项目上下文读 `bn-tools-content-context` |
+| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，代码仍在 `task/beannote`；旧 bn skill 已归档 |
 | `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | `task/YYMMDD_{主题}/handoff/`，走 `wb-handoff` |
 | `便签` | 先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |

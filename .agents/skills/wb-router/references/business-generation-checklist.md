@@ -36,6 +36,7 @@
    - 工具层，不占阶段，按需调用：
      - 多仓目录约定、技术栈、命令、分支推进与部署：`dev-flow-tools-repo`。
      - 只读数据库排查与结构验证：`dev-flow-tools-db-query`。
+     - 软件产品介绍、功能样片与版本更新视频：`dev-flow-tools-product-video`。
    - 完整编号表见 `AGENTS.md`「当前 skill 编号表」。
 
 ## 子仓接入检查

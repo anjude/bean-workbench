@@ -47,7 +47,7 @@ metadata:
    - 不需要：轻量接口、单页面/单 store 使用、转换简单。
 6. 需要 Repo 时在 `src/repos/{domain}-repo.ts` 封装业务方法：
    - 检查 `response.errCode !== 0` 并抛出 `response.msg`。
-   - 做字段默认值、后端 string/number 兼容转换。
+   - 按契约和真实存量数据处理字段默认值或格式差异，不做推测性转换。
    - 使用 `logger.logRequestStart/Success/Error` 记录。
 7. 不需要 Repo 时，字段转换集中放 `src/types/{domain}.ts` 或 store/composable 的 mapper/helper，不散落到页面。
 

@@ -899,3 +899,35 @@
 - 新增 `src/utils/adapt/update.ts`：微信小程序启动时注册一次更新管理器；新包下载完成后询问是否立即重启，确认后调用 `applyUpdate()`；下载失败显示非阻断提示。`src/App.vue` 的 `onLaunch` 完成注册。
 - `npm run type-check`、`npm run build:mp-weixin`、`git diff --check` 通过；构建产物 `dist/build/mp-weixin/app.js` 含启动调用，`utils/adapt/update.js` 含更新提示和应用更新逻辑。
 - 真实更新事件依赖微信发布新版本，开发构建只能确认接线和编译，不能代替发布后的端上验收。过程结论见 `process/00-方案设计.md`、`process/02-前端开发.md`、`process/03-整体验证.md`。
+
+## 2026-10-16 产品视频能力沉淀
+
+- 2026-10-15 完成「今天吃什么」转盘 12 秒竖版样片，工程与成片在 [`promo-sample/`](promo-sample/README.md)，过程见 [`process/04-宣传样片.md`](process/04-宣传样片.md)。
+- 用户确认将上游产品视频 skill 收入 dev-flow 工具层。工作台新增 `dev-flow-tools-product-video`，上游源码快照固定在 `.agents/vendor/product-video/`，来源、许可与一处说明文档的中文翻译见 `.agents/vendor/README.md`。使用时按产品仓真实功能与品牌制作，微信小程序无法直挂浏览器组件时标明展示层还原边界。
+- 工作台结构检查、skill 格式校验和上游 Python 测试已通过；过程见 [`process/05-视频能力沉淀.md`](process/05-视频能力沉淀.md)。未改动 `business-repo/uni-gknow`。
+
+## 2026-10-17 「今天你是哪款鹅」海报显示用户头像昵称
+
+- 目标：结果海报可按参数绘制当前用户头像和昵称；本轮仅在「今天你是哪款鹅」的结果页和对应图鉴海报开启，其他项目海报沿用原布局。
+- 改动范围：`business-repo/uni-gknow/src/components/gk-result-poster.vue` 增加默认关闭的用户资料绘制开关、头像加载和缓存失效；`src/pages/quiz/goose-style/index.vue` 和 `src/pages/collection/index.vue` 仅对该项目开启。资料来自现有 `src/stores/app.ts`，不新增接口、契约、库表或资产。
+- 页面状态：结果未生成时仍显示原生成入口；生成中显示等待；头像地址缺失或图片加载失败时使用现有默认头像，昵称缺失时使用「好奇鹅友」，不阻断海报；绘制失败沿用点击重试；用户资料变化后重新生成。长昵称截断，避免压住其他内容。
+- 布局：保留中央品牌鹅形象与结果内容；无二维码时在底部增加头像昵称行，有二维码时放在品牌头像左侧。当前唯一开启项目是「今天你是哪款鹅」，其余项目不绘制用户资料。
+- 验收：该测试海报显示当前用户头像昵称；其他海报不出现用户资料；头像缺失/加载失败可继续生成；昵称更新后新海报显示新值；类型检查、小程序构建与差异检查通过。微信内画布与分享图片由端上体验验收。
+
+### 落地记录
+
+- 共享海报组件增加 `showUserProfile`，从现有 app store 取头像昵称并在绘制前解析头像本地路径；头像失败与昵称缺失均回退默认资料，昵称做长度截断。两处「今天你是哪款鹅」海报入口开启，图鉴其他项目和其他测试/游戏不启用。
+- `npm run type-check`、`npm run build:mp-weixin`、`git diff --check` 均通过；微信端实际图片及分享效果待体验。过程结论见 `process/00-方案设计.md`、`process/02-前端开发.md`、`process/03-整体验证.md`。
+
+### 2026-10-17 头像昵称提供与海报展示确认
+
+- 现状校正：前一版只使用应用已保存的资料，没有调用微信头像选择和昵称快捷填写，也没有征询用户是否把资料放到海报上；后端自动生成的昵称与默认头像不能当成用户已授权的信号。
+- 设置页 `src/pages/settings/index.vue` 接入微信支持的 `button open-type="chooseAvatar"` 和 `input type="nickname"`，由用户主动选择头像、填写或选用昵称，再沿用现有上传与更新用户接口保存。取消选择或保存失败不覆盖旧资料。
+- `gk-result-poster.vue` 仅在 `showUserProfile` 开启时，于每次新打开海报前询问是否展示当前头像昵称；选择不展示则只生成结果海报，不读取用户头像图片。生成失败重试沿用本次选择，关闭后重开再次询问。其它项目的海报不提示。
+- 验收：设置页可主动选择头像和昵称；「今天你是哪款鹅」海报选择展示后画入资料，选择不展示后不画入资料；两种选择都能继续分享或保存。类型检查、微信小程序构建与差异检查通过，实际微信选择器与画布效果端上验收。
+- 依据：[uni-app `button` 的 `chooseAvatar` 文档](https://uniapp.dcloud.net.cn/component/button)、[uni-app `input` 的 `nickname` 文档](https://uniapp.dcloud.net.cn/component/input)、[uni-app 用户信息展示变更说明](https://uniapp.dcloud.net.cn/component/open-data.html)。
+
+#### 落地记录
+
+- 设置页已接入微信头像选择与昵称输入，并沿用现有保存路径；共享海报仅在开启用户资料开关时按次确认，拒绝不加载用户头像，失败重试沿用当前选择。保存接口业务错误不会更新本地用户资料。
+- `npm run type-check`、`npm run build:mp-weixin`、`git diff --check` 通过；构建产物确认微信原生按钮事件与昵称输入类型已生成。微信端操作与实际分享图待体验。
