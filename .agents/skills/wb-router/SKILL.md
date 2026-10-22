@@ -25,7 +25,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | 关键词 | 路由 |
 | --- | --- |
 | `素材库`、`原始素材`、`local-source` | `source/README.md`，需要二次开发时先复制素材到目标任务或业务仓 |
-| `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；产品上下文见 `task/dev-flow/261009_edonggesha-init/README.md` |
+| `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；长期产品上下文见 `business-repo/uni-gknow/docs/README.md`；日常开发见 `task/dev-flow/261009_gknow-daily/README.md`；管理员内容工具见 `task/dev-flow/261010_gknow-content-studio/`，产品视频见 `task/dev-flow/261015_gknow-product-video/` |
 | `superone` | 先到 `business-repo/`，再按需求判断 `backend-superone`、`uni-superone`、`uni-carbon-space`、`frontend-superone`、`miniprogram-superone`、`frontend-contracts` 或 uTools 端 |
 | `后端`、`API`、`数据库`、`SQL` | `business-repo/backend-superone` |
 | `前端`、`页面`、`uni-app` | `business-repo/uni-superone` |
@@ -36,7 +36,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` |
 | `宣传片`、`功能演示视频`、`版本更新视频`、`产品视频` | 先定位产品仓与任务目录，再用 `dev-flow-tools-product-video` 制作；不因制作视频直接改业务代码 |
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
-| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，代码仍在 `task/beannote`。发文、排版、推草稿箱走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
+| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。写作风格及公共规则走 `bn-tools-writing-style`，辅助编辑走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
 | `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | `task/YYMMDD_{主题}/handoff/`，走 `wb-handoff` |
 | `便签` | 先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |

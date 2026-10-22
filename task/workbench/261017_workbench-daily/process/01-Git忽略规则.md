@@ -12,7 +12,7 @@
 
 ## 得到的结论
 
-- 样片视频、音频和预览帧属于可再生成产物：`task/dev-flow/261009_edonggesha-init/promo-sample/render.py`。
+- 样片视频、音频和预览帧属于可再生成产物：`task/dev-flow/261015_gknow-product-video/promo-sample/render.py`。
 - 视频工具的 11 个内置 WAV 是运行所需素材，应允许随源码提交：`.agents/vendor/product-video/assets/audio/manifest.json`。
 
 ## 被推翻的判断

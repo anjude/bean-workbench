@@ -35,7 +35,7 @@
 - `backend-superone` 负责服务端实现、数据模型、领域规则、接口和验证。
 - `uni-superone` 负责跨端前端页面、状态、交互和接口消费。
 - `uni-carbon-space` 负责 carbon 品牌下的跨端前端页面、状态、交互和接口消费。
-- `uni-gknow` 负责鹅懂个啥小程序；产品定位和初始化记录见 `task/dev-flow/261009_edonggesha-init/README.md`。
+- `uni-gknow` 负责鹅懂个啥小程序；长期产品定位见 `business-repo/uni-gknow/docs/README.md`；日常开发记录见 `task/dev-flow/261009_gknow-daily/README.md`。
 - `frontend-contracts` 负责 OpenAPI、前端类型、枚举和 API 契约文件。
 - `frontend-superone`、`frontend-investment-platform` 和 `utools-*` 负责各自端侧实现。
 - 涉及接口、DTO、枚举、错误码和字段语义变化时，由工作台编排后端实现与协议仓同步。
@@ -43,7 +43,7 @@
 
 ## 路由提示
 
-- 提到「鹅懂个啥」「uni-gknow」「gknow」：优先路由到 `business-repo/uni-gknow`，产品决策读 `task/dev-flow/261009_edonggesha-init/README.md`。
+- 提到「鹅懂个啥」「uni-gknow」「gknow」：优先路由到 `business-repo/uni-gknow`，产品决策读 `business-repo/uni-gknow/docs/README.md`，日常开发读 `task/dev-flow/261009_gknow-daily/README.md`。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`、`DTO 同步`：优先路由到 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：优先路由到 `task/beannote`，再读取该仓自己的内容工作流和 skill。
 - 进入任一业务仓后，优先读取该仓根目录 `AGENTS.md`。

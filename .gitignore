@@ -85,3 +85,8 @@ business-repo/uni-superone-backup/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+local-config/
+# 公众号本机凭证与旧 token 缓存
+.wechat_pub_key
+token.json

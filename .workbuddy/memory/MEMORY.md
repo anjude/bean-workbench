@@ -11,7 +11,7 @@
 
 ## skill
 - 实体在 `.agents/skills/`，`~/.agents` 是指向它的外链；改动全局生效，台内试用先 `git stash push -- .agents`。
-- 编号 `{前缀}-{阶段号}{序号}-{后缀}`；`dev-flow-*` 四阶段 00→01→02→03（必过 00 与 03）；`wb-*` 是唯一不跑流水线的例外（wb-router/skill-refactor/handoff）；`bn-*` 内容决策层已归档，在用的只有工具层 `bn-tools-publish-flow`（排版→封面→草稿箱→发布记录，只管工具操作不碰内容）。
+- 编号 `{前缀}-{阶段号}{序号}-{后缀}`；`dev-flow-*` 四阶段 00→01→02→03（必过 00 与 03）；`wb-*` 是唯一不跑流水线的例外（wb-router/skill-refactor/handoff）；`bn-*` 内容决策层已归档，工具层在用 `bn-tools-writing-style`（统一写作风格与公共模块规则）、`bn-tools-edit-flow`（按需辅助编辑）、`bn-tools-format-flow`（排版与检查）、`bn-tools-publish-flow`（上传、草稿、按授权发布与回执），脚本随工作台管理，内容取舍由用户决定。
 - 写法：正面表述、只给框架与步骤、不把单次顺手行为固化成 skill 规则。
 
 ## 代码复杂度（豆哥定）
@@ -63,3 +63,5 @@
 - 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/workbench/261002_测试服务器构建优化/`。
 - **远程排障坑**：① `pkill -f "<pattern>"` 会匹配承载命令的 shell 自身导致 SSH 断连（exit 255），先取 PID 再 kill；② 内存被打爆时 **TCP 能连、ping 通，但 sshd 不发 banner**（`Connection timed out during banner exchange`），此时应等待内存释放而非反复重连，恢复后用 `uptime` 的 "up N min" 判断是否重启过。
 - 装 Go 不用联网下 tarball：模块缓存里的 `golang.org/toolchain@v0.0.1-goX.Y.Z.linux-amd64` 就是完整 SDK，`cp -r` 到 `/usr/local/go` 后 `chmod -R u+w` 即可（toolchain 模块文件默认只读）。
+
+- 本机配置统一放工作台 `.agents/local-config/`（Git 忽略），按能力建子目录。公众号凭证 `wechat/credentials`、缓存 `wechat/token-cache/`；公众号排版与发布已内化，原 WorkBuddy 两个公众号 skill 已移除。

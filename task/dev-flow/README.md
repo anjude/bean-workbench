@@ -17,7 +17,9 @@
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
 | topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`、`business-repo/uni-superone` | 进行中 |
-| 鹅懂个啥小程序初始化 | `task/dev-flow/261009_edonggesha-init/` | `business-repo/uni-gknow`、产品初始化、uni-superone 框架复用评估与小游戏素材盘点 | 仓库已接入，方案设计中 |
+| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（日常优化、修复与开发记录；长期产品文档在业务仓 docs） | 进行中 |
+| 鹅懂个啥管理员内容工具 | `task/dev-flow/261010_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
+| 鹅懂个啥产品宣传样片 | `task/dev-flow/261015_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
 
 ## 约定
 

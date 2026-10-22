@@ -26,4 +26,4 @@ metadata:
 
 - 上游源码保存在 `.agents/vendor/product-video/`，由工作台 Git 固定版本；不直接在 `~/.agents/skills/` 克隆上游仓库。
 - 上游更新时先比对版本、许可与本地适配，再整体更新 vendor 快照及[来源说明](../../vendor/README.md)。本入口保持中性命名；不要把上游目录的 `name` 当作工作台 skill 名。
-- `task/dev-flow/261009_edonggesha-init/promo-sample/` 是首个样片案例：微信小程序界面按源码还原，适合参考边界说明，不作为所有产品的模板。
+- `task/dev-flow/261015_gknow-product-video/promo-sample/` 是首个样片案例：微信小程序界面按源码还原，适合参考边界说明，不作为所有产品的模板。
