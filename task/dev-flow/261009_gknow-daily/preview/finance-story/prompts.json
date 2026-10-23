@@ -1,0 +1,22 @@
+{
+  "生成方式": "内置 image_gen 工具",
+  "美术要求": "简线条、平面色块、二维卡通；统一描边、纸色底、有限暖色。",
+  "交付尺寸": "768×1152 JPEG",
+  "资源": [
+    {
+      "场景": "码头",
+      "文件": "business-repo/uni-gknow/src/static/illustrations/finance-story/harbor-line.jpg",
+      "提示词": "Use case: style-transfer. Redraw this harbor composition from scratch as a VERY SIMPLE TWO-DIMENSIONAL LINE-DRAWN CARTOON animation background. The input is a rough spatial reference ONLY. New asset: portrait 2:3 full-bleed mobile story-game background. Use confident thick dark teal outlines, rounded stroke caps, a few large flat solid-color shapes, a limited cream / muted teal / terracotta / golden yellow palette. Absolutely NO realistic rendering, NO 3D, NO painterly detail, NO texture, NO dramatic lighting, NO gradient shading, NO photographic water or reflections. Simple elegant clean vector-like cartoon art with hand-drawn personality, suitable for a charming grown-up casual game. Simplify to one tiny seaside shop on left, one small cream ferry on right, a simple curved wooden jetty in front, one distant island with three lantern dots, a crescent moon and two outline clouds. Water is one flat pale turquoise region with only a few short curved ink lines. Do not fill the scene with buildings or decorations. Top 28% should be mostly plain warm cream sky, lower 22% should be plain warm cream negative space for story dialogue. Most scenery lives in middle 50%. Composition should remain clear when cropped to a narrow mobile screen. No characters, no people, no geese, no lettering, no labels, no text, no UI. The result must read unmistakably as simple 2D cartoon line art, not an illustration painted from a photograph."
+    },
+    {
+      "场景": "海上",
+      "文件": "business-repo/uni-gknow/src/static/illustrations/finance-story/sea-line.jpg",
+      "提示词": "Use this reference ONLY for its simple 2D cartoon line-art style. New asset is ONE portrait 2:3 mobile story background. Bold dark teal rounded outlines, large flat color shapes, warm cream sky, muted turquoise water, terracotta and yellow accents. Reduce detail further: sparse clean lines, few objects, no material textures, no gradients, no realistic lighting, no 3D, no painterly realism. Gentle charming cartoon animation background. Top 25% and bottom 22% mostly plain warm cream space for interface. No characters, no people, no geese, no text, no interface, no collage. Scene: on a small ferry's open wooden deck. A simple railing crosses lower middle, a cream cabin with one round orange window and an arched door on the right. Outside is flat pale turquoise sea with a few simple curved wave marks, a small distant island, two outline wind clouds and a few thin diagonal rain strokes. Draw only four or five lines to suggest wooden planks. Main objects in middle 50%, central safe area for narrow mobile crop. The mood is a breezy boat trip, not a storm disaster. Keep every surface flat and simple."
+    },
+    {
+      "场景": "灯会",
+      "文件": "business-repo/uni-gknow/src/static/illustrations/finance-story/festival-line.jpg",
+      "提示词": "Use this reference ONLY for its simple 2D cartoon line-art style. New asset is ONE portrait 2:3 mobile story background. Bold dark teal rounded outlines, large flat color shapes, warm cream sky, muted turquoise water, terracotta and yellow accents. Reduce detail further: sparse clean lines, few objects, no material textures, no gradients, no realistic lighting, no 3D, no painterly realism. Gentle charming cartoon animation background. Top 25% and bottom 22% mostly plain warm cream space for interface. No characters, no people, no geese, no text, no interface, no collage. Scene: a tiny island lantern festival. One small paper-lantern craft stall on the left, a curved stone promenade in the middle foreground, flat turquoise bay on the right, a short string of five round yellow lanterns above, one distant rounded island with three simple houses and a row of lanterns on the water. Very few shapes and large calm color regions, strongly simplified line-drawn cartoon, only a few paving lines, no crowds, no intricate architecture, no glowing photo-like reflections. Main scenery in middle 50%, central safe area for narrow mobile crop."
+    }
+  ]
+}

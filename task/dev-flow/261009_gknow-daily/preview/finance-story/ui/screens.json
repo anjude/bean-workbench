@@ -1,0 +1,62 @@
+[
+  {
+    "file": "01-cover.png",
+    "title": "开场 · 共13题",
+    "screen": "cover"
+  },
+  {
+    "file": "02-experience.png",
+    "title": "第1题 · 投资经验",
+    "screen": "experience"
+  },
+  {
+    "file": "03-daily.png",
+    "title": "日常 · 多了一笔钱",
+    "screen": "N01"
+  },
+  {
+    "file": "04-terms.png",
+    "title": "日常 · 条款没看懂",
+    "screen": "N03"
+  },
+  {
+    "file": "05-budget.png",
+    "title": "日常 · 下周要用的钱",
+    "screen": "N07"
+  },
+  {
+    "file": "06-fund.png",
+    "title": "基金 · 第一次选基金",
+    "screen": "F02"
+  },
+  {
+    "file": "07-holdings.png",
+    "title": "基金 · 同方向三只",
+    "screen": "F06"
+  },
+  {
+    "file": "08-dividend.png",
+    "title": "基金 · 分红怎么收",
+    "screen": "F08"
+  },
+  {
+    "file": "09-notice.png",
+    "title": "股票 · 公司公告",
+    "screen": "S03"
+  },
+  {
+    "file": "10-twelve.png",
+    "title": "股票 · 十二只持仓",
+    "screen": "S06"
+  },
+  {
+    "file": "11-order.png",
+    "title": "股票 · 挂单差一点",
+    "screen": "S09&theme=dark"
+  },
+  {
+    "file": "12-result.png",
+    "title": "结果 · 展开可看依据",
+    "screen": "result&route=fund"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "生成方式": "内置 image_gen 工具",
+  "交付尺寸": "768×1152 JPEG",
+  "处理": "使用 sips 等比缩放与 JPEG 压缩，三图共 495893 字节",
+  "风格参考": "海上和灯会以码头原图为环境风格参考",
+  "prompts": [
+    {
+      "scene": "码头",
+      "file": "business-repo/uni-gknow/src/static/illustrations/finance-story/harbor.jpg",
+      "prompt": "Use case: illustration-story. Create ONE finished cinematic background illustration for a premium vertical mobile interactive story, portrait 2:3 composition. Scene: a small whimsical Chinese seaside town ferry harbor just after sunset, a beautiful wooden pier leads diagonally from bottom foreground to a small cream and rust-red ferry at mid-right, cozy teal-roofed waterfront houses and one luminous amber shop at mid-left, distant island with tiny lantern festival lights on the horizon, indigo twilight sky, warm golden lanterns reflected on turquoise sea. Art direction: sophisticated painted storybook environment for an indie adventure game, textured gouache with soft 3D depth, expressive shapes, rich atmospheric perspective, restrained fine detail, luminous cinematic light, high production quality. Palette deep midnight teal, desaturated sage, warm amber, cream. Upper 20% open twilight sky and sea for title. Bottom 28% darker quiet pier for dialogue overlay. No people, no geese, no characters, no text, no lettering, no interface, no frames or collage. Full bleed, visually gorgeous but calm, illustration not photorealistic."
+    },
+    {
+      "scene": "海上",
+      "file": "business-repo/uni-gknow/src/static/illustrations/finance-story/sea.jpg",
+      "prompt": "Create ONE NEW portrait 2:3 cinematic story-game background. Use the reference image ONLY as environment style and palette reference: same premium painterly 3D storybook harbor world, midnight teal and amber lights, highly finished cinematic atmosphere. New scene: looking forward from the outside deck of a small cream wooden ferry at blue hour, gently choppy dark teal sea surrounds the ferry, wooden railing cuts across lower foreground, a warmly lit glass cabin with a rounded amber-lit doorway is on the right, suspended small lantern, distant island lights are seen across water near upper middle, wind-blown clouds overhead with moon visible between clouds and a few delicate raindrops. Evocative tension but safe, cozy adventurous travel, no disaster. Clearly illustrated luxurious indie game background rather than photo. Upper 20% sky relatively open. Lower 28% darker low-detail wood and sea for dialogue overlay. No people, no geese, no characters, no UI, no text, no collage. Full bleed."
+    },
+    {
+      "scene": "灯会",
+      "file": "business-repo/uni-gknow/src/static/illustrations/finance-story/festival.jpg",
+      "prompt": "Create ONE NEW portrait 2:3 cinematic story-game background. Use reference ONLY as environment style and world reference: same premium painterly 3D storybook harbor world, midnight teal, warm amber and cream. New scene: arriving at a magical island lantern festival by the sea at night, a stone promenade curves from lower foreground along the turquoise bay, a handmade paper lantern workshop with glowing paper lanterns on a wooden table is on the left, far across the bay a beautiful floating lantern installation forms an elegant arc on the water, traditional cozy teal-roofed houses and hundreds of small golden lights climb a tree-covered island hill; a few paper sky lanterns float in the night. Scene feels richly detailed yet calm and poetic, luminous warm light against deep indigo, cinematic depth and leading lines. Upper 18% quiet sky, lower 28% subdued stone promenade for dialogue UI overlay. No people, no geese, no characters, no lettering, no text, no interface, no collage. Full bleed."
+    }
+  ]
+}

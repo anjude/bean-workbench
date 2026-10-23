@@ -1,0 +1,86 @@
+[
+  {
+    "number": 1,
+    "key": "cover",
+    "title": "封面",
+    "file": "01-cover.jpg"
+  },
+  {
+    "number": 2,
+    "key": "invite",
+    "title": "阿白邀约",
+    "file": "02-invite.jpg"
+  },
+  {
+    "number": 3,
+    "key": "budget",
+    "title": "旅费入袋",
+    "file": "03-budget.jpg"
+  },
+  {
+    "number": 4,
+    "key": "ticket",
+    "title": "购买船票",
+    "file": "04-ticket.jpg"
+  },
+  {
+    "number": 5,
+    "key": "dock",
+    "title": "码头探索",
+    "file": "05-dock.jpg"
+  },
+  {
+    "number": 6,
+    "key": "shop",
+    "title": "码头小铺",
+    "file": "06-shop.jpg"
+  },
+  {
+    "number": 7,
+    "key": "sailor",
+    "title": "打听航程",
+    "file": "07-sailor.jpg"
+  },
+  {
+    "number": 8,
+    "key": "sea",
+    "title": "离岸分镜",
+    "file": "08-sea.jpg"
+  },
+  {
+    "number": 9,
+    "key": "sea-choice",
+    "title": "风雨中的选择",
+    "file": "09-sea-choice.jpg"
+  },
+  {
+    "number": 10,
+    "key": "sea-feedback",
+    "title": "选择后的反馈",
+    "file": "10-sea-feedback.jpg"
+  },
+  {
+    "number": 11,
+    "key": "festival",
+    "title": "灯会抵达",
+    "file": "11-festival.jpg"
+  },
+  {
+    "number": 12,
+    "key": "festival-choice",
+    "title": "灯会去处",
+    "file": "12-festival-choice.jpg"
+  },
+  {
+    "number": 13,
+    "key": "festival-feedback",
+    "title": "灯会体验",
+    "file": "13-festival-feedback.jpg"
+  },
+  {
+    "number": 14,
+    "key": "result",
+    "title": "夜航手记",
+    "file": "14-result.jpg"
+  }
+]

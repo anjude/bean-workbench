@@ -29,7 +29,7 @@
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | uTools Bean Option 日常维护 | `task/dev-flow/261015_utools-bean-option-daily/` | `business-repo/utools-bean-option`（桌面端、插件端与本地工具的日常维护） | 货币列表缓存已修复，待 uTools 实机验收 |
-| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（日常优化、修复与开发记录；长期产品文档在业务仓 docs） | 进行中 |
+| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（理财人格12题、7型结果已获认可；logo+小程序码海报和跳过说明已补，待微信端扫码验收；长期产品文档在业务仓 docs） | 进行中（待微信扫码验收） |
 | 鹅懂个啥管理员内容工具 | `task/dev-flow/261010_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
 | 鹅懂个啥产品宣传样片 | `task/dev-flow/261015_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
 
