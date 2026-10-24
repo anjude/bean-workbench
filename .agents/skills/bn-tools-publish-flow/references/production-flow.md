@@ -19,14 +19,14 @@
 
 ## 生产步骤与交接
 
-1. 查重并定位主题：在 `task/beannote/topics/YYYY-MM-DD_主题/` 建立或续写 README、process/、handoff/；绑定会话遵循 wb-handoff。
+1. 查重并定位主题：在 `task/beannote/topics/YYMMDD_主题/` 建立或续写 README、process/、handoff/；绑定会话遵循 wb-handoff。
 2. 确定本轮方式与终点：讨论、起草、改稿、仅排版、入草稿或发布；按用户要求执行，不默认公开发布。
 3. 整理材料：保留来源、采集日期，区分事实、作者观点和待核问题。材料存 source/，判断过程存 process/。
 4. 查证与计算：按需查原始出处或脚本复算，保存采用的假设及未核事项；投资演算区分本金、追加投入和收益。
-5. 起草与修订：使用 `bn-tools-edit-flow` 并叠加 `bn-tools-writing-style`，保留原稿及重要取舍依据，主题唯一正文存 `发布稿.md`，草稿/定稿阶段写入 README 与 process，不另复制文件。
+5. 起草与修订：使用 `bn-tools-edit-flow`，按需读取其写作规则 reference，保留原稿及重要取舍依据，主题唯一正文存 `发布稿.md`，草稿/定稿阶段写入 README 与 process，不另复制文件。
 6. 确认对外版本：更新同一份 `发布稿.md`；确认前后用 README 标记稿件状态，未经确认不能标记为定稿。
 7. 提取排版输入：将对外标题与正文写入 publish/body.md，排除内部讨论、封面提示词等元信息。当前由 Agent 提取。
-8. 选择样式：使用 `bn-tools-format-flow`，支持 Markdown 或 JSON blocks 输入、五套模板或自定义 JSON 覆盖。纯文本和任意 HTML 先转换；公式与复杂嵌套需单独核查。
+8. 选择样式：使用 `bn-tools-format-flow`，支持 Markdown 或 JSON blocks 输入、六套模板或自定义 JSON 覆盖。纯文本和任意 HTML 先转换；公式与复杂嵌套需单独核查。
 9. 生成初版：输出 article.md、article_wechat.html、preview.html 和可选 article_seo.md；固定文件名会覆盖上次排版产物。
 10. 核对内容与展示：检查文字遗漏、标题重复、表格宽度、图片和出处。SEO/词表只是本地提示，不自动替用户修改内容。
 11. 准备封面与正文图片：已有图或生图工具生成，保留原图与必要的来源/AI 标识；裁切适配展示位。

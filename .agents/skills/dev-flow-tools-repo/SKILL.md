@@ -1,13 +1,13 @@
 ---
 name: dev-flow-tools-repo
-description: 需要查工作台所接入业务仓的目录约定、技术栈、常用命令、分支与部署链路，或要把 dev 合并到 test/release、执行 make push-all / nonlive / release 时使用；供所有开发阶段共享仓库上下文，不属于任何阶段。
+description: 需要查工作台所接入业务仓的目录约定、技术栈、常用命令、分支与部署链路，或要把 dev 合并到 test/release、执行 make push-all / nonlive / release 时使用。
 metadata:
   short-description: 仓库上下文与分支部署
 ---
 
 # 仓库上下文与分支部署
 
-工具 skill，不占阶段号。方案设计、后端开发、前端开发、整体验证需要项目约定或推进分支时读取本文件，各阶段 skill 不重复维护这份内容。
+跨开发流程的仓库上下文工具。需要项目路径、技术栈、命令、分支或部署信息时读取本文件；`dev-flow` 和独立工具都可引用，不在各入口重复维护这些事实。
 
 ## 仓与路径
 
@@ -110,7 +110,7 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 - 当前唯一协议事实仓：`business-repo/frontend-contracts`，供所有客户端项目共同消费，不按平台复制维护协议。
 - OpenAPI YAML：`openapi/{domain}_api.yaml`，后端改接口时增量更新，只追加不整份重写。
-- 共享类型、枚举和适用的 API 契约常量由各客户端通过 Git 子仓同步；阶段 02 导入消费，不复制到客户端自有类型目录。
+- 共享类型、枚举和适用的 API 契约常量由各客户端通过 Git 子仓同步；前端实现阶段导入消费，不复制到客户端自有类型目录。
 - 客户端自己的 request 封装与平台适配实现留在客户端仓，不放入共享协议仓。
 
 ## 分支与部署
@@ -140,7 +140,7 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 - 用户说「发 nonlive」「推 test 环境」「配合测试环境验证」→ 推进 `test` 分支。
 - 用户说「发 live」「上生产」→ 推进 `release` 分支。
-- 用户只说「合并 test/release」但没有明确要求数据库写操作 → 只做分支推进，不自动执行对应环境的 DDL/DML。数据库的 `test` / `live` 是执行环境，与 Git 分支名是两套语义，需要单独判断，见 `dev-flow-0102-db-change-flow`。
+- 用户只说「合并 test/release」但没有明确要求数据库写操作 → 只做分支推进，不自动执行对应环境的 DDL/DML。数据库的 `test` / `live` 是执行环境，与 Git 分支名是两套语义，需要单独判断，数据库写操作由 `dev-flow` 按 `dev-flow/references/01-backend/development.md` 编排；数据库只读使用 `dev-flow-tools-db-query`。
 - 用户说「推 nonlive / live」时，通常同时意味着要执行对应环境的数据库变更。先确认代码改动已提交，再走数据库执行流程。
 
 ### 授权边界

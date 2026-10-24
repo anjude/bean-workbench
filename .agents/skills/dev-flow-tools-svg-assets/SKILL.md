@@ -1,13 +1,13 @@
 ---
-name: dev-flow-0204-asset-flow
-description: 当 uni-app 项目需求涉及 SVG 图标、空状态图形、组合图形、本地 SVG 资产管理、SVG 组件封装、图标替换，或 carbon 品牌业务图标、功能入口小图标时使用；目标是形成项目内可复用的 SVG 资产产线，减少对 iconfont 和外部视觉资源的依赖。
+name: dev-flow-tools-svg-assets
+description: 当需要制作、整理或替换项目内 SVG 图标、空状态图形或 Carbon 业务图标时使用；可由开发流程按需调用，也可独立完成资产工作。
 metadata:
-  short-description: SVG 与品牌图标资产
+  short-description: SVG 图标与空状态资产
 ---
 
 # SVG 与品牌图标资产
 
-阶段 02 前端开发，执行顺序第 4 步。阶段编排见 `dev-flow-0000-plan-flow`，项目上下文见 `dev-flow-tools-repo`。
+独立资产工具，可由开发流程按需调用，也可单独用于 SVG 图标与空状态资产制作。
 
 本 skill 把图标、空状态图和轻量图形收归项目内，不把关键视觉资产交给外部平台。
 
@@ -63,7 +63,7 @@ metadata:
 
 ## 二、carbon 品牌特化
 
-命中 carbon 需求时，在通用流程之上叠加品牌约束。品牌基调与治理边界见 `dev-flow-0205-space-ui`。
+命中 carbon 需求时，在通用流程之上叠加品牌约束。品牌基调与治理边界见 `dev-flow 的 references/02-frontend/development.md（Carbon 品牌规范）`。
 
 - 默认气质：像夜里的小信号，不是白天的大图标
 - 默认风格：圆角线性 + 少量面填充 + 克制暖色
@@ -85,5 +85,5 @@ metadata:
 
 ## 与其他 skill 协作
 
-- 接入页面、组件、样式时同时使用 `dev-flow-0203-page-flow`
-- 命中品牌项目时叠加 `dev-flow-0205-space-ui`
+- 接入页面、组件、样式时同时使用 `dev-flow` 的 `references/02-frontend/development.md` 页面与样式章节
+- 命中品牌项目时叠加 `dev-flow 的 references/02-frontend/development.md（Carbon 品牌规范）`

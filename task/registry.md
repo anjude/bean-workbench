@@ -5,16 +5,17 @@
 | 任务                   | 目录                                                   | 资源范围                                                                                                | 状态  |
 | -------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --- |
 | 工作台初始化               | `task/workbench/260614_workbench-init/`              | 根目录、`docs/`、`.agents/skills/`、`kb/`、`script/`                                                       | 进行中 |
-| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的零散维护 | 进行中 |
+| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的日常维护；dev-flow 单入口重构；Codex 压缩分支钩子待真实会话验收 | 进行中 |
 | Superone 多仓规则完善      | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引                                                     | 进行中 |
 |                      |                                                      |                                                                                                     |     |
 | uni-carbon-space 接入  | `task/dev-flow/260614_uni-carbon-space-onboarding/`  | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引                                            | 进行中 |
 | beannote 内容库接入       | `task/workbench/260628_beannote-onboarding/`         | `task/beannote`、内容创作路由、知识库索引                                                                        | 进行中 |
 | beannote 日常维护 | `task/dev-flow/261017_beannote-daily/` | `task/beannote` 主题与 `.agents/skills/bn-tools-*` 辅助编辑、排版、发布工具维护 | 进行中 |
+| beannote 内容生产平台 | `task/dev-flow/261024_beannote-source-collector/` | 工作台 `tools/source-collector/`、`tools/source-collector-extension/`、`hr collect`、`hr models`、`source/collected/`；beannote 消费来源包 | 中文 Qwen ASR 与强制对齐已实跑验收；YouTube/英文按用户要求暂缓，真实插件 ZIP 闭环待样本 |
 | be 族 skill 四阶段重构     | `task/workbench/260829_be-skill-refactor/`           | `.agents/skills/be-*`、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/`                             | 已完成 |
 | dev-flow 跨端合族        | `task/workbench/260829_dev-flow-merge/`              | `.agents/skills/dev-flow-*`、原 `fe-*` 前端族、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/`          | 已完成 |
 | dev-flow 合并精简        | `task/workbench/260829_dev-flow-slim/`               | `.agents/skills/dev-flow-*`、`wb-*`、`AGENTS.md`、`docs/`、`task/registry.md`、`script/`                 | 已完成 |
-| macOS 平台适配           | `task/workbench/260829_macos-adaptation/`            | `script/`、`Makefile`、`dev-flow-tools-repo`、`dev-flow-0301-verify-flow`、`docs/goals.md`              | 进行中 |
+| macOS 平台适配           | `task/workbench/260829_macos-adaptation/`            | `script/`、`Makefile`、`dev-flow-tools-repo`、`dev-flow`（`references/03-delivery/verification-and-delivery.md`）、`docs/goals.md`              | 进行中 |
 | skill 实体外置           | `task/workbench/260830_skills-externalize/`          | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/`      | 已完成 |
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
@@ -45,21 +46,20 @@
 - 提到工作台日常维护、零散修补或例行检查：进入 `task/workbench/261017_workbench-daily/`；有独立目标的专项任务仍使用原任务目录。
 - 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `business-repo/uni-gknow/docs/README.md`；日常开发读 `task/dev-flow/261009_gknow-daily/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
 
-- skill 编号：`dev-flow-*` 跨端开发（00 方案设计 / 01 后端开发 / 02 前端开发 / 03 整体验证）、`bn-*` 内容生产、`wb-*` 工作台基建；编号前两位是阶段号，后两位是阶段内序号；`*-tools-*` 是工具 skill，不占阶段号。完整编号表见 `AGENTS.md`。
-- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`，确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起）开发 skill，收口走 `dev-flow-0301-verify-flow`。
+- 开发流程入口：`dev-flow` 是开发流程唯一入口，按 00 任务初始化 / 01 需求沟通 / 02 功能与系统设计 / 03 开发迭代 / 04 部署总结交接推进；细则按需读取 references，独立能力使用 `dev-flow-tools-*`。`bn-*` 是内容工具，`wb-*` 是工作台基建。完整清单见 `AGENTS.md`。
+- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow`；按需读取需求、设计、后端、前端、验证 references，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`。
 - 提到 `superone` 的分支推进、项目约定、命令速查：走 `dev-flow-tools-repo`；数据库只读排查走 `dev-flow-tools-db-query`。
 - 提到软件产品介绍片、功能样片、版本更新宣传片：先定位产品仓与任务目录，再走 `dev-flow-tools-product-video`。
 - 提到 `superone`：优先查看 `business-repo/` 下的相关业务仓，再结合具体需求选择后端、前端或协议仓。
 - 提到 `uTools Bean Option`、`utools option` 或 `utools-bean-option` 的日常维护：进入 `task/dev-flow/261015_utools-bean-option-daily/`，业务仓为 `business-repo/utools-bean-option`。
-- 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` 等品牌特化 skill。
+- 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并在开发流程中读取 Carbon 品牌 references；SVG 资产按需调用 `dev-flow-tools-svg-assets`。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
-- 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，可复用代码在 `.agents/skills/bn-tools-*/scripts/`，主题产物在 `task/beannote`。写作风格及公共规则走 `bn-tools-writing-style`，辅助编辑走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`。
+- 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，可复用代码在 `.agents/skills/bn-tools-*/scripts/`，主题产物在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。
 - 提到 `handoff`、`交接`、`收工`、`下次继续`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
 - 提到 `工作台`、`skill`、`知识库`、`自进化`：默认只改工作台根级目录。
 - skill 实体在 `bean-workbench/.agents/skills/`，由工作台 git 跟踪，工作台的 `make commit` 能带走；`~/.agents` 是指向它的外链，其他项目经它读到同一套 skill。详见 `AGENTS.md` 的「跨项目共享」。
 - 工作台文档位置：说明类在 `docs/`（平铺），模板与工作流在各 skill 的 `references/`，知识内容与知识库规范在 `kb/`，任务、痛点和上下文记录在 `task/`。
 - 主开发环境是 macOS（Apple Silicon），没有 `pwsh`（`brew` 有，装在 `/opt/homebrew/bin/brew`）；结构检查走 `make check`（Python 脚本），不要写 PowerShell 命令。平台差异与业务仓 Windows 脚本的绕法见 `dev-flow-tools-repo`。
-| beannote 内容生产平台 | `task/dev-flow/261024_beannote-source-collector/` | 工作台 `tools/source-collector/`、`tools/source-collector-extension/`、`hr collect`、`hr models`、`source/collected/`；beannote 消费来源包 | 中文 Qwen ASR 与强制对齐已实跑验收；YouTube/英文按用户要求暂缓，真实插件 ZIP 闭环待样本 |
 
 - 提到源信息获取、视频字幕采集或 `hr collect`：实现入口为 `tools/source-collector/`，插件为 `tools/source-collector-extension/`，复用 `task/dev-flow/261024_beannote-source-collector/`；beannote 只消费来源资料。

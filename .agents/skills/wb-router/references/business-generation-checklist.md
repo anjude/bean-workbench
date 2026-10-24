@@ -13,30 +13,13 @@
 
 ## 生成前检查
 
-1. 读取 `AGENTS.md`、`task/registry.md` 和 `knowledge-base/README.md`。
+1. 读取 `AGENTS.md`、`task/registry.md` 和 `kb/README.md`。
 2. 使用 `wb-router` 判断目标仓库和可能受影响的协作仓。
 3. 进入业务仓前确认需求是否明确；不明确时只更新工作台任务或痛点，不直接改业务仓。
 4. 命中 Superone 业务时，按阶段选择最小 skill 组合：
-   - 所有需求先过 `dev-flow-0000-plan-flow` 出方案，方案确认后才进入开发阶段；方案文档落 `task/YYMMDD_{主题}/README.md`。
-   - 00 方案设计：
-     - 需求理解、改动范围确认、方案产出与阶段派发：`dev-flow-0000-plan-flow`。
-   - 01 后端开发，按执行顺序：
-     - 领域层 entity、model、factory、repo、service + 字段设计与 DDL/DML SQL：`dev-flow-0101-domain-flow`。
-     - 迁移脚本、test/live 执行与验证：`dev-flow-0102-db-change-flow`。
-     - API、UseCase、Service、路由 + Wire 依赖注入：`dev-flow-0103-api-flow`。
-     - OpenAPI YAML 与共享协议维护：`dev-flow-0104-contract-flow`。
-   - 02 前端开发：交接物是 `dev-flow-0104-contract-flow` 更新的唯一协议事实仓修订；客户端通过 Git 子仓同步并直接导入，不复制协议文件。原型与状态矩阵是硬门槛。
-     - 产品原型与状态矩阵：`dev-flow-0201-archetype-flow`。
-     - API 类型与请求封装、Store 与 Composable：`dev-flow-0202-data-flow`。
-     - 页面、路由与生命周期、组件与样式审美：`dev-flow-0203-page-flow`。
-     - SVG 资产、命中 `uni-carbon-space` 时的品牌图标：`dev-flow-0204-asset-flow`。
-     - 命中 `uni-carbon-space` 时的品牌规范（全程叠加）：`dev-flow-0205-space-ui`。
-   - 03 整体验证：
-     - 门禁复核、后端验证命令与审查、前端 type-check/build、契约核对、方案回填：`dev-flow-0301-verify-flow`。
-   - 工具层，不占阶段，按需调用：
-     - 多仓目录约定、技术栈、命令、分支推进与部署：`dev-flow-tools-repo`。
-     - 只读数据库排查与结构验证：`dev-flow-tools-db-query`。
-     - 软件产品介绍、功能样片与版本更新视频：`dev-flow-tools-product-video`。
+   - 所有业务开发需求统一进入 `dev-flow`，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`；流程推进任务初始化、需求沟通、功能与系统设计、开发迭代、部署总结与交接。
+   - 入口按改动范围从 references 按需读取：`00-plan/requirements.md`（需求理解）、`00-plan/design.md`（方案设计）、`01-backend/development.md`（领域 / 数据库 / API / 契约）、`02-frontend/development.md`（原型 / 数据 / 页面 / 品牌）、`03-delivery/verification-and-delivery.md`（整体验证）。由 `dev-flow` 单入口推进，不再组合触发阶段 skill。
+   - 独立能力使用工具层：`dev-flow-tools-repo`（多仓上下文、分支与部署）、`dev-flow-tools-db-query`（只读数据库）、`dev-flow-tools-svg-assets`（SVG 资产）、`dev-flow-tools-product-video`（产品视频）。
    - 完整编号表见 `AGENTS.md`「当前 skill 编号表」。
 
 ## 子仓接入检查
@@ -44,7 +27,7 @@
 当工作台接入新的业务子仓时，必须补齐以下内容：
 
 1. `business-repo/` 子模块或目录接入
-2. `knowledge-base/business-repo/` 索引和职责说明
+2. `kb/business-repo/` 索引和职责说明
 3. `task/registry.md` 热任务与路由提示
 4. 受影响的 `skill` 路由和品牌/协议特化层
 5. 相关工作流、任务目录和必要的验证说明
@@ -84,7 +67,7 @@
 | 现象 | 沉淀位置 |
 | --- | --- |
 | 只是本次任务上下文 | `task/registry.md` 或对应任务目录 |
-| 需求中出现稳定业务知识、系统约束或路径索引 | `knowledge-base/` |
+| 需求中出现稳定业务知识、系统约束或路径索引 | `kb/` |
 | 同类操作两次以上复现并造成误判或返工 | `task/pain-points.md` |
 | 三次以上复现且流程稳定 | `~/.agents/skills/`，随工作台一起提交 |
 | 重复命令、校验或文件扫描可机械执行 | `script/` |

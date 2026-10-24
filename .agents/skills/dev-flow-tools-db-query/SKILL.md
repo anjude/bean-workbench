@@ -11,9 +11,9 @@ metadata:
 
 ## 边界
 
-本 skill 只做读。需要建表、改字段、改索引、回填 DML 时，一律转 `dev-flow-0102-db-change-flow`，不在此处越界。
+本 skill 只做读。需要建表、改字段、改索引、回填 DML 时，一律转 `dev-flow` 的 `references/01-backend/development.md` 数据库变更章节，不在此处越界。
 
-判断标准：语句以 `SELECT`、`SHOW`、`DESC`、`EXPLAIN` 开头才属于本 skill；出现 `INSERT`、`UPDATE`、`DELETE`、`CREATE`、`ALTER`、`DROP`、`TRUNCATE` 立即停止，交给 `dev-flow-0102-db-change-flow`。
+判断标准：语句以 `SELECT`、`SHOW`、`DESC`、`EXPLAIN` 开头才属于本 skill；出现 `INSERT`、`UPDATE`、`DELETE`、`CREATE`、`ALTER`、`DROP`、`TRUNCATE` 立即停止，交给 `dev-flow` 的 `references/01-backend/development.md` 数据库变更章节。
 
 ## 环境语义
 
@@ -59,7 +59,7 @@ PowerShell 下加 `--%`，bash/zsh 下不加。走这条路径前必须逐条确
 - 字段类型、是否允许 NULL、默认值与库表一致。
 - JSON 序列化类型、`Scan/Value` 实现与字段类型匹配。
 
-不一致时先判断谁该改：库结构是设计产物就改模型，模型是设计产物就交给 `dev-flow-0102-db-change-flow` 出 DDL，不要就地改库。
+不一致时先判断谁该改：库结构是设计产物就改模型，模型是设计产物就交给 `dev-flow` 的 `references/01-backend/development.md` 数据库变更章节 出 DDL，不要就地改库。
 
 ## 输出要求
 
@@ -71,5 +71,5 @@ PowerShell 下加 `--%`，bash/zsh 下不加。走这条路径前必须逐条确
 
 - 不执行任何 DDL/DML。
 - 不把数据库密码、连接串写入文档或最终回答。
-- 不为了排查方便清空或重置业务数据；确需清空走 `dev-flow-0102-db-change-flow` 的 clear action 并显式授权。
+- 不为了排查方便清空或重置业务数据；确需清空走 `dev-flow` 的 `references/01-backend/development.md` 数据库变更章节 的 clear action 并显式授权。
 - 不在 live 环境跑未经评估的大范围查询，避免拖慢生产库。

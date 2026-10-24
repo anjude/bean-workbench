@@ -7,7 +7,7 @@
 检查三项：
 
 1. 必需文件是否存在（含 business-repo 子仓的 AGENTS.md）。
-2. `.agents/skills/` 下每个 skill 的目录名、`SKILL.md` 的 `name` 字段、编号规范三者是否一致。
+2. `.agents/skills/` 下每个 skill 的目录名、`SKILL.md` 的 `name` 字段、命名规范三者是否一致。
 3. 工作台自身 md 文档里的相对链接是否指向真实存在的文件。
 
 skill 实体在工作台仓库里，由工作台 git 做版本管理；`~/.agents` 是指向 `.agents` 的外链，
@@ -38,9 +38,25 @@ REQUIRED_FILES = [
     ".agents/skills/wb-skill-refactor/references/workbench-evolution.md",
     ".agents/skills/wb-handoff/SKILL.md",
     ".agents/skills/wb-handoff/references/handoff-template.md",
+    ".agents/skills/wb-handoff/references/process-template.md",
+    ".agents/skills/dev-flow/SKILL.md",
+    ".agents/skills/dev-flow/references/README.md",
+    ".agents/skills/dev-flow/references/00-plan/requirements.md",
+    ".agents/skills/dev-flow/references/00-plan/design.md",
+    ".agents/skills/dev-flow/references/01-backend/development.md",
+    ".agents/skills/dev-flow/references/01-backend/field-design-norms.md",
+    ".agents/skills/dev-flow/references/02-frontend/development.md",
+    ".agents/skills/dev-flow/references/02-frontend/ui-ux-handbook.md",
+    ".agents/skills/dev-flow/references/02-frontend/css-variables.css",
+    ".agents/skills/dev-flow/references/02-frontend/animations.css",
+    ".agents/skills/dev-flow/references/03-delivery/verification-and-delivery.md",
+    ".agents/skills/wb-handoff/references/process-template.md",
+    ".agents/skills/dev-flow-tools-db-query/SKILL.md",
+    ".agents/skills/dev-flow-tools-repo/SKILL.md",
     ".agents/skills/dev-flow-tools-product-video/SKILL.md",
-    ".agents/skills/bn-tools-writing-style/SKILL.md",
-    ".agents/skills/bn-tools-writing-style/references/article-modules.md",
+    ".agents/skills/dev-flow-tools-svg-assets/SKILL.md",
+    ".agents/skills/bn-tools-edit-flow/references/article-modules.md",
+    ".agents/skills/bn-tools-edit-flow/references/writing-rules.md",
     ".agents/skills/bn-tools-edit-flow/SKILL.md",
     ".agents/skills/bn-tools-format-flow/SKILL.md",
     ".agents/skills/bn-tools-format-flow/scripts/formatter.py",
@@ -65,23 +81,25 @@ REQUIRED_FILES = [
 
 SKILLS_DIR = ".agents/skills"
 
-# 编号规范：{族群前缀}-{四位编号}-{能力后缀} 或 {族群前缀}-tools-{能力后缀}
+# 命名规范：dev-flow 单入口、wb-* 语义名；其余为编号 skill 或 tools skill。
 SKILL_NAME_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(?:\d{4}|tools)-[a-z0-9]+(?:-[a-z0-9]+)*$"
 )
 
-# 例外：wb 族不跑流水线、没有阶段可排，直接 wb-{能力}，带编号的 wb-* 视为不合规
+# 例外：wb-* 使用语义名；dev-flow 单入口直接使用族群名。
 WB_NAME_RE = re.compile(r"^wb-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 
 
 def match_skill_name(name: str) -> bool:
-    """wb-* 走语义名，其余族群走编号规范。"""
+    """wb-* 和唯一的 dev-flow 入口走语义名，其余族群走编号规范。"""
+    if name == "dev-flow":
+        return True
     if name.startswith("wb-"):
         return bool(WB_NAME_RE.match(name))
     return bool(SKILL_NAME_RE.match(name))
 
 # 扫描 md 链接时跳过的目录：业务子仓与外部依赖的失效链接不由工作台负责
-SCAN_SKIP_DIRS = {".git", "node_modules", "business-repo", "dist", ".workbuddy"}
+SCAN_SKIP_DIRS = {".git", "node_modules", "business-repo", "dist", ".workbuddy", "local-config", ".venv"}
 
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)#]+)\)")
 
@@ -128,7 +146,7 @@ def check_skill_naming(root: Path):
             continue
 
         if not match_skill_name(skill_dir.name):
-            problems.append(f"{skill_dir.name}：目录名不符合命名规范（wb-* 用语义名，其余用编号）")
+            problems.append(f"{skill_dir.name}：目录名不符合命名规范（dev-flow/wb-* 用语义名，其余用编号）")
 
         declared = read_frontmatter_name(skill_md)
         if declared is None:
@@ -161,7 +179,7 @@ def iter_markdown(root: Path):
 
         for entry in entries:
             if entry.is_dir():
-                if entry.name in SCAN_SKIP_DIRS:
+                if entry.name in SCAN_SKIP_DIRS or entry.name.startswith(".venv-") or entry == root / "source" / "collected":
                     continue
                 stack.append(entry)
             elif entry.suffix == ".md":

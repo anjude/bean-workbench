@@ -18,8 +18,10 @@ metadata:
 
 ## 框架适配
 
-- Web / React 组件可优先使用上游起步工程的直接接入方式。
+- 使用 HyperFrames 做 HTML/CSS、字幕图形、数据动画、重建式产品界面或吉祥物视频时，沿用上游提供的 `--engine hyperframes` 检查路径；优先采用 HyperFrames CLI，因为它直接把本地网页按帧渲染为视频，也方便反复预览。已有工程的 Node/FFmpeg/Chrome 环境先跑 `check_environment.py --project <视频目录> --engine hyperframes`，缺项只按报告补齐。
+- Web / React 组件需要真实挂载和交互驱动时，可优先使用上游起步工程的浏览器接入方式；避免为单纯的展示层动画引入整套 React 工程。
 - Vue、uni-app、微信小程序等无法直接挂载到其 React 浏览器管线时，先评估能否用现有页面的 Web 构建或真实录屏；需要还原展示层时，逐项对照源码和端上状态，记录哪些是重建画面，不把它称为原组件实拍。
+- HyperFrames 项目锁定 CLI 版本并保留 lockfile，动画使用本地依赖；修改后按其 HTML 时间轴约定执行 lint/check、预览和逐帧审看。成片渲染仍遵守用户的审片授权与原有交付门槛。
 - 不要把上游 CodePilot 默认视觉套到已有品牌产品上。若确需使用默认或混合样式，先查对应 BSL 文件与素材来源；品牌 Logo、字体、音乐、音效分别核对来源和许可。
 
 ## 来源与维护

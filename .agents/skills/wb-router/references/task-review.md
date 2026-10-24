@@ -22,7 +22,7 @@
 ## 后续动作
 
 - 是否更新 task/registry.md。
-- 是否写入 knowledge-base。
+- 是否写入 kb。
 - 是否优化 skill。
 - 是否新增或调整脚本。
 ```

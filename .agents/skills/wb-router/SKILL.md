@@ -1,6 +1,6 @@
 ---
 name: wb-router
-description: 工作台入口与路由 skill。用户提到 hair、使用这个工作台、沉淀 skill、知识库、自进化、任务登记、热任务，或提出 superone 需求、业务仓需求、前后端需求、文档需求，需要判断应进入哪个业务仓、哪个知识库、哪个任务上下文时使用。
+description: 当用户主要需要建立工作台上下文、定位任务/知识库/业务仓，或维护工作台规则与路由时使用。功能开发和缺陷修复由 dev-flow 负责完整流程；仅在需要判断仓库或任务归属时由 dev-flow 调用本 skill。
 ---
 
 # 工作台入口与路由
@@ -11,7 +11,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 
 1. 读取工作台根目录 `AGENTS.md`，理解工作台边界。
 2. 读取 `task/registry.md`，判断是否命中热任务，获取路由提示。
-3. 读取 `knowledge-base/README.md` 和相关子目录，确认业务仓或系统上下文。
+3. 读取 `kb/README.md` 和相关子目录，确认业务仓或系统上下文。
 4. 需求涉及业务仓时，先确认是否是明确业务需求；不是业务需求时，不改 `business-repo/`。
 
 ### 用户明确要求进入任务目录
@@ -33,17 +33,17 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 | `原生小程序`、`微信小程序原生` | `business-repo/miniprogram-superone` |
 | `投资平台`、`investment platform` | `business-repo/frontend-investment-platform` |
 | `uTools`、`桌面工具` | 按语义到 `business-repo/utools-superone`、`utools-bean-note` 或 `utools-bean-option` |
-| `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`，并叠加 `dev-flow-0205-space-ui`、`dev-flow-0204-asset-flow` |
+| `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`；开发流程内读取 Carbon 品牌 references，SVG 资产按需调用 `dev-flow-tools-svg-assets` |
 | `宣传片`、`功能演示视频`、`版本更新视频`、`产品视频` | 先定位产品仓与任务目录，再用 `dev-flow-tools-product-video` 制作；不因制作视频直接改业务代码 |
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
-| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。写作风格及公共规则走 `bn-tools-writing-style`，辅助编辑走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
+| `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/YYMMDD_主题/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
 | `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | `task/YYMMDD_{主题}/handoff/`，走 `wb-handoff` |
-| `便签` | 先查 `task/registry.md` 和 `knowledge-base/`；没有明确归属时不直接改业务仓 |
+| `便签` | 先查 `task/registry.md` 和 `kb/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |
 
 ## 三、开发类需求的硬路由
 
-后端改动、前端页面、跨端功能这类开发需求：**先走 `dev-flow-0000-plan-flow` 出方案**，方案落 `task/YYMMDD_{主题}/README.md`，确认后再按端派发 `dev-flow-01*`（后端）或 `dev-flow-02*`（前端）。不进方案直接改业务仓代码视为越权。
+后端改动、前端页面、跨端功能这类开发需求：统一走 `dev-flow`，由它推进任务建档、需求沟通、方案设计、实现迭代和交付；具体后端、前端、验证细则按需读取 references。方案落 `task/dev-flow/YYMMDD_{主题}/README.md`。
 
 ## 四、配套 references
 
@@ -63,7 +63,7 @@ description: 工作台入口与路由 skill。用户提到 hair、使用这个�
 ## 工作原则
 
 - 默认把工作台作为能力沉淀层，而不是业务实现层。
-- 业务需求完成后，判断是否需要更新 `task/`、`knowledge-base/`、`~/.agents/skills/` 或 `script/`；skill 就在工作台仓库里，`make commit` 一起提交，改动经 `~/.agents` 外链同步给所有接入方。
+- 业务需求完成后，判断是否需要更新 `task/`、`kb/`、`~/.agents/skills/` 或 `script/`；skill 就在工作台仓库里，`make commit` 一起提交，改动经 `~/.agents` 外链同步给所有接入方。
 - 连续两轮没有识别清楚用户意图时，记录到 `task/pain-points.md`，并考虑优化路由或 skill。
 - 工作台说明类文档只在 `docs/` 平铺；模板、清单和工作流跟着对应 skill 的 `references/` 走。
 - 工作台文档使用中文，专业术语和业务术语可保留英文。
