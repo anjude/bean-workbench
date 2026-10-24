@@ -1,0 +1,54 @@
+{
+  "ready": true,
+  "cached": false,
+  "engine": "hyperframes",
+  "missing": [],
+  "warnings": [
+    "Optional capabilities not needed for local rendering: whisper-cpp, TTS (Kokoro), BGM (MusicGen), Docker, Docker running"
+  ],
+  "fingerprint": "eecd009f31234304f00d0c081c9a2e988143e8859705cd95eaa3f20ddcf7726a",
+  "details": {
+    "schema": 2,
+    "engine": "hyperframes",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "versions": {
+      "python": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "version": "3.9.6"
+      },
+      "node": {
+        "path": "/Users/bean/.nvm/versions/node/v22.23.2/bin/node",
+        "version": "v22.23.2"
+      },
+      "npm": {
+        "path": "/Users/bean/.nvm/versions/node/v22.23.2/bin/npm",
+        "version": "10.9.8"
+      },
+      "ffmpeg": {
+        "path": "/opt/homebrew/bin/ffmpeg",
+        "version": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "ffprobe": {
+        "path": "/opt/homebrew/bin/ffprobe",
+        "version": "ffprobe version 9.0.2 Copyright (c) 2007-2026 the FFmpeg developers"
+      }
+    },
+    "packages": {
+      "hyperframes": {
+        "version": "0.8.185",
+        "path": "/Users/bean/workspace/bean-workbench/task/dev-flow/261015_gknow-product-video/promo-sample/hyperframes/node_modules/hyperframes/package.json",
+        "cli": "/Users/bean/workspace/bean-workbench/task/dev-flow/261015_gknow-product-video/promo-sample/hyperframes/node_modules/hyperframes/bin/hyperframes.mjs"
+      }
+    },
+    "manifests": {
+      "package.json": "1a49dc266d6d1fb99c4ec10ab2d39ff41f756417286dd9d89fa81130c1fad889",
+      "package-lock.json": "c4e170ab766a5793cdbe7da10efdf5beee8d225b44fa5c3a25e8c7183eb744ad"
+    },
+    "browserEnv": {
+      "PLAYWRIGHT_BROWSERS_PATH": null,
+      "HYPERFRAMES_CHROME_PATH": null
+    }
+  },
+  "browser": null,
+  "next": "Continue; do not load onboarding."
+}

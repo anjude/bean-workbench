@@ -1,6 +1,6 @@
 # 鹅懂个啥宣传样片
 
-12 秒竖版视频，展示「今天吃什么」转盘。产物：`gknow-food-wheel-sample.mp4`；首帧和关键帧在 `preview/`。
+12 秒竖版视频，展示「今天吃什么」转盘。Python 版本成片：`gknow-food-wheel-sample.mp4`；首帧和关键帧在 `preview/`。HyperFrames 对照工程见 [`hyperframes/README.md`](hyperframes/README.md)，目前交付预览帧，等审片后再渲染成片。
 
 ## 复现
 

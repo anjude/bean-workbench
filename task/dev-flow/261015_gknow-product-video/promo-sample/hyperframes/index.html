@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="./node_modules/gsap/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --paper: #fff9ef;
+        --ink: #302c2a;
+        --muted: #746d68;
+        --orange: #e88430;
+        --font: "Hiragino Sans GB", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; margin: 0; overflow: hidden; background: var(--paper); }
+      body { color: var(--ink); font-family: var(--font); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+      .orb { position: absolute; border-radius: 50%; background: #fff0da; }
+      .orb.a { width: 700px; height: 700px; left: -250px; top: -270px; }
+      .orb.b { width: 520px; height: 520px; right: -180px; bottom: -180px; background: #ffe9cc; }
+      .spark { position: absolute; width: 28px; height: 28px; border-radius: 50%; background: #ffcf83; left: 850px; top: 275px; }
+      .headline { position: absolute; top: 126px; left: 80px; right: 80px; text-align: center; font-size: 82px; font-weight: 800; letter-spacing: 2px; line-height: 1.25; }
+      .subhead { position: absolute; top: 244px; left: 80px; right: 80px; text-align: center; color: var(--muted); font-size: 38px; font-weight: 600; }
+      .wheel-wrap { position: absolute; width: 760px; height: 760px; left: 160px; top: 500px; }
+      .wheel-shadow { position: absolute; inset: 18px; border-radius: 50%; background: #e7d5c3; filter: blur(14px); transform: translateY(20px); }
+      #wheel { position: absolute; inset: 0; border: 18px solid white; border-radius: 50%; box-shadow: 0 18px 50px #6b493322; background: conic-gradient(from -22.5deg, #ffb84d 0deg 45deg, #ff806b 45deg 90deg, #78b9a7 90deg 135deg, #8caee8 135deg 180deg, #c58bd5 180deg 225deg, #f07891 225deg 270deg, #6db9cb 270deg 315deg, #e5a44f 315deg 360deg); }
+      .food { position: absolute; width: 180px; height: 54px; left: 290px; top: 48px; border-radius: 26px; background: #fff9ef; color: var(--ink); text-align: center; font-size: 32px; font-weight: 800; line-height: 54px; box-shadow: 0 4px 12px #302c2a22; transform-origin: 50% 332px; }
+      .food:nth-child(1) { transform: rotate(0deg); }
+      .food:nth-child(2) { transform: rotate(45deg); }
+      .food:nth-child(3) { transform: rotate(90deg); }
+      .food:nth-child(4) { transform: rotate(135deg); }
+      .food:nth-child(5) { transform: rotate(180deg); }
+      .food:nth-child(6) { transform: rotate(225deg); }
+      .food:nth-child(7) { transform: rotate(270deg); }
+      .food:nth-child(8) { transform: rotate(315deg); }
+      .hub { position: absolute; left: 275px; top: 275px; width: 210px; height: 210px; border: 16px solid white; border-radius: 50%; background: #fffaf4; display: grid; place-items: center; box-shadow: 0 8px 28px #6b493322; }
+      .hub img { width: 172px; height: 172px; object-fit: contain; }
+      .pointer { position: absolute; z-index: 2; top: -36px; left: 346px; width: 68px; height: 98px; background: var(--orange); clip-path: polygon(0 0, 100% 0, 50% 100%); filter: drop-shadow(0 8px 8px #6b493333); }
+      .button { position: absolute; top: 1332px; left: 220px; width: 640px; height: 126px; border-radius: 64px; background: var(--orange); color: var(--ink); text-align: center; font-size: 46px; font-weight: 800; line-height: 126px; box-shadow: 0 14px 0 #b96727, 0 24px 36px #b9672733; }
+      .result { position: absolute; top: 1514px; left: 120px; right: 120px; text-align: center; font-size: 43px; font-weight: 700; color: var(--muted); }
+      .result strong { display: block; margin-top: 12px; color: var(--ink); font-size: 72px; }
+      .mascot { position: absolute; width: 230px; height: 230px; object-fit: contain; top: 1510px; left: 425px; opacity: 0; }
+      .brand { position: absolute; top: 1750px; left: 80px; right: 80px; text-align: center; font-size: 42px; font-weight: 800; letter-spacing: 2px; }
+      .tagline { position: absolute; top: 1810px; left: 80px; right: 80px; text-align: center; color: var(--muted); font-size: 29px; }
+      .clip { position: absolute; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-umm9" id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-80yu" class="orb a"></div><div data-hf-id="hf-42ut" class="orb b"></div><div data-hf-id="hf-mk8n" class="spark"></div>
+      <h1 data-hf-id="hf-i2n9" id="headline" class="headline clip" data-start="0" data-duration="12" data-track-index="0">今晚吃什么？</h1>
+      <p data-hf-id="hf-jp67" id="subhead" class="subhead clip" data-start="0" data-duration="12" data-track-index="0">别再说随便，让鹅来拍板</p>
+      <div data-hf-id="hf-ap60" id="wheel-wrap" class="wheel-wrap clip" data-start="0" data-duration="12" data-track-index="1">
+        <div data-hf-id="hf-a456" class="wheel-shadow"></div>
+        <div data-hf-id="hf-agje" id="wheel">
+          <span data-hf-id="hf-n6eq" class="food">煲仔饭</span><span data-hf-id="hf-prai" class="food">肠粉</span><span data-hf-id="hf-agis" class="food">云吞面</span><span data-hf-id="hf-y85j" class="food">客家菜</span>
+          <span data-hf-id="hf-czw4" class="food">川菜</span><span data-hf-id="hf-k23d" class="food">湘菜</span><span data-hf-id="hf-ayux" class="food">轻食沙拉</span><span data-hf-id="hf-v15r" class="food">糖水</span>
+          <div data-hf-id="hf-py4l" class="hub"><img data-hf-id="hf-e8wr" id="wheel-goose" src="assets/goose-confused.png" alt="大鹅阿白"></div>
+        </div>
+        <div data-hf-id="hf-poi3" class="pointer"></div>
+      </div>
+      <div data-hf-id="hf-ujrt" id="spin-button" class="button clip" data-start="0" data-duration="12" data-track-index="2">转一下，鹅来拍板</div>
+      <p data-hf-id="hf-ofdi" id="result" class="result clip" data-start="7.5" data-duration="4.5" data-track-index="3">今天就吃<strong data-hf-id="hf-cywe">煲仔饭！</strong></p>
+      <img data-hf-id="hf-etuk" class="mascot clip" id="mascot" data-start="9.8" data-duration="2.2" data-track-index="4" src="assets/goose-cheering.png" alt="大鹅阿白欢呼" />
+      <p data-hf-id="hf-spte" id="brand" class="brand clip" data-start="9.8" data-duration="2.2" data-track-index="4">鹅懂个啥</p>
+      <p data-hf-id="hf-r9ik" id="tagline" class="tagline clip" data-start="9.8" data-duration="2.2" data-track-index="4">开心玩，顺便认识自己</p>
+      <audio data-hf-id="hf-kunc" id="sample-audio" class="clip" data-start="0" data-duration="12" data-track-index="5" src="assets/sample-audio.wav"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(".headline", { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.7)", immediateRender: false }, 0.4);
+      tl.fromTo(".subhead", { opacity: 0 }, { opacity: 1, duration: 0.35, immediateRender: false }, 0.45);
+      tl.fromTo("#wheel", { rotation: 0 }, { rotation: 1440, duration: 4.2, ease: "power4.out" }, 3.25);
+      tl.fromTo("#wheel-goose", { rotation: 0 }, { rotation: -1440, duration: 4.2, ease: "power4.out" }, 3.25);
+      tl.fromTo(".button", { scale: 0.9 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 1.15);
+      tl.fromTo(".result", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 7.5);
+      tl.to(".result", { y: -10, opacity: 0, duration: 0.3, ease: "power2.in" }, 9.8);
+      tl.fromTo("#mascot", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.4)" }, 9.8);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
