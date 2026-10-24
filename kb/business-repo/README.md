@@ -14,7 +14,7 @@
 - `utools-superone`：uTools Superone 桌面工具仓，位置为 `business-repo/utools-superone`。
 - `utools-bean-option`：uTools option 工具仓，位置为 `business-repo/utools-bean-option`。
 - `beannote`：豆小匠 Note 内容管理库，面向理财自媒体的选题、生产、知识沉淀、素材、发布和复盘流程，位置为 `task/beannote`（内容库，已从 `business-repo/` 迁出到 `task/` 一级）。
-- `bw`：工作台命令行工具（cobra），原 `bt` 子模块已上移并移除，位置为工作台根目录 `main.go` + `cmd/`，命令 `bw <subcommand>`。
+- `hr`：工作台命令行工具（cobra），原 `bt` 子模块已上移并移除，位置为工作台根目录 `main.go` + `cmd/`，命令 `hr <subcommand>`；例如 `hr collect bilibili BVxxx` 调用工作台来源采集器。
 
 ## 默认分支约定
 
@@ -51,3 +51,5 @@
 ## 写入边界
 
 这里只记录知识索引和稳定结论，不复制业务仓大段源码或文档。
+
+通用源信息获取已归工作台 `tools/source-collector/`，标准资料包进入 `source/collected/`；beannote 通过 `script/import-source.py` 将资料复制到主题，采集器不再依赖内容仓。

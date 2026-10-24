@@ -57,3 +57,7 @@ skill 就是工作台里的普通文件，`git add -A` 会一起带走，`make c
 ```bash
 ln -s /Users/bean/workspace/bean-workbench/.agents ~/.agents
 ```
+
+## 通用来源采集
+
+工作台提供 `hr collect bilibili <BV号>`、`hr collect youtube <链接>`、`hr collect jobs` 和 `hr collect serve`。代码与安装见 [工作台工具](tools/README.md)，采集资料统一进入 `source/collected/`；业务仓选择并消费来源包。

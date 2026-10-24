@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工作台来源采集</title>
+  <style>
+    :root{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202326;background:#f5f6f4}body{margin:0}main{max-width:1080px;margin:40px auto;padding:0 20px}h1{font-size:26px;margin:0 0 6px}.intro{color:#626b70;margin:0 0 24px}.panel{background:#fff;border:1px solid #e4e8e5;border-radius:14px;padding:20px;margin:16px 0}label{font-weight:600;display:block;margin-bottom:8px}textarea,input{box-sizing:border-box;width:100%;border:1px solid #cfd6d2;border-radius:8px;padding:11px;font:inherit}textarea{height:112px;resize:vertical}button{border:0;border-radius:8px;background:#245c49;color:#fff;padding:10px 16px;font:inherit;cursor:pointer;margin-top:12px}button.secondary{background:#edf3ef;color:#245c49}button:disabled{opacity:.55;cursor:wait}.hint,.message{color:#68716c;font-size:13px}.message{min-height:20px;margin-top:8px}.jobs{display:grid;gap:10px}.job{border:1px solid #e8ebe9;border-radius:10px;padding:14px}.row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.title{font-weight:600}.meta,.error{color:#68716c;font-size:13px}.error{color:#9c3b32;white-space:pre-wrap}.status{font-size:13px;color:#245c49;white-space:nowrap}code{font-size:12px;background:#f2f4f2;padding:2px 5px;border-radius:4px}@media(max-width:600px){main{margin:20px auto}.row{display:block}.status{margin-top:4px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>工作台来源采集</h1>
+  <p class="intro">收集视频来源和字幕，生成可供各类任务使用的来源包。支持 B 站和 YouTube 公开内容。</p>
+  <section class="panel">
+    <label for="model">无平台字幕时使用的本地转写模型</label>
+    <select id="model"><option value="qwen3-asr-1.7b-8bit">Qwen3-ASR 1.7B 8-bit（默认，自动强制对齐字幕时间）</option><option value="whisper-large-v3-turbo">Whisper Large v3 Turbo（字幕时间来自模型分段）</option><option value="whisper-tiny">Whisper Tiny（快速链路验证）</option></select>
+    <label for="language">转写语言</label>
+    <select id="language"><option value="">自动判断</option><option value="Chinese">中文</option><option value="English">英语</option></select>
+    <label for="inputs" style="margin-top:14px">B 站 / YouTube 视频链接或 ID，每行一条</label>
+    <textarea id="inputs" placeholder="BV1yUHP6rEYD&#10;https://www.bilibili.com/video/BV.../?p=2"></textarea>
+    <button id="submit">加入采集队列</button>
+    <div id="message" class="message"></div>
+    <p class="hint">平台字幕可用时优先获取。缺少字幕时，使用所选本地模型转写。Qwen 时间戳为约 30 秒粗分块；Whisper 使用模型分段时间。浏览器页面关闭不影响本地任务进程。</p>
+  </section>
+  <section class="panel">
+    <div class="row"><div><strong>本机任务</strong><div class="hint">SQLite 持久化；资料保存至工作台来源库。</div></div><button class="secondary" id="refresh">刷新</button></div>
+    <div class="jobs" id="jobs" style="margin-top:16px"></div>
+  </section>
+</main>
+<script>
+const statusNames={queued:'排队中',fetching_metadata:'读取来源信息',fetching_subtitles:'读取平台字幕',downloading_audio:'下载音频',transcribing:'本地转写中',ready_to_archive:'已采集',archived:'已采集（历史已归档）',login_required:'字幕需要登录',transcription_unavailable:'暂无可用字幕',failed:'采集失败'};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function refresh(){const r=await fetch('/api/jobs',{cache:'no-store'});const d=await r.json();const box=document.querySelector('#jobs');box.innerHTML=d.jobs.length?d.jobs.map(j=>`<article class="job"><div class="row"><div><div class="title">${esc(j.title||j.content_id)}</div><div class="meta"><code>${esc(j.content_id)}${j.page>1?' · P'+j.page:''}</code> · ${esc(j.author)} · ${esc(j.created_at)}${j.model_id?` · 模型 ${esc(j.model_id)}`:''}</div></div><div class="status">${esc(statusNames[j.status]||j.status)}</div></div>${j.error?`<div class="error">${esc(j.error)}</div>`:''}${j.result_path?`<div class="meta">来源包：${esc(j.result_path)}</div>`:''}${['failed','transcription_unavailable','login_required'].includes(j.status)?`<button class="secondary" data-retry="${esc(j.id)}">重试</button>`:''}</article>`).join(''):'<p class="hint">还没有采集任务。</p>';box.querySelectorAll('[data-retry]').forEach(b=>b.onclick=()=>retry(b.dataset.retry));}
+async function retry(id){const r=await fetch(`/api/jobs/${encodeURIComponent(id)}/retry`,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});const d=await r.json();document.querySelector('#message').textContent=r.ok?'已加入重试队列':d.error;refresh();}
+document.querySelector('#submit').onclick=async()=>{const button=document.querySelector('#submit'),message=document.querySelector('#message');const inputs=document.querySelector('#inputs').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(!inputs.length){message.textContent='先粘贴至少一条视频 ID 或链接。';return}button.disabled=true;try{const r=await fetch('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({inputs,model:document.querySelector('#model').value,language:document.querySelector('#language').value})});const d=await r.json();message.textContent=`加入 ${d.accepted.length} 条${d.errors.length?`，有 ${d.errors.length} 条格式错误`:''}。`;refresh()}catch(e){message.textContent=String(e)}finally{button.disabled=false}};
+document.querySelector('#refresh').onclick=refresh;refresh();setInterval(refresh,2500);
+</script>
+</body>
+</html>

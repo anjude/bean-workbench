@@ -4,17 +4,18 @@ COMMIT_NAME := anjude
 COMMIT_EMAIL := aboy007262@163.com
 PYTHON ?= python3
 
-# Go CLI (bw)
-BINARY := bw
+# Go CLI (hr)
+BINARY := hr
 GOBIN := $(shell go env GOPATH)/bin
+LDFLAGS := -X github.com/anjude/bean-workbench/cmd.workbenchRoot=$(CURDIR)
 
 help:
 	@echo "可用命令："
 	@echo "  make check    检查工作台基础结构"
 	@echo "  make commit [message words...]  提交工作台全部变更"
-	@echo "  make build    编译 bw 到当前目录"
-	@echo "  make install  安装 bw 到 $(GOBIN)（需该目录在 PATH 中）"
-	@echo "  make test     运行 bw 的 Go 测试"
+	@echo "  make build    编译 hr 到当前目录"
+	@echo "  make install  安装 hr 到 $(GOBIN)（需该目录在 PATH 中）"
+	@echo "  make test     运行 hr 的 Go 测试"
 	@echo "  make clean    删除编译产物"
 
 check:
@@ -30,13 +31,13 @@ commit:
 	fi
 
 build:
-	go build -o $(BINARY) .
+	go build -ldflags "$(LDFLAGS)" -o $(BINARY) .
 
 install:
 	@mkdir -p $(GOBIN)
-	go build -o $(GOBIN)/$(BINARY) .
+	go build -ldflags "$(LDFLAGS)" -o $(GOBIN)/$(BINARY) .
 	@echo "Installed $(BINARY) to $(GOBIN)/$(BINARY)"
-	@echo "Make sure $(GOBIN) is in your PATH to run 'bw' from anywhere."
+	@echo "Make sure $(GOBIN) is in your PATH to run 'hr' from anywhere."
 
 test:
 	go test ./cmd/...

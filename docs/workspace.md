@@ -27,3 +27,7 @@
 - **自进化**：复现的问题与稳定经验自动回流为知识、skill 或脚本。
 
 > 操作类规范（skill 命名、Git 提交、自进化触发机制、任务管理约定）收在 `AGENTS.md` 与 `task/README.md`，不在此文档赘述。
+
+## 通用来源获取
+
+`tools/source-collector/` 与 `tools/source-collector-extension/` 由工作台维护；`hr collect` 管采集任务，`source/collected/` 保存标准资料包。beannote 专注创作，通过自身导入脚本复制选定来源，不承载采集器实现。

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "workbench-source-collector"
+version = "0.1.0"
+description = "本地优先的工作台来源采集工具"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+youtube = ["yt-dlp[default]; python_version >= '3.10'"]
+asr-macos = [
+    "mlx==0.32.4; python_version >= '3.10' and sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-audio==0.6.1; python_version >= '3.10' and sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-whisper==0.4.3; python_version >= '3.10' and sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "huggingface-hub==2.3.0; python_version >= '3.10'"
+]
+
+[project.scripts]
+hr-source = "workbench_source_collector.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+workbench_source_collector = ["web/*.html", "model-catalog.json"]

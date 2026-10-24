@@ -1,0 +1,15 @@
+{
+  "name": "beannote-source-collector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "type-check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/core.test.ts",
+    "test:browser": "node tests/browser.mjs",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "dependencies": {"@huggingface/transformers": "3.8.1", "fflate": "0.8.3"},
+  "devDependencies": {"@types/chrome": "^0.1.0", "@types/node": "^22.0.0", "esbuild": "0.28.2", "playwright": "1.64.1", "tsx": "^4.20.0", "typescript": "^5.9.0"}
+}

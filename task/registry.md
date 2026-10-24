@@ -60,3 +60,6 @@
 - skill 实体在 `bean-workbench/.agents/skills/`，由工作台 git 跟踪，工作台的 `make commit` 能带走；`~/.agents` 是指向它的外链，其他项目经它读到同一套 skill。详见 `AGENTS.md` 的「跨项目共享」。
 - 工作台文档位置：说明类在 `docs/`（平铺），模板与工作流在各 skill 的 `references/`，知识内容与知识库规范在 `kb/`，任务、痛点和上下文记录在 `task/`。
 - 主开发环境是 macOS（Apple Silicon），没有 `pwsh`（`brew` 有，装在 `/opt/homebrew/bin/brew`）；结构检查走 `make check`（Python 脚本），不要写 PowerShell 命令。平台差异与业务仓 Windows 脚本的绕法见 `dev-flow-tools-repo`。
+| beannote 内容生产平台 | `task/dev-flow/261024_beannote-source-collector/` | 工作台 `tools/source-collector/`、`tools/source-collector-extension/`、`hr collect`、`hr models`、`source/collected/`；beannote 消费来源包 | 中文 Qwen ASR 与强制对齐已实跑验收；YouTube/英文按用户要求暂缓，真实插件 ZIP 闭环待样本 |
+
+- 提到源信息获取、视频字幕采集或 `hr collect`：实现入口为 `tools/source-collector/`，插件为 `tools/source-collector-extension/`，复用 `task/dev-flow/261024_beannote-source-collector/`；beannote 只消费来源资料。

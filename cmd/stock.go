@@ -76,7 +76,7 @@ var stockVerbose bool
 var stockCmd = &cobra.Command{
 	Use:   "stock <ticker>",
 	Short: "Print real-time quote and basic info of a stock",
-	Long:  "Fetch real-time quote of a US stock from stockanalysis.com. Use -v for fundamentals, analysts and company profile. Example: bw stock AAPL -v",
+	Long:  "Fetch real-time quote of a US stock from stockanalysis.com. Use -v for fundamentals, analysts and company profile. Example: hr stock AAPL -v",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		ticker := strings.ToUpper(strings.TrimSpace(args[0]))

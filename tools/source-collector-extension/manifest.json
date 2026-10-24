@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "工作台源信息采集",
+  "version": "0.1.0",
+  "description": "批量采集 B 站视频字幕；无字幕时在本机转写，导出 SRT 和来源索引。",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "downloads", "offscreen", "declarativeNetRequestWithHostAccess"],
+  "host_permissions": ["https://*.bilibili.com/*", "https://*.hdslb.com/*", "https://*.bilivideo.com/*", "https://*.bilivideo.cn/*", "https://*.bilivideo.net/*", "https://huggingface.co/*", "https://*.huggingface.co/*", "https://*.hf.co/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "打开 工作台源信息采集", "default_icon": {"16":"icons/16.png","48":"icons/48.png","128":"icons/128.png"} },
+  "icons": {"16":"icons/16.png","48":"icons/48.png","128":"icons/128.png"},
+  "content_security_policy": { "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; connect-src 'self' https://*.bilibili.com https://*.hdslb.com https://*.bilivideo.com https://*.bilivideo.cn https://*.bilivideo.net https://huggingface.co https://*.huggingface.co https://*.hf.co; img-src 'self' data:; style-src 'self';" }
+}

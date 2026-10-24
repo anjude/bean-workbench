@@ -1,0 +1,53 @@
+{
+  "catalog_version": 1,
+  "models": {
+    "qwen3-forced-aligner-0.6b-8bit": {
+      "display_name": "Qwen3-ForcedAligner 0.6B 8-bit（中文精确时间轴）",
+      "role": "aligner",
+      "engine": "mlx-audio-aligner",
+      "engine_module": "mlx_audio.stt",
+      "repo_id": "mlx-community/Qwen3-ForcedAligner-0.6B-8bit",
+      "revision": "0e1a68e91d815300c7c9754b2a7639378b23db15",
+      "weight_file": "model.safetensors",
+      "weight_bytes": 1271924386,
+      "weight_sha256": "be19ef8ac4326d032e7673342930b14c2df30bd68c1632493b0f563e30829f91",
+      "timestamp_quality": "word_aligned",
+      "max_audio_seconds": 300
+    },
+    "qwen3-asr-1.7b-8bit": {
+      "display_name": "Qwen3-ASR 1.7B 8-bit",
+      "engine": "mlx-audio",
+      "engine_module": "mlx_audio.stt",
+      "repo_id": "mlx-community/Qwen3-ASR-1.7B-8bit",
+      "revision": "a8379a2e2f9e313c9292cdf1af4055ab56d50d55",
+      "weight_file": "model.safetensors",
+      "weight_bytes": 2463307541,
+      "weight_sha256": "bf304b009cc7eca79283056f787b44c952d24ac22cec787b39732bba3c23c13c",
+      "chunk_duration": 30.0,
+      "max_tokens": 12000,
+      "timestamp_quality": "coarse_chunk"
+    },
+    "whisper-large-v3-turbo": {
+      "display_name": "Whisper Large v3 Turbo",
+      "engine": "mlx-whisper",
+      "engine_module": "mlx_whisper",
+      "repo_id": "mlx-community/whisper-large-v3-turbo",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "weight_file": "weights.safetensors",
+      "weight_bytes": 1613977612,
+      "weight_sha256": "951ed3fc1203e6a62467abb2144a96ce7eafca8fa77e3704fdb8635ff3e7f8a6",
+      "timestamp_quality": "model_segment"
+    },
+    "whisper-tiny": {
+      "display_name": "Whisper Tiny（链路验证）",
+      "engine": "mlx-whisper",
+      "engine_module": "mlx_whisper",
+      "repo_id": "mlx-community/whisper-tiny",
+      "revision": "78c52ab98ca87f570bc57ad852e15ef7060f9f76",
+      "weight_file": "weights.npz",
+      "weight_bytes": 74418182,
+      "weight_sha256": "d5a3b8671ac7aab11a2c9d0f16e7da94bad5500d785856f438c6bd44c3723944",
+      "timestamp_quality": "model_segment"
+    }
+  }
+}

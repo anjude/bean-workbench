@@ -37,8 +37,10 @@ bin/
 coverage.out
 coverage/
 
-# 工作台 CLI 编译产物（bw 由 make install 装到 GOPATH/bin，根目录的临时构建物忽略）
+# 工作台 CLI 临时构建产物
 /bw
+/hr
+/source/collected/
 
 # Node / uni-app
 node_modules/
@@ -87,6 +89,8 @@ __pycache__/
 .pytest_cache/
 
 local-config/
+# ASR 权重体积较大；注册表和重建方式随源码提交，模型文件本机下载
+/.agents/local-config/models/
 # 公众号本机凭证与旧 token 缓存
 .wechat_pub_key
 token.json

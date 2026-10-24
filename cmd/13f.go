@@ -23,7 +23,7 @@ const (
 	secSubmissionsHost  = "https://data.sec.gov/submissions"
 	secArchiveHost      = "https://www.sec.gov/Archives/edgar/data"
 	secTickerURL        = "https://www.sec.gov/files/company_tickers.json"
-	defaultSECUserAgent = "bw-cli/0.1.0 (set SEC_USER_AGENT with your contact)"
+	defaultSECUserAgent = "hr-cli/0.1.0 (set SEC_USER_AGENT with your contact)"
 )
 
 var (
@@ -45,16 +45,16 @@ Input can be a filing manager CIK, such as 1067983, or a public-company ticker
 that SEC can resolve to a CIK, such as BRK-B. Most hedge funds and investment
 managers should be queried by CIK.
 
-If you are not sure what to query, run "bw 13f --list" to see common examples.
+If you are not sure what to query, run "hr 13f --list" to see common examples.
 Use --query to filter holdings or to filter the built-in examples list. Use
 --detail to include cover page, signature, summary, SEC file timestamps, other
 managers, and voting authority fields.`,
-	Example: `  bw 13f --list
-  bw 13f --list --query buffett
-  bw 13f 1067983 --limit 10
-  bw 13f BRK-B --query apple
-  bw 13f 1067983 --detail
-  bw 13f 1067983 --raw --detail --limit 20`,
+	Example: `  hr 13f --list
+  hr 13f --list --query buffett
+  hr 13f 1067983 --limit 10
+  hr 13f BRK-B --query apple
+  hr 13f 1067983 --detail
+  hr 13f 1067983 --raw --detail --limit 20`,
 	Args: func(cmd *cobra.Command, args []string) error {
 		if thirteenFList {
 			if len(args) > 0 {
@@ -890,7 +890,7 @@ func print13FManagerList(query string) {
 		if manager.Ticker != "" {
 			input = manager.Ticker
 		}
-		fmt.Fprintf(tw, "  %s\t%s\t%s\t%s\tbw 13f %s\n",
+		fmt.Fprintf(tw, "  %s\t%s\t%s\t%s\thr 13f %s\n",
 			manager.Name,
 			manager.CIK,
 			emptyDash(manager.Ticker),

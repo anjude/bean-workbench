@@ -1,0 +1,27 @@
+{
+  "bvid": "BV1yUHP6rEYD",
+  "collectedAt": "2026-10-24T14:05:10.538Z",
+  "createdAt": "2026-10-24T13:56:17.982Z",
+  "cueCount": 453,
+  "detail": "已完成，可导出",
+  "device": "wasm",
+  "id": "BV1yUHP6rEYD:1",
+  "model": "Xenova/whisper-small",
+  "page": 1,
+  "progress": 1,
+  "source": "local-asr",
+  "status": "success",
+  "subtitleEnd": 703.04,
+  "subtitleStart": 0,
+  "video": {
+    "aid": 117494719189302,
+    "author": "小Lin说",
+    "bvid": "BV1yUHP6rEYD",
+    "cid": 42988144578,
+    "duration": 721,
+    "page": 1,
+    "pages": 1,
+    "title": "你需要多少钱，才能财富自由？",
+    "url": "https://www.bilibili.com/video/BV1yUHP6rEYD/"
+  }
+}
