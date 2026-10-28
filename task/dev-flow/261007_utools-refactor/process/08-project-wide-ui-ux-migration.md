@@ -79,3 +79,8 @@
 - 对照 uni-superone 的主题记录长按菜单，确认其记录支持“移至最前”和“置顶/取消置顶”；uTools 原右键菜单缺少这两项，且记录读取只按创建时间排序，top 字段无法影响位置。现为 uTools 记录菜单补上对应操作，按 top 时间戳降序、创建时间降序排列，并显示置顶标识；保留 uTools 已有的复制、标记、编辑和删除：`business-repo/utools-superone/src/views/TopicList.vue`、`src/composables/useTopicManagement.ts`、`src/stores/topic.ts`、`src/types/topic.ts`、`src/styles/07-pages/_topic-list.scss`。
 - 对照 uni-superone 记录菜单后，又补上“切换主题”，使用紧凑选择弹窗选择目标主题，保留 uTools 自有的复制与编辑操作，菜单入口仍可右键或点击更多按钮触发：`business-repo/utools-superone/src/views/TopicList.vue`、`src/styles/07-pages/_topic-list.scss`。
 - `npm run typecheck`、`npm run build`、`git diff --check` 通过；未做浏览器检查。
+
+## 2026-10-25 补充：主题日志首次进入未加载
+
+- 排查发现 `useTopicManagement` 仅监听 `selectedTopicId` 变化加载日志；主题列表重进时 store 可能保留已有 ID，值不变就不会触发 watcher。将 watcher 设为 immediate，让 composable 初始化时也按当前 ID 请求日志；初次打开时 ID 为空则等待 `loadTopics` 恢复选中主题后再触发：`business-repo/utools-superone/src/composables/useTopicManagement.ts`。
+- `npm run typecheck`、`npm run build`、`git diff --check` 通过；未做浏览器检查。
