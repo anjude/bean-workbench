@@ -1,0 +1,7 @@
+{
+  "coverage": {"global": {"status": "not_checked"}, "DEMO": {"status": "not_checked"}},
+  "items": [
+    {"id": "demo-global", "scope": "global", "title": "虚构宏观事件（非真实日历）", "date": "2026-10-28", "timezone": "America/New_York", "status": "tentative", "publisher": "演示来源", "source_url": "https://example.com/demo-global", "impact_note": "仅演示全局事件如何关联持仓；实际影响待研究。"},
+    {"id": "demo-earnings", "scope": "symbol", "symbols": ["DEMO"], "title": "虚构财报事件（非真实公告）", "starts_at": "2026-10-29T20:00:00+00:00", "status": "tentative", "publisher": "演示来源", "source_url": "https://example.com/demo-earnings"}
+  ]
+}

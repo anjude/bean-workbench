@@ -28,6 +28,7 @@ REQUIRED_FILES = [
     "kb/README.md",
     "kb/common/README.md",
     "task/registry.md",
+    "task/daily/README.md",
     "task/workbench/260614_workbench-init/README.md",
     ".agents/skills/wb-router/SKILL.md",
     ".agents/skills/wb-router/references/business-request-loop.md",

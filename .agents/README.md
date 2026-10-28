@@ -8,8 +8,10 @@
 .agents/                  本目录，工作台仓库内的实体
 ├── README.md             本文件，接入说明
 ├── skills/               skill 实体，按族群编号（wb-* 例外，用语义名）
-│   ├── dev-flow-*        跨端开发流水线（13 个阶段 skill + 3 个工具 skill）
-│   ├── bn-tools-*        内容写作规范、辅助编辑、排版与发布工具（4 个，不占阶段号）
+│   ├── dev-flow          开发流程唯一入口，细则在 references/
+│   ├── dev-flow-tools-*  仓库、数据库、SVG 与产品视频独立能力
+│   ├── bn-tools-*        文章辅助编辑、排版与发布三个工具
+│   ├── finance-tools-*   理财分析、分层日报与仓位目标记账
 │   └── wb-*              工作台基建（3 个，不编号）
 └── vendor/product-video/ 第三方视频制作能力的固定版本
 ```

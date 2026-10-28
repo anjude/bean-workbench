@@ -1,0 +1,8 @@
+{
+  "actions": [
+    {"id": "demo-hold", "kind": "hold", "position_id": "demo-put"},
+    {"id": "demo-close", "kind": "close", "position_id": "demo-put", "close_quote": {"ask": "3", "source": "虚构演示报价", "as_of": "2026-10-26T14:00:00+00:00", "status": "user_verified"}, "closing_fees": "1"},
+    {"id": "demo-roll", "kind": "roll", "position_id": "demo-put", "close_quote": {"ask": "3", "source": "虚构演示报价", "as_of": "2026-10-26T14:00:00+00:00", "status": "user_verified"}, "closing_fees": "1", "new_contract": {"id": "demo-next-put", "asset": "option", "symbol": "DEMO", "side": "short", "right": "P", "strike": "48", "expiry": "2026-11-06", "quantity": "1", "multiplier": "100"}, "open_quote": {"bid": "4", "source": "虚构演示报价", "as_of": "2026-10-26T14:00:00+00:00", "status": "user_verified"}, "opening_fees": "1"},
+    {"id": "demo-new", "kind": "new", "new_contract": {"id": "demo-new-put", "asset": "option", "symbol": "DEMO", "side": "short", "right": "P", "strike": "45", "expiry": "2026-11-13", "quantity": "1", "multiplier": "100"}, "open_quote": {"bid": "1.2", "source": "虚构演示报价", "as_of": "2026-10-26T14:00:00+00:00", "status": "user_verified"}, "opening_fees": "1"}
+  ]
+}

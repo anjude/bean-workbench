@@ -1,0 +1,9 @@
+{
+  "id": "demo-decision-001",
+  "as_of": "2026-10-26T22:05:00+08:00",
+  "kind": "hold",
+  "status": "proposed",
+  "position_id": "demo-put",
+  "note": "虚构演示记录，未代表用户决定或实际成交",
+  "source": "演示输入"
+}

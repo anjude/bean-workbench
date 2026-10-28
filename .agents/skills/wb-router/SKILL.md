@@ -32,18 +32,20 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | `Web`、`H5`、`Nuxt` | `business-repo/frontend-superone` |
 | `原生小程序`、`微信小程序原生` | `business-repo/miniprogram-superone` |
 | `投资平台`、`investment platform` | `business-repo/frontend-investment-platform` |
+| 个人理财、仓位健康、投资日报、sell put、滚仓或权利金周目标 | 使用 `finance-tools-investment`；当前上下文为 `task/daily/health-sleep-sell-put/`。与理财内容创作、投资平台开发区分，不改业务仓或自动交易 |
 | `uTools`、`桌面工具` | 按语义到 `business-repo/utools-superone`、`utools-bean-note` 或 `utools-bean-option` |
 | `carbon`、`uni-carbon-space` | `business-repo/uni-carbon-space`；开发流程内读取 Carbon 品牌 references，SVG 资产按需调用 `dev-flow-tools-svg-assets` |
 | `宣传片`、`功能演示视频`、`版本更新视频`、`产品视频` | 先定位产品仓与任务目录，再用 `dev-flow-tools-product-video` 制作；不因制作视频直接改业务代码 |
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
 | `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/YYMMDD_主题/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
-| `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | `task/YYMMDD_{主题}/handoff/`，走 `wb-handoff` |
+| 长期日常事项、持续跟进、非代码工作 | 先查 `task/daily/README.md` 与 `task/registry.md`，进入对应 `task/daily/{slug}/`；小型连续开发可在 daily 上下文推进，专项项目可衍生或转入 `task/dev-flow/` 并互链 |
+| `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | 对应任务目录的 `handoff/`（包括 `task/daily/{slug}/handoff/`），走 `wb-handoff` |
 | `便签` | 先查 `task/registry.md` 和 `kb/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |
 
 ## 三、开发类需求的硬路由
 
-后端改动、前端页面、跨端功能这类开发需求：统一走 `dev-flow`，由它推进任务建档、需求沟通、方案设计、实现迭代和交付；具体后端、前端、验证细则按需读取 references。方案落 `task/dev-flow/YYMMDD_{主题}/README.md`。
+后端改动、前端页面、跨端功能这类开发需求：统一按 `dev-flow` 推进需求沟通、方案设计、实现迭代和交付；有独立目标与验收标准的专项在 `task/dev-flow/YYMMDD_{主题}/README.md` 建档。持续日常事项中的小型开发可继续使用 `task/daily/{slug}/` 上下文，过程记录留在 daily 目录；需要单独交付时从 daily 衍生专项并互链。具体后端、前端、验证细则按需读取 references。
 
 ## 四、配套 references
 

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "demo": true,
+  "currency": "USD",
+  "as_of": "2026-10-26T21:55:00+08:00",
+  "source": "虚构演示组合，不对应真实账户",
+  "account": {"put_collateral": "cash_secured", "cash_for_assignment": "10000"},
+  "positions": [
+    {"id": "demo-stock", "asset": "stock", "symbol": "DEMO", "side": "long", "quantity": "100", "average_cost": "45"},
+    {"id": "demo-put", "asset": "option", "symbol": "DEMO", "side": "short", "right": "P", "quantity": "1", "multiplier": "100", "strike": "50", "expiry": "2026-10-30", "entry_premium": "2", "opening_fees": "1"},
+    {"id": "demo-call", "asset": "option", "symbol": "DEMO", "side": "short", "right": "C", "quantity": "1", "multiplier": "100", "strike": "60", "expiry": "2026-11-06", "entry_premium": "1.5", "opening_fees": "1"}
+  ]
+}

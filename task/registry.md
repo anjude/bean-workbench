@@ -2,6 +2,14 @@
 
 ## 热任务
 
+### 长期日常任务
+
+| 任务 | 目录 | 资源范围 | 状态 |
+| -- | -- | -- | -- |
+| 健身、睡眠与美股 Sell Put 日常 | `task/daily/health-sleep-sell-put/` | 健身睡眠；理财入口 `finance-tools-investment` 负责健康检查、事件前置的分层日报、滚仓/新仓候选及重要记账；真实输入在私有 portfolio/weekly-income | 理财 skill 已接入；日报直接在会话，正文按需保存；报价能力待完善 |
+
+### 专项任务
+
 | 任务                   | 目录                                                   | 资源范围                                                                                                | 状态  |
 | -------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --- |
 | 工作台初始化               | `task/workbench/260614_workbench-init/`              | 根目录、`docs/`、`.agents/skills/`、`kb/`、`script/`                                                       | 进行中 |
@@ -44,6 +52,8 @@
 
 - 提到原始素材库或 `local-source`：先读 `source/README.md`，原始文件不直接修改。
 - 提到工作台日常维护、零散修补或例行检查：进入 `task/workbench/261017_workbench-daily/`；有独立目标的专项任务仍使用原任务目录。
+- 提到健身、训练、睡眠或每周美股 sell put：进入 `task/daily/health-sleep-sell-put/README.md`，延续日常记录；独立研究或开发按需衍生专项任务并保留双向索引。
+- 提到其他长期日常事项、持续跟进或非代码日常工作：先查 `task/daily/README.md` 与对应 daily 任务；专项开发按需衍生或转入 `task/dev-flow/`，并保留双向索引。
 - 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `business-repo/uni-gknow/docs/README.md`；日常开发读 `task/dev-flow/261009_gknow-daily/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
 
 - 开发流程入口：`dev-flow` 是开发流程唯一入口，按 00 任务初始化 / 01 需求沟通 / 02 功能与系统设计 / 03 开发迭代 / 04 部署总结交接推进；细则按需读取 references，独立能力使用 `dev-flow-tools-*`。`bn-*` 是内容工具，`wb-*` 是工作台基建。完整清单见 `AGENTS.md`。
