@@ -1,0 +1,10 @@
+const path = require('node:path')
+const sharp = require('sharp')
+const workspace = path.resolve(__dirname, '../../../../..')
+const source = path.join(workspace, 'business-repo/uni-gknow/src/assets/expressions/goose-happy.png')
+const output = path.join(workspace, 'business-repo/uni-gknow/src/static/illustrations/goose-grid-logo.png')
+;(async () => {
+  const goose = await sharp(source).resize(158, 158, { fit: 'contain' }).png().toBuffer()
+  await sharp(path.join(__dirname, 'logo-base.svg')).resize(256, 256).composite([{ input: goose, left: 49, top: 46 }]).png({ palette: true, quality: 90 }).toFile(output)
+  console.log(output)
+})().catch(error => { console.error(error); process.exit(1) })
