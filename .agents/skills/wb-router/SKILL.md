@@ -39,7 +39,7 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | `OpenAPI`、`契约`、`frontend-contracts`、`DTO 同步` | `business-repo/frontend-contracts` |
 | `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/YYMMDD_主题/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
 | 长期日常事项、持续跟进、非代码工作 | 先查 `task/daily/README.md` 与 `task/registry.md`，进入对应 `task/daily/{slug}/`；小型连续开发可在 daily 上下文推进，专项项目可衍生或转入 `task/dev-flow/` 并互链 |
-| `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做` | 对应任务目录的 `handoff/`（包括 `task/daily/{slug}/handoff/`），走 `wb-handoff` |
+| `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做`、`切新会话` | 对应任务目录的 `handoff/`（包括 `task/daily/{slug}/handoff/`），走 `wb-handoff` |
 | `便签` | 先查 `task/registry.md` 和 `kb/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |
 

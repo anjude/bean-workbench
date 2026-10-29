@@ -13,7 +13,7 @@
 | 任务                   | 目录                                                   | 资源范围                                                                                                | 状态  |
 | -------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --- |
 | 工作台初始化               | `task/workbench/260614_workbench-init/`              | 根目录、`docs/`、`.agents/skills/`、`kb/`、`script/`                                                       | 进行中 |
-| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的日常维护；dev-flow 单入口重构；Codex 压缩分支钩子待真实会话验收 | 进行中 |
+| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的日常维护；dev-flow 单入口重构；首次压缩前后台续接、手动切新会话与新会话置顶规则；真实链路待验收 | 进行中 |
 | Superone 多仓规则完善      | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引                                                     | 进行中 |
 |                      |                                                      |                                                                                                     |     |
 | uni-carbon-space 接入  | `task/dev-flow/260614_uni-carbon-space-onboarding/`  | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引                                            | 进行中 |
@@ -66,7 +66,7 @@
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，可复用代码在 `.agents/skills/bn-tools-*/scripts/`，主题产物在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。
-- 提到 `handoff`、`交接`、`收工`、`下次继续`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
+- 提到 `handoff`、`交接`、`收工`、`下次继续`、`切新会话`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
 - 提到 `工作台`、`skill`、`知识库`、`自进化`：默认只改工作台根级目录。
 - skill 实体在 `bean-workbench/.agents/skills/`，由工作台 git 跟踪，工作台的 `make commit` 能带走；`~/.agents` 是指向它的外链，其他项目经它读到同一套 skill。详见 `AGENTS.md` 的「跨项目共享」。
 - 工作台文档位置：说明类在 `docs/`（平铺），模板与工作流在各 skill 的 `references/`，知识内容与知识库规范在 `kb/`，任务、痛点和上下文记录在 `task/`。

@@ -26,16 +26,14 @@
 
 将开发流水线收敛为一个入口 skill；需求与设计、后端、前端、验证与交付的细则按需放入 references；跨流程可独立调用的能力保留为 tools。过程记录见 `process/04-dev-flow单入口重构.md`。
 
-## Codex 压缩分支钩子
+## Codex 会话续接钩子
 
-- 第一次、第二次压缩正常执行，由 `PostCompact` 分别递增会话计数。
-- 第三次 `PreCompact` 阻止压缩并启动后台续接程序；程序等待旧会话当前轮完成或中断，再从第一轮分叉。
-- 新会话注入老会话 ID、工作目录、最近用户请求、最终答复或最近可见进展，并要求读取必要任务文件后等待用户下一条输入。
-- 新会话按 `任务名-短阶段总结-02` 命名，后续分支递增编号；压缩计数按新 session ID 自然从 0 开始。旧会话保留，工作目录和 Git 分支不变。
-- handoff 文件仍由旧会话按需维护；后台程序不替代 `wb-handoff`。
-- 完整桌面链路（包括自动打开新会话）尚未实测；本机 app-server 协议未发现前台导航接口。
-- hook 配置位于本机 `~/.codex/hooks.json`，计数状态位于 `~/.codex/state/compact-fork/`；均不纳入工作台版本管理。
-- 新增或变更 hook 后，需要在 Codex `/hooks` 中审阅并信任该 hook 后才会执行。
+- 第一次 `PreCompact` 后台从旧会话第一轮结束位置分叉，返回 `continue: true`；旧会话继续压缩与回答，不等待旧会话当前轮结束。
+- 新会话只收到老会话 ID 与读取 handoff 的指令；读取 `wb-handoff` 续接规则后置顶并打开，沿用命名规则，按已授权记录处理特定自动化迁移，再等待用户输入。
+- 用户说「切新会话」时，先更新 handoff，再用 `script/codex-hooks/continue-session.py --manual` 触发同一流程；重复触发复用已创建的子会话。
+- 脚本不代写 handoff；过程与验证见 `process/03-Codex压缩分支钩子.md`，执行规则见 `.agents/skills/wb-handoff/references/session-continuation.md`。
+- 本机配置位于 `~/.codex/hooks.json`，状态/日志位于 `~/.codex/state/session-continuation/`。旧脚本路径保留兼容转调；新增或变更 hook 后按应用 `/hooks` 的实际信任状态启用。
+- 已用模拟 app-server 和事件测试验证逻辑；真实首次压缩、桌面置顶与打开链路仍需实际触发验收。
 
 ## 全量 skill 复查与布局优化
 

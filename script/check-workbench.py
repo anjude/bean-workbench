@@ -39,6 +39,8 @@ REQUIRED_FILES = [
     ".agents/skills/wb-skill-refactor/references/workbench-evolution.md",
     ".agents/skills/wb-handoff/SKILL.md",
     ".agents/skills/wb-handoff/references/handoff-template.md",
+    ".agents/skills/wb-handoff/references/session-continuation.md",
+    "script/codex-hooks/continue-session.py",
     ".agents/skills/wb-handoff/references/process-template.md",
     ".agents/skills/dev-flow/SKILL.md",
     ".agents/skills/dev-flow/references/README.md",
