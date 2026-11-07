@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxGraphModel adaptiveColors="auto" grid="1" gridSize="10">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="codex" parent="1" value="本机 · Codex 与登录脚本" vertex="1" style="swimlane;horizontal=1;startSize=48;html=1;fontStyle=1;fontSize=18;fontColor=#17283c;strokeColor=#aebed0;fillColor=#e2ecff;swimlaneFillColor=#f5f8ff;">
+      <mxGeometry as="geometry" x="0" y="0" width="320" height="1160" />
+    </mxCell>
+    <mxCell id="server" parent="1" value="Superone 服务端 · Gin / Redis / Skill 用例" vertex="1" style="swimlane;horizontal=1;startSize=48;html=1;fontStyle=1;fontSize=18;fontColor=#17283c;strokeColor=#aebed0;fillColor=#e7edf3;swimlaneFillColor=#f7f9fc;">
+      <mxGeometry as="geometry" x="320" y="0" width="770" height="1160" />
+    </mxCell>
+    <mxCell id="wechat" parent="1" value="微信小程序" vertex="1" style="swimlane;horizontal=1;startSize=48;html=1;fontStyle=1;fontSize=18;fontColor=#17283c;strokeColor=#aebed0;fillColor=#dbefe7;swimlaneFillColor=#f4fbf7;">
+      <mxGeometry as="geometry" x="1090" y="0" width="240" height="1160" />
+    </mxCell>
+    <mxCell id="start" parent="codex" value="打开安装链接，配置 Codex" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="35" y="76" width="250" height="52" />
+    </mxCell>
+    <mxCell id="code" parent="server" value="签发小程序码&lt;br&gt;Redis 保存领取密钥和场景" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="60" y="76" width="250" height="52" />
+    </mxCell>
+    <mxCell id="scan" parent="wechat" value="用已登录小程序扫码确认" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="22" y="174" width="196" height="52" />
+    </mxCell>
+    <mxCell id="confirm" parent="server" value="按会话原子确认&lt;br&gt;签发带场景的 JWT" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="440" y="174" width="250" height="52" />
+    </mxCell>
+    <mxCell id="poll" parent="codex" value="用 code + secret 轮询领取" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="35" y="279" width="250" height="52" />
+    </mxCell>
+    <mxCell id="claim" parent="server" value="检查领取状态" vertex="1" style="rhombus;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fff2cc;strokeColor=#c49a46;fontColor=#483711;">
+      <mxGeometry as="geometry" x="67" y="263" width="234" height="86" />
+    </mxCell>
+    <mxCell id="claim_error" parent="server" value="返回过期、密钥错误或已领取" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="383" y="280" width="260" height="52" />
+    </mxCell>
+    <mxCell id="local" parent="codex" value="JWT 存在本机&lt;br&gt;调用列出 / 拉取 / 保存" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="35" y="392" width="250" height="52" />
+    </mxCell>
+    <mxCell id="auth" parent="server" value="签名、路由和身份通过？" vertex="1" style="rhombus;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fff2cc;strokeColor=#c49a46;fontColor=#483711;">
+      <mxGeometry as="geometry" x="67" y="375" width="234" height="86" />
+    </mxCell>
+    <mxCell id="deny" parent="server" value="拒绝访问" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="413" y="393" width="200" height="52" />
+    </mxCell>
+    <mxCell id="scope" parent="server" value="用当前 OpenID 约束读写，按工具分流" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="48" y="511" width="272" height="52" />
+    </mxCell>
+    <mxCell id="detail" parent="server" value="拉取&lt;br&gt;按 OpenID 和名称读取文件包" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="22" y="635" width="218" height="52" />
+    </mxCell>
+    <mxCell id="list" parent="server" value="列出&lt;br&gt;按名称分页返回当前账号的 Skill" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#dff1e6;strokeColor=#70a687;fontColor=#173e2b;">
+      <mxGeometry as="geometry" x="277" y="635" width="218" height="52" />
+    </mxCell>
+    <mxCell id="bundle" parent="server" value="保存&lt;br&gt;校验 Skill 文件包" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="532" y="635" width="218" height="52" />
+    </mxCell>
+    <mxCell id="check" parent="codex" value="摘要和相对路径通过？" vertex="1" style="rhombus;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fff2cc;strokeColor=#c49a46;fontColor=#483711;">
+      <mxGeometry as="geometry" x="54" y="735" width="212" height="76" />
+    </mxCell>
+    <mxCell id="missing" parent="server" value="返回不存在" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="22" y="748" width="218" height="52" />
+    </mxCell>
+    <mxCell id="abort" parent="codex" value="终止写入" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="57" y="867" width="100" height="52" />
+    </mxCell>
+    <mxCell id="write" parent="codex" value="写入新目录&lt;br&gt;由用户决定是否启用" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#dff1e6;strokeColor=#70a687;fontColor=#173e2b;">
+      <mxGeometry as="geometry" x="163" y="867" width="100" height="52" />
+    </mxCell>
+    <mxCell id="invalid" parent="server" value="返回参数错误" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="277" y="748" width="218" height="52" />
+    </mxCell>
+    <mxCell id="rev" parent="server" value="提供当前版本？" vertex="1" style="rhombus;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fff2cc;strokeColor=#c49a46;fontColor=#483711;">
+      <mxGeometry as="geometry" x="532" y="735" width="218" height="76" />
+    </mxCell>
+    <mxCell id="create" parent="server" value="按账号和名称创建&lt;br&gt;初始版本 1" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="279" y="867" width="208" height="52" />
+    </mxCell>
+    <mxCell id="update" parent="server" value="按账号、名称、版本&lt;br&gt;执行一次条件更新" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#ffffff;strokeColor=#90a7bf;fontColor=#19314a;">
+      <mxGeometry as="geometry" x="537" y="867" width="208" height="52" />
+    </mxCell>
+    <mxCell id="saved" parent="server" value="返回摘要&lt;br&gt;和版本" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#dff1e6;strokeColor=#70a687;fontColor=#173e2b;">
+      <mxGeometry as="geometry" x="272" y="1000" width="105" height="64" />
+    </mxCell>
+    <mxCell id="conflict" parent="server" value="返回重名" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="388" y="1000" width="105" height="64" />
+    </mxCell>
+    <mxCell id="update_saved" parent="server" value="返回摘要&lt;br&gt;和版本" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#dff1e6;strokeColor=#70a687;fontColor=#173e2b;">
+      <mxGeometry as="geometry" x="529" y="1000" width="105" height="64" />
+    </mxCell>
+    <mxCell id="update_conflict" parent="server" value="返回不存在或版本冲突&lt;br&gt;客户端重新读取" vertex="1" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=14;spacing=6;fillColor=#fae3e0;strokeColor=#c27e78;fontColor=#662d29;">
+      <mxGeometry as="geometry" x="645" y="1000" width="105" height="90" />
+    </mxCell>
+    <mxCell id="start-code" parent="1" value="请求取码" source="start" target="code" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="code-scan" parent="1" value="展示后扫码" source="code" target="scan" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="scan-confirm" parent="1" value="提交 code" source="scan" target="confirm" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;entryX=1;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="confirm-claim" parent="server" value="确认后可领取" source="confirm" target="claim" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=1;entryY=0.25;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="poll-claim" parent="1" value="请求领取" source="poll" target="claim" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.45;entryX=0;entryY=0.45;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="claim-poll" parent="1" value="待扫码" source="claim" target="poll" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.17;exitY=0.83;entryX=1;entryY=0.9;dashed=1;">
+      <mxGeometry as="geometry" relative="1">
+        </mxGeometry>
+    </mxCell>
+    <mxCell id="claim-claim_error" parent="server" value="失败" source="claim" target="claim_error" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="claim-local" parent="1" value="一次性领取 JWT" source="claim" target="local" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=0.55;entryY=0;">
+      <mxGeometry as="geometry" relative="1">
+        </mxGeometry>
+    </mxCell>
+    <mxCell id="local-auth" parent="1" value="Bearer JWT" source="local" target="auth" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="auth-deny" parent="server" value="否" source="auth" target="deny" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="auth-scope" parent="server" value="是" source="auth" target="scope" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="scope-detail" parent="server" value="拉取" source="scope" target="detail" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.305;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="scope-list" parent="server" value="列出" source="scope" target="list" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.8;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="scope-bundle" parent="server" value="保存" source="scope" target="bundle" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="detail-missing" parent="server" value="未找到" source="detail" target="missing" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="detail-check" parent="1" value="返回文件包" source="detail" target="check" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;entryX=1;entryY=0.5;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="check-abort" parent="codex" value="否" source="check" target="abort" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.25;exitY=0.75;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="check-write" parent="codex" value="是" source="check" target="write" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.75;exitY=0.75;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="bundle-invalid" parent="server" value="无效" source="bundle" target="invalid" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.2;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="bundle-rev" parent="server" value="有效" source="bundle" target="rev" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="rev-create" parent="server" value="否" source="rev" target="create" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="514" y="773" />
+          <mxPoint x="514" y="833" />
+          <mxPoint x="383" y="833" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="rev-update" parent="server" value="是" source="rev" target="update" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="create-saved" parent="server" value="成功" source="create" target="saved" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.22;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="create-conflict" parent="server" value="重名" source="create" target="conflict" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.78;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1">
+        </mxGeometry>
+    </mxCell>
+    <mxCell id="update-saved" parent="server" value="成功" source="update" target="update_saved" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.22;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1">
+        </mxGeometry>
+    </mxCell>
+    <mxCell id="update-conflict" parent="server" value="失败" source="update" target="update_conflict" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.78;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="code-poll" parent="1" source="code" target="poll" edge="1" value="返回领取信息" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52667d;strokeWidth=1.5;fontSize=12;fontColor=#24364d;endArrow=block;endFill=1;defaultLabelBackgroundColor=page;exitX=0.15;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+  </root>
+</mxGraphModel>
