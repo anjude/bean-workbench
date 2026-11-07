@@ -13,7 +13,7 @@
 
 **待验证**　目标服务的部署构建、真实 Codex 与微信真机联调，以及 Skill 文件包的跨语言摘要规则。
 
-test 服务 `https://api.beanflow.top:8080` 的 `/ping` 可访问，`/agent/install` 和 `/agent/login.py` 返回 404。当前实现仍在本地，需推进 test 部署后再做 Codex、微信和两台设备的真实链路验收。
+test 服务 `https://api.beanflow.top:8080` 的 `/ping` 可访问，`/agent/install` 和 `/agent/login.py` 返回 404。后端实现已推送 `dev`（`3be24df`），共享契约已推送 `release`（`8164f91`）。需推进 test 部署后再做 Codex、微信和两台设备的真实链路验收。
 
 ## Redis 环境隔离
 
