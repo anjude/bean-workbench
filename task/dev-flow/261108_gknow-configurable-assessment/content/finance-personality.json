@@ -1,0 +1,1321 @@
+{
+  "schemaVersion": 1,
+  "scoringVersion": 4,
+  "testKey": "finance-personality",
+  "title": "理财人格",
+  "resultNote": "本测试结果仅供自我了解，不构成专业财务意见或投资建议。",
+  "navigation": {
+    "allowPrevious": true,
+    "allowSkip": false
+  },
+  "scoring": {
+    "strategy": "profile-adjusted"
+  },
+  "dimensions": [
+    "M",
+    "H",
+    "P",
+    "E",
+    "L",
+    "S",
+    "C"
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "context": "机会",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "卖飞之后",
+          "text": "昨天刚卖掉一只股票，小赚了一笔\n今天它又涨了8%，你还是看好，但买回来就贵了",
+          "name": "阿白科技",
+          "change": "+8%",
+          "down": false,
+          "chart": "/static/illustrations/finance-story/chart-sold-too-soon.svg"
+        }
+      ],
+      "prompt": "你会怎么做？",
+      "options": [
+        {
+          "id": "Q01-A",
+          "text": "买回来，后面的钱还得赚",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "买回来，后面的钱还得赚"
+        },
+        {
+          "id": "Q01-B",
+          "text": "等跌回来，现在这价下不去手",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "等跌回来，现在这价下不去手"
+        },
+        {
+          "id": "Q01-C",
+          "text": "先买回一点，别又全错过了",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先买回一点，别又全错过了"
+        },
+        {
+          "id": "Q01-D",
+          "text": "不买了，赚过这笔就找下一只",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "不买了，赚过这笔就找下一只"
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "context": "证据",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "买入的理由变了",
+          "text": "买这只股票，是因为看好它的一项新业务\n现在公司公告：这项业务不做了\n股价已经跌了15%，你还拿着",
+          "name": "阿白科技 · 持仓",
+          "change": "-15%",
+          "down": true
+        }
+      ],
+      "prompt": "接下来怎么做？",
+      "options": [
+        {
+          "id": "Q02-A",
+          "text": "卖掉，当初买它的理由已经没了",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "卖掉，当初买它的理由已经没了"
+        },
+        {
+          "id": "Q02-B",
+          "text": "等反弹一点再卖，现在割太疼",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "等反弹一点再卖，现在割太疼"
+        },
+        {
+          "id": "Q02-C",
+          "text": "先卖一半，剩下的再看看",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先卖一半，剩下的再看看"
+        },
+        {
+          "id": "Q02-D",
+          "text": "再找找它还有什么值得拿的，别急着卖",
+          "scores": {
+            "E": 1
+          },
+          "weight": 0.5,
+          "evidence": "再找找它还有什么值得拿的，别急着卖"
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "context": "他人",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "朋友赚得比你多",
+          "text": "一直买宽基基金的你，今年小赚\n做短线的朋友，一个月就赚过了你一年\n他把最近在买的几只股票发了过来",
+          "name": "收益对照",
+          "change": "一个月 ＞ 一年",
+          "down": false
+        }
+      ],
+      "prompt": "你会怎么做？",
+      "options": [
+        {
+          "id": "Q03-A",
+          "text": "跟一只试试，光看别人赚也没用",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "跟一只试试，光看别人赚也没用"
+        },
+        {
+          "id": "Q03-B",
+          "text": "拿点闲钱跟，原来的基金不动",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "拿点闲钱跟，原来的基金不动"
+        },
+        {
+          "id": "Q03-C",
+          "text": "先问清他怎么买卖，不能只看赚了多少",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先问清他怎么买卖，不能只看赚了多少"
+        },
+        {
+          "id": "Q03-D",
+          "text": "继续买自己的，他这钱我未必赚得来",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "继续买自己的，他这钱我未必赚得来"
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "context": "计划",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "越跌越多",
+          "text": "买入前你给自己定了规矩：亏10%就卖\n现在已经跌了12%，公司也没出什么新消息\n你盯着卖出键，有点下不去手",
+          "name": "阿白科技 · 持仓",
+          "change": "-12%",
+          "down": true
+        }
+      ],
+      "prompt": "这笔怎么处理？",
+      "options": [
+        {
+          "id": "Q04-A",
+          "text": "卖，说好亏到这就走",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "卖，说好亏到这就走"
+        },
+        {
+          "id": "Q04-B",
+          "text": "再等等，别刚卖就反弹",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "再等等，别刚卖就反弹"
+        },
+        {
+          "id": "Q04-C",
+          "text": "补一点，涨回来一点就能回本",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "补一点，涨回来一点就能回本"
+        },
+        {
+          "id": "Q04-D",
+          "text": "重新看看还值不值得拿，不能只盯着亏了多少",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "重新看看还值不值得拿，不能只盯着亏了多少"
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "context": "机会",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "就差那一点",
+          "text": "给看中的股票挂了买单，差一点没成交\n下午再看，已经涨了5%，原来的判断没变",
+          "name": "委托买入",
+          "change": "+5%",
+          "down": false
+        }
+      ],
+      "prompt": "这笔买单怎么办？",
+      "options": [
+        {
+          "id": "Q05-A",
+          "text": "改价买，不想再看着它涨",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "改价买，不想再看着它涨"
+        },
+        {
+          "id": "Q05-B",
+          "text": "原单不动，没到想买的价就算了",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "原单不动，没到想买的价就算了"
+        },
+        {
+          "id": "Q05-C",
+          "text": "一半现在买，一半留着等",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "一半现在买，一半留着等"
+        },
+        {
+          "id": "Q05-D",
+          "text": "先撤单，重新算算现在还值不值",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先撤单，重新算算现在还值不值"
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "context": "亏损",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "理由还在，钱在变少",
+          "text": "拿着一只自己看好的股票，已经亏了15%\n当初看好的东西还在，也没有新的坏消息\n但再打开账户，还是有点难受",
+          "name": "当前持仓",
+          "change": "-15%",
+          "down": true
+        }
+      ],
+      "prompt": "这笔你会怎么处理？",
+      "options": [
+        {
+          "id": "Q06-A",
+          "text": "先卖了，这笔拿着已经影响心情了",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "先卖了，这笔拿着已经影响心情了"
+        },
+        {
+          "id": "Q06-B",
+          "text": "继续拿，买入的理由还在",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "继续拿，买入的理由还在"
+        },
+        {
+          "id": "Q06-C",
+          "text": "减一半，先让自己轻松点",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "减一半，先让自己轻松点"
+        },
+        {
+          "id": "Q06-D",
+          "text": "等回本就走，现在卖太不甘心",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "等回本就走，现在卖太不甘心"
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "context": "他人",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "他们都出来了",
+          "text": "自己还看好的一只股票，最近没出什么新消息\n群里几个平时挺信的人，却陆续卖掉了\n他们说先出来看看",
+          "name": "群聊消息",
+          "change": "他们先走了",
+          "down": false
+        }
+      ],
+      "prompt": "你的持仓怎么处理？",
+      "options": [
+        {
+          "id": "Q07-A",
+          "text": "跟着卖，怕他们看到了我没看到的",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "跟着卖，怕他们看到了我没看到的"
+        },
+        {
+          "id": "Q07-B",
+          "text": "先减一点，别的等问清楚再说",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先减一点，别的等问清楚再说"
+        },
+        {
+          "id": "Q07-C",
+          "text": "按原来的打算拿，不跟着临时改",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "按原来的打算拿，不跟着临时改"
+        },
+        {
+          "id": "Q07-D",
+          "text": "先不动，问清他们卖出的理由",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先不动，问清他们卖出的理由"
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "context": "证据",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "它好像翻身了",
+          "text": "原来嫌一家公司一直亏钱，你没买\n现在公告说盈利了，股价也开始涨\n你还没看清，这次的钱是怎么赚的",
+          "name": "公司公告",
+          "change": "扭亏为盈",
+          "down": false
+        }
+      ],
+      "prompt": "这会儿你会？",
+      "options": [
+        {
+          "id": "Q08-A",
+          "text": "先买，怕弄清楚时已经涨远了",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "先买，怕弄清楚时已经涨远了"
+        },
+        {
+          "id": "Q08-B",
+          "text": "买一点，边拿边看",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "买一点，边拿边看"
+        },
+        {
+          "id": "Q08-C",
+          "text": "看看怎么赚的，再决定买不买",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "看看怎么赚的，再决定买不买"
+        },
+        {
+          "id": "Q08-D",
+          "text": "等平时信的那个人分析完，再跟着决定",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "等平时信的那个人分析完，再跟着决定"
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "context": "计划",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "到了原来的目标",
+          "text": "买入前，你给这只股票定了个目标：赚20%就卖\n现在到了，最近还涨得挺顺，也没出什么新消息",
+          "name": "原定止盈目标",
+          "change": "+20%",
+          "down": false
+        }
+      ],
+      "prompt": "这会儿怎么处理？",
+      "options": [
+        {
+          "id": "Q09-A",
+          "text": "全卖，到了就收工",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "全卖，到了就收工"
+        },
+        {
+          "id": "Q09-B",
+          "text": "再拿拿，感觉还没涨完",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "再拿拿，感觉还没涨完"
+        },
+        {
+          "id": "Q09-C",
+          "text": "卖一半，剩下的再看看",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "卖一半，剩下的再看看"
+        },
+        {
+          "id": "Q09-D",
+          "text": "改成回落一点就卖，涨着先拿",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "改成回落一点就卖，涨着先拿"
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "context": "亏损",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "终于回本了",
+          "text": "套了一阵的股票，今天终于涨回买入价\n当初看好的东西没变，但这段时间拿着挺熬人",
+          "name": "当前持仓",
+          "change": "回到买入价",
+          "down": false
+        }
+      ],
+      "prompt": "接下来你会？",
+      "options": [
+        {
+          "id": "Q10-A",
+          "text": "全卖，终于等到能走了",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "全卖，终于等到能走了"
+        },
+        {
+          "id": "Q10-B",
+          "text": "卖一半，先松口气",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "卖一半，先松口气"
+        },
+        {
+          "id": "Q10-C",
+          "text": "接着拿，当初看好的还在",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "接着拿，当初看好的还在"
+        },
+        {
+          "id": "Q10-D",
+          "text": "再买一点，终于走顺了",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "再买一点，终于走顺了"
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "context": "不确定",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "还差一个消息",
+          "text": "看中一家靠海外订单赚钱的公司\n最近订单涨得快，但最大客户会不会续约，还没消息\n你原本打算这两天买",
+          "name": "客户续约",
+          "change": "还没消息",
+          "down": false
+        }
+      ],
+      "prompt": "这笔怎么安排？",
+      "options": [
+        {
+          "id": "Q11-A",
+          "text": "照原计划买，不能什么都等明白",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "照原计划买，不能什么都等明白"
+        },
+        {
+          "id": "Q11-B",
+          "text": "先买一点，留个位置",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先买一点，留个位置"
+        },
+        {
+          "id": "Q11-C",
+          "text": "等续约消息，贵点也认了",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "等续约消息，贵点也认了"
+        },
+        {
+          "id": "Q11-D",
+          "text": "换一只，这种事我看不准",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "换一只，这种事我看不准"
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "context": "不确定",
+      "blocks": [
+        {
+          "type": "market",
+          "title": "两边都有道理",
+          "text": "看中的一只股票，两份解读正好相反\n一份说新订单够忙一年，一份说大客户可能要走\n两边都摆了材料，你一时分不清",
+          "name": "同一只股票",
+          "change": "两种解读",
+          "down": false
+        }
+      ],
+      "prompt": "这笔买入怎么安排？",
+      "options": [
+        {
+          "id": "Q12-A",
+          "text": "找个自己信的人，他看完再跟",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "找个自己信的人，他看完再跟"
+        },
+        {
+          "id": "Q12-B",
+          "text": "先对原始公告，没弄清就不买",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先对原始公告，没弄清就不买"
+        },
+        {
+          "id": "Q12-C",
+          "text": "小买一点，边拿边看",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "小买一点，边拿边看"
+        },
+        {
+          "id": "Q12-D",
+          "text": "暂时不碰，不想在这两种说法里赌",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "暂时不碰，不想在这两种说法里赌"
+        }
+      ]
+    },
+    {
+      "id": "F01",
+      "context": "他人",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "朋友把链接发来了",
+          "text": "朋友买的一只基金，最近赚了不少。吃饭时他打开收益页面给你看，还把链接发给了你。你点进去，发现它最近已经涨了一段。"
+        }
+      ],
+      "prompt": "你会怎么做？",
+      "options": [
+        {
+          "id": "F01-A",
+          "text": "先买一点，涨得这么好，想跟着试试",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "先买一点，涨得这么好，想跟着试试"
+        },
+        {
+          "id": "F01-B",
+          "text": "问问朋友还打不打算买，跟着他安排",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "问问朋友还打不打算买，跟着他安排"
+        },
+        {
+          "id": "F01-C",
+          "text": "先收藏，过几天再看看",
+          "scores": {},
+          "weight": 1,
+          "evidence": "先收藏，过几天再看看"
+        },
+        {
+          "id": "F01-D",
+          "text": "不买，朋友能赚钱，不代表我也能赚到",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "不买，朋友能赚钱，不代表我也能赚到"
+        }
+      ]
+    },
+    {
+      "id": "F02",
+      "context": "亏损",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "刚买就亏了",
+          "text": "你拿 1000 元买了一只基金。没过几天，打开账户一看，变成了 970 元。朋友说正常，可你看着那 30 元还是有点心疼。"
+        }
+      ],
+      "prompt": "这笔钱怎么办？",
+      "options": [
+        {
+          "id": "F02-A",
+          "text": "再买一点，便宜了正好多买些",
+          "scores": {},
+          "weight": 1,
+          "evidence": "再买一点，便宜了正好多买些"
+        },
+        {
+          "id": "F02-B",
+          "text": "先放着，才几天，看不出什么",
+          "scores": {},
+          "weight": 1,
+          "evidence": "先放着，才几天，看不出什么"
+        },
+        {
+          "id": "F02-C",
+          "text": "先取出来，亏得少也不想继续亏",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "先取出来，亏得少也不想继续亏"
+        },
+        {
+          "id": "F02-D",
+          "text": "看看它为什么跌，再决定要不要留",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "看看它为什么跌，再决定要不要留"
+        }
+      ]
+    },
+    {
+      "id": "F03",
+      "context": "机会",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "好像错过了",
+          "text": "上周你看中一只基金，犹豫了几天没买。今天再打开，它已经涨了 6%。你还是觉得它不错，只是现在买比上周贵了。"
+        }
+      ],
+      "prompt": "这会儿你会？",
+      "options": [
+        {
+          "id": "F03-A",
+          "text": "现在买，不能再错过一次",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "现在买，不能再错过一次"
+        },
+        {
+          "id": "F03-B",
+          "text": "先买一点，剩下的等回落再说",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先买一点，剩下的等回落再说"
+        },
+        {
+          "id": "F03-C",
+          "text": "等它跌回上周的价格，现在买太亏了",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "等它跌回上周的价格，现在买太亏了"
+        },
+        {
+          "id": "F03-D",
+          "text": "不买了，再看看别的机会",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "不买了，再看看别的机会"
+        }
+      ]
+    },
+    {
+      "id": "F04",
+      "context": "用钱",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "钱要不要放一年",
+          "text": "你攒了一笔钱，暂时没有确定用途。看到一款理财产品，买入后要放满一年才能取出。你有点心动，又怕中途突然要用钱。"
+        }
+      ],
+      "prompt": "你会怎么安排？",
+      "options": [
+        {
+          "id": "F04-A",
+          "text": "买，钱放着也是放着",
+          "scores": {},
+          "weight": 1,
+          "evidence": "买，钱放着也是放着"
+        },
+        {
+          "id": "F04-B",
+          "text": "拿一部分买，剩下的留在手边",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "拿一部分买，剩下的留在手边"
+        },
+        {
+          "id": "F04-C",
+          "text": "先算算这一年可能有哪些开销，再决定放多少",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先算算这一年可能有哪些开销，再决定放多少"
+        },
+        {
+          "id": "F04-D",
+          "text": "不买，钱拿不出来我心里不踏实",
+          "scores": {
+            "C": 1
+          },
+          "weight": 1,
+          "evidence": "不买，钱拿不出来我心里不踏实"
+        }
+      ]
+    },
+    {
+      "id": "F05",
+      "context": "回本",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "终于涨回来了",
+          "text": "你买的基金跌了一阵，前几天还在亏。今天打开一看，终于回到了买入时的金额。这段时间你看它跌，看得有点累。"
+        }
+      ],
+      "prompt": "接下来你会？",
+      "options": [
+        {
+          "id": "F05-A",
+          "text": "全部取出来，总算不用亏着走了",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "全部取出来，总算不用亏着走了"
+        },
+        {
+          "id": "F05-B",
+          "text": "先取一半，剩下的继续放着",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先取一半，剩下的继续放着"
+        },
+        {
+          "id": "F05-C",
+          "text": "继续拿，买它的想法没有变",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "继续拿，买它的想法没有变"
+        },
+        {
+          "id": "F05-D",
+          "text": "再买一点，感觉它开始涨回来了",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "再买一点，感觉它开始涨回来了"
+        }
+      ]
+    },
+    {
+      "id": "F06",
+      "context": "计划",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "说好的每月一笔",
+          "text": "你决定每月拿 500 元买基金，坚持一年。买了三个月，账户还在亏。这个月要买的时候，你的手停了一下。"
+        }
+      ],
+      "prompt": "这次还买吗？",
+      "options": [
+        {
+          "id": "F06-A",
+          "text": "买，说好了每个月都买",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "买，说好了每个月都买"
+        },
+        {
+          "id": "F06-B",
+          "text": "先少买点，等看清楚再加回来",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先少买点，等看清楚再加回来"
+        },
+        {
+          "id": "F06-C",
+          "text": "暂停，等涨起来再继续",
+          "scores": {},
+          "weight": 1,
+          "evidence": "暂停，等涨起来再继续"
+        },
+        {
+          "id": "F06-D",
+          "text": "先看看当初选它的理由还在不在",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先看看当初选它的理由还在不在"
+        }
+      ]
+    },
+    {
+      "id": "F07",
+      "context": "他人比较",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "别人赚得更快",
+          "text": "你买的理财产品一年到期，赚了一点。朋友同期买基金赚得更多，说下次跟着他买就行。你正准备安排这笔到期的钱。"
+        }
+      ],
+      "prompt": "你会怎么选？",
+      "options": [
+        {
+          "id": "F07-A",
+          "text": "跟朋友买，这次也想多赚一点",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "跟朋友买，这次也想多赚一点"
+        },
+        {
+          "id": "F07-B",
+          "text": "拿一部分跟着试，剩下的照自己的想法安排",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "拿一部分跟着试，剩下的照自己的想法安排"
+        },
+        {
+          "id": "F07-C",
+          "text": "问问他买的是什么、期间跌过多少，再决定",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "问问他买的是什么、期间跌过多少，再决定"
+        },
+        {
+          "id": "F07-D",
+          "text": "还是选自己熟悉的，赚得慢一点也行",
+          "scores": {},
+          "weight": 1,
+          "evidence": "还是选自己熟悉的，赚得慢一点也行"
+        }
+      ]
+    },
+    {
+      "id": "F08",
+      "context": "目标",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "到了想收的时候",
+          "text": "买基金前你想好了：赚到 10% 就取出来。现在收益到了 10%，最近还在涨，身边的人都说可以再拿拿。"
+        }
+      ],
+      "prompt": "这笔怎么处理？",
+      "options": [
+        {
+          "id": "F08-A",
+          "text": "取出来，到了自己说好的时候",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "取出来，到了自己说好的时候"
+        },
+        {
+          "id": "F08-B",
+          "text": "再拿拿，说不定还能多赚一些",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "再拿拿，说不定还能多赚一些"
+        },
+        {
+          "id": "F08-C",
+          "text": "先取一部分，剩下的继续看",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先取一部分，剩下的继续看"
+        },
+        {
+          "id": "F08-D",
+          "text": "先看看现在的情况，再决定原来的目标要不要改",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先看看现在的情况，再决定原来的目标要不要改"
+        }
+      ]
+    },
+    {
+      "id": "F09",
+      "context": "信息分歧",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "两种说法",
+          "text": "你看中一只基金，正准备买。有人说它最近跌了，现在是机会；也有人说还会继续跌。两边讲得都挺有道理。"
+        }
+      ],
+      "prompt": "你会怎么做？",
+      "options": [
+        {
+          "id": "F09-A",
+          "text": "先买，等大家都觉得好时可能已经涨了",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "先买，等大家都觉得好时可能已经涨了"
+        },
+        {
+          "id": "F09-B",
+          "text": "先买一点，留些钱以后再决定",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "先买一点，留些钱以后再决定"
+        },
+        {
+          "id": "F09-C",
+          "text": "找个自己信的人问问，按他的判断来",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "找个自己信的人问问，按他的判断来"
+        },
+        {
+          "id": "F09-D",
+          "text": "先看看基金投了什么，弄清楚再说",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先看看基金投了什么，弄清楚再说"
+        }
+      ]
+    },
+    {
+      "id": "F10",
+      "context": "用钱",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "急着用钱",
+          "text": "你买的一只基金现在有点亏，但可以申请卖出。家里一笔计划外开销来了，你手边的钱刚好够付，付完就所剩不多。"
+        }
+      ],
+      "prompt": "你会怎么安排？",
+      "options": [
+        {
+          "id": "F10-A",
+          "text": "卖出基金，先把手边的钱留够",
+          "scores": {},
+          "weight": 1,
+          "evidence": "卖出基金，先把手边的钱留够"
+        },
+        {
+          "id": "F10-B",
+          "text": "卖出一部分，剩下的继续拿",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "卖出一部分，剩下的继续拿"
+        },
+        {
+          "id": "F10-C",
+          "text": "先用手边的钱，基金亏着不想卖",
+          "scores": {
+            "L": 1
+          },
+          "weight": 1,
+          "evidence": "先用手边的钱，基金亏着不想卖"
+        },
+        {
+          "id": "F10-D",
+          "text": "先看看卖出到账要多久，再安排这笔开销",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先看看卖出到账要多久，再安排这笔开销"
+        }
+      ]
+    },
+    {
+      "id": "F11",
+      "context": "比较",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "一直没轮到它涨",
+          "text": "你买的基金这几个月几乎没动，赚得不多也没怎么亏。同一时间，另一只基金涨得很快，首页总能看到它。"
+        }
+      ],
+      "prompt": "你会怎么做？",
+      "options": [
+        {
+          "id": "F11-A",
+          "text": "把钱换过去，先赶上这波再说",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "把钱换过去，先赶上这波再说"
+        },
+        {
+          "id": "F11-B",
+          "text": "取一部分换过去，两边都留一点",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "取一部分换过去，两边都留一点"
+        },
+        {
+          "id": "F11-C",
+          "text": "继续拿原来的，不因为别人涨就换",
+          "scores": {
+            "P": 1
+          },
+          "weight": 1,
+          "evidence": "继续拿原来的，不因为别人涨就换"
+        },
+        {
+          "id": "F11-D",
+          "text": "看看两只基金分别投什么，再决定要不要换",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "看看两只基金分别投什么，再决定要不要换"
+        }
+      ]
+    },
+    {
+      "id": "F12",
+      "context": "到期选择",
+      "blocks": [
+        {
+          "type": "text",
+          "title": "到期之后",
+          "text": "一笔理财到期了，本金和收益都回到你的账户。之前它让你省心，但现在同类产品的收益看起来低了一些。旁边有个收益起伏更大的选择。"
+        }
+      ],
+      "prompt": "这笔钱接下来怎么放？",
+      "options": [
+        {
+          "id": "F12-A",
+          "text": "试试新的，想看看能不能多赚一些",
+          "scores": {
+            "M": 1
+          },
+          "weight": 1,
+          "evidence": "试试新的，想看看能不能多赚一些"
+        },
+        {
+          "id": "F12-B",
+          "text": "分成两份，一份放熟悉的，一份试新的",
+          "scores": {
+            "H": 1
+          },
+          "weight": 1,
+          "evidence": "分成两份，一份放熟悉的，一份试新的"
+        },
+        {
+          "id": "F12-C",
+          "text": "先问问熟悉的人怎么选，再跟着安排",
+          "scores": {
+            "S": 1
+          },
+          "weight": 1,
+          "evidence": "先问问熟悉的人怎么选，再跟着安排"
+        },
+        {
+          "id": "F12-D",
+          "text": "先弄清两个产品的取出条件和收益变化，再决定",
+          "scores": {
+            "E": 1
+          },
+          "weight": 1,
+          "evidence": "先弄清两个产品的取出条件和收益变化，再决定"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "M",
+      "title": "抢先上车鹅",
+      "headline": "先上车，别又看着它涨",
+      "weights": {},
+      "description": "等到事情全明白，价格可能已经跑远了。这一轮里，你更愿意先采取行动，把机会留在手里，再边走边看。比起买贵一点，站在场外看它继续涨，更容易让你惦记。",
+      "considerations": "动起来不一定是想清楚了，有时只是“不想再错过”催得更急",
+      "share": "别催，我已经在车上了",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzLmf7lvFObJicNIB8tVonoFjlaxLOk2qhnlnKcMCvicjOVqd4S6UoRic9xS9DO7QmEBQxW8VEyaEkCSf77buvPdTBiagV9Sppvr5dA/0?from=appmsg"
+    },
+    {
+      "id": "H",
+      "title": "留个后手鹅",
+      "headline": "我想参与，也想留点余地",
+      "weights": {},
+      "description": "买还是不买、走还是不走，你常会给自己留个中间位置。先买一点、先卖一半，或者给剩下的设个退出条件。这一轮里，你没有急着把所有可能性关掉，更愿意边参与边调整。",
+      "considerations": "留余地能减轻当下的为难，也可能让一个决定迟迟没有做完",
+      "share": "别急，我还有另一半",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzKoUcYYDUDrWfDEjhokQicutzGEbXw4mBSSmgypPNsGhsPZlkCLB0voHe5IwbyzLdpLCOkwELj2U4Xjx54DEEffmjFVggJcsJvk/0?from=appmsg"
+    },
+    {
+      "id": "P",
+      "title": "按约办事鹅",
+      "headline": "行情可以变，说好的事得算数",
+      "weights": {},
+      "description": "价格一动，临时改主意的理由总能找到。这一轮里，你更愿意把之前的安排当回事：没到想买的价就等，到了说好的退出位置就走，别人赚得快，也未必让你换打法。",
+      "considerations": "计划能让人少受临场情绪牵着走，但新情况出现时，也需要分清是在守约，还是已经不愿改主意",
+      "share": "我先跟昨天的自己对一下账",
+      "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzLVTQs6MTKBjtpaVz27KzJn3GKZje3SewQEAS19O2va8rkgYe3wCKhDHJTtxsfykGpKPiczvHFgTNyU3ysCicMcrYecq34S3mpmo/0?from=appmsg"
+    },
+    {
+      "id": "E",
+      "title": "认理由鹅",
+      "headline": "价格在变，我得知道理由变没变",
+      "weights": {},
+      "description": "涨了不一定追，跌了也不一定走。你更在意这笔买卖靠什么成立：原来的业务还在不在，新消息到底说了什么，别人赚钱的方法自己认不认。理由变了，你可以退出；理由还在，你也可能继续拿。",
+      "considerations": "找依据和替原决定找理由，有时只隔一步；不是资料越多，决定就一定越清楚",
+      "share": "先别报涨跌，告诉我为什么",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzK4L1vkPBQePtGfzHxWqDeoggTicajwewAzWlHKfUcrt1Y2tdzU6ONhUxlQWXQEdlBXo0qI7UZkt4qNODa34icraD5rg8cjZxGlk/0?from=appmsg"
+    },
+    {
+      "id": "L",
+      "title": "心里有个价鹅",
+      "headline": "市场在报价，心里也有一本账",
+      "weights": {},
+      "description": "昨天卖出的价、当初买入的价、再涨一点就回本的位置，你都记得。这一轮里，这些价格经常成为你愿不愿行动的门槛。不是不知道后面还有机会，只是心里那道坎，也得过得去。",
+      "considerations": "那个价格对你很重要，但它未必仍然决定这笔投资现在值不值得",
+      "share": "道理我懂，先等它回到那个价",
+      "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzJzAmC5U8yUBnaSU46PUwQzJqnX1iaIdz3J0drkicjFwdJWDnQcUm2aTEiaMWIJZf457eXG4D8Bya9PG1Ou54zqNWNE20015Hw0Vk/0?from=appmsg"
+    },
+    {
+      "id": "S",
+      "title": "借个风向鹅",
+      "headline": "先听听我信的人怎么说",
+      "weights": {},
+      "description": "遇到拿不准的地方，你常会先找一个信得过的参照。谁已经出来了，谁把消息讲明白了，谁愿意给出判断，会影响你接下来怎么做。这一轮里，你更愿意借别人的视角，再决定自己的动作。",
+      "considerations": "信任能帮人省下很多摸索，但别人的判断，也可能带着你不知道的条件",
+      "share": "等等，我问个人",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzIJ7WoE5NBuBD1WDGFCFCEaaa0E2BRss3srPFE5OkicawsxKDzZ5iaRjcRMYlE8JaRic1lxIPzhgqpE5mF8TBicOc1qAJlFUCvOH1w/0?from=appmsg"
+    },
+    {
+      "id": "C",
+      "title": "收工落袋鹅",
+      "headline": "少赚一点可以，这局我想先结束",
+      "weights": {},
+      "description": "有些机会还在，有些疑问也许再等会就能解开，但你不一定愿意继续耗在里面。这一轮里，遇到不想承担的不确定性，或者已经让自己难受的持仓，你更愿意结束这一笔，把钱和注意力收回来。",
+      "considerations": "退出能带来轻松，也可能让人还没分清“这笔不合适”和“此刻有点难受”，就已经走了",
+      "share": "这局先到这，下一局再说",
+      "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzIePMC8zM2iahFcI88L8eWg7bzFnBswgFBvw1GBicD1M9PfGXIVOiahhiao1L4t0bJNLibqoyEr1ZDZoYia5PllGwprrIlcqv2JiaGlkQ/0?from=appmsg"
+    }
+  ],
+  "logoUrl": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzJyK1es1b3gXsMXCicJrqX0pibpLBKKgVtzwzicXnumXqz4wYTichO06XSRM2jiaARbq6j7HrBlCnLhh8ibnuiccasqjWcckI07ez6XwA/0?from=appmsg"
+}

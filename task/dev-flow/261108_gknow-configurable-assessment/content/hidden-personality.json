@@ -1,0 +1,825 @@
+{
+  "schemaVersion": 1,
+  "scoringVersion": 4,
+  "testKey": "goose-bti",
+  "title": "隐藏性格",
+  "resultNote": "本测试结果用于自我探索，不构成专业心理评估或诊断。",
+  "navigation": {
+    "allowPrevious": true,
+    "allowSkip": false
+  },
+  "scoring": {
+    "strategy": "choice-share"
+  },
+  "dimensions": [
+    "whatever",
+    "fixer",
+    "thinker",
+    "performer"
+  ],
+  "questions": [
+    {
+      "id": "meet",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "周末聚餐",
+          "messages": [
+            {
+              "id": "meet-message-1",
+              "side": "left",
+              "name": "小林",
+              "text": "周六聚一下？"
+            },
+            {
+              "id": "meet-message-2",
+              "side": "left",
+              "name": "小周",
+              "text": "可以啊，去哪吃？"
+            },
+            {
+              "id": "meet-message-3",
+              "side": "left",
+              "name": "小陈",
+              "text": "我都行。"
+            },
+            {
+              "id": "meet-message-4",
+              "side": "system",
+              "name": "",
+              "text": "过了十分钟，地点还没定下来。"
+            }
+          ]
+        }
+      ],
+      "prompt": "这时你更可能做什么？",
+      "options": [
+        {
+          "id": "meet-1",
+          "text": "列两家交通方便的店，让大家选一个。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "meet-2",
+          "text": "先看看大家想去哪，有不合适的再说。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "meet-3",
+          "text": "想想谁住得远、谁有什么忌口，再提建议。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "meet-4",
+          "text": "先在群里聊起来，顺势问大家想吃什么。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "message",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "一条消息",
+          "messages": [
+            {
+              "id": "message-message-1",
+              "side": "left",
+              "name": "小林",
+              "text": "有件事想和你说。"
+            },
+            {
+              "id": "message-message-2",
+              "side": "right",
+              "name": "我",
+              "text": "好，什么事？"
+            },
+            {
+              "id": "message-message-3",
+              "side": "system",
+              "name": "",
+              "text": "半小时过去，对方还没有回复。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你接下来会？",
+      "options": [
+        {
+          "id": "message-1",
+          "text": "回想最近发生的事，猜猜对方想说什么。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "message-2",
+          "text": "发个表情或轻松的话，给对方一个接话口。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "message-3",
+          "text": "先做自己的事，等对方方便了再聊。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "message-4",
+          "text": "问一句什么时候方便，约个时间说清楚。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "临时变动",
+          "messages": [
+            {
+              "id": "change-message-1",
+              "side": "system",
+              "name": "",
+              "text": "周五晚上，你收到了朋友的消息。"
+            },
+            {
+              "id": "change-message-2",
+              "side": "left",
+              "name": "小林",
+              "text": "不好意思，明天临时有事，咱们约的见面得取消了。"
+            },
+            {
+              "id": "change-message-3",
+              "side": "system",
+              "name": "",
+              "text": "你原本把明天的时间留给了这次见面。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你的第一反应更接近？",
+      "options": [
+        {
+          "id": "change-1",
+          "text": "接受变化，看看当天想做什么。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "change-2",
+          "text": "想想对方取消的原因，以及是不是另有安排。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "change-3",
+          "text": "尽快重新安排，把空出来的时间用好。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "change-4",
+          "text": "找另一个朋友问问，能不能临时组个局。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "临时帮忙",
+          "messages": [
+            {
+              "id": "request-message-1",
+              "side": "left",
+              "name": "同事",
+              "text": "这个能不能今晚帮我看一下？"
+            },
+            {
+              "id": "request-message-2",
+              "side": "system",
+              "name": "",
+              "text": "你自己的事情也还没做完。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你更可能怎样回复？",
+      "options": [
+        {
+          "id": "request-1",
+          "text": "先缓和一下气氛，再说自己今天的情况。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "request-2",
+          "text": "问清最急的部分，看看能否限定帮忙范围。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "request-3",
+          "text": "先答应看看，实在来不及再和对方商量。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "request-4",
+          "text": "先判断对方有多急，以及拒绝会有什么影响。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "一句反馈",
+          "messages": [
+            {
+              "id": "feedback-message-1",
+              "side": "system",
+              "name": "",
+              "text": "你刚发出认真准备的方案。"
+            },
+            {
+              "id": "feedback-message-2",
+              "side": "left",
+              "name": "同事",
+              "text": "看过了，还可以，不过有些地方可以再想想。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你最想先做什么？",
+      "options": [
+        {
+          "id": "feedback-1",
+          "text": "请对方指出具体位置，列出下一步修改。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "feedback-2",
+          "text": "回想刚才的反应，琢磨对方真正不满意哪里。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "feedback-3",
+          "text": "接一句轻松的话，再把讨论带回具体问题。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "feedback-4",
+          "text": "先听完，等自己消化后再决定要不要调整。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "安静的饭桌",
+          "messages": [
+            {
+              "id": "silence-message-1",
+              "side": "system",
+              "name": "",
+              "text": "聚餐时，大家刚聊完一个话题。"
+            },
+            {
+              "id": "silence-message-2",
+              "side": "left",
+              "name": "小周",
+              "text": "这个我也遇到过。"
+            },
+            {
+              "id": "silence-message-3",
+              "side": "system",
+              "name": "",
+              "text": "桌上安静了一会儿，暂时没有人接话。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你通常会？",
+      "options": [
+        {
+          "id": "silence-1",
+          "text": "继续吃饭，安静一会儿也没关系。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "silence-2",
+          "text": "提起一件最近的趣事，看看谁想接。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "silence-3",
+          "text": "问问大家接下来有没有想去的地方。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "silence-4",
+          "text": "留意大家的状态，想想是不是话题让人不自在。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "disagree",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "意见不同",
+          "messages": [
+            {
+              "id": "disagree-message-1",
+              "side": "system",
+              "name": "",
+              "text": "大家正在商量一件共同的事。"
+            },
+            {
+              "id": "disagree-message-2",
+              "side": "left",
+              "name": "小林",
+              "text": "我觉得还是按这个办法做，肯定更合适。"
+            },
+            {
+              "id": "disagree-message-3",
+              "side": "system",
+              "name": "",
+              "text": "你的想法不同，其他人还没表态。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你更可能怎么做？",
+      "options": [
+        {
+          "id": "disagree-1",
+          "text": "先听对方的理由，整理出真正的分歧。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "disagree-2",
+          "text": "先不急着争，看这件事是否值得坚持。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "disagree-3",
+          "text": "把各自的条件摆出来，找能执行的方案。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "disagree-4",
+          "text": "用一个具体例子说出不同想法，邀请大家讨论。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "praise",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "被当众夸奖",
+          "messages": [
+            {
+              "id": "praise-message-1",
+              "side": "system",
+              "name": "",
+              "text": "合作完成的事情得到了称赞。"
+            },
+            {
+              "id": "praise-message-2",
+              "side": "left",
+              "name": "同事",
+              "text": "这次多亏了你，做得特别好！"
+            },
+            {
+              "id": "praise-message-3",
+              "side": "system",
+              "name": "",
+              "text": "这条消息发在大家都能看到的群里。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你会怎样回应？",
+      "options": [
+        {
+          "id": "praise-1",
+          "text": "大方接住，再顺着话题夸夸一起做事的人。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "praise-2",
+          "text": "道谢，之后继续原来的事情。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "praise-3",
+          "text": "道谢并说明大家各自做了什么。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "praise-4",
+          "text": "道谢，同时想想自己是不是真的做到了对方说的程度。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "mistake",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "发现失误",
+          "messages": [
+            {
+              "id": "mistake-message-1",
+              "side": "right",
+              "name": "我",
+              "text": "我把刚才确认的信息发给大家了。"
+            },
+            {
+              "id": "mistake-message-2",
+              "side": "left",
+              "name": "小周",
+              "text": "收到。"
+            },
+            {
+              "id": "mistake-message-3",
+              "side": "system",
+              "name": "",
+              "text": "你发现发出的信息里有一处错误，暂时没人指出来。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你更可能？",
+      "options": [
+        {
+          "id": "mistake-1",
+          "text": "判断影响大小，小问题就下次留意。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "mistake-2",
+          "text": "尽快补充更正，避免别人按错误信息行动。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "mistake-3",
+          "text": "先核对前后内容，确认还有没有其他遗漏。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "mistake-4",
+          "text": "直接说明弄错了，用一句轻松的话化解尴尬。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "new-group",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "加入新群体",
+          "messages": [
+            {
+              "id": "new-group-message-1",
+              "side": "system",
+              "name": "",
+              "text": "你第一次参加这个活动，现场大多数人互相认识。"
+            },
+            {
+              "id": "new-group-message-2",
+              "side": "left",
+              "name": "活动组织者",
+              "text": "大家先随便聊聊，活动一会儿开始。"
+            },
+            {
+              "id": "new-group-message-3",
+              "side": "system",
+              "name": "",
+              "text": "你来到现场时，大家正在聊天。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你会先？",
+      "options": [
+        {
+          "id": "new-group-1",
+          "text": "观察大家聊什么，找到合适的加入时机。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "new-group-2",
+          "text": "找身边的人打招呼，从眼前的事聊起。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "new-group-3",
+          "text": "先按自己的节奏待着，有机会再认识人。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "new-group-4",
+          "text": "看看有没有需要帮忙准备的事，边做边认识大家。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "boundary",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "借用时间",
+          "messages": [
+            {
+              "id": "boundary-message-1",
+              "side": "left",
+              "name": "小林",
+              "text": "我今天有点烦，能打电话聊聊吗？"
+            },
+            {
+              "id": "boundary-message-2",
+              "side": "system",
+              "name": "",
+              "text": "你很在意对方，但今天已经很累。"
+            }
+          ]
+        }
+      ],
+      "prompt": "你更可能怎么安排？",
+      "options": [
+        {
+          "id": "boundary-1",
+          "text": "说明今晚能聊多久，再约一个时间继续。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "boundary-2",
+          "text": "先接起来陪聊，用轻松一点的话让对方开口。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "boundary-3",
+          "text": "先听一会儿，聊到自己撑不住时再说。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "boundary-4",
+          "text": "先问问发生了什么，判断对方现在有多需要帮助。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "choice",
+      "blocks": [
+        {
+          "type": "chat",
+          "title": "自己的选择",
+          "messages": [
+            {
+              "id": "choice-message-1",
+              "side": "system",
+              "name": "",
+              "text": "你正在考虑两个都不错的机会。"
+            },
+            {
+              "id": "choice-message-2",
+              "side": "left",
+              "name": "朋友",
+              "text": "一个是你熟悉的方向，另一个挺新鲜，不过结果不太确定。"
+            },
+            {
+              "id": "choice-message-3",
+              "side": "left",
+              "name": "朋友",
+              "text": "你打算怎么选？"
+            }
+          ]
+        }
+      ],
+      "prompt": "做决定前，你更依赖什么？",
+      "options": [
+        {
+          "id": "choice-1",
+          "text": "找信任的人聊聊，听听碰撞出的想法。",
+          "scores": {
+            "performer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "choice-2",
+          "text": "把可能的结果和自己真正担心的事想清楚。",
+          "scores": {
+            "thinker": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "choice-3",
+          "text": "列出条件和期限，比较之后定一个可执行的选择。",
+          "scores": {
+            "fixer": 1
+          },
+          "evidence": ""
+        },
+        {
+          "id": "choice-4",
+          "text": "给自己一点时间，感受哪个选择更自在。",
+          "scores": {
+            "whatever": 1
+          },
+          "evidence": ""
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "whatever",
+      "title": "留白观察者",
+      "headline": "你习惯先给事情留一点空间。",
+      "weights": {},
+      "description": "面对变化和别人的节奏，你通常不会急着把事情定死。你愿意先看看情况，再决定什么时候表达自己的偏好。",
+      "considerations": "当你太久没有说出自己的需要，别人可能把你的配合误会成没有偏好。",
+      "strengths": "你的弹性让合作更轻松，也能在变化中保留调整的余地。",
+      "suggestion": "下次有人问你都不都行时，先说一个你在意的条件。",
+      "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzJIURYLw93SaXJEE5hFEk7sn0ztibsiaP1ib01icfanuuZpOZlibB2hHAHcuIcd8cEIdTGy1PwVbyGM5AdMtBiaupYsoHLEnMHyFublM/0?from=appmsg"
+    },
+    {
+      "id": "fixer",
+      "title": "行动组织者",
+      "headline": "你会先想：怎样才能让事情往前走？",
+      "weights": {},
+      "description": "当安排悬着或问题出现时，你倾向于梳理条件、提出下一步。把模糊的事情变得可处理，会让你更安心。",
+      "considerations": "如果总是由你补位，别人可能没机会承担，而你自己的精力也会被占满。",
+      "strengths": "你能把讨论变成行动，也常让身边的人知道接下来该做什么。",
+      "suggestion": "接下任务前，先确认谁负责哪一部分，以及你愿意做到哪里。",
+      "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzJxtLp36wZw9U7YDMxc8TYjEoVVLvbCibUpKvtuYnNtIt1R3OJuReFr5iaqrLHQ1mqgicicHKCEXDQ12aiclcYE0EyJ6n7JDynTMhEU/0?from=appmsg"
+    },
+    {
+      "id": "thinker",
+      "title": "细节解读者",
+      "headline": "你会留意事情表面之外的信息。",
+      "weights": {},
+      "description": "一句话的语气、一段沉默或一个计划的变化，都可能让你多想一步。你希望理解背景，再决定如何回应。",
+      "considerations": "信息不足时，推测可能越长越像事实，让你在尚未发生的事上消耗精力。",
+      "strengths": "你善于发现细节，也愿意考虑他人的处境和事情的后果。",
+      "suggestion": "把已知事实和自己的猜测分开；关键处可以直接问一句。",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzIS1ZVd9ibfTIgwYSBneS6njfxia59dw617XJI96T4Oz7NHKQpMs7zcxydVYn6PhnW0G8yeicCzu0AnwQWUIWeTHIv63O6bhWl25M/0?from=appmsg"
+    },
+    {
+      "id": "performer",
+      "title": "气氛连接者",
+      "headline": "你常用交流打开局面。",
+      "weights": {},
+      "description": "遇到陌生、沉默或尴尬的时刻，你倾向于先说点什么，让彼此有机会接上话。你关注事情，也关注人之间的感觉。",
+      "considerations": "如果总由你照顾气氛，自己的疲惫和真实想法可能被放到后面。",
+      "strengths": "你能为对话创造入口，让不熟悉的人更容易参与进来。",
+      "suggestion": "不必填满每一次沉默；需要休息或有不同意见时，也可以直接说。",
+      "image_url": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzJqVORGxGfUn5HqnFoMEwWYG7r1eZLZa0SJc662xFlicylqTicfbGn0ewywB0TYatwoPtWqQDHv0atZC1yzgsBCHMmuKhI8WNocU/0?from=appmsg"
+    }
+  ],
+  "logoUrl": "https://mmbiz.qpic.cn/mmbiz_png/ukEzL1MVZzKWgibOrYFVzulXzsibAs64ACn17RBbXyBFnQZXhklALHjCLfCO62E9gUO1vzkictaHO6ickKiaEudTibXDibB1icj5RbMtmlEygiauxoPM/0?from=appmsg"
+}
