@@ -13,7 +13,7 @@ def now():
 
 class Store:
     ACTIVE_STATUSES = ("queued", "fetching_metadata", "fetching_subtitles",
-                       "downloading_audio", "transcribing")
+                       "downloading_video", "downloading_audio", "transcribing")
 
     def __init__(self, db_path=None):
         self.db_path = str(db_path or (data_dir() / "collector.sqlite3"))
@@ -117,7 +117,7 @@ class Store:
     def recover_interrupted(self):
         """On process restart, make interrupted work retryable without losing saved results."""
         with self.session() as db:
-            db.execute("UPDATE jobs SET status='queued', error='服务上次退出时任务未完成，可重新采集', updated_at=? WHERE status IN ('fetching_metadata', 'fetching_subtitles', 'downloading_audio', 'transcribing')", (now(),))
+            db.execute("UPDATE jobs SET status='queued', error='服务上次退出时任务未完成，可重新采集', updated_at=? WHERE status IN ('fetching_metadata', 'fetching_subtitles', 'downloading_video', 'downloading_audio', 'transcribing')", (now(),))
             return [dict(row) for row in db.execute("SELECT * FROM jobs WHERE status='queued' ORDER BY created_at")]
 
     def retry(self, job_id):

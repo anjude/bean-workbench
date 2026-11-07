@@ -46,7 +46,7 @@ def _ydl(**options):
                       "js_runtimes": {"node": {}}, **options})
 
 
-def get_video(content_id, page=1):
+def get_video(content_id, page=1, source_url=None):
     url = "https://www.youtube.com/watch?v=" + content_id
     with _ydl(skip_download=True, ignore_no_formats_error=True) as ydl:
         info = ydl.extract_info(url, download=False)

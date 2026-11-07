@@ -63,9 +63,14 @@ def collect_job(store, job_id, model=None):
     if not job:
         raise ValueError("找不到采集任务")
     try:
-        store.update(job_id, status="fetching_metadata", error=None)
         adapter = ADAPTERS[job["platform"]]
-        video = adapter.get_video(job["content_id"], int(job["page"]))
+        if getattr(adapter, "requires_local_asr", False):
+            selected_model, _ = transcribe.resolve_model(model or job.get("model_id"))
+            if not transcribe.available(selected_model):
+                return store.update(job_id, status="transcription_unavailable",
+                                    error="该来源需要本地 ASR，但所选模型推理依赖缺失；请按 README 安装后重试。")
+        store.update(job_id, status="downloading_video" if job["platform"] == "xiaohongshu" else "fetching_metadata", error=None)
+        video = adapter.get_video(job["content_id"], int(job["page"]), source_url=job["url"])
         store.update(job_id, title=video["title"], author=video["author"], status="fetching_subtitles")
         subtitle = adapter.get_subtitle(video)
         subtitle_status = subtitle.get("status") if subtitle else "unavailable"
@@ -82,7 +87,7 @@ def collect_job(store, job_id, model=None):
                 return store.update(job_id, status="transcription_unavailable",
                                     error="未取得匿名可用字幕{}。所选模型推理依赖缺失或当前平台不支持；请按 README 安装对应 ASR 环境后重试。".format("（平台提示字幕需要登录，本工具不读取登录凭据）" if subtitle_status == "login_required" else ""))
             audio_dir = data_dir() / "audio"
-            audio_name = "{}-p{}.m4a".format(job["content_id"], video["page"]) if job["platform"] == "bilibili" else "youtube-{}.audio".format(job["content_id"])
+            audio_name = "{}-p{}.m4a".format(job["content_id"], video["page"]) if job["platform"] == "bilibili" else "{}-{}.m4a".format(job["platform"], job["content_id"])
             audio_path = audio_dir / audio_name
             if not audio_path.exists() or audio_path.stat().st_size < 1024:
                 store.update(job_id, status="downloading_audio")

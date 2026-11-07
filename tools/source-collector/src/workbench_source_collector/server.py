@@ -1,4 +1,7 @@
+import hashlib
 import json
+import re
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -6,7 +9,9 @@ from urllib.parse import unquote, urlparse
 
 from .sources import parse_source
 from .core import collect_job
+from .paths import data_dir
 from .storage import Store
+from . import local_file
 
 
 WEB_ROOT = Path(__file__).parent / "web"
@@ -76,6 +81,8 @@ class Handler(BaseHTTPRequestHandler):
         if not self._local_request():
             return self._json({"error": "仅接受本机请求"}, 403)
         try:
+            if self.path == "/api/files":
+                return self._upload_local_video()
             if self.path == "/api/jobs":
                 payload = self._body()
                 lines = payload.get("inputs", [])
@@ -122,6 +129,73 @@ class Handler(BaseHTTPRequestHandler):
         if args and str(args[0]).startswith("/api"):
             return
         super().log_message(fmt, *args)
+
+    def _upload_local_video(self):
+        if self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower() != "application/octet-stream":
+            self.close_connection = True
+            return self._json({"error": "视频上传必须使用 application/octet-stream"}, 415)
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError:
+            self.close_connection = True
+            return self._json({"error": "上传请求缺少有效的 Content-Length"}, 400)
+        if length < 1 or length > local_file.MAX_VIDEO_BYTES:
+            self.close_connection = True
+            return self._json({"error": "视频文件为空或超过 2 GB 限制"}, 413)
+        name = Path(unquote(self.headers.get("X-File-Name", ""))).name
+        if len(name) > 500:
+            self.close_connection = True
+            return self._json({"error": "视频文件名过长"}, 400)
+        suffix = Path(name).suffix.lower()
+        if suffix not in local_file.VIDEO_EXTENSIONS:
+            self.close_connection = True
+            return self._json({"error": "请选择 MP4、MOV、MKV、WebM、AVI 等常见视频文件"}, 415)
+        model_id = self.headers.get("X-Source-Model", "") or None
+        language = self.headers.get("X-Source-Language", "") or None
+        try:
+            if model_id:
+                from .transcribe import resolve_model
+                model_id, _ = resolve_model(model_id)
+            if language not in (None, "Chinese", "English"):
+                raise ValueError("语言选项只支持自动、Chinese 或 English")
+        except ValueError as exc:
+            self.close_connection = True
+            return self._json({"error": str(exc)}, 400)
+
+        upload_dir = data_dir() / "uploads"
+        upload_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
+        temporary = upload_dir / (uuid.uuid4().hex + suffix + ".upload")
+        digest = hashlib.sha256()
+        remaining = length
+        try:
+            with temporary.open("xb") as output:
+                while remaining:
+                    chunk = self.rfile.read(min(1024 * 1024, remaining))
+                    if not chunk:
+                        raise ValueError("视频上传未完整到达")
+                    digest.update(chunk)
+                    output.write(chunk)
+                    remaining -= len(chunk)
+            content_id = digest.hexdigest()
+            safe_stem = re.sub(r"[\\/:*?\"<>|\x00-\x1f]+", "_", Path(name).stem).strip(" ._")[:100]
+            final_path = upload_dir / (content_id + ("-" + safe_stem if safe_stem else "") + suffix)
+            if final_path.exists():
+                temporary.unlink(missing_ok=True)
+            else:
+                temporary.replace(final_path)
+            job, started = self.server.store.start_or_reuse_job(
+                content_id, 1, str(final_path), platform="local_file",
+                model_id=model_id, requested_language=language)
+            if not started:
+                if Path(job.get("url", "")) != final_path:
+                    final_path.unlink(missing_ok=True)
+                return self._json({"error": "该视频已有任务正在处理", "job": job}, 409)
+            self.server.worker.submit(collect_job, self.server.store, job["id"], model_id)
+            return self._json({"job": job, "started": True, "filename": name}, 202)
+        except (OSError, ValueError) as exc:
+            temporary.unlink(missing_ok=True)
+            self.close_connection = True
+            return self._json({"error": str(exc)}, 400)
 
 
 def serve(host="127.0.0.1", port=8765, store=None):

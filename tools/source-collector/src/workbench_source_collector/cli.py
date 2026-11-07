@@ -12,10 +12,10 @@ from .storage import Store
 def main():
     parser = argparse.ArgumentParser(prog="hr-source", description="工作台来源采集工具")
     sub = parser.add_subparsers(dest="command")
-    collect = sub.add_parser("collect", help="采集 B 站或 YouTube 视频字幕")
+    collect = sub.add_parser("collect", help="采集视频字幕或转写本地视频")
     collect.add_argument("url", help="视频链接或平台视频 ID")
     collect.add_argument("--retry", action="store_true", help="重试该来源的失败或受限任务")
-    collect.add_argument("--platform", choices=["bilibili", "youtube"])
+    collect.add_argument("--platform", choices=["bilibili", "youtube", "xiaohongshu", "generic_video", "local_file"])
     from . import transcribe
     collect.add_argument("--model", default=None,
                          help="无平台字幕时使用的 ASR 模型；默认 Qwen3-ASR")

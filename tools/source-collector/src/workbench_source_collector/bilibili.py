@@ -54,7 +54,7 @@ def _get_json(url, timeout=25):
     return payload.get("data") or {}
 
 
-def get_video(bvid, page):
+def get_video(bvid, page, source_url=None):
     data = _get_json(BASE + "/x/web-interface/view?" + urllib.parse.urlencode({"bvid": bvid}))
     rights = data.get("rights") or {}
     if data.get("is_upower_exclusive") or rights.get("ugc_pay") or rights.get("arc_pay"):

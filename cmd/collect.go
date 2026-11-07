@@ -14,17 +14,31 @@ var collectCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(collectCmd)
-	for _, platform := range []string{"bilibili", "youtube"} {
-		platform := platform
+	for _, source := range []struct{ command, platform, label string }{
+		{command: "bilibili", platform: "bilibili", label: "B 站"},
+		{command: "youtube", platform: "youtube", label: "YouTube"},
+		{command: "xhs", platform: "xiaohongshu", label: "小红书"},
+		{command: "video", platform: "generic_video", label: "公开视频"},
+		{command: "file", platform: "local_file", label: "本地视频文件"},
+	} {
+		source := source
 		command := &cobra.Command{
-			Use:   platform + " <视频链接或ID>",
-			Short: "采集 " + platform + " 视频字幕",
+			Use:   source.command + " <视频链接或文件路径>",
+			Short: "采集 " + source.label + "字幕",
 			Args:  cobra.ExactArgs(1),
 			RunE: func(cmd *cobra.Command, args []string) error {
 				cmd.SilenceUsage = true
 				model, _ := cmd.Flags().GetString("model")
 				language, _ := cmd.Flags().GetString("language")
-				return runSourceCollectorWithModel(cmd, args[0], model, language, platform)
+				input := args[0]
+				if source.platform == "local_file" {
+					absolute, err := filepath.Abs(input)
+					if err != nil {
+						return err
+					}
+					input = absolute
+				}
+				return runSourceCollectorWithModel(cmd, input, model, language, source.platform)
 			},
 		}
 		command.Flags().Bool("retry", false, "重试该视频已有的失败或受限任务")

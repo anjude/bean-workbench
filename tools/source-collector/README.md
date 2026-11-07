@@ -10,6 +10,9 @@
 hr collect bilibili BV1yUHP6rEYD
 hr collect youtube 'https://www.youtube.com/watch?v=qU3fmidNbJE'
 hr collect youtube qU3fmidNbJE
+hr collect xhs 'https://xhslink.com/分享码'
+hr collect video 'https://公开页面上的视频链接'
+hr collect file '/绝对路径/本地视频.mp4'
 hr collect bilibili BV1yUHP6rEYD --model whisper-large-v3-turbo --language Chinese
 hr collect jobs
 hr collect serve
@@ -20,6 +23,21 @@ hr models download qwen3-forced-aligner-0.6b-8bit
 ```
 
 中文 B 站推荐步骤：先运行一次 `hr models list`，确认 Qwen3-ASR 和 Qwen3-ForcedAligner 都显示 `installed: true`；再执行 `hr collect bilibili <BV号或链接>`。命令会同步运行至完成。有平台字幕时优先保存平台字幕；无可用字幕时，才运行本机 ASR 和强制对齐。再次执行同一视频会重新采集，并覆盖同一来源包中的 `source.json`、`字幕.srt` 和 `正文.txt`；如果该视频已有任务正在排队或执行，会返回“采集任务正在执行”，不会重复启动。机器字幕仍需人工复核。
+
+本地视频可在网页中选择上传，也可运行 `hr collect file <文件路径>`。支持 FFmpeg 能解码的常见视频容器，单个文件最多 2 GB、时长最多 2 小时；只抽取音轨并在本机 ASR，不上传到云端。网页上传副本保存在 Git 忽略的本机运行目录。
+
+公开视频链接优先由 B 站、YouTube 或小红书专用适配器处理；其他 HTTP/HTTPS 链接交给 `yt-dlp`，仅支持其当前 extractor 能访问的页面。通用下载器本轮直接做本地 ASR，不采集平台字幕。登录、验证码、付费/私密权限、DRM、直播和网站策略变更都可能导致链接不可用。
+
+小红书链接由已接入的 `tools/xhs-research/XHS-Downloader/` 子模块下载，再使用 FFmpeg 抽取音轨。该上游工具作为独立子模块和独立 Python 环境运行，不把其依赖混装进采集器。首次安装：
+
+```sh
+cd tools/xhs-research/XHS-Downloader
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -e .
+cd ../../..
+```
+
+可通过 `HR_XHS_DOWNLOADER_PYTHON` 指向自定义 Python 解释器。小红书下载遵守公开可访问与平台权限限制；工具不会自动读取浏览器登录态或替用户绕过访问控制。
 
 查看采集结果与打开网页：
 
@@ -36,13 +54,13 @@ python3 task/beannote/script/import-source.py '/来源包完整路径' --topic '
 
 插件导出 ZIP 可用 `hr collect import-zip '/ZIP完整路径'` 转成同一格式。采集器不会替你选择主题或自动写入主题目录。
 
-网页为 `http://127.0.0.1:8765`，支持混合批量输入 B 站和 YouTube 链接。平台字幕优先；没有可用字幕时下载音频并调用本机 ASR 模型。默认 Qwen3-ASR 转写后由 Qwen3-ForcedAligner 生成词/汉字级时间轴；字幕优先按句末标点断行，只有长句超过长度或时长阈值时才在逗号等自然分句处换行。对齐结果仍需人工复核。未安装对齐模型时保留 Qwen 粗分块并在来源元数据中标明降级原因。YouTube 上传字幕优先于自动字幕，自动翻译轨不作原文采集。
+网页为 `http://127.0.0.1:8765`，支持混合批量输入 B 站、YouTube、小红书和 yt-dlp 可访问的公开链接，也可选择本地视频上传。平台字幕优先；没有可用字幕时下载或提取音频并调用本机 ASR 模型。默认 Qwen3-ASR 转写后由 Qwen3-ForcedAligner 生成词/汉字级时间轴；字幕优先按句末标点断行，只有长句超过长度或时长阈值时才在逗号等自然分句处换行。对齐结果仍需人工复核。未安装对齐模型时保留 Qwen 粗分块并在来源元数据中标明降级原因。YouTube 上传字幕优先于自动字幕，自动翻译轨不作原文采集。
 
 资料包含 `source.json`、`字幕.srt`、`正文.txt`，格式见 [来源包 v1](../../docs/source-package-v1.md)。插件 ZIP 导入兼容旧格式。`hr collect jobs` 返回任务状态及资料包绝对路径。历史状态 `ready_to_archive` 在网页显示为“已采集”；保留数据库状态值以兼容已有任务，工作台不关联业务主题。
 
 ## 安装
 
-基础能力需要 Python 3.9+。YouTube 需要 Python 3.10+ 和 Node.js；MLX 需要 Apple Silicon、Python 3.10+ 和 FFmpeg。当前本机使用 Python 3.12，完整环境已安装：
+基础能力需要 Python 3.9+。YouTube 与 yt-dlp 通用链接需要 Python 3.10+；YouTube 可能需要 Node.js 处理平台脚本挑战。本地视频和小红书音频提取需要 FFmpeg；XHS-Downloader 单独需要 Python 3.12+；MLX 需要 Apple Silicon、Python 3.10+ 和 FFmpeg。当前本机使用 Python 3.12，完整环境已安装：
 
 ```sh
 cd tools/source-collector
@@ -58,9 +76,10 @@ python3.12 -m venv .venv-asr
 | --- | --- | --- |
 | Python 工具 | `tools/source-collector/` | `HR_SOURCE_COLLECTOR_DIR` |
 | 轻量来源包 | 工作台 `source/collected/` | `HR_SOURCE_DIR` |
-| SQLite、音频、迁移临时数据 | 工作台 `.agents/local-config/source-collector/` | `HR_COLLECTOR_DATA_DIR` |
+| SQLite、媒体上传/下载、音频及迁移临时数据 | 工作台 `.agents/local-config/source-collector/` | `HR_COLLECTOR_DATA_DIR` |
 | ASR 模型权重 | 工作台 `.agents/local-config/models/asr/{模型 ID}/{revision}/` | `HR_MODEL_CACHE_DIR` |
 | YouTube 登录 Cookie 文件 | 默认不读取 | `HR_YOUTUBE_COOKIES_FILE` |
+| XHS-Downloader Python | `tools/xhs-research/XHS-Downloader/.venv/bin/python` | `HR_XHS_DOWNLOADER_PYTHON` |
 
 来源包、运行数据、虚拟环境和模型权重均被 Git 忽略。模型目录按 ID 与精确修订号隔离。下载时从 Hugging Face Hub 的固定 revision 获取文件，并核对权重大小和 SHA-256；校验失败不会进入转写。`HR_MODEL_CACHE_DIR` 可把权重放到其他磁盘。设置 `HR_COLLECTOR_DATA_DIR` 时，未指定 `HR_SOURCE_DIR` 的来源包会进入该数据目录的 `inbox/`，便于隔离运行。旧的 `BEANNOTE_DATA_DIR` 和 `BEANNOTE_YOUTUBE_COOKIES_FILE` 暂作为兼容别名。
 

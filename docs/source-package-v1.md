@@ -43,9 +43,9 @@
 | 字段 | 必需 | 说明 |
 | --- | --- | --- |
 | `schema_version` | 是 | 本格式版本，当前为 `1` |
-| `platform` | 是 | 来源平台标识：`bilibili` 或 `youtube` |
-| `content_id`、`page` | 是 | 平台内容 ID 与分 P；去重键为平台 + ID + 分 P |
-| `url` | 是 | 规范化原始链接 |
+| `platform` | 是 | 来源类型标识：`bilibili`、`youtube`、`xiaohongshu`、`generic_video` 或 `local_file`；可按需扩展 |
+| `content_id`、`page` | 是 | 平台内容 ID 与分 P；通用链接、小红书链接和本地文件使用来源链接或文件内容的 SHA-256 标识；去重键为平台 + ID + 分 P |
+| `url` | 是 | 原始链接或 `local-file:` 文件名标识；不要把本机绝对路径、Cookie 或临时签名地址写入来源包 |
 | `title`、`author` | 是 | 采集到的来源元信息 |
 | `published_at` | 否 | 平台发布时间，未知时为 `null` |
 | `collected_at` | 是 | 采集时间，ISO 8601 UTC |
@@ -63,4 +63,4 @@
 当前 Chrome 插件的 ZIP 使用 `来源.json`，并保留旧版 Job 结构字段；本地 Python 工具输出 `source.json` 并按上述字段记录。Python 采集器的 `import-zip` 命令可读取插件 ZIP 内的 `来源.json`、字幕与纯文本并转换到 v1；重复 BV/分 P 会跳过，导入结果仍需用户显式选择主题后归档。`manifest.csv` 仅作批量清单，不覆盖单条 JSON 的来源字段。
 
 
-YouTube 的 `content_id` 是 11 位视频 ID，`page` 固定为 1；目录名前缀为 `youtube-`。B 站原目录名和字段保持兼容。平台临时签名地址、Cookie 和 yt-dlp 原始提取结果不进入来源 JSON。
+YouTube 的 `content_id` 是 11 位视频 ID，`page` 固定为 1；目录名前缀为 `youtube-`。B 站原目录名和字段保持兼容。通用链接、小红书和本地文件使用稳定摘要作为 `content_id`，`page` 固定为 1。平台临时签名地址、Cookie 和 yt-dlp 原始提取结果不进入来源 JSON。
