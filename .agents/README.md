@@ -7,12 +7,14 @@
 ```text
 .agents/                  本目录，工作台仓库内的实体
 ├── README.md             本文件，接入说明
-├── skills/               skill 实体，按族群编号（wb-* 例外，用语义名）
+├── skills/               skill 实体，按族群规则命名（wb-* 和平台适配能力使用语义名）
 │   ├── dev-flow          开发流程唯一入口，细则在 references/
 │   ├── dev-flow-tools-*  仓库、数据库、SVG 与产品视频独立能力
 │   ├── bn-tools-*        文章辅助编辑、排版与发布三个工具
+│   ├── xhs-tools-*       小红书公开内容研究与预发布准备工具
+│   ├── superone-mcp-*    Superone MCP 客户端接入能力
 │   ├── finance-tools-*   理财分析、分层日报与仓位目标记账
-│   └── wb-*              工作台基建（3 个，不编号）
+│   └── wb-*              工作台基建（5 个，不编号）
 └── vendor/product-video/ 第三方视频制作能力的固定版本
 ```
 
@@ -35,6 +37,10 @@ ln -s ~/.agents /path/to/your-project/.agents
 摘除时用 `rm /path/to/your-project/.agents`，**不要带尾斜杠**，否则会顺着链接删到这里的实体。
 
 换机器或移动工作台目录后，外链会失效，重建一条即可。
+
+## 小红书内容研究
+
+小红书内容学习与预发布准备由 `skills/xhs-tools-content-research/` 提供。采集、素材下载和发布工具保留各自边界，不将第三方代码、账号凭证或采集数据混入 skill；详见该 skill 的工具说明。
 
 ## 版本控制
 

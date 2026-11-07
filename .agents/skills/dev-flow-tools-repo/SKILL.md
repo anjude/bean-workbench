@@ -13,7 +13,7 @@ metadata:
 
 | 仓 | 路径 | 角色 |
 | --- | --- | --- |
-| 工作台根 | `bean-workbench` | 跨仓协调目录，方案落在 `task/YYMMDD_{主题}/README.md` |
+| 工作台根 | `bean-workbench` | 跨仓协调目录，设计方案落在任务目录 `plans/` 的独立文档，由任务 README 索引 |
 | 后端仓 | `business-repo/backend-superone` | Go 后端，以此为项目根目录 |
 | uni-app 客户端 | `business-repo/uni-superone`、`business-repo/uni-carbon-space` | 多端前端项目，各自实现页面与平台适配 |
 | 鹅懂个啥小程序 | `business-repo/uni-gknow` | uni-app 微信小程序，开发与生产统一使用 `release` 分支 |
@@ -44,11 +44,13 @@ metadata:
 
 ### 技术栈
 
-Go、Gin、GORM、MySQL、Viper、Wire、Logrus、JWT、Prometheus、pprof、Docker。
+Go、Gin、GORM、MySQL、Viper、Wire、Logrus、JWT、Prometheus、pprof。当前部署由 `deploy.sh` 编译 Go 二进制并通过 Supervisor 加载。
 
 分层顺序：app → use_case → domain → repo → infrastructure。不跨层直接调用 app 或 middleware。
 
 ### 常用命令
+
+开发联调使用 test 环境和真实后端服务。专用测试账号为 `codex-superone-test`，MCP JWT 保存在工作台忽略目录 `.agents/local-config/backend-superone/test-mcp-jwt`，文件权限为 600。凭证过期时使用 test 配置重新签发，不将密钥或 JWT 写入版本管理。
 
 | 命令 | 作用 |
 | --- | --- |
@@ -57,7 +59,7 @@ Go、Gin、GORM、MySQL、Viper、Wire、Logrus、JWT、Prometheus、pprof、Doc
 | `make lint-fix` | lint 并自动修复 |
 | `make test` | `go test -short ./...`，默认快速测试 |
 | `make test-integration` | `RUN_INTEGRATION_TESTS=1 go test ./...` |
-| `make build` | `docker build -t superone .` |
+| `CGO_ENABLED=0 go build ./cmd/api_service/main.go` | 本地编译后端二进制。仓内 `make build` 和 Dockerfile 属于旧 Docker 构建链路，现已废弃 |
 | `make mock` | `go generate -run="mockgen" ./...` |
 | `make gentab ENV=<test\|live>` | 执行默认建表，等价 `go run ./scripts/migration -env=<ENV>` |
 | `make push-all <说明>` | 提交并推送前端子模块与后端主仓，commit 带 `yyMMdd` 前缀 |
@@ -115,7 +117,11 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 
 ## 分支与部署
 
+业务仓默认直接在 `release` 开发，`backend-superone` 默认在 `dev` 开发。开发前核对当前分支，切换时保留现有提交和未提交改动。目标分支不存在或改动无法安全带过去时先核查情况。用户明确指定其他分支时按指定执行；未指定时不新建任务分支。提交和推送仍按用户授权与工作台规则执行。
+
 准备提交代码时，先按 `wb-handoff` 检查当前任务的 `process/` 与最新 `handoff/` 是否覆盖本次改动；缺少过程记录时补齐并与代码一并提交。记录规则以 `wb-handoff` 为唯一来源，本 skill 不重复定义。
+
+后端 `backend-superone` 的分支与部署关系如下：
 
 | 分支 | 作用 | 部署目标 |
 | --- | --- | --- |
@@ -123,7 +129,7 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 | `test` | 合并 `dev` 后自动部署 | nonlive |
 | `release` | 合并 `dev` 后自动部署 | live |
 
-`backend-superone` 默认开发分支是 `dev`；`uni-carbon-space`、`frontend-contracts` 默认 `master`。日常未指定目标时按仓库默认分支工作；用户明确指定 `test` 或 `release` 时，允许直接在目标分支提交和推送，无需先经过 `make nonlive` / `make release`。
+用户明确指定后端 `test` 或 `release` 时，允许直接在目标分支提交和推送，无需先经过 `make nonlive` / `make release`。
 
 ### 分支推进脚本的实际行为
 

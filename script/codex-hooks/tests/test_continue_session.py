@@ -73,18 +73,49 @@ class ContinuationTests(unittest.TestCase):
             self.assertEqual(flow.main(), 0)
         return output.getvalue(), invoke
 
-    def test_first_precompact_starts_without_a_counter_and_allows_old_turn(self):
+    def test_post_model_request_starts_at_90_percent(self):
+        event = {"session_id": "old", "hook_event_name": "PostModelRequest", "cwd": "/repo",
+                 "status": "completed", "token_usage": {"input_tokens": 900}, "transcript_path": "record"}
+        with patch.object(flow, "context_window", return_value=1000):
+            output, invoke = self.run_event(event)
+        self.assertEqual(output, "")
+        invoke.assert_called_once_with("old", "/repo", "context_90_percent")
+
+    def test_below_threshold_failed_or_subagent_does_not_start(self):
+        base = {"session_id": "old", "hook_event_name": "PostModelRequest", "cwd": "/repo",
+                "status": "completed", "token_usage": {"input_tokens": 899}, "transcript_path": "record"}
+        for event in (base, {**base, "status": "failed", "token_usage": {"input_tokens": 999}},
+                      {**base, "agent_id": "child", "token_usage": {"input_tokens": 999}},
+                      {**base, "token_usage": None}):
+            with self.subTest(event=event), patch.object(flow, "context_window", return_value=1000):
+                output, invoke = self.run_event(event)
+                self.assertEqual(output, "")
+                invoke.assert_not_called()
+
+    def test_window_uses_latest_valid_token_count_not_cumulative_usage(self):
+        transcript = Path(self.folder.name) / "transcript.jsonl"
+        records = [
+            {"type": "event_msg", "payload": {"type": "token_count", "info": {"model_context_window": 1000}}},
+            {"type": "event_msg", "payload": {"type": "token_count", "info": None}},
+        ]
+        transcript.write_text(''.join(json.dumps(record) + '\n' for record in records))
+        event = {"status": "completed", "token_usage": {"input_tokens": 900}, "transcript_path": str(transcript)}
+        self.assertTrue(flow.reached_context_threshold(event))
+        self.assertFalse(flow.reached_context_threshold({**event, "transcript_path": "missing"}))
+
+    def test_precompact_no_longer_starts_continuation(self):
         event = {"session_id": "old", "hook_event_name": "PreCompact", "cwd": "/repo"}
         output, invoke = self.run_event(event)
-        self.assertEqual(json.loads(output), {"continue": True})
-        invoke.assert_called_once_with("old", "/repo", "pre_compact")
+        self.assertEqual(output, "")
+        invoke.assert_not_called()
 
     def test_hook_error_does_not_stop_compaction(self):
-        output, _ = self.run_event(
-            {"session_id": "old", "hook_event_name": "PreCompact"},
-            unittest.mock.Mock(side_effect=RuntimeError("failed")),
-        )
-        self.assertTrue(json.loads(output)["continue"])
+        with patch.object(flow, "context_window", return_value=1000):
+            output, _ = self.run_event(
+                {"session_id": "old", "hook_event_name": "PostModelRequest", "status": "completed", "token_usage": {"input_tokens": 900}},
+                unittest.mock.Mock(side_effect=RuntimeError("failed")),
+            )
+        self.assertEqual(output, "")
 
     def test_postcompact_has_no_side_effect(self):
         output, invoke = self.run_event({"session_id": "old", "hook_event_name": "PostCompact"})
@@ -120,6 +151,9 @@ class ContinuationTests(unittest.TestCase):
         self.assertEqual(fork["lastTurnId"], "first")
         seed = next(p for m, p in self.proxy.calls if m == "turn/start")
         self.assertEqual(seed["input"], [{"type": "text", "text": flow.continuation_prompt("old")}])
+        self.assertEqual(seed["input"][0]["text"], "来源会话 ID：old")
+        self.assertNotIn("handoff", seed["input"][0]["text"])
+        self.assertNotIn("读取", seed["input"][0]["text"])
         self.assertNotIn("不应复制", seed["input"][0]["text"])
         self.assertNotIn("调整钩子规则", seed["input"][0]["text"])
         self.assertNotIn("/repo", seed["input"][0]["text"])

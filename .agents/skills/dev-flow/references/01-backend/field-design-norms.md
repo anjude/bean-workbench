@@ -13,7 +13,7 @@
 - 字段名使用当前项目已有命名风格，通常为 snake_case。
 - 字段必须有明确业务含义，避免 `flag`、`type`、`status` 这类无上下文命名。
 - 新增字段需要说明默认值、是否允许 NULL、历史数据语义和是否需要 DML 初始化。
-- 新表必须优先设计基础字段：`id`、`create_time`、`modify_time`。
+- 新表优先设计主键、创建时间和更新时间，字段名与类型按项目已有约定确定。
 - 金额、费率、数量、重量等字段必须选择精确类型；金额和费率不要使用 float。
 - 状态/枚举字段需要写清楚取值含义，必要时在 comment 里体现。
 - 时间字段跟随当前表风格，例如 int timestamp、datetime 或 timestamp。
@@ -25,7 +25,7 @@
 ### 主键字段
 
 - 默认使用 `id` 作为主键字段名。
-- MySQL 自增主键建议使用 `bigint unsigned NOT NULL AUTO_INCREMENT`。
+- 主键类型和有无 `unsigned` 先对照目标项目已有模型与相关联字段；没有项目约定时，MySQL 可采用 `bigint unsigned NOT NULL AUTO_INCREMENT`。
 - `id` 必须是 `PRIMARY KEY`。
 - `id` comment 建议为 `primary key` 或当前项目已有表达。
 - 不要用业务编号替代自增主键；业务唯一标识单独建字段和唯一索引。
@@ -135,6 +135,11 @@ PRIMARY KEY (`id`)
 
 ## DDL 生成
 
+- 先确认目标数据库类型和版本，阅读目标业务仓已有表模型与同类迁移 SQL。项目明确约定优先于本文件通用示例，无法确认的差异标为待核，不按其他项目推断。
+- 检查表名、业务字段名和索引名是否符合仓库惯例，字段名避免歧义及目标数据库保留字；按目标数据库实际版本核对。区分关键字与保留字，引用标识符不能代替清晰命名。
+- 建表列出类型、长度、NULL、默认值、字段及表的 `COMMENT`、主键、索引、存储引擎和字符集；说明各索引对应的查询、排序或唯一性。特殊排序规则需说明大小写敏感性和业务原因。
+- 核对 DDL 与模型 `TableName()`、字段映射、主键有符号性、默认值和时间维护方式一致，涉及 API 或工具参数时同步检查契约。方案、迁移文件和代码出现不同命名时先纠正，不把未确认原型当作依据。
+- 参考同类迁移的存在性处理；使用 `IF NOT EXISTS` 时，执行后仍需核验实际结构，不能将语句成功当作表结构一致。
 - 沿用当前项目 SQL 文件目录和命名方式。
 - `ALTER TABLE` 新增字段时，写清字段类型、默认值、NULL 约束和 `COMMENT`。
 - 新增字段必须带 `COMMENT`。
@@ -142,6 +147,13 @@ PRIMARY KEY (`id`)
 - 如果影响多张分表，要为每张物理表生成 DDL，或说明生成规则。
 - 索引必须对应真实查询条件，不为低基数字段单独建索引。
 - 避免破坏性变更，例如直接 `DROP COLUMN`、缩窄字段类型、无默认值新增 `NOT NULL` 字段。
+
+### backend-superone 建表约定
+
+- 新表名参照当前仓库同类表的 `_tab` 后缀，GORM 模型的 `TableName()` 与 DDL 表名一致。基础字段复用 `model.BaseTab`，对应 `id bigint`、`create_time` 和 `update_time`；时间使用 Unix 秒，由应用的 `autoCreateTime`、`autoUpdateTime` 维护。默认值和 NULL 约束需在 DDL 与模型中明确并相互核对。
+- 用户数据按业务现有身份约定使用 `openid varchar(64)`。业务字段采用表达含义的名称，例如 `skill_name`；有查询需求时按实际条件设计索引，金额使用精确类型。
+- 引擎、字符集和排序规则参照目标环境与同类迁移，例如现有建表 SQL 使用 InnoDB、utf8mb4、`utf8mb4_unicode_ci`。如字段需要二进制比较或特殊编码，在方案中说明差异及其对唯一性、排序和兼容性的影响。
+- 以上来源为 `internal/model/base_tab.go`、同类 `*_tab.go` 和 `scripts/migration/sql/`；目标库可能存在差异，需要确认实际结构时调用 `dev-flow-tools-db-query` 只读核验。
 
 ## DML 生成
 

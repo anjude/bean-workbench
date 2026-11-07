@@ -13,13 +13,14 @@
 | 任务                   | 目录                                                   | 资源范围                                                                                                | 状态  |
 | -------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --- |
 | 工作台初始化               | `task/workbench/260614_workbench-init/`              | 根目录、`docs/`、`.agents/skills/`、`kb/`、`script/`                                                       | 进行中 |
-| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的日常维护；dev-flow 单入口重构；首次压缩前后台续接、手动切新会话与新会话置顶规则；真实链路待验收 | 进行中 |
+| 工作台日常维护 | `task/workbench/261017_workbench-daily/` | 工作台文档、`task/`、`kb/`、`.agents/skills/`、`script/` 的日常维护；dev-flow 单入口重构；续接新会话仅注入来源 ID、优先恢复原对话并静默按需查 handoff；微信防撤回 skill 内化 | 进行中 |
+| 本机微信聊天读取与总结 | `task/dev-flow/261031_wechat-local-chat/` | `wb-wechat-local`、本机微信数据源、指定群聊/联系人/关键词和时间范围的只读查询 | 流程已建立；首次本机读取器准备待完成 |
 | Superone 多仓规则完善      | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引                                                     | 进行中 |
 |                      |                                                      |                                                                                                     |     |
 | uni-carbon-space 接入  | `task/dev-flow/260614_uni-carbon-space-onboarding/`  | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引                                            | 进行中 |
 | beannote 内容库接入       | `task/workbench/260628_beannote-onboarding/`         | `task/beannote`、内容创作路由、知识库索引                                                                        | 进行中 |
 | beannote 日常维护 | `task/dev-flow/261017_beannote-daily/` | `task/beannote` 主题与 `.agents/skills/bn-tools-*` 辅助编辑、排版、发布工具维护 | 进行中 |
-| beannote 内容生产平台 | `task/dev-flow/261024_beannote-source-collector/` | 工作台 `tools/source-collector/`、`tools/source-collector-extension/`、`hr collect`、`hr models`、`source/collected/`；beannote 消费来源包 | 中文 Qwen ASR 与强制对齐已实跑验收；YouTube/英文按用户要求暂缓，真实插件 ZIP 闭环待样本 |
+| beannote 内容生产平台 | `task/dev-flow/261024_beannote-source-collector/` | 工作台 `tools/source-collector/`、`tools/source-collector-extension/`、`hr collect`、`hr models`、`source/collected/`；beannote 消费来源包 | 本地视频、通用公开视频与小红书适配已接入，待验证；真实插件 ZIP 闭环待样本 |
 | be 族 skill 四阶段重构     | `task/workbench/260829_be-skill-refactor/`           | `.agents/skills/be-*`、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/`                             | 已完成 |
 | dev-flow 跨端合族        | `task/workbench/260829_dev-flow-merge/`              | `.agents/skills/dev-flow-*`、原 `fe-*` 前端族、`AGENTS.md`、`docs/workspace.md`、`docs/workflows/`          | 已完成 |
 | dev-flow 合并精简        | `task/workbench/260829_dev-flow-slim/`               | `.agents/skills/dev-flow-*`、`wb-*`、`AGENTS.md`、`docs/`、`task/registry.md`、`script/`                 | 已完成 |
@@ -27,7 +28,7 @@
 | skill 实体外置           | `task/workbench/260830_skills-externalize/`          | `~/.agents/skills/`、`.agents` 符号链接、`script/check-workbench.py`、`AGENTS.md`、`README.md`、`docs/`      | 已完成 |
 | 任务交接 handoff skill   | `task/workbench/260914_wb-handoff-skill/`            | `.agents/skills/wb-handoff/`、`AGENTS.md`、`task/registry.md`、`script/check-workbench.py`、`wb-router` | 进行中 |
 | Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/`    | `business-repo/backend-superone`、`release-260927` tag、`version/release-260927` 分支                   | 进行中 |
-| Backend Superone 提供 MCP 服务 | `task/dev-flow/261107_backend-superone-mcp/` | `business-repo/backend-superone`，公开安装链接、微信小程序扫码、Agent 授权与私有 Skill 云同步 | MCP 工具和脚本通过 test 后端验证，待真实 Codex 与微信联调 |
+| Backend Superone 提供 MCP 服务 | `task/dev-flow/261107_backend-superone-mcp/` | `business-repo/backend-superone`，公开安装链接、微信小程序扫码、Agent 授权与私有 Skill 云同步 | 组织与公开 Skill 已完成本地实现、test 库迁移和集成验证；远端部署及真实客户端验收待执行 |
 | backend 日常开发 | `task/dev-flow/261009_backend-daily/` | `business-repo/backend-superone`（日常需求方案、开发与验证上下文） | 进行中 |
 | Superone 前端开发（模块与主题） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`、`backend-superone`（近期任务、物品；三态主题方案待确认；release 分支） | 进行中 |
 | Superone 前端模块设计（主题/清单/计划/物品/扩展） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`（扩展入口、系统与签到按钮已实现；type-check/build 待验证） | 进行中 |
@@ -39,8 +40,11 @@
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | uTools Bean Option 日常维护 | `task/dev-flow/261015_utools-bean-option-daily/` | `business-repo/utools-bean-option`（桌面端、插件端与本地工具的日常维护） | 货币列表缓存已修复，待 uTools 实机验收 |
-| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（鹅眼看我使用单用户 Redis key、题库版本和逐题对照海报；本地验证通过，微信端待验收） | 进行中（待微信端多账号验收，未发布） |
-| 鹅懂个啥管理员内容工具 | `task/dev-flow/261010_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
+| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（已实现玩法已由用户测试并确认可跑通；性格盲盒方案见 plans/性格盲盒.md，已恢复开发并补齐技术迁移，原题库和评分保留；demo 项目不计入正式范围；聚会记分使用 HTTP + Redis 房间轮询，摇骰子改为本机即玩，待目标端体验） | 进行中（记分双设备同步与房间分享待微信端体验） |
+| 疯狂大鹅微信小游戏项目 | `task/dev-flow/261101_gknow-minigame/` | 独立微信小游戏工程（非小程序）；主打副本体验和双人小游戏，已定名「疯狂大鹅」；首发范围与技术方案待沟通 | 进行中（任务已建立） |
+| 鹅懂个啥恋爱副本 | `task/dev-flow/261031_gknow-love-copy/` | `business-repo/uni-gknow`（探索 tab 独立入口与目录；首发恋爱速通剧本） | 已改为 28 幕短场景并补齐背景，编译通过，待体验反馈 |
+| 鹅懂个啥公司副本 | `task/dev-flow/261101_gknow-company-copy/` | `business-repo/uni-gknow`（复用现有副本组件讲述真实公司特殊事件；候选清单已整理，首发选题待确认） | 进行中（任务已建立） |
+| 鹅懂个啥小红书图片工坊 | `task/dev-flow/261010_gknow-content-studio/` | Canvas 模板排版与 AI 画面生成；公开内容研究工具在 `tools/xhs-research/`，操作流程由 `xhs-tools-content-research` 承接 | 本地网站 MVP 已运行，生图服务待配置 |
 | 鹅懂个啥产品宣传样片 | `task/dev-flow/261015_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
 
 ## 冷任务
@@ -53,15 +57,21 @@
 
 - 提到原始素材库或 `local-source`：先读 `source/README.md`，原始文件不直接修改。
 - 提到工作台日常维护、零散修补或例行检查：进入 `task/workbench/261017_workbench-daily/`；有独立目标的专项任务仍使用原任务目录。
+- 提到查找或总结本机微信聊天记录：使用 `.agents/skills/wb-wechat-local/`，任务上下文见 `task/dev-flow/261031_wechat-local-chat/`；按指定会话和时间范围只读查询。
+- 提到 macOS 微信防撤回、安装/修复 WeChatIntercept 或补丁升级失效：使用 `.agents/skills/wb-wechat-anti-revoke/`；先备份对应 build，再安装并核验运行时 hook。
 - 提到健身、训练、睡眠或每周美股 sell put：进入 `task/daily/health-sleep-sell-put/README.md`，延续日常记录；独立研究或开发按需衍生专项任务并保留双向索引。
 - 提到其他长期日常事项、持续跟进或非代码日常工作：先查 `task/daily/README.md` 与对应 daily 任务；专项开发按需衍生或转入 `task/dev-flow/`，并保留双向索引。
 - 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `business-repo/uni-gknow/docs/README.md`；日常开发读 `task/dev-flow/261009_gknow-daily/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
+- 理财副本面向不熟悉A股的新人：用具体公司、人物与事件经过讲故事，首次出现的术语随情节解释；不能把事件名当作已知背景后直接点评。阅读端不出现字幕、研究或核对备注，编辑资料留在任务目录。
+- 提到「鹅懂个啥」的微信小游戏、把现有模式独立做成小游戏或「默契大作战」小游戏化：进入 `task/dev-flow/261101_gknow-minigame/README.md`；目标是独立微信小游戏工程，不路由为 `uni-gknow` 小程序页面改造。
+- 提到小红书内容研究、采集公开笔记或预发布准备：调用 `xhs-tools-content-research`，生产上下文见 `task/dev-flow/261010_gknow-content-studio/`。
 
 - 开发流程入口：`dev-flow` 是开发流程唯一入口，按 00 任务初始化 / 01 需求沟通 / 02 功能与系统设计 / 03 开发迭代 / 04 部署总结交接推进；细则按需读取 references，独立能力使用 `dev-flow-tools-*`。`bn-*` 是内容工具，`wb-*` 是工作台基建。完整清单见 `AGENTS.md`。
-- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow`；按需读取需求、设计、后端、前端、验证 references，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`。
+- 提到 `backend-superone`、`uni-carbon-space` 的需求改动：先走 `dev-flow`；按需读取需求、设计、后端、前端、验证 references，方案落任务目录 `plans/` 下的独立文档，并由任务 README 索引。
 - 提到 `superone` 的分支推进、项目约定、命令速查：走 `dev-flow-tools-repo`；数据库只读排查走 `dev-flow-tools-db-query`。
 - 提到软件产品介绍片、功能样片、版本更新宣传片：先定位产品仓与任务目录，再走 `dev-flow-tools-product-video`。
 - 提到 `superone`：优先查看 `business-repo/` 下的相关业务仓，再结合具体需求选择后端、前端或协议仓。
+- 提到 Superone MCP 客户端安装、扫码授权或私有 Skill 同步：使用 `superone-mcp-install`；服务端开发走 `task/dev-flow/261107_backend-superone-mcp/`。
 - 提到 `uTools Bean Option`、`utools option` 或 `utools-bean-option` 的日常维护：进入 `task/dev-flow/261015_utools-bean-option-daily/`，业务仓为 `business-repo/utools-bean-option`。
 - 提到 `uni-carbon-space`、`carbon`：优先路由到 `business-repo/uni-carbon-space`，并在开发流程中读取 Carbon 品牌 references；SVG 资产按需调用 `dev-flow-tools-svg-assets`。
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
@@ -74,3 +84,4 @@
 - 主开发环境是 macOS（Apple Silicon），没有 `pwsh`（`brew` 有，装在 `/opt/homebrew/bin/brew`）；结构检查走 `make check`（Python 脚本），不要写 PowerShell 命令。平台差异与业务仓 Windows 脚本的绕法见 `dev-flow-tools-repo`。
 
 - 提到源信息获取、视频字幕采集或 `hr collect`：实现入口为 `tools/source-collector/`，插件为 `tools/source-collector-extension/`，复用 `task/dev-flow/261024_beannote-source-collector/`；beannote 只消费来源资料。
+- 提到鹅懂个啥公司副本或公司特殊事件改编：进入 `task/dev-flow/261101_gknow-company-copy/README.md`；复用现有副本组件讲述公司事件；候选清单见 `task/dev-flow/261101_gknow-company-copy/plans/公司事件候选.md`，选定后核验事实并设计剧本。

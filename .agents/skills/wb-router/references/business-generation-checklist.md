@@ -17,7 +17,7 @@
 2. 使用 `wb-router` 判断目标仓库和可能受影响的协作仓。
 3. 进入业务仓前确认需求是否明确；不明确时只更新工作台任务或痛点，不直接改业务仓。
 4. 命中 Superone 业务时，按阶段选择最小 skill 组合：
-   - 所有业务开发需求统一进入 `dev-flow`，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`；流程推进任务初始化、需求沟通、功能与系统设计、开发迭代、部署总结与交接。
+   - 所有业务开发需求统一进入 `dev-flow`，方案落任务目录 `plans/` 的独立文档，任务 README 建立索引；流程推进任务初始化、需求沟通、功能与系统设计、开发迭代、部署总结与交接。
    - 入口按改动范围从 references 按需读取：`00-plan/requirements.md`（需求理解）、`00-plan/design.md`（方案设计）、`01-backend/development.md`（领域 / 数据库 / API / 契约）、`02-frontend/development.md`（原型 / 数据 / 页面 / 品牌）、`03-delivery/verification-and-delivery.md`（整体验证）。由 `dev-flow` 单入口推进，不再组合触发阶段 skill。
    - 独立能力使用工具层：`dev-flow-tools-repo`（多仓上下文、分支与部署）、`dev-flow-tools-db-query`（只读数据库）、`dev-flow-tools-svg-assets`（SVG 资产）、`dev-flow-tools-product-video`（产品视频）。
    - 完整编号表见 `AGENTS.md`「当前 skill 编号表」。
@@ -55,7 +55,7 @@
 | 后端 Go 代码 | `gofmt`、相关包 `go test`、必要时 `wire ./...` |
 | 数据库变更 | SQL 文件审查、test 环境结构或数据验证、必要时 migration dry run |
 | API 契约 | OpenAPI YAML 校验、协议仓类型生成或 diff 检查 |
-| uni-app 前端 | `npm run type-check`、必要时 `npm run build:h5` 或 `npm run build:mp-weixin` |
+| uni-app 前端 | `npm run type-check`、按实际交付平台构建并在目标端联调；不得新建 H5 替代其他端验收 |
 | 工作台文档或 skill | `make check`（走 `script/check-workbench.py`），必要时按 skill 规范检查 frontmatter |
 
 ## 提交收口

@@ -39,7 +39,7 @@
 
 本节只做**设计态**：领域分层代码 + 字段与 SQL 产出，**不连接数据库**。执行归 `数据库变更执行细则`，只读排查归 `dev-flow-tools-db-query`。
 
-字段细则优先读取本流程 `references/01-field-design-norms.md`；不可用时使用本文档内置规范。
+字段设计与 DDL 统一按 [字段设计与 SQL 输出规范](field-design-norms.md) 执行；方案阶段即核对目标仓库的模型和同类迁移。
 
 ## 一、领域层
 
@@ -80,15 +80,7 @@ use_case/*.go
 
 ### 字段规范
 
-- 主键：`id bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID'`。
-- 时间字段：`create_time`、`update_time`，GORM 使用 `autoCreateTime` / `autoUpdateTime`。
-- GORM tag：`gorm:"column:{field};...;comment:'...'"`。
-- SQL 新增字段必须带 `COMMENT`；状态/枚举字段在 comment 中写清取值含义。
-- 用户维度字段沿用 `openid varchar(64)`，需要查询时加索引。
-- 状态字段优先 `tinyint` 或已有 enum 类型，并在 comment 中列出枚举。
-- 金额、比例、计数、时间戳、JSON、长文本按 `01-field-design-norms.md` 选择类型；金额/费率不用 float。
-- 新增字段必须明确是否允许 `NULL`、默认值、历史数据回填 DML。
-- 索引必须说明查询场景，避免无依据组合索引。
+以 [字段设计与 SQL 输出规范](field-design-norms.md) 为准。设计 DDL 时同时核对目标仓库的模型、同类迁移和目标环境；需要确认实际结构时使用只读数据库工具。
 
 ### 输出
 
@@ -113,11 +105,13 @@ use_case/*.go
 - 分支推进属于 `dev-flow-tools-repo`。
 - 项目目录与常用命令见 `dev-flow-tools-repo`。
 
-字段细则见 `领域模型与字段设计细则` 目录内的 `01-field-design-norms.md`；不可用时使用本文档内置规范。
+字段设计与 DDL 见 [字段设计与 SQL 输出规范](field-design-norms.md)。
 
 ## 环境语义
 
 数据库 `test` / `live` 指执行环境，不等同于 Git 分支名：`test` 对应 nonlive 验证链路，`live` 对应生产链路。不要把推进分支等同于执行该环境写操作。
+
+开发和集成验证使用项目已有的开发测试库，不自行创建或启动临时数据库。先确认库和测试范围；写入及迁移继续遵循本节的环境与授权规则。测试库尚不具备条件时，记录未完成的验证，不另建数据库代替。
 
 ## 迁移脚本
 
@@ -153,8 +147,11 @@ use_case/*.go
 
 执行前确认执行模式：
 
+- 开发验证使用用户的 test 环境。执行 DDL 前先展示目标环境和具体 SQL，取得用户对该次 DDL 的确认。用户已明确授权具体 DDL 时直接执行。
+- 需要在 test 库执行 DDL 但该次 SQL 尚未获确认时，先只读核实目标库、相关表及已有数据，准备可审阅的 SQL、执行顺序、数据回填、影响和验证方式，然后请求用户确认。等待期间可继续编译、单元测试等独立工作，不得自行创建或切换其他数据库绕过确认，也不能将这些独立检查视作数据库集成验收。确认后按已确认范围执行并核验；SQL 或影响范围发生实质变化时重新确认。
+
 - 方案确认模式（开发流程的默认模式）：必须等用户确认后再执行。
-- 全自动模式（开发流程的显式全自动模式）：本次改动涉及新增表、改字段、改索引或 DML 时，默认执行 `test` 环境并验证；用户已明确要求 `live` 时才执行 live。
+- 全自动模式（开发流程的显式全自动模式）：本次改动涉及数据库变更时，在 `test` 环境执行并验证。DDL 仍须按上方规则先取得该次确认；用户已明确要求 `live` 时才执行 live。
 - 未明确目标环境时，默认只生成 SQL，不执行数据库写操作。
 - 用户说“发 nonlive / 配合 test 分支验证”时，优先理解为执行 `test` 环境数据库变更。
 - 用户说“发 live / 配合 release 分支上线”时，优先理解为执行 `live` 环境数据库变更。
@@ -180,14 +177,7 @@ go run ./scripts/migration --% -action=exec-sql -sql-file=scripts/migration/sql/
 
 ## 字段和 SQL 规范
 
-- 主键：`id bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID'`。
-- 创建时间：`create_time int unsigned NOT NULL DEFAULT 0 COMMENT '创建时间'`，GORM 使用 `autoCreateTime`。
-- 更新时间：`update_time int unsigned NOT NULL DEFAULT 0 COMMENT '更新时间'`，GORM 使用 `autoUpdateTime`。
-- 用户维度字段沿用 `openid varchar(64)`，需要查询时加索引。
-- 状态字段优先 `tinyint` 或已有 enum 类型，并在 comment 中列出枚举。
-- 金额、比例、计数、时间戳、JSON、长文本按 `01-field-design-norms.md` 选择类型。
-- 新增字段必须明确是否允许 `NULL`、默认值、历史数据回填 DML。
-- 索引必须说明查询场景，避免无依据组合索引。
+字段、索引、DDL 和模型的一致性要求统一见 [字段设计与 SQL 输出规范](field-design-norms.md)。
 
 ## 验证
 

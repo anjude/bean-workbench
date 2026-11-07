@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""首次压缩前或手动请求时，从首轮末尾创建续接会话；旧会话继续运行。"""
+"""上下文达到阈值或手动请求时，从首轮末尾创建续接会话。"""
 
 from __future__ import annotations
 
@@ -17,6 +17,53 @@ from typing import Any
 
 POLL_SECONDS = 2
 MAX_WAIT_SECONDS = 1800
+CONTEXT_THRESHOLD_PERCENT = 90
+
+
+def context_window(transcript_path: Any) -> int | None:
+    """只读取最近的用量事件，避免将会话累计 token 当成上下文占用。"""
+    if not isinstance(transcript_path, str) or not transcript_path:
+        return None
+    try:
+        with open(transcript_path, "rb") as transcript:
+            transcript.seek(0, os.SEEK_END)
+            position = transcript.tell()
+            remainder = b""
+            while position:
+                size = min(position, 65536)
+                position -= size
+                transcript.seek(position)
+                lines = (transcript.read(size) + remainder).split(b"\n")
+                remainder = lines.pop(0)
+                if position == 0:
+                    lines.insert(0, remainder)
+                for line in reversed(lines):
+                    try:
+                        event = json.loads(line)
+                        payload = event.get("payload", {})
+                        if event.get("type") == "event_msg" and payload.get("type") == "token_count":
+                            info = payload.get("info") or {}
+                            window = info.get("model_context_window")
+                            if isinstance(window, int) and not isinstance(window, bool) and window > 0:
+                                return window
+                    except (ValueError, AttributeError, TypeError):
+                        continue
+    except OSError:
+        pass
+    return None
+
+
+def reached_context_threshold(event: dict[str, Any]) -> bool:
+    if event.get("status") != "completed" or event.get("agent_id"):
+        return False
+    usage = event.get("token_usage")
+    if not isinstance(usage, dict):
+        return False
+    input_tokens = usage.get("input_tokens")
+    window = context_window(event.get("transcript_path"))
+    return (isinstance(input_tokens, int) and not isinstance(input_tokens, bool)
+            and input_tokens >= 0 and window is not None
+            and input_tokens * 100 >= window * CONTEXT_THRESHOLD_PERCENT)
 
 
 def read_event() -> dict[str, Any]:
@@ -124,21 +171,54 @@ def compact_title(text: str, fallback: str) -> str:
     return value[:24].rstrip(" ，。；：、") or fallback
 
 
+def canonical_task_name(text: str, fallback: str) -> str:
+    value = compact_title(text, fallback)
+    # App-server thread names may omit the separator from a YYMMDD_task slug.
+    match = re.match(r"^(\d{6})[_-]?(.+)$", value)
+    if match:
+        return f"{match.group(1)}_{match.group(2)}"
+    return value
+
+
+def task_name_from_title(text: str, cwd: str, fallback: str) -> str:
+    """续接标题中的任务段以任务目录为准，避免把摘要和序号滚进任务名。"""
+    value = re.sub(r"[`*_#]", "", re.sub(r"\s+", " ", text)).strip()
+    root = Path(cwd) / "task"
+    candidates: list[str] = []
+    for parent in (root / "dev-flow", root / "daily"):
+        try:
+            candidates.extend(path.name for path in parent.iterdir() if path.is_dir())
+        except OSError:
+            continue
+    normalized = re.sub(r"^(\d{6})[_-]?", r"\1_", value)
+    matches = [
+        name for name in candidates
+        if normalized == name or normalized.startswith(name + "-")
+    ]
+    return max(matches, key=len) if matches else canonical_task_name(value or fallback, fallback)
+
+
 def next_name(proxy: AppServerProxy, task_name: str, summary: str) -> str:
     result = proxy.request("thread/list", {"limit": 100})
     prefix = f"{task_name}-{summary}-"
+    prefixes = {prefix}
+    legacy = re.match(r"^(\d{6})_(.+)$", task_name)
+    if legacy:
+        prefixes.add(f"{legacy.group(1)}{legacy.group(2)}-{summary}-")
     numbers = []
     for entry in result.get("data", []):
         name = entry.get("name") or entry.get("title") or ""
-        match = re.fullmatch(re.escape(prefix) + r"(\d+)", name)
-        if match:
-            numbers.append(int(match.group(1)))
+        for candidate in prefixes:
+            match = re.fullmatch(re.escape(candidate) + r"(\d+)", name)
+            if match:
+                numbers.append(int(match.group(1)))
+                break
     return prefix + f"{max([1, *numbers]) + 1:02d}"
 
 
 def continuation_prompt(session_id: str) -> str:
-    # 只传旧 ID 与读取 handoff 的指令，不附带近期请求、答复或工作目录等上下文。
-    return f"老会话 ID：{session_id}\n请按 wb-handoff 的会话续接规则，读取对应任务最新的 handoff 文件。"
+    # 只提供来源会话定位信息；续接细节按需从原会话读取，不在注入消息中复述。
+    return f"来源会话 ID：{session_id}"
 
 
 def recent_summary(proxy: AppServerProxy, session_id: str) -> str:
@@ -192,7 +272,9 @@ def make_branch(session_id: str, cwd: str, state: dict[str, Any], path: Path) ->
 
         if not state.get("new_thread_name"):
             old_thread = proxy.request("thread/read", {"threadId": session_id}).get("thread", {})
-            task_name = compact_title(str(old_thread.get("name") or old_thread.get("title") or "任务"), "任务")
+            task_name = task_name_from_title(
+                str(old_thread.get("name") or old_thread.get("title") or "任务"), cwd, "任务"
+            )
             name = next_name(proxy, task_name, recent_summary(proxy, session_id))
             proxy.request("thread/name/set", {"threadId": new_id, "name": name})
             state["new_thread_name"] = name
@@ -326,15 +408,15 @@ def main() -> int:
 
     event = read_event()
     session_id = event.get("session_id")
-    if event.get("hook_event_name") != "PreCompact" or not isinstance(session_id, str) or not session_id:
+    if event.get("hook_event_name") != "PostModelRequest" or not isinstance(session_id, str) or not session_id:
         return 0
     try:
-        cwd = event.get("cwd") if isinstance(event.get("cwd"), str) else os.getcwd()
-        request_continuation(session_id, cwd, "pre_compact")
+        if reached_context_threshold(event):
+            cwd = event.get("cwd") if isinstance(event.get("cwd"), str) else os.getcwd()
+            request_continuation(session_id, cwd, "context_90_percent")
     except Exception:
         # 钩子失败也不阻断旧会话；后台详细状态见 state/log。
         pass
-    print(json.dumps({"continue": True}))
     return 0
 
 

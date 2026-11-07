@@ -7,7 +7,8 @@
 | 阶段 | 主题 | 入口文件 | 需要时继续读取 |
 | --- | --- | --- | --- |
 | 00 任务初始化与需求沟通 | 需求梳理、影响面定位、与用户澄清 | [`00-plan/requirements.md`](00-plan/requirements.md) | [`../SKILL.md`](../SKILL.md) 的任务初始化规则 |
-| 02 功能与系统设计 | 产品、数据、系统边界、接口和验收设计 | [`00-plan/design.md`](00-plan/design.md) | 后端或前端对应章节 |
+| 02 功能与系统设计 | 产品、数据、系统边界、接口和验收设计 | [`00-plan/design.md`](00-plan/design.md) | [方案模板与表达规范](00-plan/solution-template.md)、[方案案例](00-plan/solution-example.md)、后端或前端对应章节 |
+| 02 代码方案、03 实现与评审 | 最小改动、DRY、简单设计、兼容与验证 | [`00-plan/code-design.md`](00-plan/code-design.md) | 按改动范围叠加前后端细则 |
 | 03 后端开发 | 领域、数据库、API、依赖注入、契约 | [`01-backend/development.md`](01-backend/development.md) | [`01-backend/field-design-norms.md`](01-backend/field-design-norms.md) |
 | 03 前端开发 | 原型、状态矩阵、数据、页面、Carbon 规范 | [`02-frontend/development.md`](02-frontend/development.md) | [`02-frontend/ui-ux-handbook.md`](02-frontend/ui-ux-handbook.md)、CSS 参考 |
 | 03 开发验证与交付 | 整体验收、方案回填、部署与交接 | [`03-delivery/verification-and-delivery.md`](03-delivery/verification-and-delivery.md) | 仓库命令和分支信息见 `dev-flow-tools-repo` |

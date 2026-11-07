@@ -20,9 +20,10 @@
 | 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（日常优化、修复与开发记录；长期产品文档在业务仓 docs） | 进行中 |
 | 鹅懂个啥管理员内容工具 | `task/dev-flow/261010_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
 | 鹅懂个啥产品宣传样片 | `task/dev-flow/261015_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
+| 本机微信聊天读取与总结 | `task/dev-flow/261031_wechat-local-chat/` | `wb-wechat-local`、本机微信数据库的指定范围只读查询与总结流程 | 流程已建立；首次本机读取器准备待完成 |
 
 ## 约定
 
-- 新开发需求先走 `dev-flow-0000-plan-flow` 出方案，方案落 `task/dev-flow/YYMMDD_{主题}/README.md`。
+- 新开发需求走 `dev-flow`，设计方案放在任务目录 `plans/` 下的独立文档，任务 README 建立索引。
 - 确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起），收口走 `dev-flow-0301-verify-flow`。
 - 本目录不放方案文档本身，只做索引；方案与过程记录写在各 `task/dev-flow/YYMMDD_{主题}/` 下。

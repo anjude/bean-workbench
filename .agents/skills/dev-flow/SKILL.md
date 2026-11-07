@@ -15,7 +15,7 @@ metadata:
 | --- | --- | --- | --- |
 | 00 任务初始化 | 绑定或建立任务上下文，创建基础文件并登记 | `task/dev-flow/YYMMDD_{主题}/README.md`、`handoff/`、`process/`、任务登记 | 任务范围与目录明确 |
 | 01 需求理解与沟通 | 理清目标、约束、边界、受影响对象；与用户对齐真实需求 | 已确认的需求理解与范围 | 关键歧义已解决，用户认可理解 |
-| 02 功能与系统设计 | 形成可执行的产品、数据、接口、系统和验收设计 | 任务 README 中的方案 | 设计、影响范围和验收标准满足门禁；默认等待用户确认 |
+| 02 功能与系统设计 | 形成可执行的产品、数据、接口、系统和验收设计 | 任务目录 `plans/` 下的独立方案文档 | 设计、影响范围和验收标准满足门禁；默认等待用户确认 |
 | 03 开发与迭代 | 按方案实现；运行针对性检查或预览，收集反馈并继续修改 | 代码、契约、过程记录 | 反馈收敛，目标和验收标准达成 |
 | 04 部署、总结与交接 | 按授权推进分支或部署，核验结果，回填总结并写 handoff | 部署/验收结论、过程记录、最新 handoff | 结果可追溯，后续动作明确或任务关闭 |
 
@@ -24,14 +24,15 @@ metadata:
 ## 入口路由
 
 1. 读取工作台 `AGENTS.md`、`task/registry.md`，再按 `wb-router` 建立业务仓和任务上下文。检查最近任务，优先复用同一需求链条的目录；确属独立目标时才新建。用户明确要求建目录时直接执行。
-2. 新建任务时参考 `wb-router/references/task-readme.md` 初始化 `README.md`、`handoff/`、`process/` 并更新登记。进入既有任务时先读 README 和最新 handoff。
+2. 设计方案统一放任务目录 `plans/` 下的独立文档，任务 README 保留目标、状态和方案索引。新建任务时参考 `wb-router/references/task-readme.md` 初始化 `README.md`、`handoff/`、`process/` 并更新登记；目录创建和登记完成后，按 `wb-handoff` 的「会话绑定任务」规则将当前会话标题改为任务目录末级名称。进入既有任务时先读 README 和最新 handoff，并按同一规则处理会话绑定与改名。
 3. 按当前阶段和改动范围选择资料。完整目录、阶段索引和路径变更约定见 [`references/README.md`](references/README.md)。仓库路径、技术栈、命令、分支或部署信息需要时调用 `dev-flow-tools-repo`。
 4. 每阶段结束时按任务目录的 `process/` 记录结论，遵循 `wb-handoff/references/process-template.md` 的格式与边界；只有需要跨会话续接、中断交接、任务收口，或用户明确要求时，才写或更新 handoff 并调用 `wb-handoff`。
 
 | 本次工作 | 按需读取 |
 | --- | --- |
 | 需求拆解、澄清、影响面定位 | [`references/00-plan/requirements.md`](references/00-plan/requirements.md) |
-| 产品功能、数据模型、系统边界、接口和验收设计 | [`references/00-plan/design.md`](references/00-plan/design.md)，需要时叠加后端或前端细则 |
+| 产品功能、数据模型、系统边界、接口和验收设计 | [`references/00-plan/design.md`](references/00-plan/design.md) 与 [方案模板与表达规范](references/00-plan/solution-template.md)，完整方案参考 [方案案例](references/00-plan/solution-example.md)，需要时叠加后端或前端细则 |
+| 涉及代码改动的方案、实现与评审 | [`references/00-plan/code-design.md`](references/00-plan/code-design.md)，阶段 02 选方案时读取，阶段 03 实现和评审时对照 |
 | 后端领域、数据库迁移、API、依赖注入、契约 | [`references/01-backend/development.md`](references/01-backend/development.md)；字段设计补读 [`references/01-backend/field-design-norms.md`](references/01-backend/field-design-norms.md) |
 | 前端原型、状态矩阵、数据、页面和 Carbon 规范 | [`references/02-frontend/development.md`](references/02-frontend/development.md)；页面 UX 补读 [`references/02-frontend/ui-ux-handbook.md`](references/02-frontend/ui-ux-handbook.md)，Carbon 样式按需读同目录 CSS |
 | 整体验收、方案回填、部署与交付 | [`references/03-delivery/verification-and-delivery.md`](references/03-delivery/verification-and-delivery.md)；仓库命令和部署调用 `dev-flow-tools-repo` |
@@ -45,7 +46,19 @@ metadata:
 
 不得在关键需求未明、方案范围不清、验收不可判定时开始业务代码或数据库写入。设计深度按风险和改动范围调整；涉及数据、接口、权限、页面状态和多端契约时，写清影响与验证方式。
 
+**单一实现是硬门禁。** 同一业务流程默认把本次范围内的入口和调用方统一切到新实现，并清理被替代的旧路径。发现旧数据时，先核实旧功能是否仍需支持。只有用户明确确认需要兼容，才可引入兼容逻辑。新旧实现并存必须另有用户对双轨的明确授权。「直接做」、一般方案确认和同意兼容都不能代替双轨授权。见[兼容处理原则](references/00-plan/design.md#兼容处理原则)。
+
+## 验证边界
+
+- 数据库相关开发验证使用项目现有的开发测试库，不自行新建或启动临时数据库。需要 DDL 且尚未获得该次确认时，先只读核对目标库并准备具体 SQL、影响与验证方式，向用户确认；等待期间继续不依赖迁移的工作，不得换库绕过确认。用户已明确确认具体 DDL 时直接执行，不重复询问。
+- 涉及接口和后端集成时，先设计业务用例，再启动本地真实服务并通过接口验证完整链路；也支持部署后使用 test 环境接口执行。用例和环境要求见[整体验证细则](references/03-delivery/verification-and-delivery.md#后端接口集成测试)。
+- 不新建 H5 页面或模拟应用来验证其他目标端的功能与界面；H5 本身是正式交付目标时直接验证真实产品。禁止以模拟后端或本机替身冒充实际服务的联调结果。
+- 需要验证跨端、实时通信或后端交互时，使用用户实际部署的目标环境和目标端。实际服务尚未部署或真实链路暂不可用时，停在待联调状态，向用户说明需先部署；未经授权不自行部署，也不以 H5 或模拟服务替代。
+- 类型检查、编译及独立单元测试可作为开发检查，明确说明覆盖范围，不能据此宣称目标端或真实服务验收通过。
+
 ## 开发反馈循环
+
+每轮改代码前，必须沿本次受影响的真实调用链，完整查阅各层同职责的现有实现，明确沿用方式和有依据的差异后再动手；不能只看单个文件或以编译通过代替对照。按[代码方案与实现原则](references/00-plan/code-design.md#动手前对照已有实现)记录参考依据，实现后沿同一调用链核对 diff；小改动和反馈修订按实际影响范围执行。
 
 实现按依赖和改动范围推进，不要求每个功能都走完整后端/前端清单。每次有可评审结果时运行必要的针对性检查、预览或演示，再结合用户反馈修改：
 
@@ -57,7 +70,7 @@ metadata:
 
 部署前核对验收标准、目标环境、变更分支、数据库操作、回滚办法和用户授权。按 `dev-flow-tools-repo` 的实际命令执行；命令成功后核对目标环境或发布状态，不能把退出码当成部署验收。
 
-最后将实际改动、验证结果、部署状态、未解决项和回滚信息回填任务 README，并按 `wb-handoff` 写可执行的下一步。未部署时明确记录阻塞和原因。任务完成后更新 `task/registry.md` 状态。
+最后将实际改动、验证结果、部署状态、未解决项和回滚信息回填任务方案，更新任务 README 索引，再按 `wb-handoff` 写可执行的下一步。未部署时明确记录阻塞和原因。任务完成后更新 `task/registry.md` 状态。
 
 ## 最终回复
 

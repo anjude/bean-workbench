@@ -1,5 +1,11 @@
 # Codex 压缩分支钩子 · 过程记录
 
+## 2026-11-07 第 2 轮：按上下文窗口触发续接
+
+- 按用户要求将自动入口从 `PreCompact` 改为 `PostModelRequest`。以当次成功请求的输入 token 和会话记录中的模型窗口计算 90% 门槛，子代理、缺失用量和失败请求跳过。手动入口及单会话去重逻辑继续共用。
+- 修改本机 `~/.codex/hooks.json` 注册事件，真实 hook 信任和阈值触发仍待应用内核验；单次请求可能直接触发压缩，不能保证 90% 事件一定先于压缩。窗口记录来自非稳定 transcript 格式。
+- 验证见 `script/codex-hooks/tests/test_continue_session.py`。过程不读取或记录会话正文。
+
 - 任务目录：`task/workbench/261017_workbench-daily/`
 - 阶段：03 钩子实现
 - 时间：2026-10-24

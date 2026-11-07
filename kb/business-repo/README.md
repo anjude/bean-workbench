@@ -8,6 +8,7 @@
 - `uni-superone`：uni-app 前端业务仓，位置为 `business-repo/uni-superone`。
 - `uni-carbon-space`：carbon 品牌 uni-app 前端业务仓，位置为 `business-repo/uni-carbon-space`。
 - `uni-gknow`：鹅懂个啥趣味测试与小游戏小程序，位置为 `business-repo/uni-gknow`。
+  - [产品功能地图与组织建议](uni-gknow-产品功能地图.md)：当前模块、功能组织判断、维护方向与候选扩展。
 - `frontend-contracts`：前后端协议仓，位置为 `business-repo/frontend-contracts`。
 - `frontend-superone`：Nuxt / Web 前端业务仓，位置为 `business-repo/frontend-superone`。
 - `frontend-investment-platform`：投资相关 Web 前端业务仓，位置为 `business-repo/frontend-investment-platform`。

@@ -46,6 +46,9 @@ REQUIRED_FILES = [
     ".agents/skills/dev-flow/references/README.md",
     ".agents/skills/dev-flow/references/00-plan/requirements.md",
     ".agents/skills/dev-flow/references/00-plan/design.md",
+    ".agents/skills/dev-flow/references/00-plan/solution-template.md",
+    ".agents/skills/dev-flow/references/00-plan/solution-example.md",
+    ".agents/skills/dev-flow/references/00-plan/code-design.md",
     ".agents/skills/dev-flow/references/01-backend/development.md",
     ".agents/skills/dev-flow/references/01-backend/field-design-norms.md",
     ".agents/skills/dev-flow/references/02-frontend/development.md",
@@ -68,6 +71,8 @@ REQUIRED_FILES = [
     ".agents/skills/bn-tools-format-flow/references/sensitive-words.json",
     ".agents/skills/bn-tools-publish-flow/SKILL.md",
     ".agents/skills/bn-tools-publish-flow/scripts/publish.py",
+    ".agents/skills/xhs-tools-content-research/SKILL.md",
+    ".agents/skills/xhs-tools-content-research/references/tools.md",
     ".agents/vendor/README.md",
     ".agents/vendor/product-video/SKILL.md",
     ".agents/vendor/product-video/LICENSE",
@@ -84,18 +89,18 @@ REQUIRED_FILES = [
 
 SKILLS_DIR = ".agents/skills"
 
-# 命名规范：dev-flow 单入口、wb-* 语义名；其余为编号 skill 或 tools skill。
+# 命名规范：dev-flow 单入口、wb-* 语义名；平台接入 skill 按约定使用专属名称。
 SKILL_NAME_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(?:\d{4}|tools)-[a-z0-9]+(?:-[a-z0-9]+)*$"
 )
 
-# 例外：wb-* 使用语义名；dev-flow 单入口直接使用族群名。
+# 例外：wb-* 使用语义名；dev-flow 和 Superone 接入使用约定名称。
 WB_NAME_RE = re.compile(r"^wb-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 
 
 def match_skill_name(name: str) -> bool:
-    """wb-* 和唯一的 dev-flow 入口走语义名，其余族群走编号规范。"""
-    if name == "dev-flow":
+    """固定例外及 wb-* 使用约定名称，其余族群遵循编号或工具命名。"""
+    if name in {"dev-flow", "superone-mcp-install"}:
         return True
     if name.startswith("wb-"):
         return bool(WB_NAME_RE.match(name))
@@ -149,7 +154,7 @@ def check_skill_naming(root: Path):
             continue
 
         if not match_skill_name(skill_dir.name):
-            problems.append(f"{skill_dir.name}：目录名不符合命名规范（dev-flow/wb-* 用语义名，其余用编号）")
+            problems.append(f"{skill_dir.name}：目录名不符合工作台 skill 命名规范")
 
         declared = read_frontmatter_name(skill_md)
         if declared is None:
@@ -182,7 +187,7 @@ def iter_markdown(root: Path):
 
         for entry in entries:
             if entry.is_dir():
-                if entry.name in SCAN_SKIP_DIRS or entry.name.startswith(".venv-") or entry == root / "source" / "collected":
+                if entry.name in SCAN_SKIP_DIRS or entry.name.startswith(".venv-") or entry == root / "source" / "collected" or (entry / ".git").exists():
                     continue
                 stack.append(entry)
             elif entry.suffix == ".md":

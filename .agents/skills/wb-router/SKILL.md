@@ -26,7 +26,9 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | --- | --- |
 | `素材库`、`原始素材`、`local-source` | `source/README.md`，需要二次开发时先复制素材到目标任务或业务仓 |
 | `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；长期产品上下文见 `business-repo/uni-gknow/docs/README.md`；日常开发见 `task/dev-flow/261009_gknow-daily/README.md`；管理员内容工具见 `task/dev-flow/261010_gknow-content-studio/`，产品视频见 `task/dev-flow/261015_gknow-product-video/` |
+| `小红书内容研究`、`小红书帖子预发布`、`MediaCrawler`、`XHS-Downloader` | 使用 `xhs-tools-content-research`；鹅懂个啥图文生成与样本学习上下文见 `task/dev-flow/261010_gknow-content-studio/` |
 | `superone` | 先到 `business-repo/`，再按需求判断 `backend-superone`、`uni-superone`、`uni-carbon-space`、`frontend-superone`、`miniprogram-superone`、`frontend-contracts` 或 uTools 端 |
+| Superone MCP 安装、扫码登录或私有 Skill 同步 | 使用 `superone-mcp-install`；服务端功能开发仍进入 `task/dev-flow/261107_backend-superone-mcp/` |
 | `后端`、`API`、`数据库`、`SQL` | `business-repo/backend-superone` |
 | `前端`、`页面`、`uni-app` | `business-repo/uni-superone` |
 | `Web`、`H5`、`Nuxt` | `business-repo/frontend-superone` |
@@ -40,12 +42,14 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘` | 内容主题进入 `task/beannote/topics/YYMMDD_主题/`，按 `task/beannote/README.md` 建题或续写，并按选题目录名绑定、自动改当前会话名；选题不登记开发任务。发布工具等日常代码需求进入 `task/dev-flow/261017_beannote-daily/`，可复用代码随 `.agents/skills/bn-tools-*/scripts/` 管理，主题产物仍在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`；内容决策层 skill 已归档 |
 | 长期日常事项、持续跟进、非代码工作 | 先查 `task/daily/README.md` 与 `task/registry.md`，进入对应 `task/daily/{slug}/`；小型连续开发可在 daily 上下文推进，专项项目可衍生或转入 `task/dev-flow/` 并互链 |
 | `handoff`、`交接`、`收工`、`下次继续`、`换会话接着做`、`切新会话` | 对应任务目录的 `handoff/`（包括 `task/daily/{slug}/handoff/`），走 `wb-handoff` |
+| 查找或总结本机微信联系人、群聊、关键词和指定时间段的聊天记录 | 走 `wb-wechat-local`，只读本机数据源 |
+| macOS 微信防撤回、WeChatIntercept 安装/修复或补丁升级失效 | 走 `wb-wechat-anti-revoke`，安装前备份对应 build 并核验运行时 hook |
 | `便签` | 先查 `task/registry.md` 和 `kb/`；没有明确归属时不直接改业务仓 |
 | `工作台`、`skill`、`知识库`、`自进化` | 只改工作台根级目录 |
 
 ## 三、开发类需求的硬路由
 
-后端改动、前端页面、跨端功能这类开发需求：统一按 `dev-flow` 推进需求沟通、方案设计、实现迭代和交付；有独立目标与验收标准的专项在 `task/dev-flow/YYMMDD_{主题}/README.md` 建档。持续日常事项中的小型开发可继续使用 `task/daily/{slug}/` 上下文，过程记录留在 daily 目录；需要单独交付时从 daily 衍生专项并互链。具体后端、前端、验证细则按需读取 references。
+后端改动、前端页面、跨端功能这类开发需求：统一按 `dev-flow` 推进需求沟通、方案设计、实现迭代和交付；有独立目标与验收标准的专项在 `task/dev-flow/YYMMDD_{主题}/` 建档，设计方案放任务目录 `plans/` 下的独立文档，由 README 索引。持续日常事项中的小型开发可继续使用 `task/daily/{slug}/` 上下文，过程记录留在 daily 目录；需要单独交付时从 daily 衍生专项并互链。具体后端、前端、验证细则按需读取 references。
 
 ## 四、配套 references
 
