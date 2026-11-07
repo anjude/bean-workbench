@@ -40,6 +40,7 @@
 | uTools 发布与契约检查改造 | `task/dev-flow/261007_utools-release-contract-checks/` | `business-repo/utools-superone`、`business-repo/frontend-contracts`（只读消费）、发布门禁与工作台方案记录 | 进行中 |
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | uTools Bean Option 日常维护 | `task/dev-flow/261015_utools-bean-option-daily/` | `business-repo/utools-bean-option`（桌面端、插件端与本地工具的日常维护） | 货币列表缓存已修复，待 uTools 实机验收 |
+| 鹅懂个啥可配置测试 | `task/dev-flow/261108_gknow-configurable-assessment/` | 后端测试配置与发布、小程序通用模板、投资方式首测及公众号入口 | 开发迭代中，Go 与微信小程序编译通过；test 库表已创建，待真实接口联调 |
 | 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（已实现玩法已由用户测试并确认可跑通；性格盲盒方案见 plans/性格盲盒.md，已恢复开发并补齐技术迁移，原题库和评分保留；demo 项目不计入正式范围；聚会记分使用 HTTP + Redis 房间轮询，摇骰子改为本机即玩，待目标端体验） | 进行中（记分双设备同步与房间分享待微信端体验） |
 | 疯狂大鹅微信小游戏项目 | `task/dev-flow/261101_gknow-minigame/` | 独立微信小游戏工程（非小程序）；主打副本体验和双人小游戏，已定名「疯狂大鹅」；首发范围与技术方案待沟通 | 进行中（任务已建立） |
 | 鹅懂个啥恋爱副本 | `task/dev-flow/261031_gknow-love-copy/` | `business-repo/uni-gknow`（探索 tab 独立入口与目录；首发恋爱速通剧本） | 已改为 28 幕短场景并补齐背景，编译通过，待体验反馈 |
