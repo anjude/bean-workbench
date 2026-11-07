@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>鹅懂个啥 · 小红书图片工坊</title>
+  <link rel="stylesheet" href="/studio.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark">鹅</div>
+        <div><div class="brand-name">鹅懂个啥</div><div class="brand-sub">内容工作室 <span class="brand-dot">·</span> 本地创作</div></div>
+      </div>
+      <div class="topbar-center"><span class="live-dot"></span><span>图片工坊</span><span class="topbar-separator">/</span><span class="muted">小红书图文</span></div>
+      <div class="topbar-actions">
+        <span class="save-state" id="saveState">本地自动保存</span>
+        <button class="button button-primary" id="exportAll"><span class="button-icon">↓</span> 导出整组图片</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="left-panel">
+        <div class="panel-heading"><span>图文页面</span><span class="counter" id="pageCount">04</span></div>
+        <div class="page-list" id="pageList"></div>
+        <button class="add-page" id="addPage"><span>＋</span> 添加一页</button>
+        <div class="panel-divider"></div>
+        <div class="panel-heading template-heading"><span>快速添加模板</span></div>
+        <div class="template-grid">
+          <button class="template-tile" data-add-template="cover"><span class="template-icon cover-icon">Aa</span><span>封面</span></button>
+          <button class="template-tile" data-add-template="qa"><span class="template-icon qa-icon">?</span><span>问答</span></button>
+          <button class="template-tile" data-add-template="chat"><span class="template-icon chat-icon">•••</span><span>微信对话</span></button>
+          <button class="template-tile" data-add-template="knowledge"><span class="template-icon knowledge-icon">知</span><span>知识普及</span></button>
+        </div>
+        <div class="left-footnote"><span class="lock-icon">⌂</span> 图片与草稿保存在当前浏览器</div>
+      </aside>
+
+      <section class="canvas-stage">
+        <div class="stage-toolbar">
+          <div class="stage-title"><span class="stage-eyebrow">正在编辑</span><strong id="activePageLabel">封面 · 第 1 页</strong></div>
+          <div class="stage-tools">
+            <span class="size-chip">3:4 <i>·</i> 1080 × 1440</span>
+            <button class="icon-button" id="zoomOut" aria-label="缩小预览">−</button><span id="zoomLabel">80%</span><button class="icon-button" id="zoomIn" aria-label="放大预览">＋</button>
+          </div>
+        </div>
+        <div class="canvas-scroll"><div class="canvas-frame" id="canvasFrame"><canvas id="artboard" width="1080" height="1440"></canvas></div></div>
+        <div class="stage-bottom"><span><span class="status-check">✓</span> 图片尺寸适配小红书竖版</span><span id="renderStatus">所有改动实时预览</span></div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="editor-head"><div><div class="eyebrow">页面设置</div><h1 id="editorTitle">封面</h1></div><button class="delete-page-button" id="deletePage" title="删除当前页" aria-label="删除当前页"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5h9l-.7 9h-7.6l-.7-9ZM2.5 3h11M6 3V1.8h4V3m-3.5 3v5m3-5v5"/></svg><span>删除</span></button></div>
+        <div class="editor-scroll" id="editorFields"></div>
+        <div class="export-panel">
+          <button class="button button-outline" id="downloadCurrent"><span class="button-icon">↓</span> 下载当前图片</button>
+          <div class="export-hint">PNG · 1080 × 1440</div>
+        </div>
+      </aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+  <script src="/studio.js"></script>
+</body>
+</html>

@@ -38,3 +38,11 @@
 	path = business-repo/uni-gknow
 	url = git@github.com:anjude/uni-gknow.git
 	branch = release
+[submodule "tools/xhs-research/MediaCrawler"]
+	path = tools/xhs-research/MediaCrawler
+	url = https://github.com/NanmiCoder/MediaCrawler.git
+	branch = main
+[submodule "tools/xhs-research/XHS-Downloader"]
+	path = tools/xhs-research/XHS-Downloader
+	url = https://github.com/JoeanAmier/XHS-Downloader.git
+	branch = master
