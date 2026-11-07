@@ -1,5 +1,9 @@
 # 261107 Superone Agent 接入与私有 Skill 同步
 
+AI 数据表统一命名见 [命名方案](plans/AI数据表命名.md)。组织与公开 Skill 的[方案](plans/组织与公开Skill.md)已完成本地实现、test 库迁移及本地集成验证；用户反馈已部署 test，实际运行版本和目标客户端验收待核实。[test 集成测试用例](plans/组织与公开Skill集成测试用例.md)已设计，尚未执行。
+
+数据库验证状态：此前自行创建的临时数据库已清理；经用户确认，现已使用项目已有 test 库完成迁移及本地集成验证。远端新版本的接口状态待复核。
+
 ## 需求与范围
 
 1. **让用户接入 Superone。** 提供可分享的连接说明，用户在自己的 Codex 中配置远程 MCP。
@@ -7,13 +11,15 @@
 3. **限制凭证和数据的访问范围。** MCP 场景凭证只访问 MCP 接口，业务数据按账号隔离。
 4. **在设备之间同步 Skill。** 用户可以保存、列出和拉取自己的 Skill 及附属文件。
 
-**当前状态**　私有 Skill HTTP 接口、MCP 工具和扫码接入脚本已实现。实际后端连接 test 库完成 MCP 协议与文件上传下载检查，真实 Codex 和微信扫码待目标环境联调。
+**当前状态**　test 环境已通过微信扫码领取凭证，并在 Codex CLI 安装远程 MCP；Codex 成功发现 `list_skills`、`get_skill`、`save_skill` 并调用只读列表工具。`superone-mcp-install` Skill 已保存到当前账号，revision 1；拉取后与本地文件逐字节一致。两台设备同步、普通 Skill 保存和跨账号隔离仍待验收。
 
 **已确定**　废弃一年的旧扫码登录无需处理；JWT 默认有效期设为一年；MCP 采用官方 Go SDK v1.8.0。
 
-**待验证**　目标服务的部署构建、真实 Codex 与微信真机联调，以及 Skill 文件包的跨语言摘要规则。
+**待验证**　两台设备的 Skill 同步、写入及跨账号隔离，以及 Skill 文件包的跨语言摘要规则。此前记录的 Host 校验失败已由本次真实 Codex CLI 初始化和工具调用复验通过。
 
-test 服务 `https://api.beanflow.top:8080` 的 `/ping` 可访问，`/agent/install` 和 `/agent/login.py` 返回 404。后端实现已推送 `dev`（`3be24df`），共享契约已推送 `release`（`8164f91`）。需推进 test 部署后再做 Codex、微信和两台设备的真实链路验收。
+**接入方式已调整**　服务继续提供登录脚本，并在接入说明中解释脚本的扫码登录与鉴权逻辑。说明不要求客户端运行该脚本，客户端可自行选择 curl、本机操作或其他方式完成相同流程。验收看 MCP 是否成功安装、连接并通过鉴权，具体接入命令由客户端决定。
+
+test 服务 `https://api.beanflow.top:8080` 的 `/ping`、`/agent/install` 和 `/agent/login.py` 均返回 200。远端 `dev`、`test` 均指向 `3be24df`，线上下载脚本与该版本一致。共享契约已推送 `release`（`8164f91`）。详见[部署与验收记录](process/04-部署与验收.md)。
 
 ## Redis 环境隔离
 
@@ -23,14 +29,14 @@ test 服务 `https://api.beanflow.top:8080` 的 `/ping` 可访问，`/agent/inst
 
 ## 整体方案
 
-1. **复用扫码登录。** 沿用 `user/code → user/set_jwt → user/get_jwt` 和领取密钥。登录脚本保存 JWT，Codex 后续通过请求头携带凭证。
+1. **复用扫码登录。** 沿用 `user/code → user/set_jwt → user/get_jwt` 和领取密钥。继续提供展示该流程的登录脚本，作为登录与鉴权逻辑参考；客户端可自行选择执行方式，最终以 MCP 请求携带有效凭证并通过鉴权为准。
 2. **复用后端业务分层。** 新接口参照 [物品路由](../../../business-repo/backend-superone/app/api_service/api_superone.go)，经过 `HandleRequest → UseCase → Service → Repo`，使用现有业务错误码和响应格式。
 3. **在同一个后端进程提供远程 MCP。** 沿用现有域名、Gin 监听和部署链路，Codex 通过 HTTPS 直连 Streamable HTTP 协议入口。协议适配层独立注册工具并转换参数，和普通 HTTP 业务接口共享 Skill Service 和 Repo。[MCP 传输规范](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)
 4. **提供连接说明。** 用户访问 `GET /agent/install` 获取接入步骤。MCP 协议入口建议设为 `/api/so/mcp/transport`，采用官方 Go SDK v1.8.0。
 
 ## 使用流程
 
-用户访问分享链接，配置 Codex 并用微信扫码。登录后，设备 A 可以保存 Skill，设备 B 登录同一账号后可以下载。
+用户从分享链接了解 MCP 安装、微信扫码登录与鉴权逻辑，并获取服务提供的登录脚本。脚本展示一条可完成登录和鉴权的参考逻辑，接入说明不要求客户端执行脚本。客户端自行选择用 curl、本机操作或其他方式完成登录和凭证配置，再按客户端支持的方式安装 MCP、提交凭证并验证鉴权。鉴权成功后，设备 A 可以保存 Skill，设备 B 登录同一账号后可以下载。
 
 图中实线表示请求或流程，虚线表示响应或等待扫码时的轮询。
 
@@ -56,8 +62,8 @@ test 服务 `https://api.beanflow.top:8080` 的 `/ping` 可访问，`/agent/inst
 | 1 | **建立远程 MCP 服务器**。接入官方 Go SDK v1.8.0，在 Superone 内挂载协议入口并声明工具能力 | 子任务 0；Go 工具链兼容性 | 本地 HTTPS 客户端可连接，`tools/list` 返回空列表，未知工具和未授权请求被拒绝。真实 Codex 连接在目标服务部署后验证 | 本地协议验证通过 |
 | 2 | **接入扫码和场景鉴权**。实现场景签发、默认一年有效期、MCP JWT 路由限制和用户契约 | 子任务 1 | JWT 有效期、路由限制、普通登录和本地 Redis 单次领取检查通过 | 本地验证通过 |
 | 3 | **实现 Skill 业务接口和存储**。按现有分层完成 API、数据层、Wire、契约及迁移 SQL | 子任务 2 的身份与授权约定 | test 库结构与索引核对通过。实际路由连接 test 库验证账号隔离、分页、文件包校验和并发版本冲突 | test 库及接口验证通过 |
-| 4 | **接通 MCP 工具和用户接入**。注册 Skill 工具并调用子任务 3 的业务逻辑，完成扫码脚本、凭证加载、文件恢复和分享说明 | 子任务 1–3 | 本地启动真实后端并连接 test 库，验证工具发现与调用、JWT 加载、文件恢复和安装入口 | 开发验证通过 |
-| 5 | **完成真实链路验收**。在目标环境验证分享链接、扫码登录和两台设备的 Skill 同步 | 子任务 1–4；数据库迁移、实际服务部署和目标设备就绪 | 从分享链接配置真实 Codex，微信真机扫码；设备 A 保存、设备 B 同账号拉取并校验文件；跨账号访问被拒绝 | 待部署联调 |
+| 4 | **接通 MCP 工具和用户接入**。注册 Skill 工具并调用子任务 3 的业务逻辑，提供扫码登录脚本及逻辑说明、文件恢复和分享说明 | 子任务 1–3 | 本地启动真实后端并连接 test 库，验证工具发现与调用、有效 JWT 鉴权、文件恢复和安装入口。客户端不要求执行所提供的脚本 | 开发验证通过 |
+| 5 | **完成真实链路验收**。在目标环境验证分享说明、客户端自行选择的登录与 MCP 安装方式、鉴权和两台设备的 Skill 同步 | 子任务 1–4；数据库迁移、实际服务部署和目标设备就绪 | 使用目标客户端按其支持的方式安装 MCP；通过登录脚本逻辑或客户端自选方式完成扫码登录，确认 MCP 凭证鉴权、工具发现与调用；设备 A 保存、设备 B 同账号拉取并校验文件；跨账号访问被拒绝 | Codex CLI 扫码安装、工具发现与只读调用已通过；两台设备同步、Skill 写入及跨账号隔离待验收 |
 
 本地检查只验证对应代码路径。数据库执行环境和部署按工作台规则分别处理。
 
@@ -76,7 +82,7 @@ Gin 提供远程协议入口，适配层接收工具请求并调用现有业务�
 
 ### 2. 微信扫码登录
 
-本机脚本发起扫码，小程序确认后，脚本一次性领取 JWT 并供 Codex 使用。
+服务提供登录脚本，展示如何创建 MCP 扫码会话、等待已登录的 Superone 小程序确认、一次性领取 JWT 并提交 MCP 鉴权。用户扫码后，新版 Superone 首页从 `code$…` 场景跳转到扫码登录页，页面使用当前小程序登录态自动调用现有 `set_jwt`。接入说明将脚本作为登录与鉴权逻辑参考，不要求客户端执行脚本，也不规定 curl、本机操作或其他具体实现。客户端自行选择方式取得有效凭证，并按其 MCP 客户端支持的配置方式提交鉴权。
 
 1. **创建扫码会话。** `GetCodeReq` 增加可选 `scene`，仅接受空值和 `mcp`。沿用原有 Redis key，普通扫码沿用原有状态格式。MCP 场景在会话的密钥字段后加 `|mcp`，确认时从 Redis 读取该值。
 2. **确认扫码并签发凭证。** 创建会话沿用 `SetNX`，过期时间五分钟。`SetJwt` 校验当前小程序的 AppID 和已登录身份，从会话读取场景并签发 JWT，再通过 `SetIfEqual` 将未确认状态原子改为已确认，设置一分钟领取窗口。并发确认只有一次成功。
@@ -109,8 +115,8 @@ Gin 提供远程协议入口，适配层接收工具请求并调用现有业务�
 
 用户从公开说明获取扫码、配置和连接步骤，每台设备分别登录。
 
-1. **提供分享入口。** `GET /agent/install` 返回纯文本说明和脚本下载地址。使用者将示例服务地址替换为访问该页面所用的 HTTPS 地址，并将脚本路径替换为本机绝对路径。凭证不出现在说明、URL 或聊天中。
-2. **复用扫码脚本。** 沿用 `scripts/agent-login/login.py` 的扫码、禁用重定向和私有文件保存逻辑，增加 MCP 场景参数及凭证加载能力。凭证文件按服务地址隔离，目录和文件权限分别为 0700、0600；配置中的加载器只向 Codex 输出请求头。
+1. **提供分享入口。** `GET /agent/install` 返回纯文本说明和脚本下载地址。页面说明 MCP 安装、扫码登录、凭证领取和鉴权逻辑，并明确脚本是参考实现。凭证不出现在 URL 或聊天中。
+2. **提供登录脚本与逻辑说明。** 保留 `scripts/agent-login/login.py`，说明其创建扫码会话、等待小程序确认、禁用重定向、一次性领取凭证和本机保存逻辑。客户端可参考该逻辑，自行选择 curl、本机操作或其他方式完成登录及凭证配置；服务不要求客户端执行该脚本。MCP 安装和凭证提交由客户端按自身能力完成，验收以成功安装 MCP 并通过服务端鉴权为准。
 3. **接入 Skill 工具。** MCP 的 `list_skills`、`get_skill`、`save_skill` 映射到同一套 Skill Service。文件打包、写入本机和路径校验由客户端侧执行，不能依赖远端服务器访问用户电脑文件。
 
 ## 接口与契约
@@ -160,12 +166,12 @@ CREATE TABLE IF NOT EXISTS `user_skill_tab` (
 
 | 层 | 落点 |
 | --- | --- |
-| 路由和注入 | `backend-superone/app/api_service/api_mcp.go`、`api_service.go` 和 `wire.go`。路由只注册请求，按现有流程重新生成 Wire 文件。 |
+| 路由和注入 | `backend-superone/app/api_service/mcp/`、`api_service.go` 和 `wire.go`。路由只注册请求，按现有流程重新生成 Wire 文件。 |
 | 场景鉴权 | `internal/domain/user/user_dto/user_dto.go`、`user_service/user_service.go`、`internal/infrastructure/bizctx/metadata.go`、`internal/middleware/jwt.go` 及全局路由注册，贯通扫码场景与 JWT 并限制可访问路径。 |
 | 用例和领域 | `use_case/skill_use_case.go`、`use_case/wire.go`、`internal/domain/skill/skill_dto/`、`internal/domain/skill/skill_service/`。在 Service 校验归属、文件包和业务错误。 |
 | 持久化 | `internal/repo/user_skill_repo.go`、`internal/model/user_skill_tab.go`、`scripts/migration/sql/20261107_user_skill.sql`。只新增 `user_skill_tab`，字段为 `id`、`openid`、`skill_name`、`bundle`、`digest`、`revision`、`create_time`、`update_time`。字段非空，时间按现有 Unix 秒字段维护，唯一索引为 `(openid, skill_name)`。新表无需历史数据回填。 |
 | 契约 | `frontend-contracts/openapi/skill_api.yaml` 记录四个 HTTP API、DTO 和业务错误，并在 `openapi/user_api.yaml` 中更新取码场景参数。 |
-| MCP 协议与安装 | 在同一个后端进程挂载远程 MCP 协议适配层，工具调用共用的 Skill Service。公开入口提供连接说明，SDK 和客户端凭证加载方式待验证。 |
+| MCP 协议与安装 | 在同一个后端进程挂载远程 MCP 协议适配层，工具调用共用的 Skill Service。公开入口提供安装、登录逻辑和鉴权说明；由目标客户端选择安装与凭证配置方式，部署后验证真实连接和鉴权。 |
 | 日志 | 在扫码和 Skill 详情、写入路由使用 `NoPayloadLog`，日志只记录方法、路由和业务码。 |
 
 新入口按协议适配和业务分层接入，继续复用现有扫码脚本及登录链路。
@@ -174,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `user_skill_tab` (
 
 | 场景 | 预期 |
 | --- | --- |
-| 公开安装与扫码 | 从可分享地址获取说明，真实 Codex 配置后可通过现有小程序扫码流程取得 JWT。 |
+| MCP 安装与鉴权 | 可分享说明提供登录脚本及其扫码、凭证领取和鉴权逻辑；目标客户端可自行选择登录和凭证配置方式，成功安装并连接 MCP，凭证鉴权通过。 |
 | 接口权限 | 缺少 JWT、访客身份或另一个账号无法读写目标 Skill。 |
 | 列表分页 | 构造超过一页的数据，按名称顺序请求相邻页，验证默认值、上限及 `offset`、`size`、`total`。 |
 | 场景隔离 | MCP JWT 可访问 MCP 路由，访问普通鉴权、免登录和绕过通用处理器的接口均被拒绝。普通小程序 JWT 可调用 MCP 业务接口及协议入口，按账号访问数据。相似路径和路径规范化不能绕过限制。 |
@@ -188,10 +194,12 @@ CREATE TABLE IF NOT EXISTS `user_skill_tab` (
 
 ## 风险与回滚
 
-公开服务依赖 HTTPS、目标客户端的凭证加载能力和真实扫码链路。JWT 场景检查需要覆盖免登录、WebSocket 与请求转发，防止受限 JWT 访问普通接口。Go 升级后需核对 CI 和部署服务器实际使用的 Go 工具链。
+公开服务依赖 HTTPS、目标客户端能够配置并提交有效 MCP 凭证，以及真实扫码链路。JWT 场景检查需要覆盖免登录、WebSocket 与请求转发，防止受限 JWT 访问普通接口。Go 升级后需核对 CI 和部署服务器实际使用的 Go 工具链。
 
 回滚时先核对已发放的 MCP JWT，避免旧版本无法识别场景导致限制失效，再撤回协议入口和业务代码。新表及用户数据保留，删除需另行决定。
 
 ## 落地记录
 
-实际后端连接 test 库完成 MCP 工具与本机文件推送、恢复验证，详见 [开发记录](process/03-开发与迭代.md)。真实 Codex 和微信扫码链路尚未验收。
+先前通过本机启动的实际后端验证了 MCP 工具和文件推送、恢复，详见[开发记录](process/03-开发与迭代.md)。本轮通过已部署的 test 服务验证了安装入口、扫码取码、Skill HTTP 分页和校验、MCP 凭证权限。真实 Codex 握手和微信扫码确认的阻塞见[部署与验收记录](process/04-部署与验收.md)。
+
+新版小程序已复刻备份的扫码入口和自动提交行为。通过 TypeScript 检查、微信小程序构建和构建产物的页面逻辑检查。真机复测时使用指向后端 test 的体验版小程序，生成二维码时指定 `--env-version trial`。详见[开发记录](process/03-开发与迭代.md)。
