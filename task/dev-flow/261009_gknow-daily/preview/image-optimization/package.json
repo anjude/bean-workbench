@@ -1,0 +1,11 @@
+{
+  "name": "gknow-image-optimization-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "node optimize.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.4"
+  }
+}

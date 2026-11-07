@@ -1,0 +1,130 @@
+[
+  {
+    "file": "src/static/illustrations/goose-magic-performer.png",
+    "before": {
+      "width": 602,
+      "height": 640,
+      "bytes": 83483
+    },
+    "after": {
+      "width": 540,
+      "height": 574,
+      "bytes": 71985
+    },
+    "savedBytes": 11498,
+    "alpha": true,
+    "output": "output/goose-magic-performer.png"
+  },
+  {
+    "file": "src/static/illustrations/goose-mind-card.png",
+    "before": {
+      "width": 180,
+      "height": 195,
+      "bytes": 12169
+    },
+    "after": {
+      "width": 180,
+      "height": 195,
+      "bytes": 10394
+    },
+    "savedBytes": 1775,
+    "alpha": true,
+    "output": "output/goose-mind-card.png"
+  },
+  {
+    "file": "src/static/illustrations/goose-smoke-screen-card.png",
+    "before": {
+      "width": 180,
+      "height": 195,
+      "bytes": 12929
+    },
+    "after": {
+      "width": 180,
+      "height": 195,
+      "bytes": 10850
+    },
+    "savedBytes": 2079,
+    "alpha": true,
+    "output": "output/goose-smoke-screen-card.png"
+  },
+  {
+    "file": "src/static/illustrations/goose-lights-out-card.png",
+    "before": {
+      "width": 180,
+      "height": 195,
+      "bytes": 15341
+    },
+    "after": {
+      "width": 180,
+      "height": 195,
+      "bytes": 12744
+    },
+    "savedBytes": 2597,
+    "alpha": true,
+    "output": "output/goose-lights-out-card.png"
+  },
+  {
+    "file": "src/static/illustrations/goose-bti-mascot.png",
+    "before": {
+      "width": 180,
+      "height": 195,
+      "bytes": 10512
+    },
+    "after": {
+      "width": 180,
+      "height": 195,
+      "bytes": 8164
+    },
+    "savedBytes": 2348,
+    "alpha": true,
+    "output": "output/goose-bti-mascot.png"
+  },
+  {
+    "file": "src/static/illustrations/wheel-goose.png",
+    "before": {
+      "width": 180,
+      "height": 195,
+      "bytes": 8155
+    },
+    "after": {
+      "width": 180,
+      "height": 195,
+      "bytes": 6838
+    },
+    "savedBytes": 1317,
+    "alpha": true,
+    "output": "output/wheel-goose.png"
+  },
+  {
+    "file": "src/static/illustrations/goose-lights-stage.png",
+    "before": {
+      "width": 465,
+      "height": 398,
+      "bytes": 50610
+    },
+    "after": {
+      "width": 465,
+      "height": 398,
+      "bytes": 42872
+    },
+    "savedBytes": 7738,
+    "alpha": true,
+    "output": "output/goose-lights-stage.png"
+  },
+  {
+    "file": "src/assets/goose-mirror-cover.jpg",
+    "before": {
+      "width": 525,
+      "height": 525,
+      "bytes": 38306
+    },
+    "after": {
+      "width": 525,
+      "height": 525,
+      "bytes": 38131
+    },
+    "savedBytes": 175,
+    "alpha": false,
+    "output": "output/goose-mirror-cover.jpg"
+  }
+]
