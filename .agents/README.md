@@ -9,6 +9,7 @@
 ├── README.md             本文件，接入说明
 ├── skills/               skill 实体，按族群规则命名（wb-* 和平台适配能力使用语义名）
 │   ├── dev-flow          开发流程唯一入口，细则在 references/
+│   ├── tools-*           新增的独立工具能力，如图片上传
 │   ├── dev-flow-tools-*  仓库、数据库、SVG 与产品视频独立能力
 │   ├── bn-tools-*        文章辅助编辑、排版与发布三个工具
 │   ├── xhs-tools-*       小红书公开内容研究与预发布准备工具
@@ -61,3 +62,5 @@ cd /Users/bean/workspace/bean-workbench && make commit 说明改了什么
 `.agents/local-config/` 是工作台统一的本机配置入口，由 `.gitignore` 中的 `local-config/` 规则排除。按能力建子目录，存放不能提交的凭证、机器配置与私有缓存。目录权限 700，敏感文件权限 600；说明和脱敏模板应放在受版本管理的 skill references 或工作台文档中，不把实际值写入记录。
 
 公众号使用 `local-config/wechat/credentials`（AppID、AppSecret 两行）与 `local-config/wechat/token-cache/`。脚本按自身位置定位工作台配置目录，不依赖执行时的当前目录。仍支持环境变量与显式凭证文件覆盖。换机器需要单独配置这些本地文件，Git 不负责分发凭证。
+
+通用图片上传使用 `local-config/image-upload/admin.jwt`；具体环境、调用方法和适用范围见 [图片上传 skill](skills/tools-image-upload/SKILL.md)。

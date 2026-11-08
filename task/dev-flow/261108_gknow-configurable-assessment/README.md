@@ -12,20 +12,20 @@
 
 ## 当前状态
 
-进行中，已进入开发迭代。后端配置 API 与枚举代码此前已推送至 `backend-superone/dev`，共享契约和小程序首版此前已推送至各自 `release` 分支。本次最新提交为后端 `5e4bccd`（`dev`）、共享契约 `f2df1f6`（`release`）、小程序 `7bfdc66`（`release`）。test 库配置为 `goose-bti` v3、`finance-personality` v3、`stock-methods` v4，均未发布；表结构及 DDL 记录见[部署与验收记录](process/04-部署与验收.md)。运行服务列表接口的 MySQL 3065 问题仍待后端部署后复核；代码已推送但未部署。
+进行中，已进入开发迭代。后端配置 API 与枚举代码此前已推送至 `backend-superone/dev`，共享契约和小程序首版此前已推送至各自 `release` 分支。本次最新提交为后端 `5e4bccd`（`dev`）、共享契约 `f2df1f6`（`release`）、小程序 `7bfdc66`（`release`）。test 库配置为 `goose-bti` v4、`finance-personality` v5、`stock-methods` v5，均未发布；表结构及 DDL 记录见[部署与验收记录](process/04-部署与验收.md)。test 列表和详情已回读股市测试新 Logo，以及隐藏性格、理财人格的新标题。
 
 用户确认由 Agent 编辑配置，用户在小程序预览结果；不建设后台编辑页面。方案已补流程图、配置结构、评分思路和测试库只读核验。首测现有 9 道情境题和五种结果的第一版配置草稿，仍待在小程序页面预览并按用户反馈调整。
 
-本轮 `npm run type-check`、`npm run build:mp-weixin`、共享契约 `npm run type-check` 与后端 `go build ./...` 通过；未运行测试套件。代码已推送，未部署；test 配置未发布，运行服务列表仍受 3065 错误影响，微信端加载和答题验收待后续完成。本轮不接入图鉴结果写入。
+本轮 `npm run type-check`、`npm run build:mp-weixin`、共享契约 `npm run type-check` 与后端 `go build ./...` 通过；未运行测试套件。此前三仓代码已推送；本轮小程序改动已在本地编译，test 配置未发布，微信端加载、答题和海报验收待后续完成。本轮不接入图鉴结果写入。
 
 ## 方案与记录
 
-最新 test 配置：`goose-bti` v3、`finance-personality` v3、`stock-methods` v4，均为未发布状态（`test_status=0`）。隐藏性格和理财人格始终按得分选出一个最接近的画像，不展示双画像、混合、分散或“没有人格”结果；完整作答后总有一个明确结果。三项各自配置免责声明，结果页和海报读取同一 `result_note`。隐藏性格、理财人格的 Logo 与封面已替换为新插画；封面页和结果页高度已按导航栏及短屏设备调整。前端类型检查和小程序构建、共享契约类型检查、后端 Go 构建均通过。数据库结构未变化；未部署、未发布。
+最新 test 配置：`goose-bti` v4、`finance-personality` v5、`stock-methods` v5，均为未发布状态（`test_status=0`）。隐藏性格和理财人格始终按得分选出一个最接近的画像，不展示双画像、混合、分散或“没有人格”结果；完整作答后总有一个明确结果。三项各自配置免责声明，结果页和海报读取同一 `result_note`。股市测试 Logo 已换为同系列手绘白鹅，test 详情已回读。三套配置测试的结果页和分享海报均改用各自的开场封面，分享海报沿用股市测试的统一版式。隐藏性格、理财人格的 Logo 与封面已替换为新插画；封面页和结果页高度已按导航栏及短屏设备调整。前端类型检查和小程序构建、共享契约类型检查、后端 Go 构建均通过。数据库结构未变化；未部署、未发布。
 
 - [可配置测试与投资方式方案](plans/可配置测试与投资方式.md)
 - [首测：股市里这五种赚钱方式](content/stock-methods.json)
 - [隐藏性格：12 道场景题](content/hidden-personality.json)
-- [理财人格：24 道单线题](content/finance-personality.json)
+- [理财人格：12 道单线题](content/finance-personality.json)
 - [方案过程](process/02-功能与系统设计.md)
 - [开发过程](process/03-开发与迭代.md)
 - [部署与验收](process/04-部署与验收.md)

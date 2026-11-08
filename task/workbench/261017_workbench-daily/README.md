@@ -47,3 +47,7 @@
 ## 微信防撤回 skill 内化
 
 将本机原有防撤回安装说明纳入 `.agents/skills/wb-wechat-anti-revoke/`，并同步工作台清单和路由。安装、版本适配与回滚记录见 `process/10-微信防撤回skill内化.md`。
+
+## 工具 skill 命名与图片上传
+
+后续新增独立工具统一使用 `tools-{能力}`，已有族群工具保留原名；通用图片上传见 [tools-image-upload](../../../.agents/skills/tools-image-upload/SKILL.md)。变更依据与验证见 [可配置测试专项过程](../../dev-flow/261108_gknow-configurable-assessment/process/02-功能与系统设计.md)。
