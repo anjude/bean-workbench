@@ -9,6 +9,7 @@
 - `uni-carbon-space`：carbon 品牌 uni-app 前端业务仓，位置为 `business-repo/uni-carbon-space`。
 - `uni-gknow`：鹅懂个啥趣味测试与小游戏小程序，位置为 `business-repo/uni-gknow`。
   - [产品功能地图与组织建议](uni-gknow-产品功能地图.md)：当前模块、功能组织判断、维护方向与候选扩展。
+- `crazy-goose`：疯狂大鹅独立小游戏客户端，使用 Cocos Creator，首发微信小游戏，位置为 `business-repo/crazy-goose`，服务端用 `backend-superone`；任务入口为 `task/dev-flow/261101_gknow-minigame/`。
 - `frontend-contracts`：前后端协议仓，位置为 `business-repo/frontend-contracts`。
 - `frontend-superone`：Nuxt / Web 前端业务仓，位置为 `business-repo/frontend-superone`。
 - `frontend-investment-platform`：投资相关 Web 前端业务仓，位置为 `business-repo/frontend-investment-platform`。

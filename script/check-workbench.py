@@ -83,6 +83,7 @@ REQUIRED_FILES = [
     "business-repo/uni-superone/AGENTS.md",
     "business-repo/uni-carbon-space/AGENTS.md",
     "business-repo/uni-gknow/AGENTS.md",
+    "business-repo/crazy-goose/AGENTS.md",
     "business-repo/utools-bean-option/AGENTS.md",
     "business-repo/utools-superone/AGENTS.md",
 ]
