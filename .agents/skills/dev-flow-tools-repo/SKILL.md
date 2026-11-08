@@ -17,6 +17,7 @@ metadata:
 | 后端仓 | `business-repo/backend-superone` | Go 后端，以此为项目根目录 |
 | uni-app 客户端 | `business-repo/uni-superone`、`business-repo/uni-carbon-space` | 多端前端项目，各自实现页面与平台适配 |
 | 鹅懂个啥小程序 | `business-repo/uni-gknow` | uni-app 微信小程序，开发与生产统一使用 `release` 分支 |
+| 疯狂大鹅小游戏 | `business-repo/crazy-goose` | Cocos Creator 微信小游戏客户端，使用 `release` 开发，服务端用 `backend-superone` |
 | 其他客户端 | `business-repo/utools-superone`、`business-repo/frontend-superone`、`business-repo/frontend-investment-platform` | 按各自项目约定实现客户端 |
 | 协议事实仓 | `business-repo/frontend-contracts` | 所有客户端共用的 OpenAPI、类型与枚举来源 |
 
