@@ -33,6 +33,7 @@
 | Superone 前端开发（模块与主题） | `task/dev-flow/260930_superone-frontend/`            | `business-repo/uni-superone`、`backend-superone`（近期任务、物品；三态主题方案待确认；release 分支） | 进行中 |
 | Superone 前端模块设计（主题/清单/计划/物品/扩展） | `task/dev-flow/261002_superone-modules/`  | `business-repo/uni-superone`（扩展入口、系统与签到按钮已实现；type-check/build 待验证） | 进行中 |
 | uni-superone 日常优化 | `task/dev-flow/261007_uni-superone-daily-optimization/` | `business-repo/uni-superone`（持续收纳日常体验、交互、样式与维护优化） | 进行中 |
+| Superone 首页 UI 改版 | `task/dev-flow/261108_superone-homepage-ui/` | `business-repo/uni-superone`（沿用现有首页结构与功能；第一版已在微信开发者工具预览，等待用户反馈） | 进行中 |
 | Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts`                                  | 已完成 |
 | 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/`  | `business-repo/uni-superone`、`business-repo/frontend-contracts`                                      | 进行中 |
 | 测试服务器构建优化（8.155.38.83） | `task/workbench/261002_测试服务器构建优化/` | 测试环境服务器、`/workspace/test-backend-superone` 的 `deploy.sh` 与 `Dockerfile` | 排查完成，改动待确认 |
