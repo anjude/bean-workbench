@@ -41,6 +41,8 @@
 
 字段设计与 DDL 统一按 [字段设计与 SQL 输出规范](field-design-norms.md) 执行；方案阶段即核对目标仓库的模型和同类迁移。
 
+实现 MVP 时优先沿用本仓已有模式，校验和保护只覆盖当前业务、权限、数据正确性及已确认的运行要求。未知请求字段默认兼容；不要自行叠加限流、严格解码或额外抽象，具体依据按 [MVP 优先与宽约束](../00-plan/code-design.md#mvp-优先与宽约束)判断。
+
 ## 一、领域层
 
 ### 标准目录
@@ -219,6 +221,7 @@ go run ./scripts/migration --% -action=exec-sql -sql-file=scripts/migration/sql/
 3. 在 `{domain}_service` 增加 service 接口方法和实现，返回 `(*Resp, *ecode.BizError)`。
 4. 在 `use_case/{domain}_use_case.go` 或既有 `use_case/{domain}.go` 增加 UseCase 方法，从 `ctx.GetReqParam().(dto.XReq)` 取参数并调用 service。
 5. 在 `app/api_service/*.go` 的对应路由组注册路由：`middleware.HandleRequest(useCase.Method, dto.XReq{})`。
+   - 普通 JSON 接口即使需要严格解码、包体限制或自定义 HTTP 状态，也沿用共享请求处理。优先用路由中间件或 `HandleRequestWithOptions` 声明差异。评审时核对路由、DTO、UseCase、Service、Repo 和 Wire 的实际调用链，避免路由复制鉴权、绑定、日志或响应流程。
 6. 新 domain 时同步更新 `app/api_service/api_service.go`、`app/api_service/wire.go` 和相关 injector。
 
 ## 二、Wire 注入装配

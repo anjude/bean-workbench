@@ -90,13 +90,14 @@ REQUIRED_FILES = [
 
 SKILLS_DIR = ".agents/skills"
 
-# 命名规范：dev-flow 单入口、wb-* 语义名；平台接入 skill 按约定使用专属名称。
+# 命名规范：新增独立工具使用 tools-*；旧族群工具名继续接受。
 SKILL_NAME_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(?:\d{4}|tools)-[a-z0-9]+(?:-[a-z0-9]+)*$"
 )
 
 # 例外：wb-* 使用语义名；dev-flow 和 Superone 接入使用约定名称。
 WB_NAME_RE = re.compile(r"^wb-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
+TOOLS_NAME_RE = re.compile(r"^tools-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 
 
 def match_skill_name(name: str) -> bool:
@@ -105,6 +106,8 @@ def match_skill_name(name: str) -> bool:
         return True
     if name.startswith("wb-"):
         return bool(WB_NAME_RE.match(name))
+    if name.startswith("tools-"):
+        return bool(TOOLS_NAME_RE.match(name))
     return bool(SKILL_NAME_RE.match(name))
 
 # 扫描 md 链接时跳过的目录：业务子仓与外部依赖的失效链接不由工作台负责

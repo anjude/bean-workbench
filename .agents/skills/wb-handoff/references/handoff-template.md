@@ -5,7 +5,7 @@
 ```markdown
 # {任务名} · 交接
 
-- 任务目录：`task/YYMMDD_{主题}/`
+- 任务目录：`task/{任务编号}_{主题}/`（新任务）；历史 `YYMMDD` 目录保留
 - 时间：YYYY-MM-DD HH:MM
 - 来源会话 ID：{当前会话 CODEX_THREAD_ID}
 - 状态：进行中 / 待确认 / 已完成
@@ -46,7 +46,7 @@
 
 | 产物 | 路径 |
 | --- | --- |
-| 方案文档 | `task/YYMMDD_{主题}/README.md` |
+| 方案文档 | `task/{任务编号}_{主题}/README.md` |
 | 改动 | {commit / diff / 分支} |
 
 ## 下次建议调用的 skill

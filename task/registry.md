@@ -7,6 +7,7 @@
 | 任务 | 目录 | 资源范围 | 状态 |
 | -- | -- | -- | -- |
 | 健身、睡眠与美股 Sell Put 日常 | `task/daily/health-sleep-sell-put/` | 健身睡眠；理财入口 `finance-tools-investment` 负责健康检查、事件前置的分层日报、滚仓/新仓候选及重要记账；真实输入在私有 portfolio/weekly-income | 理财 skill 已接入；日报直接在会话，正文按需保存；报价能力待完善 |
+| QB81 鹅懂个啥日常 | `task/daily/QB81_gknow/` | `business-repo/uni-gknow` 的日常反馈、体验优化、缺陷修复与维护 | 功能埋点首版已实现，test 库已建表，待部署与微信端对账 |
 
 ### 专项任务
 
@@ -52,7 +53,7 @@
 
 | 任务 | 目录 | 资源范围 | 状态 |
 | -- | -- | ---- | -- |
-| 暂无 | -  | -    | -  |
+| 鹅懂个啥原日常开发 | `task/dev-flow/261009_gknow-daily/` | 既有方案、过程、交接及待验收记录 | 保留原档；新日常事项走 `task/daily/QB81_gknow/` |
 
 ## 路由提示
 
@@ -62,7 +63,7 @@
 - 提到 macOS 微信防撤回、安装/修复 WeChatIntercept 或补丁升级失效：使用 `.agents/skills/wb-wechat-anti-revoke/`；先备份对应 build，再安装并核验运行时 hook。
 - 提到健身、训练、睡眠或每周美股 sell put：进入 `task/daily/health-sleep-sell-put/README.md`，延续日常记录；独立研究或开发按需衍生专项任务并保留双向索引。
 - 提到其他长期日常事项、持续跟进或非代码日常工作：先查 `task/daily/README.md` 与对应 daily 任务；专项开发按需衍生或转入 `task/dev-flow/`，并保留双向索引。
-- 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `business-repo/uni-gknow/docs/README.md`；日常开发读 `task/dev-flow/261009_gknow-daily/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
+- 提到「鹅懂个啥」「gknow」或新娱乐小程序初始化：业务仓为 `business-repo/uni-gknow`，产品上下文先读 `business-repo/uni-gknow/docs/README.md`；日常事项进入 `task/daily/QB81_gknow/README.md`，原开发记录从该入口查阅；开发与生产统一使用 `release` 分支。
 - 理财副本面向不熟悉A股的新人：用具体公司、人物与事件经过讲故事，首次出现的术语随情节解释；不能把事件名当作已知背景后直接点评。阅读端不出现字幕、研究或核对备注，编辑资料留在任务目录。
 - 提到「疯狂大鹅」、把鹅懂个啥现有模式独立做成微信小游戏或「默契大作战」小游戏化：进入 `task/dev-flow/261101_gknow-minigame/README.md`，仓库为 `anjude/crazy-goose`。
 - 提到小红书内容研究、采集公开笔记或预发布准备：调用 `xhs-tools-content-research`，生产上下文见 `task/dev-flow/261010_gknow-content-studio/`。
@@ -78,7 +79,7 @@
 - 提到 `frontend-contracts`、`OpenAPI`、`契约`：优先路由到工作台下的 `business-repo/frontend-contracts`。
 - 提到 `beannote`、`豆小匠 Note`、`理财自媒体`、`内容创作`、`选题池`、`文章复盘`：内容主题路由到 `task/beannote/topics/`，新建或在新会话中继续选题时按目录名自动绑定并改名，选题不登记开发任务；发布工具等日常开发维护路由到 `task/dev-flow/261017_beannote-daily/`，可复用代码在 `.agents/skills/bn-tools-*/scripts/`，主题产物在 `task/beannote`。辅助编辑与长期写作规则维护统一走 `bn-tools-edit-flow`，排版走 `bn-tools-format-flow`，素材上传、草稿箱和按授权发布走 `bn-tools-publish-flow`。
 - 提到 `便签`：先查热任务和知识库；如果没有明确业务仓，不要直接改业务仓，先定位需求归属。
-- 提到 `handoff`、`交接`、`收工`、`下次继续`、`切新会话`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/YYMMDD_{主题}/` 目录都应带一个 `handoff/`。
+- 提到 `handoff`、`交接`、`收工`、`下次继续`、`切新会话`：走 `wb-handoff`，在任务目录的 `handoff/` 下写 `YYMMDD-HHMM_{slug}.md`；每个 `task/{任务编号}_{主题}/` 目录都应带一个 `handoff/`。handoff 文件名前缀仍用时间戳，不使用任务编号。
 - 提到 `工作台`、`skill`、`知识库`、`自进化`：默认只改工作台根级目录。
 - skill 实体在 `bean-workbench/.agents/skills/`，由工作台 git 跟踪，工作台的 `make commit` 能带走；`~/.agents` 是指向它的外链，其他项目经它读到同一套 skill。详见 `AGENTS.md` 的「跨项目共享」。
 - 工作台文档位置：说明类在 `docs/`（平铺），模板与工作流在各 skill 的 `references/`，知识内容与知识库规范在 `kb/`，任务、痛点和上下文记录在 `task/`。

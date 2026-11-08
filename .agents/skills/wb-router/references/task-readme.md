@@ -1,7 +1,7 @@
 # 任务 README 模板
 
 ```markdown
-# YYMMDD 任务名称
+# {任务编号} 任务名称
 
 ## 目标
 

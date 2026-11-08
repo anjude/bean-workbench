@@ -25,8 +25,10 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | 关键词 | 路由 |
 | --- | --- |
 | `素材库`、`原始素材`、`local-source` | `source/README.md`，需要二次开发时先复制素材到目标任务或业务仓 |
-| `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；长期产品上下文见 `business-repo/uni-gknow/docs/README.md`；日常开发见 `task/dev-flow/261009_gknow-daily/README.md`；管理员内容工具见 `task/dev-flow/261010_gknow-content-studio/`，产品视频见 `task/dev-flow/261015_gknow-product-video/` |
+| 后端上传图片、图片转 URL | 使用 `tools-image-upload`；公众号专属素材与发布仍走 `bn-tools-publish-flow` |
+| `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；长期产品上下文见 `business-repo/uni-gknow/docs/README.md`；日常入口见 `task/daily/QB81_gknow/README.md`；管理员内容工具见 `task/dev-flow/261010_gknow-content-studio/`，产品视频见 `task/dev-flow/261015_gknow-product-video/` |
 | `小红书内容研究`、`小红书帖子预发布`、`MediaCrawler`、`XHS-Downloader` | 使用 `xhs-tools-content-research`；鹅懂个啥图文生成与样本学习上下文见 `task/dev-flow/261010_gknow-content-studio/` |
+| `疯狂大鹅`、`crazy-goose` | 任务入口 `task/dev-flow/261101_gknow-minigame/README.md`；Cocos Creator 客户端在 `business-repo/crazy-goose`，后端用 `business-repo/backend-superone` |
 | `superone` | 先到 `business-repo/`，再按需求判断 `backend-superone`、`uni-superone`、`uni-carbon-space`、`frontend-superone`、`miniprogram-superone`、`frontend-contracts` 或 uTools 端 |
 | Superone MCP 安装、扫码登录或私有 Skill 同步 | 使用 `superone-mcp-install`；服务端功能开发仍进入 `task/dev-flow/261107_backend-superone-mcp/` |
 | `后端`、`API`、`数据库`、`SQL` | `business-repo/backend-superone` |
@@ -49,7 +51,7 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 
 ## 三、开发类需求的硬路由
 
-后端改动、前端页面、跨端功能这类开发需求：统一按 `dev-flow` 推进需求沟通、方案设计、实现迭代和交付；有独立目标与验收标准的专项在 `task/dev-flow/YYMMDD_{主题}/` 建档，设计方案放任务目录 `plans/` 下的独立文档，由 README 索引。持续日常事项中的小型开发可继续使用 `task/daily/{slug}/` 上下文，过程记录留在 daily 目录；需要单独交付时从 daily 衍生专项并互链。具体后端、前端、验证细则按需读取 references。
+后端改动、前端页面、跨端功能这类开发需求：统一按 `dev-flow` 推进需求沟通、方案设计、实现迭代和交付；有独立目标与验收标准的专项使用 `task/dev-flow/{任务编号}_{主题}/` 建档，编号按工作台任务规则分配，同日多任务递增 36 进制序号。现有 `YYMMDD` 专项目录保持原名。设计方案放任务目录 `plans/` 下的独立文档，由 README 索引。持续日常事项中的小型开发可继续使用 `task/daily/{slug}/` 上下文，过程记录留在 daily 目录；需要单独交付时从 daily 衍生专项并互链。具体后端、前端、验证细则按需读取 references。
 
 ## 四、配套 references
 
@@ -57,7 +59,7 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | --- | --- | --- |
 | `references/business-request-loop.md` | 业务需求闭环流程 | 命中业务需求，要从需求一路做到沉淀 |
 | `references/business-generation-checklist.md` | 业务仓生成验收与沉淀清单，含 dev-flow 全 skill 路由表 | 进入业务仓前、生成后验收、子仓接入检查 |
-| `references/task-readme.md` | 工作台任务 README 模板 | 新建或延续 `task/YYMMDD_slug/` 目录 |
+| `references/task-readme.md` | 工作台任务 README 模板 | 新建或延续 `task/{任务编号}_slug/` 目录 |
 | `references/task-review.md` | 工作台任务复盘模板 | 任务收口时写复盘 |
 
 ## 输出要求
