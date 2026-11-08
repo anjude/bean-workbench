@@ -23,7 +23,7 @@
 
 2026-11-08 用户要求把人生模拟内容丰富度对标「80亿分之一」。本阶段聚焦其随机出生、统计背景、分龄年度事件、关键决定、完整人生记录与结局重玩；多人同步与在线房间另行设计。原型已能逐年推进，但内容量和起点机制尚未达到目标。
 
-2026-11-08 创建 [GitHub 私有仓库 anjude/crazy-goose](https://github.com/anjude/crazy-goose)，并在 `business-repo/crazy-goose` 初始化本地 `release` 分支与 Cocos Creator 3.8.8 工程。首个构建目标为微信小游戏，后端使用 `backend-superone`。按用户要求将仓库目录放入 `business-repo/`。本机已发现两份 Cocos Creator 3.8.8 安装，Creator Browser 预览已实玩至 6 岁第一项决策并验证选择后属性变化；微信开发者工具构建和目标端体验仍待验证。远端工程文件等待提交和推送。README 已于 `release` 分支提交为 `ca2efbd`；工作台子模块登记已写入 `.gitmodules` 和索引，待工作台仓提交。
+2026-11-08 创建 [GitHub 私有仓库 anjude/crazy-goose](https://github.com/anjude/crazy-goose)，并在 `business-repo/crazy-goose` 初始化本地 `release` 分支与 Cocos Creator 3.8.8 工程。首个构建目标为微信小游戏，后端使用 `backend-superone`。按用户要求将仓库目录放入 `business-repo/`。本机已发现两份 Cocos Creator 3.8.8 安装，Creator Browser 预览已实玩至 6 岁第一项决策并验证选择后属性变化；2026-11-08 已通过微信小游戏 CLI 构建，微信扫码真机预览仍待解决二维码路径错误。README 已于 `release` 分支提交为 `ca2efbd`；全球出生基线与人生事件扩充已提交并推送为 `44ae2aa`；工作台子模块登记已提交并推送。
 
 ## 方案与调研
 
