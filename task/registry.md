@@ -42,8 +42,7 @@
 | uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
 | uTools Bean Option 日常维护 | `task/dev-flow/261015_utools-bean-option-daily/` | `business-repo/utools-bean-option`（桌面端、插件端与本地工具的日常维护） | 货币列表缓存已修复，待 uTools 实机验收 |
 | 鹅懂个啥可配置测试 | `task/dev-flow/261108_gknow-configurable-assessment/` | 后端测试配置与发布、小程序通用模板、投资方式首测及公众号入口 | 开发迭代中，Go 与微信小程序编译通过；test 库表已创建，待真实接口联调 |
-| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（已实现玩法已由用户测试并确认可跑通；性格盲盒方案见 plans/性格盲盒.md，已恢复开发并补齐技术迁移，原题库和评分保留；demo 项目不计入正式范围；聚会记分使用 HTTP + Redis 房间轮询，摇骰子改为本机即玩，待目标端体验） | 进行中（记分双设备同步与房间分享待微信端体验） |
-| 疯狂大鹅微信小游戏项目 | `task/dev-flow/261101_gknow-minigame/` | 独立微信小游戏工程（非小程序）；主打副本体验和双人小游戏，已定名「疯狂大鹅」；首发范围与技术方案待沟通 | 进行中（任务已建立） |
+| 疯狂大鹅微信小游戏项目 | `task/dev-flow/261101_gknow-minigame/` | `business-repo/crazy-goose`（Cocos Creator 微信小游戏客户端），后端用 `backend-superone` | 单人逐年 Demo 已可玩；按 1in8B 方向扩充全球出生统计、年度内容与结局回看 |
 | 鹅懂个啥恋爱副本 | `task/dev-flow/261031_gknow-love-copy/` | `business-repo/uni-gknow`（探索 tab 独立入口与目录；首发恋爱速通剧本） | 已改为 28 幕短场景并补齐背景，编译通过，待体验反馈 |
 | 鹅懂个啥公司副本 | `task/dev-flow/261101_gknow-company-copy/` | `business-repo/uni-gknow`（复用现有副本组件讲述真实公司特殊事件；候选清单已整理，首发选题待确认） | 进行中（任务已建立） |
 | 鹅懂个啥小红书图片工坊 | `task/dev-flow/261010_gknow-content-studio/` | Canvas 模板排版与 AI 画面生成；公开内容研究工具在 `tools/xhs-research/`，操作流程由 `xhs-tools-content-research` 承接 | 本地网站 MVP 已运行，生图服务待配置 |
@@ -65,7 +64,7 @@
 - 提到其他长期日常事项、持续跟进或非代码日常工作：先查 `task/daily/README.md` 与对应 daily 任务；专项开发按需衍生或转入 `task/dev-flow/`，并保留双向索引。
 - 提到「鹅懂个啥」或新娱乐小程序初始化：进入 `business-repo/uni-gknow`，先读 `business-repo/uni-gknow/docs/README.md`；日常开发读 `task/dev-flow/261009_gknow-daily/README.md` 与最新 handoff；开发与生产统一使用 `release` 分支。
 - 理财副本面向不熟悉A股的新人：用具体公司、人物与事件经过讲故事，首次出现的术语随情节解释；不能把事件名当作已知背景后直接点评。阅读端不出现字幕、研究或核对备注，编辑资料留在任务目录。
-- 提到「鹅懂个啥」的微信小游戏、把现有模式独立做成小游戏或「默契大作战」小游戏化：进入 `task/dev-flow/261101_gknow-minigame/README.md`；目标是独立微信小游戏工程，不路由为 `uni-gknow` 小程序页面改造。
+- 提到「疯狂大鹅」、把鹅懂个啥现有模式独立做成微信小游戏或「默契大作战」小游戏化：进入 `task/dev-flow/261101_gknow-minigame/README.md`，仓库为 `anjude/crazy-goose`。
 - 提到小红书内容研究、采集公开笔记或预发布准备：调用 `xhs-tools-content-research`，生产上下文见 `task/dev-flow/261010_gknow-content-studio/`。
 
 - 开发流程入口：`dev-flow` 是开发流程唯一入口，按 00 任务初始化 / 01 需求沟通 / 02 功能与系统设计 / 03 开发迭代 / 04 部署总结交接推进；细则按需读取 references，独立能力使用 `dev-flow-tools-*`。`bn-*` 是内容工具，`wb-*` 是工作台基建。完整清单见 `AGENTS.md`。
