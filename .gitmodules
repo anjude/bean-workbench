@@ -46,3 +46,7 @@
 	path = tools/xhs-research/XHS-Downloader
 	url = https://github.com/JoeanAmier/XHS-Downloader.git
 	branch = master
+[submodule "business-repo/crazy-goose"]
+	path = business-repo/crazy-goose
+	url = git@github.com:anjude/crazy-goose.git
+	branch = release
