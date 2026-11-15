@@ -173,8 +173,8 @@ def compact_title(text: str, fallback: str) -> str:
 
 def canonical_task_name(text: str, fallback: str) -> str:
     value = compact_title(text, fallback)
-    # App-server thread names may omit the separator from a YYMMDD_task slug.
-    match = re.match(r"^(\d{6})[_-]?(.+)$", value)
+    # App-server thread names may omit the separator from the usual four-character task ID.
+    match = re.match(r"^([A-Z0-9]{4})[_-]?(.+)$", value)
     if match:
         return f"{match.group(1)}_{match.group(2)}"
     return value
@@ -185,15 +185,17 @@ def task_name_from_title(text: str, cwd: str, fallback: str) -> str:
     value = re.sub(r"[`*_#]", "", re.sub(r"\s+", " ", text)).strip()
     root = Path(cwd) / "task"
     candidates: list[str] = []
-    for parent in (root / "dev-flow", root / "daily"):
+    for parent in (root / "dev-flow", root / "workbench", root / "daily", root / "beannote" / "topics"):
         try:
             candidates.extend(path.name for path in parent.iterdir() if path.is_dir())
         except OSError:
             continue
-    normalized = re.sub(r"^(\d{6})[_-]?", r"\1_", value)
     matches = [
         name for name in candidates
-        if normalized == name or normalized.startswith(name + "-")
+        if value == name
+        or value.startswith(name + "-")
+        or value.startswith(name.replace("_", "", 1))
+        or value.startswith(name.replace("_", "", 1) + "-")
     ]
     return max(matches, key=len) if matches else canonical_task_name(value or fallback, fallback)
 
@@ -202,9 +204,6 @@ def next_name(proxy: AppServerProxy, task_name: str, summary: str) -> str:
     result = proxy.request("thread/list", {"limit": 100})
     prefix = f"{task_name}-{summary}-"
     prefixes = {prefix}
-    legacy = re.match(r"^(\d{6})_(.+)$", task_name)
-    if legacy:
-        prefixes.add(f"{legacy.group(1)}{legacy.group(2)}-{summary}-")
     numbers = []
     for entry in result.get("data", []):
         name = entry.get("name") or entry.get("title") or ""
@@ -243,6 +242,55 @@ def recent_summary(proxy: AppServerProxy, session_id: str) -> str:
     return "续接"
 
 
+def list_threads(proxy: AppServerProxy) -> list[dict[str, Any]]:
+    """读取本地会话列表，支持分页以发现 Pinned 分区 ID。"""
+    result: list[dict[str, Any]] = []
+    cursor: str | None = None
+    while True:
+        params: dict[str, Any] = {"limit": 100}
+        if cursor:
+            params["cursor"] = cursor
+        page = proxy.request("thread/list", params)
+        entries = page.get("data", [])
+        if isinstance(entries, list):
+            result.extend(item for item in entries if isinstance(item, dict))
+        cursor = page.get("nextCursor")
+        if not cursor:
+            return result
+
+
+def pin_thread(proxy: AppServerProxy, thread_id: str) -> str:
+    """在新会话首轮启动前置顶，并用 app-server 列表核验。"""
+    threads = list_threads(proxy)
+    pinned_section_id = next(
+        (
+            section.get("id")
+            for entry in threads
+            if isinstance((section := entry.get("section")), dict)
+            and str(section.get("name", "")).casefold() == "pinned"
+            and isinstance(section.get("id"), str)
+        ),
+        None,
+    )
+    if not pinned_section_id:
+        raise RuntimeError("could not discover the Pinned sidebar section")
+
+    current = next((entry for entry in threads if entry.get("id") == thread_id), None)
+    current_section = current.get("section") if isinstance(current, dict) else None
+    if not isinstance(current_section, dict) or current_section.get("id") != pinned_section_id:
+        proxy.request("thread/section/move", {
+            "threadId": thread_id,
+            "sectionId": pinned_section_id,
+        })
+
+    verified_threads = list_threads(proxy)
+    verified = next((entry for entry in verified_threads if entry.get("id") == thread_id), None)
+    verified_section = verified.get("section") if isinstance(verified, dict) else None
+    if not isinstance(verified_section, dict) or verified_section.get("id") != pinned_section_id:
+        raise RuntimeError("new session was not listed in the Pinned sidebar section")
+    return pinned_section_id
+
+
 def make_branch(session_id: str, cwd: str, state: dict[str, Any], path: Path) -> str:
     proxy = AppServerProxy()
     try:
@@ -278,6 +326,17 @@ def make_branch(session_id: str, cwd: str, state: dict[str, Any], path: Path) ->
             name = next_name(proxy, task_name, recent_summary(proxy, session_id))
             proxy.request("thread/name/set", {"threadId": new_id, "name": name})
             state["new_thread_name"] = name
+            save_state(path, state)
+
+        if not state.get("thread_pinned"):
+            try:
+                state["pinned_section_id"] = pin_thread(proxy, str(new_id))
+                state["thread_pinned"] = True
+                state.pop("thread_pin_error", None)
+            except Exception as error:
+                # 置顶故障不能阻断续接；接手侧会核验并通过应用工具兜底。
+                state["thread_pinned"] = False
+                state["thread_pin_error"] = str(error)
             save_state(path, state)
 
         if not state.get("seed_attempted"):

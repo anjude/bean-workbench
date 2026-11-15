@@ -29,7 +29,7 @@ REQUIRED_FILES = [
     "kb/common/README.md",
     "task/registry.md",
     "task/daily/README.md",
-    "task/workbench/260614_workbench-init/README.md",
+    "task/workbench/Q6E3_workbench-init/README.md",
     ".agents/skills/wb-router/SKILL.md",
     ".agents/skills/wb-router/references/business-request-loop.md",
     ".agents/skills/wb-router/references/business-generation-checklist.md",
@@ -73,6 +73,8 @@ REQUIRED_FILES = [
     ".agents/skills/bn-tools-publish-flow/scripts/publish.py",
     ".agents/skills/xhs-tools-content-research/SKILL.md",
     ".agents/skills/xhs-tools-content-research/references/tools.md",
+    ".agents/skills/tools-superone/SKILL.md",
+    ".agents/skills/superone-mcp-install/SKILL.md",
     ".agents/vendor/README.md",
     ".agents/vendor/product-video/SKILL.md",
     ".agents/vendor/product-video/LICENSE",
@@ -95,7 +97,7 @@ SKILL_NAME_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(?:\d{4}|tools)-[a-z0-9]+(?:-[a-z0-9]+)*$"
 )
 
-# 例外：wb-* 使用语义名；dev-flow 和 Superone 接入使用约定名称。
+# 例外：wb-* 使用语义名；dev-flow 和 Superone MCP 安装 skill 使用约定名称。
 WB_NAME_RE = re.compile(r"^wb-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 TOOLS_NAME_RE = re.compile(r"^tools-[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 

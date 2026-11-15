@@ -19,7 +19,7 @@
 - **backup 是线上跑着的代码，默认按「它是对的」处理**（2026-10-02 豆哥纠）。说「既有实现有 bug / 有缺陷」之前必须把原文拉出来**核到具体行**，确认它的依赖链真的断了；推断出来的「bug」基本是我漏看了某个隐式前提（如 `reactive()` 深代理提供的响应式）。判断错了要在 process 文档与记忆里明确更正，不能悄悄改口径。
 
 ## 目录与文档约定
-- **走 dev-flow 的开发需求，方案文档一律落 `task/dev-flow/YYMMDD_{主题}/README.md`**（不是 `task/` 根；`task/dev-flow/README.md` 只做索引，`task/registry.md` 是完整登记表）。建目录前先核对这两个索引，别照 SKILL.md 里可能泛化的写法直接建。不往业务仓 docs/ 新增。活跃文档改名须同步 `AGENTS.md`/SKILL.md/引用并跑 `make check`。
+- **走 dev-flow 的开发需求，方案文档一律落 `task/dev-flow/{任务编号}_{主题}/README.md`**（不是 `task/` 根；`task/dev-flow/README.md` 只做索引，`task/registry.md` 是完整登记表）。建目录前先核对这两个索引，并按 `AGENTS.md` 的统一编号规则分配编号。不往业务仓 docs/ 新增。活跃文档改名须同步 `AGENTS.md`/SKILL.md/引用并跑 `make check`。
 - `handoff/` 是一屏快照（最新一份）；`process/` 是 topic 维度思考过程（做了什么/结论/被推翻判断/待核），纵向只增不改。
 
 ## carbon / 边界
@@ -29,7 +29,7 @@
 - 微信绿主色 #07C160；令牌 `--so-*`，主题类 `.theme-light`/`.theme-dark`。视觉/布局以 carbon 首页为样板（rail+swiper+底部操作栏+主按钮遥控+反受控弹层+高度链），不自创。
 - **首页高度链**（塌陷过两次，改这块必查）：`.so-index` 必须 `display:flex; flex-direction:column`，否则子元素 `.so-index__workspace` 的 `flex:1` 静默失效 → swiper 撑不开 → 模块面板被裁成空白（不报错）。完整链：so-index(flex column, 100vh-nav) → workspace(flex1) → main(flex1) → swiper(flex1) → swiper-item(100%) → 面板 scroll-view(px)。**用 flex:1 的地方父级必须真是 flex 容器**。
 - **关键真机坑**：① 令牌只能挂 `page` 与主题类，**禁用 `:root`**；② `page` 不设主题背景，背景交给页面根容器；③ 用 `background: var(...)`，不要为想象中的兼容性写硬编码兜底；④ 不支持动态组件 `<component :is>`；⑤ 弃用 `uni.getSystemInfoSync()`，改用 getWindowInfo/getAppBaseInfo/getDeviceInfo。
-- 页面包 `<so-page>` 门禁（profile 除外）；原生全局对象声明在 `src/types/platform.d.ts`（用到裸 `wx` 在此补，别另建 d.ts）。详细设计见 `task/261002_superone-modules/` 与 process 文件。
+- 页面包 `<so-page>` 门禁（profile 除外）；原生全局对象声明在 `src/types/platform.d.ts`（用到裸 `wx` 在此补，别另建 d.ts）。详细设计见 `task/dev-flow/QA21_superone-modules/` 与 process 文件。
 - **契约子仓更新**：`uni-superone/src/contracts` 是 uni-superone 自己的子模块（release 分支），不是父仓的直接子模块——父仓 `git submodule status` 看不到它。更新方式：`cd business-repo/uni-superone/src/contracts && git fetch origin release && git merge --ff-only origin/release`，改完 uni-superone 会多一个「M src/contracts」待提交。**查契约前先确认这个指针**，别只看父仓。
 - **子日志（跟进）四条接口边界**（2026-10-02）：① 列表只返「纯根」或「纯某父的子」，分页 total 只数当前层级；② `TopicLogListItem` **无 child_count** → 父层列表拿不到子条数，要拿只能逐条查（N+1），所以主题详情页不显示跟进数；③ `UpdateTopicLogReq` **无 parentLogId** → 层级创建后固定，不能挪；④ `DeleteTopicLog` **不级联** → 删根记录会留下孤儿子记录（仍在库、但失去入口），删除功能因此没做。后端支持任意层级，UI 只做两层。
 - **登录只在「响应返回未登录码」时触发**（2026-10-02 豆哥定）：`utils/request.ts` 的 `handleLoginExpired` 命中 `LOGIN_EXPIRED_CODE(-100004)` 才 `reloginOnce()` 换 token 并重放（并发去重）。**任何地方都不要主动调 `getLoginAdapter().login()`**（`stores/app.ts` 的 init 里那次已删除）。
@@ -60,7 +60,7 @@
 - **每日凌晨 3:06 自动重启**（豆哥要求）：crontab `6 3 * * * /usr/sbin/reboot`（`/usr/sbin/reboot` 是 systemctl 的软链；时区 Asia/Shanghai）。**这条能安全运行全靠上面的 `@reboot` 自愈，两者必须成对存在**——没有自愈，每次重启都会让线上服务挂到人工介入。
 - 部署两路径：`make build` → docker build；`deploy.sh test` → 宿主机 `go build` + `supervisorctl reload`（失败发企微告警）。`deploy.sh` 里已无 `go mod tidy`。
 - **新增依赖不需要上服务器跑 `go mod download`**（已实测）：Go 1.16+ 默认 `-mod=readonly`，`go build` 会自动下载 go.mod 里已声明的模块，但不会自动补写 go.mod。依赖由开发者本地 `go get` 后连同 `go.mod`/`go.sum` 一起提交即可。漏提交会明确报错（`no required module provides package xxx` / `missing go.sum entry`），不会静默带病上线。
-- 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/workbench/261002_测试服务器构建优化/`。
+- 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/workbench/QA24_测试服务器构建优化/`。
 - **远程排障坑**：① `pkill -f "<pattern>"` 会匹配承载命令的 shell 自身导致 SSH 断连（exit 255），先取 PID 再 kill；② 内存被打爆时 **TCP 能连、ping 通，但 sshd 不发 banner**（`Connection timed out during banner exchange`），此时应等待内存释放而非反复重连，恢复后用 `uptime` 的 "up N min" 判断是否重启过。
 - 装 Go 不用联网下 tarball：模块缓存里的 `golang.org/toolchain@v0.0.1-goX.Y.Z.linux-amd64` 就是完整 SDK，`cp -r` 到 `/usr/local/go` 后 `chmod -R u+w` 即可（toolchain 模块文件默认只读）。
 

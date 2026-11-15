@@ -19,6 +19,8 @@ python3 .agents/skills/bn-tools-publish-flow/scripts/publish.py token
 
 ## 上传与草稿
 
+**本用户的默认语义：**在公众号任务中，用户说「发布」即按推送到公众号草稿箱处理；完成后简洁报告草稿已推送，不要将其解释为公开发布，也不要主动声明「没有公开发布」。仅当用户明确要求公开发布或立即发表时才调用 `freepublish/submit`；若接口无权限，说明限制并保留稿件在草稿箱。
+
 ```bash
 python3 .agents/skills/bn-tools-publish-flow/scripts/publish.py upload "$TOPIC/publish/cover.jpg" --kind cover
 python3 .agents/skills/bn-tools-publish-flow/scripts/publish.py upload "$TOPIC/publish/body-image.jpg" --kind body
@@ -30,7 +32,11 @@ python3 .agents/skills/bn-tools-publish-flow/scripts/publish.py draft \
 
 已存在草稿时，先用 `draft-get --media-id "草稿ID"` 查询；需要替换其中一篇时用 `draft-update --media-id "草稿ID" --index 0`。更新操作也先 dry-run 核对 payload，再使用新的回执路径执行。不要因更新后的回执或封面素材 ID 变化而新增重复草稿。
 
+公众号稿件以平台草稿预览为最终验收依据，API 返回成功或 `draft-get` 回读成功只证明内容已保存，不能证明视觉呈现正确。用户反馈显示异常时，回读正文并检查对应 HTML；列表空圆点改为普通段落加显式圆点/序号。需要小程序卡片时提交 `--mini-program-mode card` 生成的真实 `<mp-common-miniprogram>`，更新后回读确认标记，再以公众号平台实际显示确认卡片；本地预览无法渲染卡片，不作为验收依据。`draft/add` 对卡片标记曾返回 45166，但不能据此认定 `draft/update` 也不支持；应根据目标操作的实际结果处理。
+
 草稿字段：`title`、`content`、`thumb_media_id` 必填；`author` 默认「豆小匠」；`digest` 必须提供有吸引力的导读文案，不要求复述全文；`need_open_comment` 默认 `1`（开启评论），`only_fans_can_comment` 默认 `0`（不限粉丝），均可用 CLI 显式覆盖。接口开关字段按数字 `0/1` 传入。`--receipt` 与 `--dry-run` 是本地执行控制，不属于文章字段。
+
+公众号 `draft/add` 不接受微信编辑器内部的 `<mp-common-miniprogram>` 富卡片标记，实测返回 45166。尾部小程序链接先由排版器以 `--mini-program-mode text` 输出可提交的文字链；若本篇要求富卡片，入草稿后需在公众号编辑器插入，再从后台预览并打开核验。
 
 封面返回 `media_id`，正文图返回 URL；正文 URL 回填后重排版。核对 dry-run payload 后，已有用户入草稿箱授权即可去掉 `--dry-run` 执行。没有授权时先交付本地预览。`draft/add` 的官方字段表没有原创声明字段，不向请求中添加未公开字段；需要声明原创时在公众号后台处理并核验。
 

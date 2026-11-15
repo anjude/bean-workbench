@@ -1,8 +1,8 @@
-> 本文是 Superone 首版 MCP 任务的历史方案案例，供阅读组织和设计深度参考。业务事实、状态、技术选型与验证结果只适用于该任务当时的上下文；新任务按实际情况判断，方案位置遵循当前模板。原文见 [任务记录](../../../../../task/dev-flow/261107_backend-superone-mcp/README.md)。
+> 本文是 Superone 首版 MCP 任务的历史方案案例，供阅读组织和设计深度参考。业务事实、状态、技术选型与验证结果只适用于该任务当时的上下文；新任务按实际情况判断，方案位置遵循当前模板。原文见 [任务记录](../../../../../task/dev-flow/QB71_backend-superone-mcp/README.md)。
 
 # 261107 Superone Agent 接入与私有 Skill 同步
 
-组织与公开 Skill 的新增需求见 [需求草案](../../../../../task/dev-flow/261107_backend-superone-mcp/plans/组织与公开Skill.md)。
+组织与公开 Skill 的新增需求见 [需求草案](../../../../../task/dev-flow/QB71_backend-superone-mcp/plans/组织与公开Skill.md)。
 
 ## 需求与范围
 
@@ -19,7 +19,7 @@
 
 **接入方式已调整**　服务继续提供登录脚本，并在接入说明中解释脚本的扫码登录与鉴权逻辑。说明不要求客户端运行该脚本，客户端可自行选择 curl、本机操作或其他方式完成相同流程。验收看 MCP 是否成功安装、连接并通过鉴权，具体接入命令由客户端决定。
 
-test 服务 `https://api.beanflow.top:8080` 的 `/ping`、`/agent/install` 和 `/agent/login.py` 均返回 200。远端 `dev`、`test` 均指向 `3be24df`，线上下载脚本与该版本一致。共享契约已推送 `release`（`8164f91`）。详见[部署与验收记录](../../../../../task/dev-flow/261107_backend-superone-mcp/process/04-部署与验收.md)。
+test 服务 `https://api.beanflow.top:8080` 的 `/ping`、`/agent/install` 和 `/agent/login.py` 均返回 200。远端 `dev`、`test` 均指向 `3be24df`，线上下载脚本与该版本一致。共享契约已推送 `release`（`8164f91`）。详见[部署与验收记录](../../../../../task/dev-flow/QB71_backend-superone-mcp/process/04-部署与验收.md)。
 
 ## Redis 环境隔离
 
@@ -42,17 +42,17 @@ test 服务 `https://api.beanflow.top:8080` 的 `/ping`、`/agent/install` 和 `
 
 ### 扫码登录与跨设备同步
 
-[编辑时序图](../../../../../task/dev-flow/261107_backend-superone-mcp/diagrams/sequence.drawio)
+[编辑时序图](../../../../../task/dev-flow/QB71_backend-superone-mcp/diagrams/sequence.drawio)
 
-![Draw.io 时序图，展示扫码、领取 JWT 和两台设备同步 Skill](../../../../../task/dev-flow/261107_backend-superone-mcp/diagrams/sequence.drawio.png)
+![Draw.io 时序图，展示扫码、领取 JWT 和两台设备同步 Skill](../../../../../task/dev-flow/QB71_backend-superone-mcp/diagrams/sequence.drawio.png)
 
 ### 私有 Skill 的保存与下载
 
-[编辑流程图](../../../../../task/dev-flow/261107_backend-superone-mcp/diagrams/business-flow.drawio)
+[编辑流程图](../../../../../task/dev-flow/QB71_backend-superone-mcp/diagrams/business-flow.drawio)
 
 泳道按本机 Codex 与登录脚本、Superone 服务端、微信小程序划分。新建时按账号和名称保证唯一。更新发生版本冲突时，客户端重新读取，再决定是否提交。
 
-![Draw.io 业务泳道图，展示 Codex、Superone 和微信小程序之间的交接及 Skill 读写分支](../../../../../task/dev-flow/261107_backend-superone-mcp/diagrams/business-flow.drawio.png)
+![Draw.io 业务泳道图，展示 Codex、Superone 和微信小程序之间的交接及 Skill 读写分支](../../../../../task/dev-flow/QB71_backend-superone-mcp/diagrams/business-flow.drawio.png)
 
 ## 任务拆分与实施顺序
 
@@ -200,6 +200,6 @@ CREATE TABLE IF NOT EXISTS `user_skill_tab` (
 
 ## 落地记录
 
-先前通过本机启动的实际后端验证了 MCP 工具和文件推送、恢复，详见[开发记录](../../../../../task/dev-flow/261107_backend-superone-mcp/process/03-开发与迭代.md)。本轮通过已部署的 test 服务验证了安装入口、扫码取码、Skill HTTP 分页和校验、MCP 凭证权限。真实 Codex 握手和微信扫码确认的阻塞见[部署与验收记录](../../../../../task/dev-flow/261107_backend-superone-mcp/process/04-部署与验收.md)。
+先前通过本机启动的实际后端验证了 MCP 工具和文件推送、恢复，详见[开发记录](../../../../../task/dev-flow/QB71_backend-superone-mcp/process/03-开发与迭代.md)。本轮通过已部署的 test 服务验证了安装入口、扫码取码、Skill HTTP 分页和校验、MCP 凭证权限。真实 Codex 握手和微信扫码确认的阻塞见[部署与验收记录](../../../../../task/dev-flow/QB71_backend-superone-mcp/process/04-部署与验收.md)。
 
-新版小程序已复刻备份的扫码入口和自动提交行为。通过 TypeScript 检查、微信小程序构建和构建产物的页面逻辑检查。真机复测时使用指向后端 test 的体验版小程序，生成二维码时指定 `--env-version trial`。详见[开发记录](../../../../../task/dev-flow/261107_backend-superone-mcp/process/03-开发与迭代.md)。
+新版小程序已复刻备份的扫码入口和自动提交行为。通过 TypeScript 检查、微信小程序构建和构建产物的页面逻辑检查。真机复测时使用指向后端 test 的体验版小程序，生成二维码时指定 `--env-version trial`。详见[开发记录](../../../../../task/dev-flow/QB71_backend-superone-mcp/process/03-开发与迭代.md)。

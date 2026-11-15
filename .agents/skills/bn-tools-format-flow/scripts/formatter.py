@@ -10,6 +10,7 @@ import json
 import re
 import os
 from html import escape
+from urllib.parse import quote
 
 # ============================================================
 # 1. 内置模板定义
@@ -55,6 +56,20 @@ TEMPLATES = {
 }
 
 DEFAULT_TEMPLATE = "微信绿"
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_HEADER_TEMPLATE = os.path.join(SCRIPT_DIR, "..", "templates", "beannote-header.html")
+DEFAULT_FOOTER_TEMPLATE = os.path.join(SCRIPT_DIR, "..", "templates", "beannote-footer.html")
+DEFAULT_MINI_PROGRAM_LINK = "#小程序://鹅懂个啥/qMJf0kMPvn0buWq"
+DEFAULT_MINI_PROGRAM_TITLE = "股市里赚钱的五种人，你更像哪一种?"
+DEFAULT_MINI_PROGRAM_COPY = "发财小手爱点赞！"
+DEFAULT_MINI_PROGRAM_PATH = "pages/quiz/configured/index?src=catalog&test_key=stock-methods"
+DEFAULT_MINI_PROGRAM_IMAGE = "http://mmbiz.qpic.cn/mmbiz_jpg/UuU4JMGWEsVXzGxDbricXibmNrFdAPrTQXIYvnB8T5oBPIehRSUedYib9eojvD2wCqTdHIrb8ZGwrud9KxdB5wzj7yDd2T5R58MVZnFwJp4LOo/0?wx_fmt=jpeg"
+DEFAULT_MINI_PROGRAM_IMAGE_BACK = "http://mmbiz.qpic.cn/sz_mmbiz_png/UuU4JMGWEsX3ZMMta1Hj2WJfeKVibAYAJnM12PNTLRn5FeXkvEzbBMpxibNrQ9fU8BaqCgHQJFf76ozBKyd7GcNtSBalfnKOaRE7CSfPT7tfA/0?wx_fmt=png"
+DEFAULT_MINI_PROGRAM_APPID = "wx5feedb4268569b68"
+DEFAULT_MINI_PROGRAM_NICKNAME = "鹅懂个啥"
+DEFAULT_MINI_PROGRAM_AVATAR = "http://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzIgicricCR2m6GmpNcuRU1Bt7aDtlLib1xqWibLr7ic4dF8g0WicgpVSeYwEWus7gca1DskZvJTsKiakV9DekRHXXDsIGXialBZ1CylZZg/640?wx_fmt=png&wxfrom=200"
+DEFAULT_MINI_PROGRAM_CROPPERINFO = "%7B%22c%22%3A%7B%22x%22%3A0%2C%22y%22%3A25%2C%22x2%22%3A245%2C%22y2%22%3A221%2C%22w%22%3A245%2C%22h%22%3A196%7D%7D"
 
 DEFAULT_STYLE = {
     "font": {
@@ -281,15 +296,78 @@ def validate_blocks(blocks):
 # 4. HTML 生成器
 # ============================================================
 
+def load_html_fragment(path):
+    """读取账号固定头尾模板；None 表示本次不注入。"""
+    if path is None:
+        return ""
+    if not os.path.isfile(path):
+        raise ValueError(f"HTML 模板不存在：{path}")
+    with open(path, "r", encoding="utf-8") as f:
+        content = f.read().strip()
+    if not content:
+        raise ValueError(f"HTML 模板为空：{path}")
+    return content
+
+
+def render_footer_template(path, mini_program_link=None, mini_program_title=None,
+                           mini_program_copy=None, mini_program_path=None, mini_program_image=None,
+                           mini_program_mode="card"):
+    """载入尾模板，并应用小程序卡片可选覆盖值；空参数沿用固定默认值。"""
+    content = load_html_fragment(path)
+    if not content:
+        return ""
+    if mini_program_mode not in ("card", "text"):
+        raise ValueError("小程序展示方式只能是 card 或 text")
+    image = mini_program_image or DEFAULT_MINI_PROGRAM_IMAGE
+    image_back = quote(image, safe="") if mini_program_image else DEFAULT_MINI_PROGRAM_IMAGE_BACK
+    app_link = escape(mini_program_link or DEFAULT_MINI_PROGRAM_LINK, quote=True)
+    title = escape(mini_program_title or DEFAULT_MINI_PROGRAM_TITLE, quote=True)
+    page_path = escape(mini_program_path or DEFAULT_MINI_PROGRAM_PATH, quote=True)
+    if mini_program_mode == "text":
+        element = (
+            '<span leaf=""><a class="weapp_text_link js_weapp_entry" '
+            'style="color:#009874;text-decoration:none;border-bottom:1px solid #009874;" '
+            'data-unique-id="beannote-mini-program-link" data-miniprogram-type="text" '
+            f'data-miniprogram-appid="{DEFAULT_MINI_PROGRAM_APPID}" data-miniprogram-path="{page_path}" '
+            f'data-miniprogram-nickname="{DEFAULT_MINI_PROGRAM_NICKNAME}" data-miniprogram-servicetype="0" '
+            f'data-miniprogram-applink="{app_link}">{title}</a></span>'
+        )
+    else:
+        element = (
+            '<mp-common-miniprogram class="js_uneditable custom_select_card mp_miniprogram_iframe" '
+            'data-pluginname="insertminiprogram" '
+            f'data-miniprogram-path="{page_path}" '
+            f'data-miniprogram-nickname="{DEFAULT_MINI_PROGRAM_NICKNAME}" '
+            f'data-miniprogram-avatar="{escape(DEFAULT_MINI_PROGRAM_AVATAR, quote=True)}" '
+            f'data-miniprogram-title="{title}" '
+            f'data-miniprogram-imageurl="{escape(image, quote=True)}" '
+            'data-miniprogram-type="card" data-miniprogram-servicetype="0" '
+            f'data-miniprogram-appid="{DEFAULT_MINI_PROGRAM_APPID}" '
+            f'data-miniprogram-applink="{app_link}" '
+            f'data-miniprogram-imageurlback="{escape(image_back, quote=True)}" '
+            f'data-miniprogram-cropperinfo="{DEFAULT_MINI_PROGRAM_CROPPERINFO}"></mp-common-miniprogram>'
+        )
+    values = {"MINI_PROGRAM_ELEMENT": element,
+              "MINI_PROGRAM_COPY": escape(mini_program_copy or DEFAULT_MINI_PROGRAM_COPY, quote=True)}
+    for key, value in values.items():
+        content = content.replace("{{" + key + "}}", value)
+    unresolved = re.findall(r"\{\{MINI_PROGRAM_[A-Z_]+\}\}", content)
+    if unresolved:
+        raise ValueError("尾模板缺少小程序变量的处理：" + ", ".join(unresolved))
+    return content
+
+
 class WeChatHTMLGenerator:
     """微信兼容 HTML 生成器"""
 
-    def __init__(self, template_name=DEFAULT_TEMPLATE, custom_config=None):
+    def __init__(self, template_name=DEFAULT_TEMPLATE, custom_config=None, header_html="", footer_html=""):
         self.template = dict(TEMPLATES.get(template_name, TEMPLATES[DEFAULT_TEMPLATE]))
         for key in ("accent_color", "heading_color", "emphasis_color", "quote_bg", "card_bg"):
             if custom_config and key in custom_config:
                 self.template[key] = custom_config[key]
         self.config = self._merge_config(custom_config)
+        self.header_html = header_html.strip()
+        self.footer_html = footer_html.strip()
         custom_font = (custom_config or {}).get("font", {})
         for key in ("heading_color", "emphasis_color"):
             if key not in custom_font:
@@ -373,17 +451,18 @@ class WeChatHTMLGenerator:
             )
 
         if bt in ("unordered_list", "ordered_list"):
-            tag_l = "ul" if bt == "unordered_list" else "ol"
-            items_html = '\n'.join(
-                f'    <li style="font-size:{f["body_size"]};color:{f["body_color"]};line-height:{f["line_height"]};margin:0 0 {s["list_item_margin"]} 0;">{self._inline_text(item)}</li>'
-                for item in block["items"]
-            )
+            marker = "•" if bt == "unordered_list" else None
+            rows = []
+            for index, item in enumerate(block["items"], 1):
+                prefix = marker if marker else f"{index}."
+                rows.append(
+                    f'<p style="font-size:{f["body_size"]};color:{f["body_color"]};line-height:{f["line_height"]};margin:0 0 6px 0;">'
+                    f'<span style="display:inline-block;width:1.5em;">{prefix}</span>{self._inline_text(item)}</p>'
+                )
             return (
                 f'<{tag} style="padding:0 {s["padding_left_right"]} 0 {s["padding_left_right"]};">\n'
-                f'  <{tag_l} style="padding:0 0 0 24px;margin:0 0 {s["paragraph_margin"]} 0;">\n'
-                f'{items_html}\n'
-                f'  </{tag_l}>\n'
-                f'</{tag}>'
+                + "\n".join(rows) + "\n"
+                + f'</{tag}>'
             )
 
         if bt == "image":
@@ -456,8 +535,10 @@ class WeChatHTMLGenerator:
 
         return (
             f'<section style="margin:0 auto;max-width:677px;padding:0;font-family:-apple-system,BlinkMacSystemFont,\'Helvetica Neue\',\'PingFang SC\',\'Microsoft YaHei\',sans-serif;">\n'
+            f'{self.header_html}\n'
             f'{title_html}\n'
             f'{body_html}\n'
+            f'{self.footer_html}\n'
             f'</section>'
         )
 
@@ -537,7 +618,10 @@ function copyToWeChat(){{
 # 5. 主流程函数
 # ============================================================
 
-def format_article(input_text, template_name=DEFAULT_TEMPLATE, custom_config=None, output_dir=None, title=None):
+def format_article(input_text, template_name=DEFAULT_TEMPLATE, custom_config=None, output_dir=None, title=None,
+                   header_template=DEFAULT_HEADER_TEMPLATE, footer_template=DEFAULT_FOOTER_TEMPLATE,
+                   mini_program_link=None, mini_program_title=None, mini_program_copy=None,
+                   mini_program_path=None, mini_program_image=None, mini_program_mode="card"):
     """
     主流程：解析 → 排版 → 输出
 
@@ -549,7 +633,12 @@ def format_article(input_text, template_name=DEFAULT_TEMPLATE, custom_config=Non
 
     blocks, article_title = parse_input(input_text, title)
 
-    generator = WeChatHTMLGenerator(template_name, custom_config)
+    header_html = load_html_fragment(header_template)
+    footer_html = render_footer_template(
+        footer_template, mini_program_link, mini_program_title, mini_program_copy,
+        mini_program_path, mini_program_image, mini_program_mode,
+    )
+    generator = WeChatHTMLGenerator(template_name, custom_config, header_html, footer_html)
     # 微信草稿接口单独接收 title，content HTML 只放正文。
     wechat_html = generator.generate(blocks, article_title, include_title=False)
     preview_html = generator.generate_preview_page(blocks, article_title, template_name)
@@ -607,7 +696,9 @@ def format_article(input_text, template_name=DEFAULT_TEMPLATE, custom_config=Non
         "template": template_name,
         "blocks_count": len(blocks),
         "blocks": blocks,
-        "config": generator.config
+        "config": generator.config,
+        "has_header": bool(header_html),
+        "has_footer": bool(footer_html),
     }
 
 
@@ -627,6 +718,19 @@ def main():
     parser.add_argument("--list-templates", action="store_true", help="列出可用模板")
     parser.add_argument("--blocks", help="JSON blocks 文件路径（直接跳过解析）")
     parser.add_argument("--title", help="文章标题元数据；不写入微信正文 HTML")
+    parser.add_argument("--header-template", default=DEFAULT_HEADER_TEMPLATE,
+                        help="账号固定头模板（HTML）；默认使用内置豆小匠头模板")
+    parser.add_argument("--footer-template", default=DEFAULT_FOOTER_TEMPLATE,
+                        help="账号固定尾模板（HTML）；默认使用内置豆小匠尾模板")
+    parser.add_argument("--mini-program-link", help="尾部小程序卡片链接；默认沿用账号内置链接")
+    parser.add_argument("--mini-program-title", help="尾部小程序卡片标题；默认沿用账号内置文案")
+    parser.add_argument("--mini-program-copy", help="尾部卡片后的提示文案；默认沿用账号内置文案")
+    parser.add_argument("--mini-program-path", help="卡片备用小程序页面路径；默认沿用账号内置路径")
+    parser.add_argument("--mini-program-image", help="卡片封面 HTTPS 图片 URL；默认沿用账号内置封面")
+    parser.add_argument("--mini-program-mode", choices=("card", "text"), default="card",
+                        help="小程序展示方式：card 为富卡片（微信编辑器用），text 为可由草稿接口提交的文字链接")
+    parser.add_argument("--no-header", action="store_true", help="本次不注入固定头模板")
+    parser.add_argument("--no-footer", action="store_true", help="本次不注入固定尾模板")
     parser.add_argument("--seo", action="store_true",
                         help="排版完成后追加 SEO 检查（标题诊断/正文密度/排版合规/敏感词），生成 *_seo.md 报告")
     parser.add_argument("-k", "--keyword", help="核心关键词（配合 --seo 启用关键词密度与布局分析）")
@@ -659,12 +763,22 @@ def main():
         template_name=args.template,
         custom_config=custom_config,
         output_dir=args.output_dir,
-        title=args.title
+        title=args.title,
+        header_template=None if args.no_header else args.header_template,
+        footer_template=None if args.no_footer else args.footer_template,
+        mini_program_link=args.mini_program_link,
+        mini_program_title=args.mini_program_title,
+        mini_program_copy=args.mini_program_copy,
+        mini_program_path=args.mini_program_path,
+        mini_program_image=args.mini_program_image,
+        mini_program_mode=args.mini_program_mode,
     )
 
     print(f"排版完成！")
     print(f"  标题：{result['title']}")
     print(f"  模板：{result['template']}")
+    frame_parts = [name for name, enabled in (("头", result["has_header"]), ("尾", result["has_footer"])) if enabled]
+    print(f"  固定模板：{' + '.join(frame_parts) if frame_parts else '未注入'}")
     print(f"  内容块数：{result['blocks_count']}")
     print(f"  Markdown版本：{result['article_md']}")
     print(f"  微信HTML：{result['wechat_html']}")

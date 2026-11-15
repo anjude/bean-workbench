@@ -19,7 +19,7 @@
 
 ## 生产步骤与交接
 
-1. 查重并定位主题：在 `task/beannote/topics/YYMMDD_主题/` 建立或续写 README、process/、handoff/；绑定会话遵循 wb-handoff。
+1. 查重并定位主题：在 `task/beannote/topics/{主题编号}_主题/` 建立或续写 README、process/、handoff/；绑定会话遵循 wb-handoff。
 2. 确定本轮方式与终点：讨论、起草、改稿、仅排版、入草稿或发布；按用户要求执行，不默认公开发布。
 3. 整理材料：保留来源、采集日期，区分事实、作者观点和待核问题。材料存 source/，判断过程存 process/。
 4. 查证与计算：按需查原始出处或脚本复算，保存采用的假设及未核事项；投资演算区分本金、追加投入和收益。

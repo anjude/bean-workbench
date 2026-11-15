@@ -1,0 +1,3858 @@
+{
+  "wheels": [
+    {
+      "wheel_key": "food",
+      "title": "今天吃什么",
+      "summary": "把“都行”交给鹅，看看这顿饭落在哪儿。",
+      "icon_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzKjlicmSTeEqo2YTvrBrrQ1B12y52LWHyBYEJRaleveHmiar6GTT2dUC7iaeyzibg5ENR6jOxHMAGPX0WZ9ichbKlDqFGLv7aeA2XibI/0?from=appmsg",
+      "display_order": 1,
+      "content_json": "{\"subtitle\":\"选好候选项，鹅来拍板。\",\"hint\":\"至少勾选 2 个选项，才能开始转。\",\"footnote\":\"\",\"custom_option_placeholder\":\"加一个你想吃的\",\"filter_dimensions\":[{\"key\":\"category\",\"title\":\"类别\",\"display_order\":1,\"selection\":\"multiple\"},{\"key\":\"scene\",\"title\":\"特点\",\"display_order\":2,\"selection\":\"multiple\"}]}",
+      "options": [
+        {
+          "id": "food-baozaifan",
+          "name": "煲仔饭",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "热乎",
+              "快速解决"
+            ]
+          },
+          "display_order": 1
+        },
+        {
+          "id": "food-shaolaofan",
+          "name": "广式烧腊饭",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决"
+            ]
+          },
+          "display_order": 2
+        },
+        {
+          "id": "food-zaocha",
+          "name": "粤式早茶",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 3,
+          "note": "更适合上午或午间"
+        },
+        {
+          "id": "food-changfen",
+          "name": "肠粉",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决",
+              "清淡可选"
+            ]
+          },
+          "display_order": 4
+        },
+        {
+          "id": "food-hun-tun-mian",
+          "name": "云吞面",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决"
+            ]
+          },
+          "display_order": 5
+        },
+        {
+          "id": "food-zhou",
+          "name": "粥和小菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "清淡"
+            ]
+          },
+          "display_order": 6
+        },
+        {
+          "id": "food-jiaozi",
+          "name": "饺子或锅贴",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "适合多人"
+            ]
+          },
+          "display_order": 7
+        },
+        {
+          "id": "food-niurouwan",
+          "name": "牛肉丸粿条",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决"
+            ]
+          },
+          "display_order": 8
+        },
+        {
+          "id": "food-kejia",
+          "name": "客家菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 9
+        },
+        {
+          "id": "food-yuecai",
+          "name": "粤菜小炒",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "清淡可选"
+            ]
+          },
+          "display_order": 10
+        },
+        {
+          "id": "food-chaoshan-hotpot",
+          "name": "潮汕牛肉火锅",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 11
+        },
+        {
+          "id": "food-dabianlu",
+          "name": "粤式打边炉",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 12
+        },
+        {
+          "id": "food-seafood",
+          "name": "海鲜排档",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "海鲜"
+            ]
+          },
+          "display_order": 13,
+          "note": "留意过敏与时价"
+        },
+        {
+          "id": "food-bbq",
+          "name": "烧烤",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "夜宵"
+            ]
+          },
+          "display_order": 14,
+          "note": "留意过敏与忌口"
+        },
+        {
+          "id": "food-sichuan",
+          "name": "川菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "可能含辣"
+            ]
+          },
+          "display_order": 15
+        },
+        {
+          "id": "food-xiang",
+          "name": "湘菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "可能含辣"
+            ]
+          },
+          "display_order": 16
+        },
+        {
+          "id": "food-japanese",
+          "name": "日料或寿司",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "适合多人"
+            ]
+          },
+          "display_order": 17,
+          "note": "生食可作为忌口项"
+        },
+        {
+          "id": "food-korean",
+          "name": "韩餐或韩式烤肉",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 18
+        },
+        {
+          "id": "food-seasia",
+          "name": "东南亚菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "适合多人",
+              "可能含辣"
+            ]
+          },
+          "display_order": 19
+        },
+        {
+          "id": "food-western",
+          "name": "西餐、汉堡或披萨",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "适合多人"
+            ]
+          },
+          "display_order": 20
+        },
+        {
+          "id": "food-salad",
+          "name": "轻食沙拉",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "清淡"
+            ]
+          },
+          "display_order": 21
+        },
+        {
+          "id": "food-vegetarian",
+          "name": "素食简餐",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "一人食",
+              "清淡"
+            ]
+          },
+          "display_order": 22
+        },
+        {
+          "id": "food-malatang",
+          "name": "麻辣烫或冒菜",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决",
+              "可能含辣"
+            ]
+          },
+          "display_order": 23
+        },
+        {
+          "id": "food-noodle",
+          "name": "自选粉面",
+          "tags": {
+            "category": [
+              "正餐"
+            ],
+            "scene": [
+              "快速解决"
+            ]
+          },
+          "display_order": 24
+        },
+        {
+          "id": "food-beijing-duck",
+          "name": "北京烤鸭",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "适合多人"
+            ]
+          },
+          "display_order": 25
+        },
+        {
+          "id": "food-northeast-guobao-rou",
+          "name": "东北锅包肉",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "酸甜口",
+              "适合多人"
+            ]
+          },
+          "display_order": 26
+        },
+        {
+          "id": "food-lanzhou-noodles",
+          "name": "兰州牛肉面",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "快速解决"
+            ]
+          },
+          "display_order": 27
+        },
+        {
+          "id": "food-yunnan-crossing-bridge-noodles",
+          "name": "云南过桥米线",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "热乎",
+              "一人食"
+            ]
+          },
+          "display_order": 28
+        },
+        {
+          "id": "food-xinjiang-big-plate-chicken",
+          "name": "新疆大盘鸡",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "适合多人",
+              "可能含辣"
+            ]
+          },
+          "display_order": 29
+        },
+        {
+          "id": "food-guangxi-luosifen",
+          "name": "广西螺蛳粉",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "一人食",
+              "风味浓"
+            ]
+          },
+          "display_order": 30
+        },
+        {
+          "id": "food-guizhou-sour-soup-fish",
+          "name": "贵州酸汤鱼",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "适合多人",
+              "酸辣口"
+            ]
+          },
+          "display_order": 31
+        },
+        {
+          "id": "food-jiangzhe-cuisine",
+          "name": "江浙菜或本帮菜",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "适合多人",
+              "口味清鲜"
+            ]
+          },
+          "display_order": 32
+        },
+        {
+          "id": "food-northwest-lamb-pita-soup",
+          "name": "西北羊肉泡馍",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "饱腹",
+              "适合多人"
+            ]
+          },
+          "display_order": 33
+        },
+        {
+          "id": "food-taiwanese-braised-pork-rice",
+          "name": "台式卤肉饭",
+          "tags": {
+            "category": [
+              "地方菜系"
+            ],
+            "scene": [
+              "一人食",
+              "下饭"
+            ]
+          },
+          "display_order": 34
+        },
+        {
+          "id": "food-egg-waffle",
+          "name": "鸡蛋仔",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "边走边吃"
+            ]
+          },
+          "display_order": 35
+        },
+        {
+          "id": "food-fishball",
+          "name": "鱼蛋或牛杂",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "小吃",
+              "夜宵"
+            ]
+          },
+          "display_order": 36
+        },
+        {
+          "id": "food-sticky-rice",
+          "name": "糯米鸡",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "小吃",
+              "饱腹"
+            ]
+          },
+          "display_order": 37
+        },
+        {
+          "id": "food-jianbing",
+          "name": "煎饼果子",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "小吃",
+              "快速解决"
+            ]
+          },
+          "display_order": 38
+        },
+        {
+          "id": "food-fried-skewer",
+          "name": "炸串",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "小吃",
+              "适合分享"
+            ]
+          },
+          "display_order": 39
+        },
+        {
+          "id": "food-egg-tart",
+          "name": "蛋挞",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜口"
+            ]
+          },
+          "display_order": 40
+        },
+        {
+          "id": "food-double-skin-milk",
+          "name": "双皮奶",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜品"
+            ]
+          },
+          "display_order": 41
+        },
+        {
+          "id": "food-guilinggao",
+          "name": "龟苓膏或凉茶",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜品",
+              "清凉"
+            ]
+          },
+          "display_order": 42
+        },
+        {
+          "id": "food-tofu-pudding",
+          "name": "豆花",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜品",
+              "清淡"
+            ]
+          },
+          "display_order": 43
+        },
+        {
+          "id": "food-sugar-water",
+          "name": "糖水",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜品"
+            ]
+          },
+          "display_order": 44
+        },
+        {
+          "id": "food-fruit",
+          "name": "鲜果捞",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "甜品",
+              "清爽"
+            ]
+          },
+          "display_order": 45
+        },
+        {
+          "id": "food-drink",
+          "name": "奶茶或柠茶",
+          "tags": {
+            "category": [
+              "小吃甜品"
+            ],
+            "scene": [
+              "饮品"
+            ]
+          },
+          "display_order": 46,
+          "note": "甜度可自选"
+        }
+      ],
+      "option_mode": 0
+    },
+    {
+      "wheel_key": "where-to-go",
+      "title": "周末去哪逛",
+      "summary": "先选城市，再挑一处今天想去的地方。",
+      "icon_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzLAl5shywaoh1iboDXpLhXONQlNy4v970TCufhloYibT1od4iboq98B07ia6O9uPtW009cvxjPjh4XDnhrYxfiaOicbZ3ygHlvMLI40s/0?from=appmsg",
+      "display_order": 2,
+      "content_json": "{\"subtitle\":\"选好想逛的范围，鹅来拍板。\",\"hint\":\"至少勾选 2 个选项，才能开始转。\",\"footnote\":\"地点开放、票价和预约信息可能变化，出发前请核验。\",\"custom_option_placeholder\":\"加一个你想去的地方\",\"filter_dimensions\":[{\"key\":\"country\",\"title\":\"国家/地区\",\"display_order\":1,\"selection\":\"multiple\",\"default_selected\":true},{\"key\":\"region1\",\"title\":\"省份\",\"display_order\":2,\"selection\":\"multiple\",\"default_selected\":true},{\"key\":\"city\",\"title\":\"城市\",\"display_order\":3,\"selection\":\"multiple\",\"default_selected\":true},{\"key\":\"district\",\"title\":\"区县\",\"display_order\":4,\"selection\":\"multiple\",\"default_selected\":false},{\"key\":\"scene\",\"title\":\"场景\",\"display_order\":5,\"selection\":\"multiple\",\"default_selected\":false}],\"default_filters\":{\"city\":[\"深圳\"]}}",
+      "options": [
+        {
+          "id": "sz-lianhuashan",
+          "name": "莲花山公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "公园自然",
+              "轻松逛",
+              "城市景观"
+            ]
+          },
+          "display_order": 1,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-xiangmi",
+          "name": "香蜜公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "公园自然",
+              "轻松逛",
+              "散步"
+            ]
+          },
+          "display_order": 2,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-central-park",
+          "name": "深圳中心公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "公园自然",
+              "城市散步"
+            ]
+          },
+          "display_order": 3,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-childrens-park",
+          "name": "深圳市儿童乐园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "公园自然",
+              "亲子",
+              "户外"
+            ]
+          },
+          "display_order": 4,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "设施开放情况出发前核验"
+        },
+        {
+          "id": "sz-bay-park",
+          "name": "深圳湾公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山",
+              "福田"
+            ],
+            "scene": [
+              "公园自然",
+              "滨海",
+              "骑行散步"
+            ]
+          },
+          "display_order": 5,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "范围较长"
+        },
+        {
+          "id": "sz-talent-park",
+          "name": "深圳人才公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "公园自然",
+              "滨海",
+              "城市夜景",
+              "轻松逛"
+            ]
+          },
+          "display_order": 6,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-dasha-river",
+          "name": "大沙河生态长廊",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "公园自然",
+              "绿道",
+              "骑行散步"
+            ]
+          },
+          "display_order": 7,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-honghu",
+          "name": "洪湖公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "罗湖"
+            ],
+            "scene": [
+              "公园自然",
+              "轻松逛",
+              "季节花景"
+            ]
+          },
+          "display_order": 8,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-donghu",
+          "name": "东湖公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "罗湖"
+            ],
+            "scene": [
+              "公园自然",
+              "轻松逛",
+              "户外"
+            ]
+          },
+          "display_order": 9,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-wutong",
+          "name": "梧桐山",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "罗湖",
+              "盐田"
+            ],
+            "scene": [
+              "公园自然",
+              "徒步",
+              "运动量较大"
+            ]
+          },
+          "display_order": 10,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "天气和登山规则需核验"
+        },
+        {
+          "id": "sz-xianhu",
+          "name": "仙湖植物园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "罗湖"
+            ],
+            "scene": [
+              "公园自然",
+              "植物园",
+              "半日逛"
+            ]
+          },
+          "display_order": 11,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "票务和预约看官方渠道"
+        },
+        {
+          "id": "sz-dameisha",
+          "name": "大梅沙海滨公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "公园自然",
+              "海边",
+              "户外",
+              "轻松逛"
+            ]
+          },
+          "display_order": 12,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "假期和交通情况需核验"
+        },
+        {
+          "id": "sz-yantian-boardwalk",
+          "name": "盐田海滨栈道",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "公园自然",
+              "海边",
+              "长距离步行"
+            ]
+          },
+          "display_order": 13,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-enshang-wetland",
+          "name": "恩上古村生态公园（湿地）",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "公园自然",
+              "湿地",
+              "自然观察",
+              "轻徒步"
+            ]
+          },
+          "display_order": 14,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/content/post_10774757.html",
+          "last_checked_at": "2026-11-01",
+          "note": "开放时段和步道情况以公园公告为准"
+        },
+        {
+          "id": "sz-kongcuitai",
+          "name": "空翠台（盐田高级中学前门）",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "公园自然",
+              "山海观景",
+              "半山绿道",
+              "步行"
+            ]
+          },
+          "display_order": 15,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/szlh/jpld/content/post_11170534.html",
+          "last_checked_at": "2026-11-01",
+          "note": "位于盐田半山绿道节点；只在公共步道活动，不进入校园，路线和开放情况以现场公告为准"
+        },
+        {
+          "id": "sz-fenghuang-mountain",
+          "name": "凤凰山森林公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "宝安"
+            ],
+            "scene": [
+              "公园自然",
+              "登山",
+              "户外",
+              "半日"
+            ]
+          },
+          "display_order": 16,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-xiwan",
+          "name": "西湾红树林",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "宝安"
+            ],
+            "scene": [
+              "公园自然",
+              "滨海",
+              "观景",
+              "户外"
+            ]
+          },
+          "display_order": 17,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/"
+        },
+        {
+          "id": "sz-hongqiao",
+          "name": "虹桥公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "光明"
+            ],
+            "scene": [
+              "公园自然",
+              "长廊步行",
+              "亲子"
+            ]
+          },
+          "display_order": 18,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "园内距离较长"
+        },
+        {
+          "id": "sz-malongshan",
+          "name": "马峦山郊野公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "坪山"
+            ],
+            "scene": [
+              "公园自然",
+              "徒步",
+              "瀑布自然",
+              "运动量较大"
+            ]
+          },
+          "display_order": 19,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "天气和路线需核验"
+        },
+        {
+          "id": "sz-longgang-childrens-park",
+          "name": "龙岗儿童公园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙岗"
+            ],
+            "scene": [
+              "公园自然",
+              "亲子",
+              "公园"
+            ]
+          },
+          "display_order": 20,
+          "source_url": "https://cgj.sz.gov.cn/xsmh/gysz/csgy/",
+          "note": "设施及开放时间需核验"
+        },
+        {
+          "id": "sz-nantou",
+          "name": "南头古城",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "街区文化",
+              "历史街区",
+              "逛吃"
+            ]
+          },
+          "display_order": 21,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "展览和店铺以现场为准"
+        },
+        {
+          "id": "sz-oct-loft",
+          "name": "华侨城创意文化园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "街区文化",
+              "创意街区",
+              "展览咖啡"
+            ]
+          },
+          "display_order": 22,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "活动以当日为准"
+        },
+        {
+          "id": "sz-sea-world",
+          "name": "蛇口海上世界",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "街区文化",
+              "海滨街区",
+              "逛吃",
+              "夜间散步"
+            ]
+          },
+          "display_order": 23,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html"
+        },
+        {
+          "id": "sz-huaqiangbei",
+          "name": "华强北步行街",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "街区文化",
+              "城市街区",
+              "数码",
+              "逛街"
+            ]
+          },
+          "display_order": 24,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html"
+        },
+        {
+          "id": "sz-dongmen",
+          "name": "东门老街",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "罗湖"
+            ],
+            "scene": [
+              "街区文化",
+              "老街",
+              "逛吃"
+            ]
+          },
+          "display_order": 25,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "周末人流较多"
+        },
+        {
+          "id": "sz-zhongying-street",
+          "name": "中英街",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "街区文化",
+              "历史街区",
+              "界碑",
+              "逛吃"
+            ]
+          },
+          "display_order": 26,
+          "source_url": "https://www.yantian.gov.cn/cn/zjyt/rdzt/zwzt/zyj2026/index.html",
+          "last_checked_at": "2026-11-01",
+          "note": "进入边境管理区需按盐田官方渠道办理预约/通行手续，规则出发前核验"
+        },
+        {
+          "id": "sz-gankeng",
+          "name": "甘坑古镇",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙岗"
+            ],
+            "scene": [
+              "街区文化",
+              "客家文化",
+              "古镇",
+              "逛吃"
+            ]
+          },
+          "display_order": 27,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "活动和场馆需核验"
+        },
+        {
+          "id": "sz-dafen",
+          "name": "大芬油画村",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙岗"
+            ],
+            "scene": [
+              "街区文化",
+              "艺术街区",
+              "画廊",
+              "轻松逛"
+            ]
+          },
+          "display_order": 28,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html"
+        },
+        {
+          "id": "sz-hehuxinju",
+          "name": "鹤湖新居",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙岗"
+            ],
+            "scene": [
+              "街区文化",
+              "客家围屋",
+              "历史文化"
+            ]
+          },
+          "display_order": 29,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "开放信息需核验"
+        },
+        {
+          "id": "sz-guanlan-print",
+          "name": "观澜版画村",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙华"
+            ],
+            "scene": [
+              "街区文化",
+              "版画艺术",
+              "客家村落",
+              "文化散步"
+            ]
+          },
+          "display_order": 30,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html"
+        },
+        {
+          "id": "sz-guanlan-oldtown",
+          "name": "观澜古墟",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙华"
+            ],
+            "scene": [
+              "街区文化",
+              "历史街区",
+              "城市更新"
+            ]
+          },
+          "display_order": 31,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "店铺以现场为准"
+        },
+        {
+          "id": "sz-dalang",
+          "name": "大浪时尚小镇",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙华"
+            ],
+            "scene": [
+              "街区文化",
+              "时尚文化街区"
+            ]
+          },
+          "display_order": 32,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "活动以当日为准"
+        },
+        {
+          "id": "sz-dawan",
+          "name": "大万世居",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "坪山"
+            ],
+            "scene": [
+              "街区文化",
+              "客家围屋",
+              "历史文化"
+            ]
+          },
+          "display_order": 33,
+          "source_url": "https://wtl.sz.gov.cn/xxgk/qt/gzdt/content/post_11440212.html",
+          "note": "开放信息需核验"
+        },
+        {
+          "id": "sz-dapeng-fortress",
+          "name": "大鹏所城",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "街区文化",
+              "古城",
+              "历史文化",
+              "远郊"
+            ]
+          },
+          "display_order": 34,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "周末自驾预约规则需核验"
+        },
+        {
+          "id": "sz-jiaochangwei",
+          "name": "较场尾",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "街区文化",
+              "海边村落",
+              "逛吃",
+              "远郊"
+            ]
+          },
+          "display_order": 35,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "住宿和消费自选"
+        },
+        {
+          "id": "sz-guanhu",
+          "name": "官湖村",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "街区文化",
+              "海边村落",
+              "慢逛",
+              "远郊"
+            ]
+          },
+          "display_order": 36,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "交通和店铺需核验"
+        },
+        {
+          "id": "sz-museum",
+          "name": "深圳博物馆（历史民俗馆）",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "室内体验",
+              "室内",
+              "雨天备选",
+              "展览"
+            ]
+          },
+          "display_order": 37,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "预约与开放信息查官方"
+        },
+        {
+          "id": "sz-book-city",
+          "name": "深圳中心书城",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "福田"
+            ],
+            "scene": [
+              "室内体验",
+              "室内",
+              "书店",
+              "雨天备选"
+            ]
+          },
+          "display_order": 38,
+          "note": "消费自选"
+        },
+        {
+          "id": "sz-coast-city",
+          "name": "欢乐海岸",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "室内体验",
+              "商业街区",
+              "逛吃",
+              "夜间"
+            ]
+          },
+          "display_order": 39,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "项目与消费自选"
+        },
+        {
+          "id": "sz-oct-east",
+          "name": "东部华侨城",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "室内体验",
+              "度假区",
+              "山海景观",
+              "购票"
+            ]
+          },
+          "display_order": 40,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/content/post_11729448.html",
+          "last_checked_at": "2026-11-01",
+          "note": "大侠谷、茶溪谷等分区的开放项目、票务和周末自驾通行规则出发前核验"
+        },
+        {
+          "id": "sz-yunhai-bookbar",
+          "name": "云海公园·云海书吧",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "室内体验",
+              "阅读",
+              "山海观景",
+              "咖啡"
+            ]
+          },
+          "display_order": 41,
+          "source_url": "https://www.yantian.gov.cn/cn/zjyt/jjyt/bmxx/content/post_12231983.html",
+          "last_checked_at": "2026-11-01",
+          "note": "云海森林服务站三楼设云海书吧；开放时间、接驳与消费情况出发前核验"
+        },
+        {
+          "id": "sz-window-world",
+          "name": "世界之窗",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "室内体验",
+              "主题景区",
+              "购票",
+              "半日或全天"
+            ]
+          },
+          "display_order": 42,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/"
+        },
+        {
+          "id": "sz-happy-valley",
+          "name": "欢乐谷",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "室内体验",
+              "主题乐园",
+              "购票",
+              "半日或全天"
+            ]
+          },
+          "display_order": 43,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/"
+        },
+        {
+          "id": "sz-safari",
+          "name": "深圳野生动物园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "南山"
+            ],
+            "scene": [
+              "室内体验",
+              "亲子",
+              "主题景区",
+              "购票"
+            ]
+          },
+          "display_order": 44,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "开放和票务查官方"
+        },
+        {
+          "id": "sz-xiaomeisha",
+          "name": "小梅沙海洋世界",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "盐田"
+            ],
+            "scene": [
+              "室内体验",
+              "室内",
+              "亲子",
+              "购票"
+            ]
+          },
+          "display_order": 45,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "开放和场次查官方"
+        },
+        {
+          "id": "sz-happy-harbor",
+          "name": "欢乐港湾",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "宝安"
+            ],
+            "scene": [
+              "室内体验",
+              "滨海商业公园",
+              "轻松逛"
+            ]
+          },
+          "display_order": 46,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "摩天轮等项目可能收费"
+        },
+        {
+          "id": "sz-sea-farm",
+          "name": "海上田园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "宝安"
+            ],
+            "scene": [
+              "室内体验",
+              "田园景区",
+              "购票",
+              "亲子"
+            ]
+          },
+          "display_order": 47,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "项目和开放状态查官方"
+        },
+        {
+          "id": "sz-mission-hills",
+          "name": "观澜湖旅游休闲度假区",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "龙华"
+            ],
+            "scene": [
+              "室内体验",
+              "休闲度假",
+              "多项目"
+            ]
+          },
+          "display_order": 48,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "费用与预约依项目而异"
+        },
+        {
+          "id": "sz-bright-farm",
+          "name": "光明农场大观园",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "光明"
+            ],
+            "scene": [
+              "室内体验",
+              "亲子农场",
+              "购票",
+              "户外"
+            ]
+          },
+          "display_order": 49,
+          "source_url": "https://wtl.sz.gov.cn/ggfw/lyl/jqjdylb/",
+          "note": "活动和票务查官方"
+        },
+        {
+          "id": "sz-bright-culture",
+          "name": "光明文化艺术中心",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "光明"
+            ],
+            "scene": [
+              "室内体验",
+              "室内",
+              "展览演出",
+              "雨天备选"
+            ]
+          },
+          "display_order": 50,
+          "note": "按当期活动安排"
+        },
+        {
+          "id": "sz-yangmeikeng",
+          "name": "杨梅坑",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "海岸",
+              "骑行散步",
+              "远郊"
+            ]
+          },
+          "display_order": 51,
+          "remote": true,
+          "source_url": "https://swj.sz.gov.cn/ztzl/swhjs/swllx/content/post_11742978.html",
+          "last_checked_at": "2026-11-01",
+          "note": "杨梅坑至鹿嘴山庄一带为滨海步道；假期交通管制、接驳与路线开放情况出发前核验"
+        },
+        {
+          "id": "sz-shenzhen-observatory",
+          "name": "深圳天文台",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "天文科普",
+              "山海观景",
+              "远郊",
+              "预约"
+            ]
+          },
+          "display_order": 52,
+          "remote": true,
+          "source_url": "https://weather.sz.gov.cn/mobile/qixiangfuwu/tianwenfuwu/yuyuexuzhi/index.html",
+          "last_checked_at": "2026-11-01",
+          "note": "公众参观免费但需预约；按预约时段到访，自驾需停山下并步行或乘社区接驳上山"
+        },
+        {
+          "id": "sz-luzui",
+          "name": "鹿嘴山庄",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "海岸",
+              "观景",
+              "远郊"
+            ]
+          },
+          "display_order": 53,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "预约、接驳与开放规则需核验"
+        },
+        {
+          "id": "sz-xichong",
+          "name": "西涌海滨",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "海滩",
+              "户外",
+              "远郊"
+            ]
+          },
+          "display_order": 54,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "入园、预约和天气需核验"
+        },
+        {
+          "id": "sz-dongchong",
+          "name": "东涌海岸",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "海岸步行",
+              "远郊",
+              "运动量较大"
+            ]
+          },
+          "display_order": 55,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "路线和天气需核验"
+        },
+        {
+          "id": "sz-rose-coast",
+          "name": "玫瑰海岸",
+          "tags": {
+            "country": [
+              "中国"
+            ],
+            "region1": [
+              "广东"
+            ],
+            "city": [
+              "深圳"
+            ],
+            "district": [
+              "大鹏新区"
+            ],
+            "scene": [
+              "远郊山海",
+              "海滨景区",
+              "远郊"
+            ]
+          },
+          "display_order": 56,
+          "remote": true,
+          "source_url": "https://www.dpxq.gov.cn/ztzl/pyxsj/index.html",
+          "note": "开放与票务需核验"
+        }
+      ],
+      "option_mode": 1
+    },
+    {
+      "wheel_key": "play",
+      "title": "周末玩点啥",
+      "summary": "100 件周末小事，挑一件现在就去做。",
+      "icon_url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ukEzL1MVZzLvfWia5ol1T16UFZtmia7f2bAGXc0I5ic8eCA7ibaRGpIlWudFibg0xXmsYd17SwHAwHyuBZ847wiaQFicIleO3HbiabEsSK0ia2wz9HfE/0?from=appmsg",
+      "display_order": 3,
+      "content_json": "{\"subtitle\":\"从一个周末小事开始，做了就算赢。\",\"hint\":\"至少勾选 2 个选项，才能开始转。\",\"footnote\":\"\",\"custom_option_placeholder\":\"加一件周末想做的事\",\"filter_dimensions\":[{\"key\":\"category\",\"title\":\"方式\",\"display_order\":1,\"selection\":\"multiple\"},{\"key\":\"scene\",\"title\":\"场景\",\"display_order\":2,\"selection\":\"multiple\"}]}",
+      "options": [
+        {
+          "id": "play-001",
+          "name": "读完一本短篇",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "安静",
+              "室内"
+            ]
+          },
+          "display_order": 1,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-002",
+          "name": "听完一张专辑",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "放松",
+              "室内"
+            ]
+          },
+          "display_order": 2,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-003",
+          "name": "给自己做顿早餐",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "吃喝",
+              "在家"
+            ]
+          },
+          "display_order": 3,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-004",
+          "name": "整理手机相册",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "整理",
+              "在家"
+            ]
+          },
+          "display_order": 4,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-005",
+          "name": "写一页日记",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "记录",
+              "在家"
+            ]
+          },
+          "display_order": 5,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-006",
+          "name": "给未来写封信",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "记录",
+              "在家"
+            ]
+          },
+          "display_order": 6,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-007",
+          "name": "做一份周末歌单",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "音乐",
+              "室内"
+            ]
+          },
+          "display_order": 7,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-008",
+          "name": "学会一道新菜",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "美食",
+              "在家"
+            ]
+          },
+          "display_order": 8,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-009",
+          "name": "拼一幅小拼图",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "专注",
+              "室内"
+            ]
+          },
+          "display_order": 9,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-010",
+          "name": "画一张随手涂鸦",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "创作",
+              "在家"
+            ]
+          },
+          "display_order": 10,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-011",
+          "name": "给自己拍组照片",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "拍照",
+              "随时"
+            ]
+          },
+          "display_order": 11,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-012",
+          "name": "看一部老电影",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "电影",
+              "室内"
+            ]
+          },
+          "display_order": 12,
+          "duration": "2小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-013",
+          "name": "读二十页书",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "阅读",
+              "室内"
+            ]
+          },
+          "display_order": 13,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-014",
+          "name": "泡杯茶慢慢喝",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "放松",
+              "在家"
+            ]
+          },
+          "display_order": 14,
+          "duration": "15分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-015",
+          "name": "给植物换个位置",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "绿植",
+              "在家"
+            ]
+          },
+          "display_order": 15,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-016",
+          "name": "试试十分钟冥想",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "放松",
+              "室内"
+            ]
+          },
+          "display_order": 16,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-017",
+          "name": "做一套拉伸",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "运动",
+              "室内"
+            ]
+          },
+          "display_order": 17,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-018",
+          "name": "给自己做杯特调",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "饮品",
+              "在家"
+            ]
+          },
+          "display_order": 18,
+          "duration": "15分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-019",
+          "name": "重看最喜欢的剧集",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "追剧",
+              "室内"
+            ]
+          },
+          "display_order": 19,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-020",
+          "name": "发现一位新歌手",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "音乐",
+              "室内"
+            ]
+          },
+          "display_order": 20,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-021",
+          "name": "做一张心愿清单",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "计划",
+              "在家"
+            ]
+          },
+          "display_order": 21,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-022",
+          "name": "给旧照片写注释",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "回忆",
+              "在家"
+            ]
+          },
+          "display_order": 22,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-023",
+          "name": "试试新的发型",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "造型",
+              "在家"
+            ]
+          },
+          "display_order": 23,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-024",
+          "name": "做一份水果拼盘",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "吃喝",
+              "在家"
+            ]
+          },
+          "display_order": 24,
+          "duration": "15分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-025",
+          "name": "给自己放半天假",
+          "tags": {
+            "category": [
+              "轻松独处"
+            ],
+            "scene": [
+              "放空",
+              "随时"
+            ]
+          },
+          "display_order": 25,
+          "duration": "半天",
+          "cost": "随心",
+          "people": "1人"
+        },
+        {
+          "id": "play-026",
+          "name": "约朋友喝杯咖啡",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "聊天",
+              "见面"
+            ]
+          },
+          "display_order": 26,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2人"
+        },
+        {
+          "id": "play-027",
+          "name": "一起做顿饭",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "美食",
+              "在家"
+            ]
+          },
+          "display_order": 27,
+          "duration": "2小时",
+          "cost": "低成本",
+          "people": "2-4人"
+        },
+        {
+          "id": "play-028",
+          "name": "来一局桌游",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "游戏",
+              "室内"
+            ]
+          },
+          "display_order": 28,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "2-6人"
+        },
+        {
+          "id": "play-029",
+          "name": "玩一轮你画我猜",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "游戏",
+              "搞笑"
+            ]
+          },
+          "display_order": 29,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "3人以上"
+        },
+        {
+          "id": "play-030",
+          "name": "互相推荐一部电影",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "电影",
+              "聊天"
+            ]
+          },
+          "display_order": 30,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-031",
+          "name": "一起逛菜市场",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "逛吃",
+              "生活"
+            ]
+          },
+          "display_order": 31,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-032",
+          "name": "拍一组搞怪合照",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "拍照",
+              "搞笑"
+            ]
+          },
+          "display_order": 32,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-033",
+          "name": "交换最近的歌单",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "音乐",
+              "聊天"
+            ]
+          },
+          "display_order": 33,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-034",
+          "name": "玩一局扑克牌",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "游戏",
+              "室内"
+            ]
+          },
+          "display_order": 34,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "2-6人"
+        },
+        {
+          "id": "play-035",
+          "name": "来一场真心话",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "聊天",
+              "破冰"
+            ]
+          },
+          "display_order": 35,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "3人以上"
+        },
+        {
+          "id": "play-036",
+          "name": "互相给对方点歌",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "音乐",
+              "聊天"
+            ]
+          },
+          "display_order": 36,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-037",
+          "name": "挑战盲吃猜食物",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "美食",
+              "游戏"
+            ]
+          },
+          "display_order": 37,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-038",
+          "name": "一起做手工小物",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "手作",
+              "创作"
+            ]
+          },
+          "display_order": 38,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-039",
+          "name": "翻翻彼此的童年照",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "回忆",
+              "聊天"
+            ]
+          },
+          "display_order": 39,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-040",
+          "name": "办一场零食分享会",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "吃喝",
+              "在家"
+            ]
+          },
+          "display_order": 40,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-041",
+          "name": "一起看日落",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "户外",
+              "拍照"
+            ]
+          },
+          "display_order": 41,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-042",
+          "name": "散步聊聊近况",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "散步",
+              "聊天"
+            ]
+          },
+          "display_order": 42,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "2人"
+        },
+        {
+          "id": "play-043",
+          "name": "组队玩一款小游戏",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "游戏",
+              "线上线下"
+            ]
+          },
+          "display_order": 43,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-044",
+          "name": "一起做早餐盲盒",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "美食",
+              "游戏"
+            ]
+          },
+          "display_order": 44,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-045",
+          "name": "用手机拍短片",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "拍摄",
+              "创作"
+            ]
+          },
+          "display_order": 45,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-046",
+          "name": "约一场羽毛球",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "运动",
+              "户外"
+            ]
+          },
+          "display_order": 46,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "2-4人"
+        },
+        {
+          "id": "play-047",
+          "name": "组队去唱歌",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "唱歌",
+              "室内"
+            ]
+          },
+          "display_order": 47,
+          "duration": "2小时",
+          "cost": "低成本",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-048",
+          "name": "一起做个小测验",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "互动",
+              "聊天"
+            ]
+          },
+          "display_order": 48,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-049",
+          "name": "给朋友写张明信片",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "手作",
+              "表达"
+            ]
+          },
+          "display_order": 49,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "2人"
+        },
+        {
+          "id": "play-050",
+          "name": "临时组个饭局",
+          "tags": {
+            "category": [
+              "朋友同乐"
+            ],
+            "scene": [
+              "聚餐",
+              "见面"
+            ]
+          },
+          "display_order": 50,
+          "duration": "2小时",
+          "cost": "随心",
+          "people": "3人以上"
+        },
+        {
+          "id": "play-051",
+          "name": "整理一个小抽屉",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "居家"
+            ]
+          },
+          "display_order": 51,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-052",
+          "name": "给房间换个布局",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "居家"
+            ]
+          },
+          "display_order": 52,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-053",
+          "name": "做一杯手冲咖啡",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "饮品",
+              "学习"
+            ]
+          },
+          "display_order": 53,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-054",
+          "name": "试做一道甜品",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "烘焙",
+              "美食"
+            ]
+          },
+          "display_order": 54,
+          "duration": "2小时",
+          "cost": "低成本",
+          "people": "1-2人"
+        },
+        {
+          "id": "play-055",
+          "name": "给旧衣服做改造",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "环保"
+            ]
+          },
+          "display_order": 55,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-056",
+          "name": "做一张手帐拼贴",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "创作"
+            ]
+          },
+          "display_order": 56,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-057",
+          "name": "清理手机里不用的应用",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "数码"
+            ]
+          },
+          "display_order": 57,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-058",
+          "name": "把桌面收拾干净",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "居家"
+            ]
+          },
+          "display_order": 58,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-059",
+          "name": "给阳台植物浇水",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "绿植",
+              "居家"
+            ]
+          },
+          "display_order": 59,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-060",
+          "name": "做一份冷泡茶",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "饮品",
+              "美食"
+            ]
+          },
+          "display_order": 60,
+          "duration": "15分钟",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-061",
+          "name": "自制一份三明治",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "美食",
+              "早餐"
+            ]
+          },
+          "display_order": 61,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "1-2人"
+        },
+        {
+          "id": "play-062",
+          "name": "把照片做成小相册",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "回忆"
+            ]
+          },
+          "display_order": 62,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-063",
+          "name": "试试折纸或纸艺",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "创作"
+            ]
+          },
+          "display_order": 63,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-064",
+          "name": "做一支专属香氛",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "体验"
+            ]
+          },
+          "display_order": 64,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-065",
+          "name": "整理一周穿搭",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "生活"
+            ]
+          },
+          "display_order": 65,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-066",
+          "name": "试着烤一盘小饼干",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "烘焙",
+              "美食"
+            ]
+          },
+          "display_order": 66,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1-2人"
+        },
+        {
+          "id": "play-067",
+          "name": "做一份便当计划",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "美食",
+              "计划"
+            ]
+          },
+          "display_order": 67,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-068",
+          "name": "给常用物品归个位",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "居家"
+            ]
+          },
+          "display_order": 68,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-069",
+          "name": "把旧物拍照存档",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "记录"
+            ]
+          },
+          "display_order": 69,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-070",
+          "name": "自己剪一段视频",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "创作",
+              "数码"
+            ]
+          },
+          "display_order": 70,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-071",
+          "name": "学一个简单魔术",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "学习",
+              "表演"
+            ]
+          },
+          "display_order": 71,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-072",
+          "name": "拼好一套积木",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "手作",
+              "专注"
+            ]
+          },
+          "display_order": 72,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-073",
+          "name": "写下十件开心小事",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "记录",
+              "放松"
+            ]
+          },
+          "display_order": 73,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-074",
+          "name": "给书架重新排个序",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "整理",
+              "居家"
+            ]
+          },
+          "display_order": 74,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-075",
+          "name": "做一份下周待办清单",
+          "tags": {
+            "category": [
+              "在家动手"
+            ],
+            "scene": [
+              "计划",
+              "生活"
+            ]
+          },
+          "display_order": 75,
+          "duration": "15分钟",
+          "cost": "免费",
+          "people": "1人"
+        },
+        {
+          "id": "play-076",
+          "name": "去附近公园走走",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "散步",
+              "户外"
+            ]
+          },
+          "display_order": 76,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-077",
+          "name": "找一家没去过的书店",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "阅读",
+              "室内"
+            ]
+          },
+          "display_order": 77,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-078",
+          "name": "坐一站没坐过的公交",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "探索",
+              "城市漫游"
+            ]
+          },
+          "display_order": 78,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-079",
+          "name": "沿着河边散步",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "散步",
+              "户外"
+            ]
+          },
+          "display_order": 79,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-080",
+          "name": "逛逛附近的花市",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "逛街",
+              "绿植"
+            ]
+          },
+          "display_order": 80,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-081",
+          "name": "去看一场展览",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "艺术",
+              "室内"
+            ]
+          },
+          "display_order": 81,
+          "duration": "2小时",
+          "cost": "看展览",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-082",
+          "name": "找个地方看日出",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "自然",
+              "早起"
+            ]
+          },
+          "display_order": 82,
+          "duration": "2小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-083",
+          "name": "来一次城市骑行",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "运动",
+              "户外"
+            ]
+          },
+          "display_order": 83,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-084",
+          "name": "去街区找家小店",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "逛吃",
+              "探索"
+            ]
+          },
+          "display_order": 84,
+          "duration": "1小时",
+          "cost": "随心",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-085",
+          "name": "带本书去咖啡馆",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "阅读",
+              "放松"
+            ]
+          },
+          "display_order": 85,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人"
+        },
+        {
+          "id": "play-086",
+          "name": "去海边吹吹风",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "自然",
+              "户外"
+            ]
+          },
+          "display_order": 86,
+          "duration": "2小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-087",
+          "name": "找条绿道走一段",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "徒步",
+              "户外"
+            ]
+          },
+          "display_order": 87,
+          "duration": "2小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-088",
+          "name": "逛一次旧物市集",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "市集",
+              "淘物"
+            ]
+          },
+          "display_order": 88,
+          "duration": "1小时",
+          "cost": "随心",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-089",
+          "name": "试试一家新早餐店",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "美食",
+              "探索"
+            ]
+          },
+          "display_order": 89,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-090",
+          "name": "去宠物友好店坐坐",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "休闲",
+              "探店"
+            ]
+          },
+          "display_order": 90,
+          "duration": "1小时",
+          "cost": "低成本",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-091",
+          "name": "在街头拍十张照片",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "拍照",
+              "城市漫游"
+            ]
+          },
+          "display_order": 91,
+          "duration": "1小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-092",
+          "name": "找一面喜欢的街墙",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "拍照",
+              "探索"
+            ]
+          },
+          "display_order": 92,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-093",
+          "name": "去听一场现场演出",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "音乐",
+              "现场"
+            ]
+          },
+          "display_order": 93,
+          "duration": "2小时",
+          "cost": "看演出",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-094",
+          "name": "体验一次室内攀岩",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "运动",
+              "室内"
+            ]
+          },
+          "display_order": 94,
+          "duration": "2小时",
+          "cost": "看场馆",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-095",
+          "name": "打一次保龄球",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "运动",
+              "室内"
+            ]
+          },
+          "display_order": 95,
+          "duration": "1小时",
+          "cost": "看场馆",
+          "people": "2人以上"
+        },
+        {
+          "id": "play-096",
+          "name": "逛一个没去过的商场",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "逛街",
+              "室内"
+            ]
+          },
+          "display_order": 96,
+          "duration": "2小时",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-097",
+          "name": "去看一场午场电影",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "电影",
+              "室内"
+            ]
+          },
+          "display_order": 97,
+          "duration": "2小时",
+          "cost": "看票价",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-098",
+          "name": "找一家新开的面包店",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "探店",
+              "吃喝"
+            ]
+          },
+          "display_order": 98,
+          "duration": "30分钟",
+          "cost": "低成本",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-099",
+          "name": "挑一条陌生小路走走",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "探索",
+              "散步"
+            ]
+          },
+          "display_order": 99,
+          "duration": "30分钟",
+          "cost": "免费",
+          "people": "1人以上"
+        },
+        {
+          "id": "play-100",
+          "name": "来一次说走就走的微旅行",
+          "tags": {
+            "category": [
+              "出门体验"
+            ],
+            "scene": [
+              "探索",
+              "周边"
+            ]
+          },
+          "display_order": 100,
+          "duration": "半天",
+          "cost": "随心",
+          "people": "1人以上"
+        }
+      ],
+      "option_mode": 0
+    }
+  ]
+}

@@ -116,7 +116,7 @@ hr models download qwen3-forced-aligner-0.6b-8bit
 hr models list
 ```
 
-按需把下载命令中的模型 ID 替换成 Whisper 模型。也可以在工作台根目录设置 `HR_MODEL_CACHE_DIR` 指向容量充足的本机磁盘。Qwen 的样本对比记录见任务 `task/dev-flow/261024_beannote-source-collector/process/03-本地模型对比.md`；目前优先依据中文样本抽查选择默认模型，不能据此宣称跨语言或所有场景的普遍准确性。
+按需把下载命令中的模型 ID 替换成 Whisper 模型。也可以在工作台根目录设置 `HR_MODEL_CACHE_DIR` 指向容量充足的本机磁盘。Qwen 的样本对比记录见任务 `task/dev-flow/QAO3_beannote-source-collector/process/03-本地模型对比.md`；目前优先依据中文样本抽查选择默认模型，不能据此宣称跨语言或所有场景的普遍准确性。
 
 ## 数据迁移
 

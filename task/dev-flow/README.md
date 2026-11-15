@@ -8,22 +8,23 @@
 
 | 任务 | 目录 | 资源范围 | 状态 |
 | --- | --- | --- | --- |
-| Superone 后端重构（下线老功能） | `task/dev-flow/260927_superone-backend-refactor/` | `business-repo/backend-superone`、`release-260927` tag | 进行中 |
-| Superone 多仓规则完善 | `task/dev-flow/260614_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引 | 进行中 |
-| uni-carbon-space 接入 | `task/dev-flow/260614_uni-carbon-space-onboarding/` | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引 | 进行中 |
-| Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/261002_superone-modules/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
-| uni-superone 日常优化 | `task/dev-flow/261007_uni-superone-daily-optimization/` | `business-repo/uni-superone`（日常体验、交互、样式与维护优化） | 进行中 |
-| Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/261002_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts` | 已完成 |
-| uTools Superone 重构 | `task/dev-flow/261007_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
-| 前端引入子日志（跟进，记录详情页） | `task/dev-flow/261002_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
-| topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/261003_topic-crud/` | `business-repo/backend-superone`、`business-repo/uni-superone` | 进行中 |
-| 鹅懂个啥日常开发 | `task/dev-flow/261009_gknow-daily/` | `business-repo/uni-gknow`（日常优化、修复与开发记录；长期产品文档在业务仓 docs） | 进行中 |
-| 鹅懂个啥管理员内容工具 | `task/dev-flow/261010_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
-| 鹅懂个啥产品宣传样片 | `task/dev-flow/261015_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
-| 本机微信聊天读取与总结 | `task/dev-flow/261031_wechat-local-chat/` | `wb-wechat-local`、本机微信数据库的指定范围只读查询与总结流程 | 流程已建立；首次本机读取器准备待完成 |
+| Superone 后端重构（下线老功能） | `task/dev-flow/Q9R1_superone-backend-refactor/` | `business-repo/backend-superone`、`release-260927` tag | 进行中 |
+| Superone 多仓规则完善 | `task/dev-flow/Q6E1_superone-workbench-migration/` | `business-repo/` 路由、Superone skills、协议仓路径、知识库索引 | 进行中 |
+| uni-carbon-space 接入 | `task/dev-flow/Q6E2_uni-carbon-space-onboarding/` | `business-repo/uni-carbon-space`、uni 路由、品牌特化 skill、知识库索引 | 进行中 |
+| Superone 前端模块设计（topic/checklist/plan 等） | `task/dev-flow/QA21_superone-modules/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
+| uni-superone 日常优化 | `task/dev-flow/QA71_uni-superone-daily-optimization/` | `business-repo/uni-superone`（日常体验、交互、样式与维护优化） | 进行中 |
+| Topic 记录嵌套（log 的 log，parent_log_id） | `task/dev-flow/QA23_topic-log-nesting/` | `business-repo/backend-superone`、`business-repo/frontend-contracts` | 已完成 |
+| uTools Superone 重构 | `task/dev-flow/QA72_utools-refactor/` | 一级辅助文件精简、死文件清理、Topic 页面 UI/UX 与通用右键菜单 | Topic 页面第一版已实现，待后续验收 |
+| 前端引入子日志（跟进，记录详情页） | `task/dev-flow/QA22_superone-sub-log/` | `business-repo/uni-superone`、`business-repo/frontend-contracts` | 进行中 |
+| topic 模块 P0 闭环（增删改 + 级联删除） | `task/dev-flow/QA31_topic-crud/` | `business-repo/backend-superone`、`business-repo/uni-superone` | 进行中 |
+| 鹅懂个啥日常开发 | `task/dev-flow/QA92_gknow-daily/` | `business-repo/uni-gknow`（日常优化、修复与开发记录；长期产品文档在业务仓 docs） | 进行中 |
+| 鹅懂个啥管理员内容工具 | `task/dev-flow/QAA1_gknow-content-studio/` | 管理员海报与贴图内容生产工具 | 方案待确认 |
+| 鹅懂个啥产品宣传样片 | `task/dev-flow/QAF1_gknow-product-video/` | 转盘宣传样片、渲染工程与审片记录 | 样片待反馈 |
+| 本机微信聊天读取与总结 | `task/dev-flow/QAV2_wechat-local-chat/` | `wb-wechat-local`、本机微信数据库的指定范围只读查询与总结流程 | 流程已建立；首次本机读取器准备待完成 |
+| 鹅游戏方向重选 | `task/dev-flow/QBE1_gknow-game-direction/` | 「疯狂大鹅」方向评估与新玩法需求；旧人生模拟任务保留历史 | 进行中：新方向与首发范围待沟通 |
 
 ## 约定
 
 - 新开发需求走 `dev-flow`，设计方案放在任务目录 `plans/` 下的独立文档，任务 README 建立索引。
 - 确认后再按端派发后端（`dev-flow-0101` 起）或前端（`dev-flow-0201` 起），收口走 `dev-flow-0301-verify-flow`。
-- 本目录不放方案文档本身，只做索引；方案与过程记录写在各 `task/dev-flow/YYMMDD_{主题}/` 下。
+- 本目录不放方案文档本身，只做索引；方案与过程记录写在各 `task/dev-flow/{任务编号}_{主题}/` 下。

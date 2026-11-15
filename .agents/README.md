@@ -13,7 +13,7 @@
 │   ├── dev-flow-tools-*  仓库、数据库、SVG 与产品视频独立能力
 │   ├── bn-tools-*        文章辅助编辑、排版与发布三个工具
 │   ├── xhs-tools-*       小红书公开内容研究与预发布准备工具
-│   ├── superone-mcp-*    Superone MCP 客户端接入能力
+│   ├── superone-mcp-*    Superone MCP 客户端接入与业务操作能力
 │   ├── finance-tools-*   理财分析、分层日报与仓位目标记账
 │   └── wb-*              工作台基建（5 个，不编号）
 └── vendor/product-video/ 第三方视频制作能力的固定版本
@@ -64,3 +64,5 @@ cd /Users/bean/workspace/bean-workbench && make commit 说明改了什么
 公众号使用 `local-config/wechat/credentials`（AppID、AppSecret 两行）与 `local-config/wechat/token-cache/`。脚本按自身位置定位工作台配置目录，不依赖执行时的当前目录。仍支持环境变量与显式凭证文件覆盖。换机器需要单独配置这些本地文件，Git 不负责分发凭证。
 
 通用图片上传使用 `local-config/image-upload/admin.jwt`；具体环境、调用方法和适用范围见 [图片上传 skill](skills/tools-image-upload/SKILL.md)。
+
+backend-superone 的 test/live API 鉴权由 [backend auth skill](skills/tools-backend-auth/SKILL.md) 从业务仓配置即时读取并签发短时 JWT；不保存 JWT，也不把环境密钥复制到工作台配置或过程记录。
