@@ -22,14 +22,14 @@ description: 当用户明确要求 handoff、交接、收工、记进度、下�
 新建独立任务使用 `task/{任务编号}_{主题}/`，新建长期日常任务使用 `task/daily/{任务编号}_{slug}/`；编号算法以工作台根目录 `AGENTS.md` 的「Git 提交规范」为准。先查当天已有任务并分配未使用的 36 进制序号。beannote 选题也使用同一编号算法，按 `task/beannote/README.md` 分配序号，不登记工作台任务。
 
 1. 用户明确说「新建任务 / 创建任务目录」时，创建新的任务目录；查 `task/registry.md` 和当日已有任务只用于分配唯一编号、选择目录名和避免路径冲突，不能据此复用已有目录。用户明确提出创建要求即视为已确认，不要重复询问；README 用 `wb-router` 的 `references/task-readme.md`，并登记进 `task/registry.md` 热任务。
-2. 用户说「进入 / 继续已有任务」或指定已有任务目录时，读 `task/registry.md`，从热任务里找目标目录；命中不了再扫 `task/workbench/`、`task/dev-flow/`、`task/daily/` 与 `task/beannote/topics/` 下统一格式的 `{任务编号}_*` 目录。这些表达才触发查找并复用。
+2. 用户说「进入 / 继续已有任务」或指定已有任务目录时，读 `task/registry.md`，从热任务里找目标目录；命中不了再扫 `task/dev-flow/`、`task/daily/` 与 `task/beannote/topics/` 下统一格式的 `{任务编号}_*` 目录。工作台固定上下文使用 `task/workbench/`，历史工作台专项按登记路径从 `task/archive/workbench/` 查找。这些表达才触发查找并复用。
 3. 用户没有明确说新建或进入时，按当前上下文继续；只有需要新目录且目录归属或范围无法合理判断时才询问。不得把“新建任务”解释成“找一个相似的已有任务”。
 4. 目录里必须有 `handoff/` 和 `process/`：没有就建；已有就直接写。
 5. 新建任务目录并完成登记，或进入 / 继续时确认目标已有目录并确定为本次上下文后，直接调用当前环境提供的会话标题工具，将当前会话标题改为任务目录末级名称（例如目录 `task/dev-flow/QB81_gknow-config-test/` 对应标题 `QB81_gknow-config-test`；日常目录 `task/daily/QAQ1_health-sleep-sell-put/` 对应标题 `QAQ1_health-sleep-sell-put`）。核对工具返回的标题与目标名称一致后，才算绑定完成；不能只在任务文档中记录标题或在回复里声称已改名。工具调用失败时，停止后续任务工作并如实说明改名未完成，不依赖文件系统钩子。
 
 ### 用户要求进入或继续已有任务目录时
 
-用户输入“进入 / 继续 {任务目录}”、明确要求将当前会话绑定到已有任务，或提供已有任务目录并同时提出具体工作时，均视为本会话要进入该任务上下文。此规则适用于 `task/workbench/`、`task/dev-flow/`、`task/daily/` 和 `task/beannote/topics/` 下统一格式的任务目录，不因 daily 任务是长期目录而省略绑定或改名。
+用户输入“进入 / 继续 {任务目录}”、明确要求将当前会话绑定到已有任务，或提供已有任务目录并同时提出具体工作时，均视为本会话要进入该任务上下文。此规则适用于 `task/dev-flow/`、`task/daily/` 和 `task/beannote/topics/` 下统一格式的任务目录，不因 daily 任务是长期目录而省略绑定或改名。工作台固定上下文是例外：进入 `task/workbench/` 时读取其 `README.md` 和最新 handoff，标题使用 `workbench`；归档专项仍按原任务目录名绑定。
 
 1. 解析并确认目标任务目录；读取该任务的 `README.md` 和最新 handoff（若存在），再结合 `task/registry.md` 建立当前会话的任务上下文。
 2. 将当前会话绑定到该任务，并把会话标题改为目录末级名称；例如开发任务 `task/dev-flow/QA92_gknow-daily/` 对应标题 `QA92_gknow-daily`，日常任务 `task/daily/QAQ1_health-sleep-sell-put/` 对应标题 `QAQ1_health-sleep-sell-put`。直接调用当前环境提供的会话标题工具，并核对返回标题与目标名称一致；未确认成功前不能声称已完成绑定或继续任务内容。不依赖文件系统钩子。

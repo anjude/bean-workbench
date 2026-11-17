@@ -109,6 +109,23 @@ Vue 3、uni-app、TypeScript、Pinia、Vite、Tailwind CSS、Sass、vue-i18n、u
 | `npm run build:h5` | H5 构建 |
 | `npm run build:mp-weixin` | 微信小程序构建，产物用微信开发者工具预览或上传 |
 
+### 微信小程序体验版上传
+
+用户要求上传微信小程序体验版时，先在目标项目运行 `npm run build:mp-weixin`，确认构建成功、产物目录和 AppID 属于目标小程序，再使用本机微信开发者工具 CLI 上传。鹅懂个啥的构建目录为 `business-repo/uni-gknow/dist/build/mp-weixin`：
+
+```bash
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" upload \
+  --project "/Users/bean/workspace/bean-workbench/business-repo/uni-gknow/dist/build/mp-weixin" \
+  -v "<版本号>" \
+  -d "<本次版本描述>" \
+  --port 24589
+```
+
+- 版本号与描述按本次实际内容填写；版本号未指定时先核对微信平台已有版本，再选未使用的版本，不固定沿用示例中的 `0.1.4`。其他项目使用其真实构建产物目录与 AppID。
+- `24589` 是本机开发者工具服务端口，执行前核对工具已登录且服务端口可用；CLI 可启动尚未运行的开发者工具，若工具已用不同端口运行，先退出工具再用指定端口重试。不把示例端口当成所有环境的固定配置。
+- 检查命令退出状态和上传结果；如需在微信公众平台将上传版本选为体验版，完成设置并核对版本号。记录上传版本、描述、目标小程序和体验版状态。上传代码、设置体验版、提交审核和公开发布是不同状态；没有实际核验时只报告已观察到的结果。
+- 用户要求上传体验版即授权该次上传及必要的体验版设置；提交审核或公开发布按用户另行授权执行。
+
 ## 协议事实仓
 
 - 当前唯一协议事实仓：`business-repo/frontend-contracts`，供所有客户端项目共同消费，不按平台复制维护协议。

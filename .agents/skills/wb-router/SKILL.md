@@ -26,6 +26,7 @@ description: 当用户主要需要建立工作台上下文、定位任务/知识
 | --- | --- |
 | `素材库`、`原始素材`、`local-source` | `source/README.md`，需要二次开发时先复制素材到目标任务或业务仓 |
 | 后端上传图片、图片转 URL | 使用 `tools-image-upload`；公众号专属素材与发布仍走 `bn-tools-publish-flow` |
+| IMA 笔记或知识库 | 使用 `tools-ima`；读取对应 notes 或 knowledge-base 模块说明后操作 |
 | 鹅懂个啥测试、副本内容或素材维护 | 进入 `task/daily/QBF1_gknow-content-maintenance/` 并使用 `tools-content-maintenance`；内容与素材备份在 `business-repo/uni-gknow/docs/content/`，功能改造仍走 `dev-flow` |
 | `鹅懂个啥`、`uni-gknow`、`gknow` | `business-repo/uni-gknow`；长期产品上下文见 `business-repo/uni-gknow/docs/README.md`；功能日常入口见 `task/daily/QB81_gknow/README.md`，内容维护见 `task/daily/QBF1_gknow-content-maintenance/README.md`；管理员内容工具见 `task/dev-flow/QAA1_gknow-content-studio/`，产品视频见 `task/dev-flow/QAF1_gknow-product-video/` |
 | `小红书内容研究`、`小红书帖子预发布`、`MediaCrawler`、`XHS-Downloader` | 使用 `xhs-tools-content-research`；鹅懂个啥图文生成与样本学习上下文见 `task/dev-flow/QAA1_gknow-content-studio/` |

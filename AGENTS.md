@@ -68,6 +68,7 @@ tools-{能力后缀}                             新增的可独立调用工具�
 | [tools-image-upload](.agents/skills/tools-image-upload/SKILL.md) | 通过后端上传本地图片并获取 HTTPS URL，按用途核验目标端访问 |
 | [tools-content-maintenance](.agents/skills/tools-content-maintenance/SKILL.md) | 鹅懂个啥测试、副本内容与素材维护，项目内备份、预览及按授权更新 |
 | [tools-backend-auth](.agents/skills/tools-backend-auth/SKILL.md) | 按授权读取 backend-superone 环境配置，短时签发 JWT 并安全调用 test/live API |
+| [tools-ima](.agents/skills/tools-ima/SKILL.md) | 管理 IMA 笔记和知识库；凭证从本机环境变量或权限受限的配置文件读取 |
 
 ### dev-flow 开发流程
 
