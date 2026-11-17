@@ -9,6 +9,9 @@
 | 目录 | 内容 | 使用场景 |
 | --- | --- | --- |
 | `source/local-source/h5-game-library/` | 原始 H5 小游戏源码合集，约 1.0 GB | 为「鹅懂个啥」及后续任务挑选测试、游戏素材；具体取舍见相关任务文档 |
+| `source/local-source/claude-opus-5-5-demo/` | 用户指定的公开 Three.js 游戏参考仓，浅克隆至 commit `54adc1f`，约 1.5 MB | 分析 `pelican-bike/src/ocean.js` 的海面建模、着色和浪花；仓库保留原样，只作本地研究参考 |
+
+该参考仓根目录没有 `LICENSE` 文件；其中 `pelican-bike/package.json` 声明 `ISC`。用于学习水面实现思路，不直接复制其代码或角色素材。
 
 ## 采集来源库
 
