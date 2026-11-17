@@ -1,7 +1,7 @@
 # 项目长期记忆（bean-workbench）
 
 ## 工程结构
-- 多子模块工程。业务仓：`backend-superone`（Go+Gin+GORM）、`uni-superone`（微信绿"豆流便签"前端）、`frontend-contracts`（契约源：openapi yaml + types + apis，以 git submodule 挂 `uni-superone/src/contracts`）。
+- 多子模块工程。业务仓：`backend-superone`（Go+Gin+GORM）、`uni-superone`（微信绿"豆流便签"前端）、`frontend-contracts`（契约源：openapi yaml + types + apis，以 git submodule 挂 `uni-superone/src/contracts`）、`uni-gknow`（鹅懂个啥，含「大鹅快划」2D 主包页与 `game3d/` 独立 3D 试玩分包）。
 - 测试库硬编码共享远程库，DDL/写操作须用户"继续"逐项授权；迁移 `go run ./scripts/migration -action=exec-sql -sql-file=<path> -env=test`。
 - 分支：dev 开发、就绪合 release；**开发阶段不擅自 commit，保持未提交工作区**，等"提交/合 release"再动。子仓改动须 push 远端后才可 bump 父仓子模块指针。
 
@@ -46,6 +46,13 @@
 - **卡片层级：页面 `--so-bg-secondary`、卡片走 `.so-card` 默认（elevated）**，即移动端主流的「灰底白卡」。**不要反着做「白底灰卡」**（2026-10-02 试过，豆哥一句「好丑，好割裂」）。要「协调」靠的是：同层级卡片 **去投影**（投影留给浮层）+ **块间距收紧**（16rpx，让多张卡读作一组而不是几块飞板），不是靠反转明暗。
 - **卡片必须成组**（2026-10-02 豆哥纠「整个页面只有输入框一张白卡怪奇怪的」）：页内卡片 ≥2 张且同一层表面（主题详情页 = 头部卡 + 输入卡 + 记录卡）；去掉多余的某张可以，但**去到只剩一张就过头了**。卡内边距：普通卡 24rpx；**包着自带边框的编辑器那种卡用 16rpx**，否则嵌套太厚。需要覆盖卡片外观时只在 06-pages 里写 `.p-topic-detail .so-card`，不动 `.so-card` 统一件本身（会影响 profile/test-theme/首页占位面板）。
 
+## uni-gknow / 大鹅快划
+- 「点选水道错位」先确认页面：主包 2D 对局页是 5 个等分 `dash__lane` view 接 `@tap`；`game3d/` 3D 试玩页是 canvas 触摸事件 + 相机反算。两套互不相干。
+- **3D 点选三处必须同源**：`boundingClientRect` 实测尺寸 → `resize()` 相机视口 → 点击比例。任一处硬编码整屏宽（375/800）会压缩比例，表现为「右侧水道依次左偏、左侧看似正常」，不是整体平移。同一 `NodesRef` 上拿 node 的 `fields` 回调不得覆盖 rect 实测尺寸。
+- 微信 canvas 触摸的 `x/y` 是 canvas 局部坐标；普通 Touch 的 `clientX/clientY` 是视口坐标，减实测 `left/top` 即可。不混算、不写死 CSS 百分比偏移。
+- **透视版（2026-11-17 第 20 轮起）**：相机为 `PerspectiveCamera` 眼位 (0,15,17) 看原点，`fitFov(aspect)` 按水道包围盒 x±3.9/y-0.4..1.9/z±8.6、limit 0.98 二分求最小 fov。点选必须传 **x/y 两个局部比例**，用相机基向量反投影射线与水面 y=-0.19 求交，按 worldX 定道；只看横坐标必错。包围盒放大会把 fov 推到 80° 以上、竖屏水道缩到屏高 1/3，岸边景物应允许自然裁切。数值验证方式：8 种 aspect × 5 道 × 33 深度 × 5 横向偏移，误判应为 0。
+- 上传体验版：`cli upload --project <uni-gknow>/dist/build/mp-weixin -v <版本> -d <备注> --port 24589`，**不能带 `-i`**（被当二维码输出路径，code 17）；`-v` 与 manifest 的 `versionName` 不联动。CLI 查不到云端体验版指向哪个版本。
+
 ## beannote（豆小匠）
 - 行为规范只在 skill，文档只描述项目本身。`topics/` 一篇一目录 + `manifest.yaml` 状态源；槽位 `01_选题卡`…`06_复盘`。投资认知：反口号说教，讲测量方法+背后道理，给阈值不堆公式。
 
@@ -60,7 +67,7 @@
 - **每日凌晨 3:06 自动重启**（豆哥要求）：crontab `6 3 * * * /usr/sbin/reboot`（`/usr/sbin/reboot` 是 systemctl 的软链；时区 Asia/Shanghai）。**这条能安全运行全靠上面的 `@reboot` 自愈，两者必须成对存在**——没有自愈，每次重启都会让线上服务挂到人工介入。
 - 部署两路径：`make build` → docker build；`deploy.sh test` → 宿主机 `go build` + `supervisorctl reload`（失败发企微告警）。`deploy.sh` 里已无 `go mod tidy`。
 - **新增依赖不需要上服务器跑 `go mod download`**（已实测）：Go 1.16+ 默认 `-mod=readonly`，`go build` 会自动下载 go.mod 里已声明的模块，但不会自动补写 go.mod。依赖由开发者本地 `go get` 后连同 `go.mod`/`go.sum` 一起提交即可。漏提交会明确报错（`no required module provides package xxx` / `missing go.sum entry`），不会静默带病上线。
-- 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/workbench/QA24_测试服务器构建优化/`。
+- 已知待改项：删掉每次部署的 `go mod tidy`、超时 300→1800、加 2G swap、宿主机 `CGO_ENABLED=0`（Dockerfile 才是 0）、宿主机 Go 1.21.4 升到 1.24.5（go.mod 要求 1.24）、`go build` 加 `-ldflags="-s -w"`、Dockerfile 基础镜像换 1.24-alpine 且 `go.mod`/`go.sum` 要先于源码 COPY。详见 `task/archive/workbench/QA24_测试服务器构建优化/`。
 - **远程排障坑**：① `pkill -f "<pattern>"` 会匹配承载命令的 shell 自身导致 SSH 断连（exit 255），先取 PID 再 kill；② 内存被打爆时 **TCP 能连、ping 通，但 sshd 不发 banner**（`Connection timed out during banner exchange`），此时应等待内存释放而非反复重连，恢复后用 `uptime` 的 "up N min" 判断是否重启过。
 - 装 Go 不用联网下 tarball：模块缓存里的 `golang.org/toolchain@v0.0.1-goX.Y.Z.linux-amd64` 就是完整 SDK，`cp -r` 到 `/usr/local/go` 后 `chmod -R u+w` 即可（toolchain 模块文件默认只读）。
 
